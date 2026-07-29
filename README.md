@@ -22,29 +22,27 @@ npm run preview    # 本番同等（ルート配信）でローカル確認
 ```
 src/
 ├── layouts/Base.astro        # <head>/SEO/OGP/JSON-LD/フォント/共通スクリプト
-├── components/               # SiteHeader / SiteFooter（新規ページ共通）
+├── components/               # SiteHeader / SiteFooter（固定ページ共通）
 ├── pages/
 │   ├── index.astro           # トップ（Studioデザインを移植）
-│   ├── contact.astro         # お問い合わせ（Googleフォーム連携）
+│   ├── contact.astro         # お問い合わせ（Googleフォーム + reCAPTCHA v3）
 │   ├── privacy.astro         # プライバシーポリシー
-│   ├── news/                 # お知らせ 一覧 + 詳細（[...slug]）
-│   └── works/                # 実績 一覧 + 詳細（[...slug]）
-├── content/                  # Markdown コンテンツ
-│   ├── news/*.md
-│   └── works/*.md
-├── content.config.ts         # コレクション定義（news / works）
+│   └── 404.astro             # 404 ページ
 ├── scripts/main.js           # スクロールリビール + Contactフォーム送信
-└── styles/                   # global(既存) / index / contact / privacy / content
+└── styles/                   # global(既存) / index / contact / privacy / content(404用)
 public/                       # images, favicon, CNAME, robots.txt（そのまま配信）
 ```
 
-## ページの増やし方
+公開ページは **index / contact / privacy**（＋404）の3ページ構成です。
 
-> 📝 コピペ用テンプレート付きの詳しい手順は **[docs/authoring-guide.md](docs/authoring-guide.md)** を参照。
+## ページを増やす場合
 
-- **お知らせ**: `src/content/news/` に Markdown を追加（frontmatter: `title`, `date`, `description?`, `draft?`）。一覧・詳細・sitemap が自動生成されます。
-- **実績**: `src/content/works/` に Markdown を追加（`title`, `date`, `client?`, `summary?`, `thumbnail?`）。
-- **固定ページ（会社概要 / サービス / 採用 など）**: `src/pages/xxx.astro` を作成し、`Base` レイアウトと `SiteHeader`/`SiteFooter`・`content.css` を使えばすぐ追加できます。
+固定ページは `src/pages/xxx.astro` を作成すると `/xxx/` で公開されます。
+`Base` レイアウト＋`SiteHeader`/`SiteFooter`＋`content.css` を使えば、
+404 ページと同じ体裁でサイトの世界観に沿ったページになります（`src/pages/404.astro` が参考実装）。
+
+> お知らせ・実績のような一覧＋Markdown運用（Content Collections）が必要になったら、
+> その仕組みを追加できます（相談してください）。
 
 ## デプロイ
 
