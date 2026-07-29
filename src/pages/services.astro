@@ -1,0 +1,68 @@
+---
+// サービス紹介ページ（叩き台）。/services/ で公開されます。
+// 文言は既存サイトの内容をもとにした仮テキストです。自由に編集してください。
+import Base from "../layouts/Base.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/content.css";
+---
+
+<Base
+  title="サービス | 株式会社ワンダーブラザース"
+  description="新規事業の構想からPoC、DX推進まで。デザインとテクノロジーの力で「あったらいいな」を実現するワンダーブラザースのサービス紹介。"
+  path="/services/"
+>
+  <div class="content-page">
+    <SiteHeader />
+    <main class="content-main">
+      <div class="content-card">
+        <h1 class="page-title"><span class="page-title__en">SERVICES</span>サービス</h1>
+
+        <div class="article__body">
+          <p>
+            株式会社ワンダーブラザースは、デザインとテクノロジーの力で「あったらいいな」を実現するデザインスタジオです。
+            新規事業の構想から、PoC、DX推進まで、企業や地域の未来づくりを一気通貫で支援します。
+          </p>
+
+          <h2>デジタルディレクション支援</h2>
+          <p>
+            新規サービスの立ち上げ期に、コンセプト設計から情報設計・UI/UXまで、
+            プロダクトの方向性を定めるディレクションをご支援します。
+          </p>
+
+          <h2>PoC支援</h2>
+          <p>
+            アイデアを素早く検証可能な形にし、ユーザーの反応やビジネスとしての実現性を確かめる
+            PoC（概念実証）をご支援します。小さく試し、確かな一歩へつなげます。
+          </p>
+
+          <h2>DX推進支援</h2>
+          <p>
+            企業内の業務やサービスをデジタル化し、変革を推進します。
+            仕組みが現場に定着するところまで伴走します。
+          </p>
+
+          <h2>私たちの進め方</h2>
+          <h3>Discover — 発見</h3>
+          <p>
+            利用者やユーザーを理解するために、コンテキストの整理や実際の利用者へのインタビューなどの
+            リサーチ手法を用い、何が本当の課題なのかを探ります。
+          </p>
+          <h3>Design — 設計</h3>
+          <p>
+            課題を明確にしたうえで、プロダクトの目的に沿った画面構造・コンテンツ・グラフィックス、
+            ユーザーとプロダクトのコミュニケーションを設計します。
+          </p>
+          <h3>Development — 開発</h3>
+          <p>
+            仮説やコンセプトを素早く形にし、ユーザーテストと改善を重ねることで、
+            関わるステークホルダーの認識の齟齬をなくしながら実装へと進めます。
+          </p>
+        </div>
+
+        <a class="back-link" href="/contact/">お問い合わせ</a>
+      </div>
+    </main>
+    <SiteFooter />
+  </div>
+</Base>
