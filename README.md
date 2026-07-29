@@ -40,6 +40,8 @@ public/                       # images, favicon, CNAME, robots.txt（そのま�
 
 ## ページの増やし方
 
+> 📝 コピペ用テンプレート付きの詳しい手順は **[docs/authoring-guide.md](docs/authoring-guide.md)** を参照。
+
 - **お知らせ**: `src/content/news/` に Markdown を追加（frontmatter: `title`, `date`, `description?`, `draft?`）。一覧・詳細・sitemap が自動生成されます。
 - **実績**: `src/content/works/` に Markdown を追加（`title`, `date`, `client?`, `summary?`, `thumbnail?`）。
 - **固定ページ（会社概要 / サービス / 採用 など）**: `src/pages/xxx.astro` を作成し、`Base` レイアウトと `SiteHeader`/`SiteFooter`・`content.css` を使えばすぐ追加できます。
