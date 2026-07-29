@@ -857,19 +857,40 @@ body {
 /* お問い合わせ送信後のお礼メッセージ */
 .form-thanks {
   text-align: center;
-  padding: 48px 16px;
+  padding: 40px 16px;
 }
 .form-thanks .thanks-title {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
+  line-height: 1.4;
   color: #222222;
-  margin: 0 0 12px 0;
+  margin: 0 0 24px 0;
 }
 .form-thanks .thanks-text {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.8;
   color: #222222;
-  margin: 0;
+  margin: 0 0 40px 0;
+}
+.form-thanks .thanks-back {
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid #d45235;
+  border-radius: 4px;
+  color: #d45235;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.form-thanks .thanks-back:hover {
+  background: #d45235;
+  color: #fffaef;
 }

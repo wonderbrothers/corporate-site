@@ -59,9 +59,15 @@
   if (frame) {
     frame.addEventListener('load', function () {
       if (!submitted) return; // 初回の空ロードは無視
-      form.style.display = 'none';
-      if (thanks) thanks.hidden = false;
-      thanks && thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // カード内の見出し・説明・フォームを隠し、お礼だけを表示する
+      var card = form.parentElement;
+      Array.prototype.forEach.call(card.children, function (c) {
+        if (c !== thanks) c.style.display = 'none';
+      });
+      if (thanks) {
+        thanks.hidden = false;
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
 })();
