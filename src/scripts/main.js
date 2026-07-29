@@ -40,34 +40,5 @@
   targets.forEach(function (el) { io.observe(el); });
 })();
 
-/*
- * お問い合わせフォーム → Google フォーム送信
- *   - フォームは隠し iframe（target）へ POST するので画面遷移しない
- *   - 必須チェックはブラウザ標準（required 属性）に任せる
- *   - 送信が iframe に届いたら（load）フォームを隠してお礼を表示する
- */
-(function () {
-  var form = document.querySelector('form[name="contact form"]');
-  if (!form) return;
-  var frame = document.querySelector('iframe[name="gform-target"]');
-  var thanks = document.querySelector('.form-thanks');
-  var submitted = false;
-
-  // required 検証を通過して実際に送信されたときだけ submit イベントが発火する
-  form.addEventListener('submit', function () { submitted = true; });
-
-  if (frame) {
-    frame.addEventListener('load', function () {
-      if (!submitted) return; // 初回の空ロードは無視
-      // カード内の見出し・説明・フォームを隠し、お礼だけを表示する
-      var card = form.parentElement;
-      Array.prototype.forEach.call(card.children, function (c) {
-        if (c !== thanks) c.style.display = 'none';
-      });
-      if (thanks) {
-        thanks.hidden = false;
-        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    });
-  }
-})();
+// お問い合わせフォームの送信は contact ページ内のスクリプト
+// （reCAPTCHA v3 → Cloudflare Worker 経由）で処理する。

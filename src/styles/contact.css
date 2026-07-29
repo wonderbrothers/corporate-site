@@ -894,3 +894,16 @@ body {
   background: #d45235;
   color: #fffaef;
 }
+
+/* 送信エラー表示 */
+.form-error {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border: 1px solid #d45235;
+  border-radius: 6px;
+  color: #d45235;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}

@@ -1,8 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import '../styles/contact.css';
+
+// ▼▼ 要設定（どちらも公開値。発行後に差し替え）▼▼
+// reCAPTCHA v3 サイトキー（https://www.google.com/recaptcha/admin で発行）
+const RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_V3_SITE_KEY";
+// Cloudflare Worker のURL（デプロイ後の xxx.workers.dev）
+const CONTACT_ENDPOINT = "https://YOUR-WORKER.workers.dev";
+// ▲▲ 要設定 ▲▲
 ---
 <Base title="株式会社ワンダーブラザース | CONTACT" description="株式会社ワンダーブラザースは、デザインとブランディングの力で地域や企業の未来をつくるデザインスタジオ。デザインとテクノロジーの力で「あったらいいな」を実現する。" path="/contact/">
+  <script slot="head" is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}></script>
   <div class="container"><div class="render-canvas"><div class="StudioCanvas">
 <div class="sd reveal s-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1">
                 <div class="sd reveal s-5eed9adb-96a1-41e1-8045-656cee1d6b96">
@@ -17,11 +25,9 @@ import '../styles/contact.css';
                       ご返信に3営業日ほどお時間をいただいております。<br />3営業日を過ぎても返信がない場合は、お手数ですが再度お問い合わせをお願いいたします。
                     </p>
                     <form
+                      id="contact-form"
                       name="contact form"
                       class="sd reveal s-a0e2e545-1ae9-4a70-bed5-598ba33e5a08"
-                      action="https://docs.google.com/forms/d/e/1FAIpQLSeGlxifWf_XqJDUP-YoY8g-iiJtGlkJKcEhpCTxjMPRw2Z8MA/formResponse"
-                      method="POST"
-                      target="gform-target"
                     >
                       <div class="sd reveal s-c98354b9-8b84-430e-b24e-fe6fb84ab507">
                         <div class="sd reveal s-b14f74f4-2571-4b9f-8809-c868e0174668">
@@ -93,12 +99,14 @@ import '../styles/contact.css';
                         >
                       </button>
                     </form>
+                    <p class="form-error" role="alert" hidden>
+                      送信に失敗しました。お手数ですが時間をおいて再度お試しください。
+                    </p>
                     <div class="form-thanks" hidden>
                       <p class="thanks-title">お問い合わせありがとうございます</p>
                       <p class="thanks-text">ご記入いただいた情報は無事に送信されました。</p>
                       <a class="thanks-back" href="../index.html">トップページへ戻る</a>
                     </div>
-                    <iframe name="gform-target" title="送信用" style="display: none"></iframe>
                   </div>
                 </div>
                 <footer class="sd reveal s-e686dec0-e05f-4018-9fa3-f08e483e9c0b">
@@ -113,4 +121,55 @@ import '../styles/contact.css';
                 </footer>
               </div>
   </div></div></div>
+
+  <script define:vars={{ siteKey: RECAPTCHA_SITE_KEY, endpoint: CONTACT_ENDPOINT }}>
+    // reCAPTCHA v3 → Cloudflare Worker 経由で Google フォームへ送信
+    const form = document.getElementById("contact-form");
+    if (form) {
+      const card = form.parentElement;
+      const thanks = document.querySelector(".form-thanks");
+      const errorBox = document.querySelector(".form-error");
+      const btn = form.querySelector("button");
+
+      const showError = () => {
+        if (errorBox) errorBox.hidden = false;
+        if (btn) btn.disabled = false;
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        if (errorBox) errorBox.hidden = true;
+        if (btn) btn.disabled = true;
+        try {
+          await new Promise((res) => grecaptcha.ready(res));
+          const token = await grecaptcha.execute(siteKey, { action: "contact" });
+          const fields = {};
+          new FormData(form).forEach((v, k) => {
+            if (k.indexOf("entry.") === 0) fields[k] = v;
+          });
+          const r = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token, fields }),
+          });
+          const data = await r.json().catch(() => ({}));
+          if (r.ok && data.ok) {
+            // カード内の見出し・フォームを隠してお礼を表示
+            Array.prototype.forEach.call(card.children, (c) => {
+              if (c !== thanks) c.style.display = "none";
+            });
+            if (thanks) {
+              thanks.hidden = false;
+              thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          } else {
+            showError();
+          }
+        } catch (err) {
+          showError();
+        }
+      });
+    }
+  </script>
 </Base>
