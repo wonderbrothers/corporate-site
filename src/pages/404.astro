@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/content.css";
+---
+
+<Base
+  title="ページが見つかりません | 株式会社ワンダーブラザース"
+  description="お探しのページは見つかりませんでした。"
+  path="/404/"
+  noindex
+>
+  <div class="content-page">
+    <SiteHeader />
+    <main class="content-main">
+      <div class="content-card notfound">
+        <p class="notfound__code">404</p>
+        <h1 class="page-title">ページが見つかりません</h1>
+        <p class="notfound__lead">
+          お探しのページは移動または削除された可能性があります。<br />
+          お手数ですが、トップページからお進みください。
+        </p>
+        <a class="back-link" href="/">トップページへ戻る</a>
+      </div>
+    </main>
+    <SiteFooter />
+  </div>
+</Base>

@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   path?: string; // 例: "/", "/contact/", "/privacy/"
   ogType?: string;
+  noindex?: boolean; // 404 など検索対象外にしたいページ用
 }
 
 const DEFAULT_DESC =
@@ -16,6 +17,7 @@ const {
   description = DEFAULT_DESC,
   path = "/",
   ogType = "website",
+  noindex = false,
 } = Astro.props;
 
 // Astro.site（=https://wonder-bros.com）を基準に絶対URLを生成
@@ -31,8 +33,8 @@ const ogImage = base + "/images/ogp.png";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta name="robots" content="all" />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={noindex ? "noindex, follow" : "all"} />
     <meta name="theme-color" content="#d45235" />
     <meta name="generator" content={Astro.generator} />
 

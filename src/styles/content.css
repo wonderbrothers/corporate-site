@@ -247,3 +247,21 @@
 .site-footer__link:hover {
   text-decoration: underline;
 }
+
+/* 404 ページ */
+.notfound {
+  text-align: center;
+}
+.notfound__code {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--wb-orange);
+  margin: 0 0 8px;
+}
+.notfound__lead {
+  margin: 12px 0 0;
+  line-height: 1.9;
+  font-size: 15px;
+}
