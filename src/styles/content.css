@@ -1,0 +1,249 @@
+/* ------------------------------------------------------------------
+   新規ページ（お知らせ・実績など）共通スタイル
+   既存サイトの世界観（オレンジ地＋クリームのカード）を踏襲。
+   ※ Studio 由来ページの render-canvas リセットは適用されないので
+     ここで必要なタイポグラフィを明示する。
+------------------------------------------------------------------ */
+:root {
+  --wb-orange: #d45235;
+  --wb-orange-dark: #bc4227;
+  --wb-cream: #fffaef;
+  --wb-ink: #222222;
+  --wb-sans:
+    "Noto Sans JP", "Inter", system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", sans-serif;
+}
+
+.content-page {
+  background: var(--wb-orange);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--wb-sans);
+  color: var(--wb-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ヘッダー（ロゴ中央） */
+.site-header {
+  padding: 48px 16px 24px;
+  text-align: center;
+}
+.site-header__logo {
+  display: inline-block;
+}
+.site-header__logo img {
+  width: 220px;
+  max-width: 60vw;
+  height: auto;
+}
+
+/* 本文コンテナ */
+.content-main {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  box-sizing: border-box;
+}
+.content-card {
+  background: var(--wb-cream);
+  border-radius: 10px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+  padding: 56px;
+}
+@media (max-width: 640px) {
+  .content-card {
+    padding: 32px 20px;
+  }
+}
+
+/* ページ見出し */
+.page-title {
+  font-family: var(--wb-sans);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+.page-title__en {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--wb-orange);
+  margin-bottom: 4px;
+}
+
+/* 記事一覧 */
+.post-list {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+}
+.post-list__item {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.post-list__item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.post-list__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 20px;
+  padding: 20px 4px;
+  text-decoration: none;
+  color: var(--wb-ink);
+  transition: opacity 0.3s;
+}
+.post-list__link:hover {
+  opacity: 0.6;
+}
+.post-list__date {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--wb-orange);
+  min-width: 6em;
+}
+.post-list__title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.empty {
+  margin: 24px 0 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* 実績カードグリッド */
+.works-grid {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 640px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.works-grid__link {
+  display: block;
+  text-decoration: none;
+  color: var(--wb-ink);
+  transition: opacity 0.3s;
+}
+.works-grid__link:hover {
+  opacity: 0.7;
+}
+.works-grid__thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  display: block;
+}
+.works-grid__title {
+  margin: 12px 0 2px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.works-grid__client {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* 記事本文 */
+.article__meta {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--wb-orange);
+  margin: 0 0 8px;
+}
+.article__body {
+  margin-top: 32px;
+  line-height: 1.9;
+  font-size: 15px;
+}
+.article__body h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 40px 0 12px;
+}
+.article__body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 32px 0 10px;
+}
+.article__body p {
+  margin: 0 0 18px;
+}
+.article__body a {
+  color: var(--wb-orange);
+  text-decoration: underline;
+}
+.article__body ul,
+.article__body ol {
+  margin: 0 0 18px 1.4em;
+}
+.article__body li {
+  margin: 6px 0;
+}
+.article__body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 戻るリンク（ボタン） */
+.back-link {
+  display: inline-block;
+  margin-top: 48px;
+  padding: 14px 36px;
+  border: 1px solid var(--wb-orange);
+  border-radius: 4px;
+  color: var(--wb-orange);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.back-link:hover {
+  background: var(--wb-orange);
+  color: var(--wb-cream);
+}
+
+/* フッター */
+.site-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px 32px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: var(--wb-cream);
+}
+.site-footer__link {
+  color: var(--wb-cream);
+  text-decoration: none;
+}
+.site-footer__link:hover {
+  text-decoration: underline;
+}

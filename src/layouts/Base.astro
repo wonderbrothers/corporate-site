@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  path?: string; // 例: "/", "/contact/", "/privacy/"
+  ogType?: string;
+}
+
+const DEFAULT_DESC =
+  "株式会社ワンダーブラザースは、デザインとブランディングの力で地域や企業の未来をつくるデザインスタジオ。デザインとテクノロジーの力で「あったらいいな」を実現する。";
+
+const {
+  title,
+  description = DEFAULT_DESC,
+  path = "/",
+  ogType = "website",
+} = Astro.props;
+
+// Astro.site（=https://wonder-bros.com）を基準に絶対URLを生成
+const base = (Astro.site?.href ?? "https://wonder-bros.com/").replace(/\/$/, "");
+const canonical = base + path;
+const ogImage = base + "/images/ogp.png";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="all" />
+    <meta name="theme-color" content="#d45235" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- OGP / Twitter -->
+    <meta property="og:site_name" content="株式会社ワンダーブラザース" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" type="image/png" href="/images/favicon.png" />
+    <meta name="apple-mobile-web-app-title" content="株式会社ワンダーブラザース" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+
+    <!-- Fonts (Google Fonts CDN) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@300;400;500;600;700;800&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <!-- ページ個別の <head> 追加（JSON-LD など） -->
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import "../scripts/main.js";
+    </script>
+  </body>
+</html>

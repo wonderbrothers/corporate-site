@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import "../../styles/content.css";
+
+const posts = (await getCollection("news", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const fmt = (d: Date) =>
+  `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, "0")}.${String(
+    d.getUTCDate(),
+  ).padStart(2, "0")}`;
+---
+
+<Base
+  title="お知らせ | 株式会社ワンダーブラザース"
+  description="株式会社ワンダーブラザースからのお知らせ一覧です。"
+  path="/news/"
+>
+  <div class="content-page">
+    <SiteHeader />
+    <main class="content-main">
+      <div class="content-card">
+        <h1 class="page-title"><span class="page-title__en">NEWS</span>お知らせ</h1>
+        {
+          posts.length === 0 ? (
+            <p class="empty">お知らせはまだありません。</p>
+          ) : (
+            <ul class="post-list">
+              {posts.map((post) => (
+                <li class="post-list__item">
+                  <a class="post-list__link" href={`/news/${post.id}/`}>
+                    <time class="post-list__date" datetime={post.data.date.toISOString()}>
+                      {fmt(post.data.date)}
+                    </time>
+                    <span class="post-list__title">{post.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </main>
+    <SiteFooter />
+  </div>
+</Base>

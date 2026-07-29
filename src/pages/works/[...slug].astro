@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import "../../styles/content.css";
+
+export async function getStaticPaths() {
+  const items = await getCollection("works", ({ data }) => !data.draft);
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Base
+  title={`${item.data.title} | 実績 | 株式会社ワンダーブラザース`}
+  description={item.data.summary}
+  path={`/works/${item.id}/`}
+  ogType="article"
+>
+  <div class="content-page">
+    <SiteHeader />
+    <main class="content-main">
+      <article class="content-card">
+        {item.data.client && <p class="article__meta">CLIENT: {item.data.client}</p>}
+        <h1 class="page-title">{item.data.title}</h1>
+        <div class="article__body"><Content /></div>
+        <a class="back-link" href="/works/">実績一覧へ戻る</a>
+      </article>
+    </main>
+    <SiteFooter />
+  </div>
+</Base>
