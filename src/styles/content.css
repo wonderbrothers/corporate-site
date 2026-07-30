@@ -9,9 +9,7 @@
   --wb-orange-dark: #bc4227;
   --wb-cream: #fffaef;
   --wb-ink: #222222;
-  --wb-sans:
-    "Noto Sans JP", "Inter", system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
-    "Yu Gothic", sans-serif;
+  --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
 }
 
 .content-page {
@@ -69,7 +67,7 @@
 }
 .page-title__en {
   display: block;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -103,7 +101,7 @@
   opacity: 0.6;
 }
 .post-list__date {
-  font-family: "Inter", sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -164,7 +162,7 @@
 
 /* 記事本文 */
 .article__meta {
-  font-family: "Inter", sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -236,7 +234,7 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 24px 32px;
-  font-family: "Inter", sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: 12px;
   color: var(--wb-cream);
 }
@@ -253,7 +251,7 @@
   text-align: center;
 }
 .notfound__code {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-weight: 700;
   font-size: 64px;
   line-height: 1;

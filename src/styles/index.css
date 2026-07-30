@@ -3539,8 +3539,8 @@ body {
   --s-color-f6bd84f1: #d45235ff;
   --s-color-15b5ba4c: #fffaefff;
   --s-color-0fb6b8d8: #222222ff;
-  --s-font-c090a414: Lato;
-  --s-font-abbfb9fe: "Noto Sans JP", sans-serif;
-  --s-font-18a508ab: Montserrat;
-  --s-font-25b68130: Inter;
+  --s-font-c090a414: "Noto Sans", "Noto Sans JP", sans-serif;
+  --s-font-abbfb9fe: "Noto Sans", "Noto Sans JP", sans-serif;
+  --s-font-18a508ab: "Noto Sans", "Noto Sans JP", sans-serif;
+  --s-font-25b68130: "Noto Sans", "Noto Sans JP", sans-serif;
 }
