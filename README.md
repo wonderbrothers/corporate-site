@@ -44,11 +44,33 @@ public/                       # images, favicon, CNAME, robots.txt（そのま�
 > お知らせ・実績のような一覧＋Markdown運用（Content Collections）が必要になったら、
 > その仕組みを追加できます（相談してください）。
 
-## デプロイ
+## デプロイ（GitHub へ push して公開）
 
 `main` ブランチへ push すると `.github/workflows/deploy.yml`（`withastro/action`）が
-`astro build` して GitHub Pages へ自動公開します。
-GitHub の **Settings → Pages → Source** を **「GitHub Actions」** にしておくこと。
+`astro build` して GitHub Pages へ自動公開します。手順は次のとおりです。
+
+```bash
+# 1. 公開前にローカルでビルドが通ることを確認（dist/ はコミットしない）
+npm run build
+
+# 2. 変更をステージング（変更ファイルを指定、または全部なら -A）
+git add -A
+
+# 3. 変更内容がわかるメッセージでコミット
+git commit -m "変更内容を簡潔に"
+
+# 4. main へ push（これで自動デプロイが走る）
+git push origin main
+```
+
+push 後、GitHub の **Actions** タブでワークフロー（Deploy to GitHub Pages）が
+成功するのを確認します。反映まで数分かかります。
+
+初回のみ、GitHub の **Settings → Pages → Source** を **「GitHub Actions」** に
+しておく必要があります（設定済み）。
+
+> 補足: `dist/` `node_modules/` `.astro/` は `.gitignore` 済みなので push 対象外です。
+> 公開ビルドは GitHub Actions 側で実行されるため、ローカルの `dist/` を上げる必要はありません。
 
 ## SEO
 
