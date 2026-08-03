@@ -3587,14 +3587,8 @@ html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1.is-visible {
   transform-origin: top left;
   animation: wbLogoIn 1.9s cubic-bezier(0.16, 0.84, 0.44, 1) 0.2s backwards;
 }
-.sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105 { /* WB マーク（右上） */
-  --wb-logo-scale: 2.2;
-  transform-origin: top right;
-  animation: wbLogoIn 1.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.35s backwards;
-}
 @media (prefers-reduced-motion: reduce) {
-  .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba,
-  .sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105 {
+  .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba {
     animation: none;
   }
 }
