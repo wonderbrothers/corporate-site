@@ -3535,6 +3535,42 @@ body {
   max-width: 100%;
 }
 
+/* ------------------------------------------------------------------
+   Discover. / Design. / Development. の順次フェードアップ
+   画面（このセクション）が表示されたら、上から順に少し遅延させながら
+   透過を上げつつ下からせり上がって出現させる。既存の .reveal の
+   IntersectionObserver（is-visible 付与）に乗せて、移動量・イージング・
+   段階的な遅延だけを上書きする。
+------------------------------------------------------------------ */
+html.js-on .sd.s-8eab15aa-900b-47d7-9bc5-8985d2e44956,
+html.js-on .sd.s-eb66d4dd-c73a-4328-bf9e-0ac728b6b984,
+html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1 {
+  transform: translateY(48px);
+  transition-property: opacity, transform;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/* 上から順に遅延（Discover→Design→Development） */
+html.js-on .sd.s-8eab15aa-900b-47d7-9bc5-8985d2e44956 { transition-delay: 0.15s; }
+html.js-on .sd.s-eb66d4dd-c73a-4328-bf9e-0ac728b6b984 { transition-delay: 0.4s; }
+html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1 { transition-delay: 0.65s; }
+/* 表示後の到達状態（下からの移動を打ち消す。opacity は既存 .reveal.is-visible が担当） */
+html.js-on .sd.s-8eab15aa-900b-47d7-9bc5-8985d2e44956.is-visible,
+html.js-on .sd.s-eb66d4dd-c73a-4328-bf9e-0ac728b6b984.is-visible,
+html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1.is-visible {
+  transform: none;
+}
+/* 動きを控える設定では即時表示 */
+@media (prefers-reduced-motion: reduce) {
+  html.js-on .sd.s-8eab15aa-900b-47d7-9bc5-8985d2e44956,
+  html.js-on .sd.s-eb66d4dd-c73a-4328-bf9e-0ac728b6b984,
+  html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1 {
+    transform: none;
+    transition: none;
+    transition-delay: 0s;
+  }
+}
+
 :root {
   --s-color-f6bd84f1: #d45235ff;
   --s-color-15b5ba4c: #fffaefff;
