@@ -1,3 +1,30 @@
+/* ==================================================================
+   デザイントークン（全ページ共通・単一の情報源）
+   色やフォントを変えたいときは、まずこの :root を編集する。
+   Studio 由来の変数名（--s-color-* / --s-font-*）は、意味のある
+   --wb-* トークンへのエイリアスとして残している（HTML/CSS は無改変）。
+================================================================== */
+:root {
+  /* ブランドカラー */
+  --wb-orange: #d45235;      /* メインのオレンジ（背景・アクセント） */
+  --wb-orange-dark: #bc4227; /* オレンジの濃色（ホバー等） */
+  --wb-cream: #fffaef;       /* 背景のクリーム */
+  --wb-ink: #222222;         /* 基本の文字色 */
+
+  /* タイポグラフィ */
+  --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
+
+  /* --- 後方互換エイリアス（Studio 由来の変数名 → 上記トークン） --- */
+  --s-color-f6bd84f1: var(--wb-orange);
+  --s-color-15b5ba4c: var(--wb-cream);
+  --s-color-0fb6b8d8: var(--wb-ink);
+  --s-font-c090a414: var(--wb-sans);
+  --s-font-abbfb9fe: var(--wb-sans);
+  --s-font-18a508ab: var(--wb-sans);
+  --s-font-25b68130: var(--wb-sans);
+  --s-font-b582c2ca: var(--wb-sans);
+}
+
 .StudioCanvas {
   display: flex;
   height: auto;

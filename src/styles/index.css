@@ -1,3 +1,26 @@
+/* ==================================================================
+   index.css — トップページ（Studio Design 由来）
+   ------------------------------------------------------------------
+   ・配色/フォントのトークンは global.css :root に集約。
+     色やフォントを変えるときは global.css を編集する。
+   ・クラス名は Studio 由来の UUID（.s-xxxxxxxx-...）。下記の
+     セクション対応表と、各セクションの区切りバナーを目印に探す。
+   ・DOM 順にほぼ並んでいる。各要素は「基本ルール＋@media（画面幅
+     ごとの上書き）」の組で構成される。
+   ・末尾にプロジェクト独自の追記（フルブリード修正／登場アニメ等）。
+
+   セクション対応表（上から順）:
+     s-369d361e … 最外ラッパー（クリーム地）
+     s-3363fb51 … HERO
+     s-0a64065c … Discover./Design./Development.
+     s-246ed966 … OUR MISSION / THEME / VALUE / GOVERNANCE
+     s-66778a08 … WE THINK
+     s-e0860792 … COMPANY INFORMATION
+     s-725d661d … FOOTER
+================================================================== */
+/* ================================================================
+   ページ最外ラッパー（クリーム地）
+   ================================================================ */
 .sd.s-369d361e-4476-4ca3-ae75-f92763b20c1e {
   background: var(--s-color-15b5ba4c);
   border-radius: 0;
@@ -17,6 +40,9 @@
   justify-content: center;
   padding: 0px;
 }
+/* ================================================================
+   HERO（ヒーロー画像・ロゴ・SCROLL）
+   ================================================================ */
 .sd.s-3363fb51-2307-44ad-8ba1-b741316a3707 {
   align-content: center;
   align-items: center;
@@ -29,17 +55,6 @@
   height: auto;
   width: 100%;
   max-width: 100%;
-}
-.sd.s-471416b4-5420-45c2-9f4a-5600d0a8c7e9.appear {
-  opacity: 0;
-  transition-delay: 200ms;
-  transition-duration: 1000ms;
-  transition-timing-function: ease-in;
-}
-.sd.s-471416b4-5420-45c2-9f4a-5600d0a8c7e9.appear-active {
-  transition-delay: 200ms;
-  transition-duration: 1000ms;
-  transition-timing-function: ease-in;
 }
 @media screen and (max-width: 540px) {
   .sd.s-471416b4-5420-45c2-9f4a-5600d0a8c7e9 {
@@ -61,14 +76,6 @@
   width: 40%;
   max-width: 40%;
 }
-.sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba.appear {
-  opacity: 0;
-  transform: translate(-510px, 0px);
-  transition-duration: 1200ms;
-}
-.sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba.appear-active {
-  transition-duration: 1200ms;
-}
 @media screen and (max-width: 1140px) {
   .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba {
     flex: none;
@@ -85,12 +92,6 @@
   }
 }
 @media screen and (max-width: 540px) {
-  .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba.appear {
-    opacity: 0;
-    transform: translate(0px, 0px);
-  }
-  .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba.appear-active {
-  }
   .sd.s-e6b7897f-4ad8-4a64-a632-f4c4627bbfba {
     flex: none;
     left: 8px;
@@ -119,14 +120,6 @@
   width: 6%;
   max-width: 6%;
 }
-.sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105.appear {
-  opacity: 0;
-  transform: translate(80px, 0px);
-  transition-duration: 1200ms;
-}
-.sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105.appear-active {
-  transition-duration: 1200ms;
-}
 @media screen and (max-width: 840px) {
   .sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105 {
     flex: none;
@@ -136,11 +129,6 @@
   }
 }
 @media screen and (max-width: 540px) {
-  .sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105.appear {
-    transform: translate(30px, 0px);
-  }
-  .sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105.appear-active {
-  }
   .sd.s-bc99f93b-b75a-467e-bb40-bea4f1280105 {
     flex: none;
     right: 8px;
@@ -179,12 +167,6 @@
   transition-duration: 800ms;
   width: auto;
   max-width: 100%;
-}
-.sd.s-90770c4c-509e-4834-ae6d-9fbe425959e5.appear {
-  opacity: 0;
-  transform: translate(0px, 48px);
-}
-.sd.s-90770c4c-509e-4834-ae6d-9fbe425959e5.appear-active {
 }
 @media screen and (max-width: 1140px) {
   .sd.s-90770c4c-509e-4834-ae6d-9fbe425959e5 {
@@ -331,6 +313,9 @@
     max-width: 100%;
   }
 }
+/* ================================================================
+   Discover. / Design. / Development.
+   ================================================================ */
 .sd.s-0a64065c-4fb1-4ee0-a545-598b5140b79f {
   align-content: flex-start;
   align-items: flex-start;
@@ -345,20 +330,6 @@
   --gap-v-0a64065c-4fb1-4ee0-a545-598b5140b79f: 0px;
   --gap-uuid: 0a64065c-4fb1-4ee0-a545-598b5140b79f;
   max-width: 100%;
-}
-.sd.s-0a64065c-4fb1-4ee0-a545-598b5140b79f.appear {
-  opacity: 0;
-  transform: translate(0px, 100px);
-  transition-delay: 800ms;
-  transition-duration: 1400ms;
-  transition-timing-function: ease-in;
-  --gap-h-0a64065c-4fb1-4ee0-a545-598b5140b79f: 0px;
-  --gap-v-0a64065c-4fb1-4ee0-a545-598b5140b79f: 0px;
-}
-.sd.s-0a64065c-4fb1-4ee0-a545-598b5140b79f.appear-active {
-  transition-delay: 800ms;
-  transition-duration: 1400ms;
-  transition-timing-function: ease-in;
 }
 @media screen and (max-width: 840px) {
   .sd.s-0a64065c-4fb1-4ee0-a545-598b5140b79f {
@@ -494,6 +465,9 @@
     text-shadow: none;
   }
 }
+/* ================================================================
+   OUR MISSION / THEME / VALUE / GOVERNANCE
+   ================================================================ */
 .sd.s-246ed966-7109-4fe5-a30e-35a4252659d3 {
   align-content: center;
   align-items: center;
@@ -1615,6 +1589,9 @@
   justify-content: center;
   padding: 0px 0px 80px 0px;
 }
+/* ================================================================
+   WE THINK（Discover/Design/Development の3カラム）
+   ================================================================ */
 .sd.s-66778a08-0a37-487a-b538-cdac51b6fc68 {
   align-content: center;
   align-items: center;
@@ -2383,6 +2360,9 @@
     width: auto;
   }
 }
+/* ================================================================
+   COMPANY INFORMATION（会社概要・CONTACT導線）
+   ================================================================ */
 .sd.s-e0860792-9065-408c-bfb5-5e12d8c8e9a2 {
   align-content: center;
   align-items: center;
@@ -3376,6 +3356,9 @@
     font-size: 24px;
   }
 }
+/* ================================================================
+   FOOTER
+   ================================================================ */
 .sd.s-725d661d-c145-42ac-84f9-704af4bd0a7a {
   align-content: center;
   align-items: center;
@@ -3593,12 +3576,4 @@ html.js-on .sd.s-3ae43e9d-c912-4194-a91a-4324cd780fd1.is-visible {
   }
 }
 
-:root {
-  --s-color-f6bd84f1: #d45235ff;
-  --s-color-15b5ba4c: #fffaefff;
-  --s-color-0fb6b8d8: #222222ff;
-  --s-font-c090a414: "Noto Sans", "Noto Sans JP", sans-serif;
-  --s-font-abbfb9fe: "Noto Sans", "Noto Sans JP", sans-serif;
-  --s-font-18a508ab: "Noto Sans", "Noto Sans JP", sans-serif;
-  --s-font-25b68130: "Noto Sans", "Noto Sans JP", sans-serif;
-}
+/* 配色・フォントのトークンは global.css :root に集約（このファイルでは定義しない） */

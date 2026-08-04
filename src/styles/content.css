@@ -4,13 +4,7 @@
    ※ Studio 由来ページの render-canvas リセットは適用されないので
      ここで必要なタイポグラフィを明示する。
 ------------------------------------------------------------------ */
-:root {
-  --wb-orange: #d45235;
-  --wb-orange-dark: #bc4227;
-  --wb-cream: #fffaef;
-  --wb-ink: #222222;
-  --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
-}
+/* --wb-* トークンは global.css :root に集約（このファイルでは定義しない） */
 
 .content-page {
   background: var(--wb-orange);

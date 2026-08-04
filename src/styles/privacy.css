@@ -2983,11 +2983,6 @@
   max-width: 100%;
   justify-content: flex-start;
 }
-.sd.s-9e306b46-2804-4d15-99e9-d10d12a8b170.appear {
-  opacity: 0;
-}
-.sd.s-9e306b46-2804-4d15-99e9-d10d12a8b170.appear-active {
-}
 @media screen and (max-width: 1140px) {
   .sd.s-9e306b46-2804-4d15-99e9-d10d12a8b170 {
     flex: none;
@@ -3080,11 +3075,6 @@
   z-index: 1;
   max-width: 100%;
   justify-content: flex-start;
-}
-.sd.s-be6a4547-50da-4ca7-955e-4533bce4d9d1.appear {
-  opacity: 0;
-}
-.sd.s-be6a4547-50da-4ca7-955e-4533bce4d9d1.appear-active {
 }
 @media screen and (max-width: 1140px) {
   .sd.s-be6a4547-50da-4ca7-955e-4533bce4d9d1 {
@@ -3507,11 +3497,6 @@
   max-width: 100%;
   justify-content: flex-start;
 }
-.sd.s-eb4b8a40-27b6-4913-9f78-70181bd727b5.appear {
-  opacity: 0;
-}
-.sd.s-eb4b8a40-27b6-4913-9f78-70181bd727b5.appear-active {
-}
 @media screen and (max-width: 1140px) {
   .sd.s-eb4b8a40-27b6-4913-9f78-70181bd727b5 {
     flex: none;
@@ -3839,11 +3824,6 @@
   max-width: 100%;
   justify-content: flex-start;
 }
-.sd.s-3e166662-7dde-4600-9df5-b00329c80c55.appear {
-  opacity: 0;
-}
-.sd.s-3e166662-7dde-4600-9df5-b00329c80c55.appear-active {
-}
 @media screen and (max-width: 1140px) {
   .sd.s-3e166662-7dde-4600-9df5-b00329c80c55 {
     flex: none;
@@ -3936,11 +3916,6 @@
   z-index: 1;
   max-width: 100%;
   justify-content: flex-start;
-}
-.sd.s-8f426054-8119-46bf-a4e3-9a659eb71a16.appear {
-  opacity: 0;
-}
-.sd.s-8f426054-8119-46bf-a4e3-9a659eb71a16.appear-active {
 }
 @media screen and (max-width: 1140px) {
   .sd.s-8f426054-8119-46bf-a4e3-9a659eb71a16 {
@@ -4759,10 +4734,4 @@ body {
   transition: background 0.5s cubic-bezier(0.4, 0.4, 0, 1);
 }
 
-:root {
-  --s-color-f6bd84f1: #d45235ff;
-  --s-color-15b5ba4c: #fffaefff;
-  --s-font-b582c2ca: "Noto Sans", "Noto Sans JP", sans-serif;
-  --s-font-c090a414: "Noto Sans", "Noto Sans JP", sans-serif;
-  --s-font-25b68130: "Noto Sans", "Noto Sans JP", sans-serif;
-}
+/* 配色・フォントのトークンは global.css :root に集約（このファイルでは定義しない） */
