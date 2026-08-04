@@ -12,27 +12,27 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
 <Base title="株式会社ワンダーブラザース | CONTACT" description="株式会社ワンダーブラザースは、デザインとブランディングの力で地域や企業の未来をつくるデザインスタジオ。デザインとテクノロジーの力で「あったらいいな」を実現する。" path="/contact/">
   <script slot="head" is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}></script>
   <div class="container"><div class="render-canvas"><div class="StudioCanvas">
-<div class="sd reveal s-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1">
-                <div class="sd reveal s-5eed9adb-96a1-41e1-8045-656cee1d6b96">
-                  <a href="../index.html" class="link sd reveal s-74cf28b0-e45c-4a34-8a55-d87c3a035751"
-                    ><img class="sd s-cb7206df-c0b7-43d7-9d8c-f22cf2efc10c" alt="" src="../images/logo.svg"
+<div class="sd reveal cf-page">
+                <div class="sd reveal cf-inner">
+                  <a href="../index.html" class="link sd reveal cf-home-link"
+                    ><img class="sd cf-logo" alt="" src="../images/logo.svg"
                   /></a>
-                  <div class="sd reveal s-e8857c5e-9dca-426c-bfc5-99e930632f66">
-                    <h4 class="text sd reveal s-0162c0d5-61cb-4f60-bf1a-40a40238010e">
+                  <div class="sd reveal cf-body">
+                    <h4 class="text sd reveal cf-title">
                       弊社へのお問い合わせは<br />こちらのフォームより承っております。<br />
                     </h4>
-                    <p class="text sd reveal s-54af5201-9d40-4ed7-8a4a-c92d1f826db7">
+                    <p class="text sd reveal cf-note">
                       ご返信に3営業日ほどお時間をいただいております。<br />3営業日を過ぎても返信がない場合は、お手数ですが再度お問い合わせをお願いいたします。
                     </p>
                     <form
                       id="contact-form"
                       name="contact form"
-                      class="sd reveal s-a0e2e545-1ae9-4a70-bed5-598ba33e5a08"
+                      class="sd reveal cf-form"
                     >
-                      <div class="sd reveal s-c98354b9-8b84-430e-b24e-fe6fb84ab507">
-                        <div class="sd reveal s-b14f74f4-2571-4b9f-8809-c868e0174668">
-                          <p class="text sd reveal s-176966cf-82a9-48d2-b9d5-c18f1c51fd53">貴社名</p>
-                          <p class="text sd reveal s-d14e94f7-198a-4af3-a265-13d5e8597ca2">*<br /></p>
+                      <div class="sd reveal cf-field">
+                        <div class="sd reveal cf-field__label">
+                          <p class="text sd reveal cf-field__label-text">貴社名</p>
+                          <p class="text sd reveal cf-field__required">*<br /></p>
                         </div>
                         <input
                           name="entry.1361955119"
@@ -40,13 +40,13 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                           required=""
                           type="text"
                           autocomplete="off"
-                          class="sd reveal s-c61210a2-3b04-4f30-9d8a-02d34c91a7f7"
+                          class="sd reveal cf-field__input"
                         />
                       </div>
-                      <div class="sd reveal s-c98354b9-8b84-430e-b24e-fe6fb84ab507">
-                        <div class="sd reveal s-b14f74f4-2571-4b9f-8809-c868e0174668">
-                          <p class="text sd reveal s-176966cf-82a9-48d2-b9d5-c18f1c51fd53">お名前</p>
-                          <p class="text sd reveal s-d14e94f7-198a-4af3-a265-13d5e8597ca2">*<br /></p>
+                      <div class="sd reveal cf-field">
+                        <div class="sd reveal cf-field__label">
+                          <p class="text sd reveal cf-field__label-text">お名前</p>
+                          <p class="text sd reveal cf-field__required">*<br /></p>
                         </div>
                         <input
                           name="entry.1729267472"
@@ -54,13 +54,13 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                           required=""
                           type="text"
                           autocomplete="off"
-                          class="sd reveal s-c61210a2-3b04-4f30-9d8a-02d34c91a7f7"
+                          class="sd reveal cf-field__input"
                         />
                       </div>
-                      <div class="sd reveal s-1c24f2f8-b2a5-4a4d-87d9-9e9a81e77f05">
-                        <div class="sd reveal s-0599c298-12a1-4cb9-a4e3-257ab0ded7bf">
-                          <p class="text sd reveal s-1328ccc3-7ca3-43ac-9086-c708971e0dc7">メールアドレス</p>
-                          <p class="text sd reveal s-d4e53746-3ccc-45b4-b434-300b352612b6">*<br /></p>
+                      <div class="sd reveal cf-field-email">
+                        <div class="sd reveal cf-field-email__label">
+                          <p class="text sd reveal cf-field-email__label-text">メールアドレス</p>
+                          <p class="text sd reveal cf-field-email__required">*<br /></p>
                         </div>
                         <input
                           name="entry.252485387"
@@ -68,33 +68,33 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                           required=""
                           type="email"
                           autocomplete="off"
-                          class="sd reveal s-7a6fe265-4e31-4c83-948a-0e759a1ca308"
+                          class="sd reveal cf-field-email__input"
                         />
                       </div>
-                      <div class="sd reveal s-2c90b4c3-9cea-4ab4-8736-82f032e2e93f">
-                        <div class="sd reveal s-c932ea81-57fd-4cd2-8a3a-6e54b515add9">
-                          <p class="text sd reveal s-41aed115-bfbd-4c6d-88f1-fa9f53475594">お問い合わせ内容</p>
-                          <p class="text sd reveal s-5a7704ac-14e2-48a4-9ee8-bc30fc225250">*<br /></p>
+                      <div class="sd reveal cf-field-message">
+                        <div class="sd reveal cf-field-message__label">
+                          <p class="text sd reveal cf-field-message__label-text">お問い合わせ内容</p>
+                          <p class="text sd reveal cf-field-message__required">*<br /></p>
                         </div>
                         <textarea
                           name="entry.1277514805"
                           placeholder="Put message here"
                           required=""
-                          class="sd reveal s-a6caddec-1081-47ef-8847-0a8fe7a562d9"
+                          class="sd reveal cf-field-message__input"
                         ></textarea>
                       </div>
-                      <label class="sd reveal s-bcad9813-874e-43cb-8b04-580b54528f43"
+                      <label class="sd reveal cf-consent"
                         ><input
                           name="entry.321540926"
                           value="プライバシーポリシーに同意する"
                           required=""
                           type="checkbox"
-                          class="sd s-e8ee05c9-cd3e-4d23-8c47-0b3f00b0d97e" /><span
-                          class="text sd reveal s-837e6f4a-5d05-4ad6-aba3-bc3f4d1dda96"
+                          class="sd cf-consent__checkbox" /><span
+                          class="text sd reveal cf-consent__text"
                           >プライバシーポリシーに同意して送信する<br /></span></label
-                      ><button class="button sd reveal s-4e7859a4-fdc1-4731-8ba3-f6e32d7875b0">
-                        <p class="text sd reveal s-982817ef-b2b7-4fa3-a173-3604a0df9f29">この内容で送信する</p>
-                        <i class="icon material-icons sd reveal s-676ac170-3968-490c-ba67-951badb3bf5c"
+                      ><button class="button sd reveal cf-submit">
+                        <p class="text sd reveal cf-submit__text">この内容で送信する</p>
+                        <i class="icon material-icons sd reveal cf-submit__icon"
                           >keyboard_arrow_right</i
                         >
                       </button>
@@ -109,12 +109,12 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                     </div>
                   </div>
                 </div>
-                <footer class="sd reveal s-e686dec0-e05f-4018-9fa3-f08e483e9c0b">
-                  <div class="sd reveal s-6814d822-48f9-433b-ae0a-162d33102430">
-                    <p class="text sd reveal s-27830c86-af37-4d42-9995-e161ec07a5b0">
+                <footer class="sd reveal cf-footer">
+                  <div class="sd reveal cf-footer__inner">
+                    <p class="text sd reveal cf-footer__copyright">
                       © WONDER BROTHERS INC. all rights reserved.
                     </p>
-                    <a href="../privacy/index.html" class="text link sd reveal s-5043e548-82fc-455a-b273-317518890f84"
+                    <a href="../privacy/index.html" class="text link sd reveal cf-footer__privacy"
                       >Privacy Policy</a
                     >
                   </div>
