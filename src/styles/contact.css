@@ -1,4 +1,4 @@
-.sd.cf-page {
+.wb-box.cf-page {
   align-content: center;
   align-items: center;
   background: var(--s-color-f6bd84f1);
@@ -21,7 +21,7 @@
 
 
 
-.sd.cf-inner {
+.wb-box.cf-inner {
   align-content: center;
   align-items: center;
   flex-direction: column;
@@ -37,7 +37,7 @@
 
 
 
-.sd.cf-home-link {
+.wb-box.cf-home-link {
   align-content: center;
   align-items: center;
   flex-direction: column;
@@ -52,7 +52,7 @@
   max-width: 100%;
 }
 
-.sd.cf-logo {
+.wb-box.cf-logo {
   flex: none;
   height: auto;
   margin: 0px 0px 0px 0px;
@@ -61,7 +61,7 @@
 }
 
 
-.sd.cf-body {
+.wb-box.cf-body {
   align-content: center;
   align-items: center;
   background: var(--s-color-15b5ba4c);
@@ -80,7 +80,7 @@
 
 
 
-.sd.cf-title {
+.wb-box.cf-title {
   color: var(--s-color-0fb6b8d8);
   font-family: var(--s-font-25b68130);
   font-size: 28px;
@@ -98,7 +98,7 @@
 
 
 
-.sd.cf-note {
+.wb-box.cf-note {
   color: var(--s-color-0fb6b8d8);
   flex: none;
   font-family: var(--s-font-25b68130);
@@ -119,7 +119,7 @@
 
 
 
-.sd.cf-form {
+.wb-box.cf-form {
   align-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0);
@@ -132,7 +132,7 @@
   width: 640px;
   max-width: 100%;
 }
-.sd.cf-field {
+.wb-box.cf-field {
   align-content: flex-start;
   align-items: flex-start;
   background: rgba(0, 0, 0, 0);
@@ -146,7 +146,7 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field__label {
+.wb-box.cf-field__label {
   align-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
@@ -156,7 +156,7 @@
   padding: 0px;
   max-width: 100%;
 }
-.sd.cf-field__label-text {
+.wb-box.cf-field__label-text {
   border-radius: 0;
   color: var(--s-color-0fb6b8d8);
   font-family: var(--s-font-25b68130);
@@ -174,7 +174,7 @@
 
 
 
-.sd.cf-field__required {
+.wb-box.cf-field__required {
   border-radius: 0;
   color: var(--s-color-f6bd84f1);
   font-family: var(--s-font-25b68130);
@@ -191,7 +191,7 @@
 }
 
 
-.sd.cf-field__input {
+.wb-box.cf-field__input {
   background: var(--s-color-15b5ba4c);
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
@@ -214,26 +214,26 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field__input:focus {
+.wb-box.cf-field__input:focus {
   outline: none;
   border-bottom: 1px solid #aaaaaa;
   border-left: 1px solid #aaaaaa;
   border-right: 1px solid #aaaaaa;
   border-top: 1px solid #aaaaaa;
 }
-.sd.cf-field__input::-webkit-input-placeholder {
+.wb-box.cf-field__input::-webkit-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-field__input:-moz-placeholder {
+.wb-box.cf-field__input:-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field__input::-moz-placeholder {
+.wb-box.cf-field__input::-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field__input:-ms-input-placeholder {
+.wb-box.cf-field__input:-ms-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-email {
+.wb-box.cf-field-email {
   align-content: flex-start;
   align-items: flex-start;
   background: rgba(0, 0, 0, 0);
@@ -247,7 +247,7 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field-email__label {
+.wb-box.cf-field-email__label {
   align-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
@@ -257,7 +257,7 @@
   padding: 0px;
   max-width: 100%;
 }
-.sd.cf-field-email__label-text {
+.wb-box.cf-field-email__label-text {
   border-radius: 0;
   color: var(--s-color-0fb6b8d8);
   font-family: var(--s-font-25b68130);
@@ -275,7 +275,7 @@
 
 
 
-.sd.cf-field-email__required {
+.wb-box.cf-field-email__required {
   border-radius: 0;
   color: var(--s-color-f6bd84f1);
   font-family: var(--s-font-25b68130);
@@ -292,7 +292,7 @@
 }
 
 
-.sd.cf-field-email__input {
+.wb-box.cf-field-email__input {
   background: var(--s-color-15b5ba4c);
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
@@ -315,26 +315,26 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field-email__input:focus {
+.wb-box.cf-field-email__input:focus {
   outline: none;
   border-bottom: 1px solid #aaaaaa;
   border-left: 1px solid #aaaaaa;
   border-right: 1px solid #aaaaaa;
   border-top: 1px solid #aaaaaa;
 }
-.sd.cf-field-email__input::-webkit-input-placeholder {
+.wb-box.cf-field-email__input::-webkit-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-email__input:-moz-placeholder {
+.wb-box.cf-field-email__input:-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-email__input::-moz-placeholder {
+.wb-box.cf-field-email__input::-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-email__input:-ms-input-placeholder {
+.wb-box.cf-field-email__input:-ms-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-message {
+.wb-box.cf-field-message {
   align-content: flex-start;
   align-items: flex-start;
   background: rgba(0, 0, 0, 0);
@@ -348,7 +348,7 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field-message__label {
+.wb-box.cf-field-message__label {
   align-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
@@ -358,7 +358,7 @@
   padding: 0px;
   max-width: 100%;
 }
-.sd.cf-field-message__label-text {
+.wb-box.cf-field-message__label-text {
   border-radius: 0;
   color: var(--s-color-0fb6b8d8);
   font-family: var(--s-font-25b68130);
@@ -376,7 +376,7 @@
 
 
 
-.sd.cf-field-message__required {
+.wb-box.cf-field-message__required {
   border-radius: 0;
   color: var(--s-color-f6bd84f1);
   font-family: var(--s-font-25b68130);
@@ -393,7 +393,7 @@
 }
 
 
-.sd.cf-field-message__input {
+.wb-box.cf-field-message__input {
   background: var(--s-color-15b5ba4c);
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
@@ -416,19 +416,19 @@
   width: 100%;
   max-width: 100%;
 }
-.sd.cf-field-message__input::-webkit-input-placeholder {
+.wb-box.cf-field-message__input::-webkit-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-message__input:-moz-placeholder {
+.wb-box.cf-field-message__input:-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-message__input::-moz-placeholder {
+.wb-box.cf-field-message__input::-moz-placeholder {
   color: #cccccc;
 }
-.sd.cf-field-message__input:-ms-input-placeholder {
+.wb-box.cf-field-message__input:-ms-input-placeholder {
   color: #cccccc;
 }
-.sd.cf-consent {
+.wb-box.cf-consent {
   flex-direction: row;
   flex-wrap: no-wrap;
   gap: 8px;
@@ -441,7 +441,7 @@
   max-width: 100%;
 }
 
-.sd.cf-consent__checkbox {
+.wb-box.cf-consent__checkbox {
   flex: none;
   height: auto;
   margin: 0px 0px 0px 0px;
@@ -449,7 +449,7 @@
   width: auto;
   max-width: 100%;
 }
-.sd.cf-consent__text {
+.wb-box.cf-consent__text {
   color: var(--s-color-0fb6b8d8);
   flex: 1;
   font-family: var(--s-font-25b68130);
@@ -460,7 +460,7 @@
   max-width: 100%;
 }
 
-.sd.cf-submit {
+.wb-box.cf-submit {
   background: var(--s-color-f6bd84f1);
   border-radius: 10px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
@@ -476,10 +476,10 @@
   width: auto;
   max-width: 100%;
 }
-.sd.cf-submit:hover {
+.wb-box.cf-submit:hover {
   background: #9d331bff;
 }
-.sd.cf-submit__text {
+.wb-box.cf-submit__text {
   color: var(--s-color-15b5ba4c);
   font-family: var(--s-font-25b68130);
   font-size: 14px;
@@ -498,11 +498,11 @@
 }
 
 
-.sd.cf-submit__icon {
+.wb-box.cf-submit__icon {
   color: var(--s-color-15b5ba4c);
   font-size: 20px;
 }
-.sd.cf-footer {
+.wb-box.cf-footer {
   align-content: center;
   align-items: center;
   background: var(--s-color-f6bd84f1);
@@ -521,7 +521,7 @@
 
 
 
-.sd.cf-footer__inner {
+.wb-box.cf-footer__inner {
   align-content: center;
   align-items: center;
   flex: none;
@@ -539,7 +539,7 @@
 
 
 
-.sd.cf-footer__copyright {
+.wb-box.cf-footer__copyright {
   color: var(--s-color-15b5ba4c);
   flex: 1;
   font-family: var(--s-font-25b68130);
@@ -558,7 +558,7 @@
   justify-content: flex-start;
 }
 
-.sd.cf-footer__privacy {
+.wb-box.cf-footer__privacy {
   color: var(--s-color-15b5ba4c);
   flex: none;
   font-family: var(--s-font-c090a414);
@@ -576,7 +576,7 @@
   max-width: 100%;
   justify-content: flex-end;
 }
-.sd.cf-footer__privacy:hover {
+.wb-box.cf-footer__privacy:hover {
   text-decoration: underline;
   transition-duration: 300ms;
 }
@@ -645,14 +645,14 @@ body {
 
 /* ===== ブレークポイント: max-width 1140px ===== */
 @media screen and (max-width: 1140px) {
-  .sd.cf-inner {
+  .wb-box.cf-inner {
     margin: 0px 0px 80px 0px;
     --gap-h-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     --gap-v-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     max-width: 100%;
   }
 
-  .sd.cf-body {
+  .wb-box.cf-body {
     flex: none;
     margin: 0px 0px 0px;
     padding: 80px;
@@ -660,74 +660,74 @@ body {
     max-width: 100%;
   }
 
-  .sd.cf-note {
+  .wb-box.cf-note {
     font-size: 16px;
   }
 }
 
 /* ===== ブレークポイント: max-width 840px ===== */
 @media screen and (max-width: 840px) {
-  .sd.cf-page {
+  .wb-box.cf-page {
     padding: 0px 0px;
     --gap-h-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
     --gap-v-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
   }
 
-  .sd.cf-inner {
+  .wb-box.cf-inner {
     margin: 0px 24px 80px 24px;
     --gap-h-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     --gap-v-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     max-width: calc(100% - 48px);
   }
 
-  .sd.cf-body {
+  .wb-box.cf-body {
     margin: 0px 0px 0px;
     padding: 40px;
   }
 
-  .sd.cf-title {
+  .wb-box.cf-title {
     font-size: 24px;
   }
 
-  .sd.cf-note {
+  .wb-box.cf-note {
     font-size: 14px;
     text-align: center;
     justify-content: center;
   }
 
-  .sd.cf-field__label-text {
+  .wb-box.cf-field__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-field__required {
+  .wb-box.cf-field__required {
     font-size: 14px;
   }
 
-  .sd.cf-field-email__label-text {
+  .wb-box.cf-field-email__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-field-email__required {
+  .wb-box.cf-field-email__required {
     font-size: 14px;
   }
 
-  .sd.cf-field-message__label-text {
+  .wb-box.cf-field-message__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-field-message__required {
+  .wb-box.cf-field-message__required {
     font-size: 14px;
   }
 
-  .sd.cf-submit__text {
+  .wb-box.cf-submit__text {
     font-size: 14px;
   }
 
-  .sd.cf-footer {
+  .wb-box.cf-footer {
     padding: 40px 40px 40px;
   }
 
-  .sd.cf-footer__inner {
+  .wb-box.cf-footer__inner {
     flex: none;
     width: 100%;
     max-width: 100%;
@@ -737,71 +737,71 @@ body {
 
 /* ===== ブレークポイント: max-width 540px ===== */
 @media screen and (max-width: 540px) {
-  .sd.cf-page {
+  .wb-box.cf-page {
     padding: 0px 0px;
     --gap-h-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
     --gap-v-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
   }
 
-  .sd.cf-inner {
+  .wb-box.cf-inner {
     margin: 0px 16px 80px 16px;
     --gap-h-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     --gap-v-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     max-width: calc(100% - 32px);
   }
 
-  .sd.cf-home-link {
+  .wb-box.cf-home-link {
     margin: 80px 0px;
     --gap-h-74cf28b0-e45c-4a34-8a55-d87c3a035751: 0px;
     --gap-v-74cf28b0-e45c-4a34-8a55-d87c3a035751: 60px;
   }
 
-  .sd.cf-logo {
+  .wb-box.cf-logo {
     flex: none;
     width: 240px;
     max-width: 100%;
   }
 
-  .sd.cf-body {
+  .wb-box.cf-body {
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 0px 0px 0px;
     padding: 40px 16px 40px;
   }
 
-  .sd.cf-title {
+  .wb-box.cf-title {
     font-size: 24px;
     margin: 0px 0px 24px 0px;
   }
 
-  .sd.cf-note {
+  .wb-box.cf-note {
     font-size: 12px;
     text-align: left;
     justify-content: flex-start;
   }
 
-  .sd.cf-field__label-text {
+  .wb-box.cf-field__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-field-email__label-text {
+  .wb-box.cf-field-email__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-field-message__label-text {
+  .wb-box.cf-field-message__label-text {
     font-size: 14px;
   }
 
-  .sd.cf-consent__text {
+  .wb-box.cf-consent__text {
     text-align: left;
     justify-content: flex-start;
   }
 
-  .sd.cf-submit__text {
+  .wb-box.cf-submit__text {
     font-size: 12px;
   }
 
-  .sd.cf-footer {
+  .wb-box.cf-footer {
     bottom: 0;
     left: 0;
     margin: 0 0 0 0;
@@ -813,14 +813,14 @@ body {
     max-width: calc(100% - (var(--gap-h-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1) * 0));
   }
 
-  .sd.cf-footer__inner {
+  .wb-box.cf-footer__inner {
     align-content: center;
     align-items: center;
     justify-content: space-between;
     padding: 0px 0px;
   }
 
-  .sd.cf-footer__copyright {
+  .wb-box.cf-footer__copyright {
     flex: none;
     font-size: 12px;
     padding: 0px 0px 0px;
@@ -829,7 +829,7 @@ body {
     justify-content: flex-start;
   }
 
-  .sd.cf-footer__privacy {
+  .wb-box.cf-footer__privacy {
     flex: none;
     font-size: 12px;
     padding: 0px 0px 0px;
@@ -841,59 +841,59 @@ body {
 
 /* ===== ブレークポイント: max-width 320px ===== */
 @media screen and (max-width: 320px) {
-  .sd.cf-page {
+  .wb-box.cf-page {
     padding: 0px 0px;
     --gap-h-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
     --gap-v-1cc7cdb1-cdb8-4a7f-bc6d-bc563fd5f4d1: 0px;
   }
 
-  .sd.cf-inner {
+  .wb-box.cf-inner {
     margin: 0px 12px 80px 16px;
     --gap-h-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     --gap-v-5eed9adb-96a1-41e1-8045-656cee1d6b96: 0px;
     max-width: calc(100% - 28px);
   }
 
-  .sd.cf-logo {
+  .wb-box.cf-logo {
     flex: none;
     width: 240px;
   }
 
-  .sd.cf-body {
+  .wb-box.cf-body {
     padding: 40px 12px 40px;
   }
 
-  .sd.cf-title {
+  .wb-box.cf-title {
     font-size: 24px;
     text-align: left;
     justify-content: flex-start;
   }
 
-  .sd.cf-field__label-text {
+  .wb-box.cf-field__label-text {
     font-size: 12px;
   }
 
-  .sd.cf-field__required {
+  .wb-box.cf-field__required {
     font-size: 12px;
   }
 
-  .sd.cf-field-email__label-text {
+  .wb-box.cf-field-email__label-text {
     font-size: 12px;
   }
 
-  .sd.cf-field-email__required {
+  .wb-box.cf-field-email__required {
     font-size: 12px;
   }
 
-  .sd.cf-field-message__label-text {
+  .wb-box.cf-field-message__label-text {
     font-size: 12px;
   }
 
-  .sd.cf-field-message__required {
+  .wb-box.cf-field-message__required {
     font-size: 12px;
   }
 
-  .sd.cf-consent {
+  .wb-box.cf-consent {
     flex: none;
     width: 100%;
     --gap-h-bcad9813-874e-43cb-8b04-580b54528f43: 8px;
@@ -901,11 +901,11 @@ body {
     max-width: 100%;
   }
 
-  .sd.cf-footer {
+  .wb-box.cf-footer {
     padding: 24px 12px 24px;
   }
 
-  .sd.cf-footer__inner {
+  .wb-box.cf-footer__inner {
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 24px;

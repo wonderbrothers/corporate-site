@@ -30,7 +30,7 @@
   height: auto;
   min-height: 100dvh;
 }
-.StudioCanvas > .sd {
+.StudioCanvas > .wb-box {
   min-height: 100dvh;
   overflow: clip;
 }
@@ -148,7 +148,7 @@ html {
 :where(.render-canvas) textarea {
   resize: none;
 }
-:where(.render-canvas) .sd {
+:where(.render-canvas) .wb-box {
   flex-wrap: nowrap;
   max-width: 100%;
   pointer-events: all;
@@ -161,10 +161,10 @@ html {
   flex-direction: column;
   position: relative;
 }
-:where(.render-canvas) .sd::-webkit-scrollbar {
+:where(.render-canvas) .wb-box::-webkit-scrollbar {
   display: none;
 }
-:where(.render-canvas) .sd {
+:where(.render-canvas) .wb-box {
   transition-property:
     all, --g-angle, --g-color-0, --g-position-0, --g-color-1, --g-position-1, --g-color-2,
     --g-position-2, --g-color-3, --g-position-3, --g-color-4, --g-position-4, --g-color-5,
@@ -172,11 +172,11 @@ html {
     --g-position-8, --g-color-9, --g-position-9, --g-color-10, --g-position-10, --g-color-11,
     --g-position-11;
 }
-:where(.render-canvas) input.sd,
-:where(.render-canvas) textarea.sd {
+:where(.render-canvas) input.wb-box,
+:where(.render-canvas) textarea.wb-box {
   align-content: normal;
 }
-:where(.render-canvas) .sd[tabindex]:focus-visible {
+:where(.render-canvas) .wb-box[tabindex]:focus-visible {
   outline: 1px solid;
   outline-color: Highlight;
   outline-color: -webkit-focus-ring-color;
@@ -188,8 +188,8 @@ html {
 :where(.render-canvas) textarea {
   -webkit-appearance: none;
 }
-:where(.render-canvas) .sd.text,
-:where(.render-canvas) .sd:where(.icon) {
+:where(.render-canvas) .wb-box.text,
+:where(.render-canvas) .wb-box:where(.icon) {
   align-content: center;
   align-items: center;
   display: flex;
