@@ -22,7 +22,7 @@
 /* 同一スタイルは複数セレクタをまとめて共通化（context ごと） */
 
 .wb-box.wb-page {
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   border-radius: 0;
   box-shadow:;
   height: 100%;
@@ -35,7 +35,7 @@
 .wb-box.wb-intro {
   align-content: center;
   align-items: center;
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   flex-wrap: nowrap;
   justify-content: center;
   padding: 0px;
@@ -99,8 +99,8 @@
   border-left: 0px solid rgba(0, 0, 0, 0);
   border-right: 0px solid rgba(0, 0, 0, 0);
   border-top: 0px solid rgba(0, 0, 0, 0);
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 600;
   height: auto;
@@ -167,8 +167,8 @@
   max-width: 100%;
 }
 .wb-box.wb-tagline__discover {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 96px;
   font-weight: 700;
   height: auto;
@@ -185,8 +185,8 @@
   justify-content: flex-start;
 }
 .wb-box.wb-tagline__design {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 96px;
   font-weight: 700;
   height: auto;
@@ -203,8 +203,8 @@
   justify-content: flex-start;
 }
 .wb-box.wb-tagline__development {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 96px;
   font-weight: 700;
   height: auto;
@@ -254,9 +254,9 @@
 .wb-box.wb-principles__theme-label,
 .wb-box.wb-principles__value-label,
 .wb-box.wb-principles__governance-label {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 36px;
   font-weight: 800;
   height: auto;
@@ -283,8 +283,8 @@
   max-width: 100%;
 }
 .wb-box.wb-principles__mission-ja {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 600;
   height: auto;
@@ -299,7 +299,7 @@
 .wb-box.wb-principles__value-en,
 .wb-box.wb-principles__governance-en {
   color: #fffaefb3;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 16px;
   font-weight: 500;
   height: auto;
@@ -359,8 +359,8 @@
 .wb-box.wb-principles__theme-note-ja,
 .wb-box.wb-principles__value-ja,
 .wb-box.wb-principles__governance-ja {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 600;
   height: auto;
@@ -397,9 +397,9 @@
 .wb-box.wb-principles__theme-num-1,
 .wb-box.wb-principles__theme-num-2,
 .wb-box.wb-principles__theme-num-3 {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 600;
   height: auto;
@@ -426,7 +426,7 @@
 .wb-box.wb-principles__theme-item-3-en,
 .wb-box.wb-principles__theme-note-en {
   color: #fffaefb3;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 500;
   height: auto;
@@ -561,7 +561,7 @@
 .wb-box.wb-lower {
   align-content: center;
   align-items: center;
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   flex-wrap: nowrap;
   justify-content: center;
   padding: 0px 0px 80px 0px;
@@ -578,9 +578,9 @@
   max-width: 100%;
 }
 .wb-box.wb-approach__title {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 96px;
   font-weight: 700;
   height: auto;
@@ -595,9 +595,9 @@
   justify-content: flex-start;
 }
 .wb-box.wb-approach__subtitle {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 700;
   height: auto;
@@ -644,9 +644,9 @@
   max-width: 60%;
 }
 .wb-box.wb-approach__card-discover-title {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 700;
   height: auto;
@@ -664,9 +664,9 @@
 .wb-box.wb-approach__card-discover-ja,
 .wb-box.wb-approach__card-design-ja,
 .wb-box.wb-approach__card-development-ja {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 16px;
   font-weight: 600;
   height: auto;
@@ -686,7 +686,7 @@
 .wb-box.wb-approach__card-development-en {
   color: #222222b3;
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 500;
   height: auto;
@@ -703,9 +703,9 @@
 }
 .wb-box.wb-approach__card-design-title,
 .wb-box.wb-approach__card-development-title {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 20px;
   font-weight: 700;
   height: auto;
@@ -757,9 +757,9 @@
   max-width: 100%;
 }
 .wb-box.wb-company__title {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 36px;
   font-weight: 800;
   height: auto;
@@ -801,9 +801,9 @@
 .wb-box.wb-company__founded-label,
 .wb-box.wb-company__capital-label,
 .wb-box.wb-company__director-label {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 12px;
   font-weight: 600;
   height: auto;
@@ -823,9 +823,9 @@
 .wb-box.wb-company__founded-ja,
 .wb-box.wb-company__capital-ja,
 .wb-box.wb-company__director-ja {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 16px;
   font-weight: 700;
   height: auto;
@@ -847,7 +847,7 @@
 .wb-box.wb-company__director-en {
   color: #222222b3;
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 500;
   height: auto;
@@ -884,12 +884,12 @@
 .wb-box.wb-company__contact {
   align-content: center;
   align-items: center;
-  background: var(--s-color-f6bd84f1);
-  border-bottom: 0px solid var(--s-color-f6bd84f1);
-  border-left: 0px solid var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
+  border-bottom: 0px solid var(--wb-orange);
+  border-left: 0px solid var(--wb-orange);
   border-radius: 10px;
-  border-right: 0px solid var(--s-color-f6bd84f1);
-  border-top: 0px solid var(--s-color-f6bd84f1);
+  border-right: 0px solid var(--wb-orange);
+  border-top: 0px solid var(--wb-orange);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
   flex: none;
   flex-direction: row;
@@ -910,8 +910,8 @@
   padding: 0px;
 }
 .wb-box.wb-company__contact-title {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-18a508ab);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 24px;
   font-weight: 700;
   height: auto;
@@ -927,8 +927,8 @@
   justify-content: flex-start;
 }
 .wb-box.wb-company__contact-note {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-abbfb9fe);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
   height: auto;
@@ -944,7 +944,7 @@
   justify-content: flex-start;
 }
 .wb-box.wb-company__contact-icon {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   font-size: 36px;
 }
 .wb-box.wb-footer__inner {
@@ -963,9 +963,9 @@
   max-width: 100%;
 }
 .wb-box.wb-footer__copyright {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: 1;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 500;
   height: auto;
@@ -981,9 +981,9 @@
   justify-content: flex-start;
 }
 .wb-box.wb-footer__privacy {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-c090a414);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
   height: auto;
@@ -1087,10 +1087,10 @@
 .wb-box.wb-company__contact:hover {
   background: #bc4227;
   transition-duration: 300ms;
-  border-top: 0px solid var(--s-color-15b5ba4c);
-  border-bottom: 0px solid var(--s-color-15b5ba4c);
-  border-left: 0px solid var(--s-color-15b5ba4c);
-  border-right: 0px solid var(--s-color-15b5ba4c);
+  border-top: 0px solid var(--wb-cream);
+  border-bottom: 0px solid var(--wb-cream);
+  border-left: 0px solid var(--wb-cream);
+  border-right: 0px solid var(--wb-cream);
 }
 .wb-box.wb-company__contact:hover .wb-box.wb-company__contact-icon {
   transform: translate(-24px, 0px);
@@ -1101,7 +1101,7 @@
 .wb-box.wb-footer {
   align-content: center;
   align-items: center;
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   flex: none;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -1119,7 +1119,7 @@
   transition-duration: 300ms;
 }
 body {
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   transition: background 0.5s cubic-bezier(0.4, 0.4, 0, 1);
 }
 

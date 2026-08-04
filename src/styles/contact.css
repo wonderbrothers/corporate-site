@@ -3,7 +3,7 @@
 .wb-box.cf-page {
   align-content: center;
   align-items: center;
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   border-radius: 0;
   box-shadow:;
   flex-direction: column;
@@ -56,7 +56,7 @@
 .wb-box.cf-body {
   align-content: center;
   align-items: center;
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   border-radius: 10px;
   box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.1);
   flex: none;
@@ -69,8 +69,8 @@
   max-width: 100%;
 }
 .wb-box.cf-title {
-  color: var(--s-color-0fb6b8d8);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-ink);
+  font-family: var(--wb-sans);
   font-size: 28px;
   font-weight: 600;
   height: auto;
@@ -84,9 +84,9 @@
   justify-content: center;
 }
 .wb-box.cf-note {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 600;
   height: auto;
@@ -145,8 +145,8 @@
 .wb-box.cf-field-email__label-text,
 .wb-box.cf-field-message__label-text {
   border-radius: 0;
-  color: var(--s-color-0fb6b8d8);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-ink);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0em;
@@ -162,8 +162,8 @@
 .wb-box.cf-field-email__required,
 .wb-box.cf-field-message__required {
   border-radius: 0;
-  color: var(--s-color-f6bd84f1);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-orange);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0em;
@@ -177,15 +177,15 @@
 }
 .wb-box.cf-field__input,
 .wb-box.cf-field-email__input {
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
   border-radius: 10px;
   border-right: 1px solid #cccccc;
   border-top: 1px solid #cccccc;
   box-shadow: none;
-  color: var(--s-color-0fb6b8d8);
-  font-family: var(--s-font-c090a414);
+  color: var(--wb-ink);
+  font-family: var(--wb-sans);
   font-size: 15px;
   font-weight: 500;
   height: 50px;
@@ -214,15 +214,15 @@
   max-width: 100%;
 }
 .wb-box.cf-field-message__input {
-  background: var(--s-color-15b5ba4c);
+  background: var(--wb-cream);
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
   border-radius: 10px;
   border-right: 1px solid #cccccc;
   border-top: 1px solid #cccccc;
   box-shadow: none;
-  color: var(--s-color-0fb6b8d8);
-  font-family: var(--s-font-c090a414);
+  color: var(--wb-ink);
+  font-family: var(--wb-sans);
   font-size: 15px;
   font-weight: 500;
   height: 160px;
@@ -257,9 +257,9 @@
   max-width: 100%;
 }
 .wb-box.cf-consent__text {
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: 1;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
@@ -267,10 +267,10 @@
   max-width: 100%;
 }
 .wb-box.cf-submit {
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   border-radius: 10px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
-  color: var(--s-color-0fb6b8d8);
+  color: var(--wb-ink);
   flex: none;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -283,8 +283,8 @@
   max-width: 100%;
 }
 .wb-box.cf-submit__text {
-  color: var(--s-color-15b5ba4c);
-  font-family: var(--s-font-25b68130);
+  color: var(--wb-cream);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
   height: auto;
@@ -300,13 +300,13 @@
   justify-content: center;
 }
 .wb-box.cf-submit__icon {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   font-size: 20px;
 }
 .wb-box.cf-footer {
   align-content: center;
   align-items: center;
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   flex: none;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -335,9 +335,9 @@
   max-width: 100%;
 }
 .wb-box.cf-footer__copyright {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   flex: 1;
-  font-family: var(--s-font-25b68130);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 500;
   height: auto;
@@ -353,9 +353,9 @@
   justify-content: flex-start;
 }
 .wb-box.cf-footer__privacy {
-  color: var(--s-color-15b5ba4c);
+  color: var(--wb-cream);
   flex: none;
-  font-family: var(--s-font-c090a414);
+  font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
   height: auto;
@@ -428,7 +428,7 @@
   transition-duration: 300ms;
 }
 body {
-  background: var(--s-color-f6bd84f1);
+  background: var(--wb-orange);
   transition: background 0.5s cubic-bezier(0.4, 0.4, 0, 1);
 }
 /* 配色・フォントのトークンは global.css :root に集約（このファイルでは定義しない） */
