@@ -12,15 +12,16 @@
  * 【デプロイ手順（Cloudflare ダッシュボード）】
  *   1. Workers & Pages → Create → Worker を作成（名前は任意, 例 wb-contact）
  *   2. このファイルの内容を貼り付けて Deploy
- *   3. Settings → Variables and Secrets →
+ *   3. Settings → Variables and Secrets → 以下の2つを登録（必須）
  *        - Secret: RECAPTCHA_SECRET = reCAPTCHA v3 のシークレットキー
+ *        - Secret: GOOGLE_FORM      = 送信先 Google フォームの formResponse URL
+ *                                     例) https://docs.google.com/forms/d/e/<FORM_ID>/formResponse
  *   4. 発行された https://<name>.<account>.workers.dev を
  *      contact.astro の CONTACT_ENDPOINT に設定
+ *
+ * ※ 送信先フォームURLは公開リポジトリに含めない（第三者による直接POST=スパム対策）。
+ *    値は必ず Cloudflare 側の Secret として登録すること。
  */
-
-// 送信先 Google フォーム（既存）
-const GOOGLE_FORM =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeGlxifWf_XqJDUP-YoY8g-iiJtGlkJKcEhpCTxjMPRw2Z8MA/formResponse";
 
 // v3 スコア閾値（0.0〜1.0、低いほど緩い）。誤ブロックが出るなら下げる。
 const SCORE_THRESHOLD = 0.5;
@@ -89,12 +90,18 @@ export default {
     }
 
     // 2) Google フォームへ転送（entry.* のみ）
+    // 送信先URLは Cloudflare の Secret から取得（コードには埋め込まない）
+    const googleForm = env.GOOGLE_FORM;
+    if (!googleForm) {
+      return json({ ok: false, error: "form_not_configured" }, 500, cors);
+    }
+
     const form = new URLSearchParams();
     for (const [k, v] of Object.entries(fields)) {
       if (k.indexOf("entry.") === 0) form.append(k, String(v));
     }
     try {
-      await fetch(GOOGLE_FORM, {
+      await fetch(googleForm, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: form,
