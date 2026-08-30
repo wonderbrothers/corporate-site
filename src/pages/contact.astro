@@ -155,6 +155,12 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
           });
           const data = await r.json().catch(() => ({}));
           if (r.ok && data.ok) {
+            // GTM へ送信完了を通知（GA4 のコンバージョン計測用）
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "contact_submit",
+              form_name: "contact",
+            });
             // カード内の見出し・フォームを隠してお礼を表示
             Array.prototype.forEach.call(card.children, (c) => {
               if (c !== thanks) c.style.display = "none";

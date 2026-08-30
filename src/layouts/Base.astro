@@ -1,6 +1,13 @@
 ---
 import "../styles/global.css";
 
+// ▼▼ 要設定（公開値。GTM コンテナ発行後に差し替え）▼▼
+// Google タグマネージャーのコンテナID（https://tagmanager.google.com で発行）
+// 例: "GTM-XXXXXXX" ― 空文字の間は計測タグを一切出力しない。
+// GA4（G-XXXXXXXXXX）はコードには書かず、GTM の管理画面側で設定する。
+const GTM_ID = "GTM-TXJXFJFH";
+// ▲▲ 要設定 ▲▲
+
 interface Props {
   title: string;
   description?: string;
@@ -31,6 +38,18 @@ const ogImage = base + "/images/ogp.png";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Tag Manager -->
+    {
+      GTM_ID && (
+        <script
+          is:inline
+          set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        />
+      )
+    }
+    <!-- End Google Tag Manager -->
+
     <title>{title}</title>
     <meta name="description" content={description} />
     {!noindex && <link rel="canonical" href={canonical} />}
@@ -70,6 +89,16 @@ const ogImage = base + "/images/ogp.png";
     <slot name="head" />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    {
+      GTM_ID && (
+        <noscript
+          set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
+        />
+      )
+    }
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
     <script>
       import "../scripts/main.js";
