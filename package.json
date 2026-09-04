@@ -11,5 +11,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.5"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0"
   }
 }

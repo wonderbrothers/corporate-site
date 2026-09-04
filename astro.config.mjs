@@ -7,6 +7,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://wonder-bros.com',
   trailingSlash: 'always',
-  build: { format: 'directory' },
   integrations: [sitemap()],
+  // CSS はネスト記法で書く（各要素の定義を1箇所にまとめるため）。
+  // lightningcss が出力時にネストを展開するので、古いブラウザでも従来どおり動く。
+  vite: {
+    css: {
+      transformer: 'lightningcss',
+      lightningcss: { targets: { safari: 15 << 16, chrome: 100 << 16, firefox: 100 << 16, edge: 100 << 16 } },
+    },
+  },
+  build: { format: 'directory', cssMinify: 'lightningcss' },
 });
