@@ -7,7 +7,7 @@
 /* --wb-* トークンは global.css :root に集約（このファイルでは定義しない） */
 
 .content-page {
-  background: var(--wb-orange);
+  background: var(--primary);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--wb-orange);
+  color: var(--primary);
   margin-bottom: 4px;
 }
 
@@ -99,7 +99,7 @@
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--wb-orange);
+  color: var(--primary);
   min-width: 6em;
 }
 .post-list__title {
@@ -160,7 +160,7 @@
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--wb-orange);
+  color: var(--primary);
   margin: 0 0 8px;
 }
 .article__body {
@@ -182,7 +182,7 @@
   margin: 0 0 18px;
 }
 .article__body a {
-  color: var(--wb-orange);
+  color: var(--primary);
   text-decoration: underline;
 }
 .article__body ul,
@@ -203,9 +203,9 @@
   display: inline-block;
   margin-top: 48px;
   padding: 14px 36px;
-  border: 1px solid var(--wb-orange);
+  border: 1px solid var(--primary);
   border-radius: 4px;
-  color: var(--wb-orange);
+  color: var(--primary);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -215,7 +215,7 @@
     color 0.3s;
 }
 .back-link:hover {
-  background: var(--wb-orange);
+  background: var(--primary);
   color: var(--wb-cream);
 }
 
@@ -249,7 +249,7 @@
   font-weight: 700;
   font-size: 64px;
   line-height: 1;
-  color: var(--wb-orange);
+  color: var(--primary);
   margin: 0 0 8px;
 }
 .notfound__lead {

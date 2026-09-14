@@ -3,7 +3,7 @@
 .wb-box.cf-page {
   align-content: center;
   align-items: center;
-  background: var(--wb-orange);
+  background: var(--primary);
   border-radius: 0;
   box-shadow:;
   flex-direction: column;
@@ -162,7 +162,7 @@
 .wb-box.cf-field-email__required,
 .wb-box.cf-field-message__required {
   border-radius: 0;
-  color: var(--wb-orange);
+  color: var(--primary);
   font-family: var(--wb-sans);
   font-size: 14px;
   font-weight: 700;
@@ -267,7 +267,7 @@
   max-width: 100%;
 }
 .wb-box.cf-submit {
-  background: var(--wb-orange);
+  background: var(--primary);
   border-radius: 10px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
   color: var(--wb-ink);
@@ -306,7 +306,7 @@
 .wb-box.cf-footer {
   align-content: center;
   align-items: center;
-  background: var(--wb-orange);
+  background: var(--primary);
   flex: none;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -421,14 +421,14 @@
   color: #cccccc;
 }
 .wb-box.cf-submit:hover {
-  background: #9d331bff;
+  background: var(--primary-dark);
 }
 .wb-box.cf-footer__privacy:hover {
   text-decoration: underline;
   transition-duration: 300ms;
 }
 body {
-  background: var(--wb-orange);
+  background: var(--primary);
   transition: background 0.5s cubic-bezier(0.4, 0.4, 0, 1);
 }
 /* 配色・フォントのトークンは global.css :root に集約（このファイルでは定義しない） */
@@ -457,9 +457,9 @@ body {
 .form-thanks .thanks-back {
   display: inline-block;
   padding: 16px 40px;
-  border: 1px solid #d45235;
+  border: 1px solid var(--primary);
   border-radius: 4px;
-  color: #d45235;
+  color: var(--primary);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -470,16 +470,16 @@ body {
     color 0.3s;
 }
 .form-thanks .thanks-back:hover {
-  background: #d45235;
+  background: var(--primary);
   color: #fffaef;
 }
 /* 送信エラー表示 */
 .form-error {
   margin: 16px 0 0;
   padding: 12px 16px;
-  border: 1px solid #d45235;
+  border: 1px solid var(--primary);
   border-radius: 6px;
-  color: #d45235;
+  color: var(--primary);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   line-height: 1.6;

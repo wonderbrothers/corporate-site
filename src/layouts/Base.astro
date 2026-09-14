@@ -39,6 +39,15 @@ const ogImage = base + "/images/ogp.png";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- 時間帯によるメインカラー切り替え（描画前に同期実行してチラつきを防ぐ） -->
+    <script is:inline>
+      (function () {
+        var h = new Date().getHours();
+        var t = h >= 5 && h < 12 ? "morning" : h >= 12 && h < 18 ? "afternoon" : "night";
+        document.documentElement.setAttribute("data-time-of-day", t);
+      })();
+    </script>
+
     <!-- Google Tag Manager -->
     {
       GTM_ID && (

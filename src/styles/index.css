@@ -43,7 +43,7 @@
 .wb-box.wb-intro {
   align-content: center;
   align-items: center;
-  background: var(--wb-orange);
+  background: var(--primary);
   flex-wrap: nowrap;
   justify-content: center;
   padding: 0px;
@@ -1187,12 +1187,12 @@
 .wb-box.wb-company__contact {
   align-content: center;
   align-items: center;
-  background: var(--wb-orange);
-  border-bottom: 0px solid var(--wb-orange);
-  border-left: 0px solid var(--wb-orange);
+  background: var(--primary);
+  border-bottom: 0px solid var(--primary);
+  border-left: 0px solid var(--primary);
   border-radius: 10px;
-  border-right: 0px solid var(--wb-orange);
-  border-top: 0px solid var(--wb-orange);
+  border-right: 0px solid var(--primary);
+  border-top: 0px solid var(--primary);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
   flex: none;
   flex-direction: row;
@@ -1782,7 +1782,7 @@
   }
 }
 .wb-box.wb-wonderlab__product-link:hover {
-  color: var(--wb-orange);
+  color: var(--primary);
   transition-duration: 300ms;
 }
 .wb-box.wb-wonderlab__product-logo {
@@ -1980,7 +1980,7 @@
   }
 }
 .wb-box.wb-company__contact:hover {
-  background: #bc4227;
+  background: var(--primary-dark);
   transition-duration: 300ms;
   border-top: 0px solid var(--wb-cream);
   border-bottom: 0px solid var(--wb-cream);
@@ -2027,11 +2027,11 @@
   }
 }
 .wb-box.wb-footer__privacy:hover {
-  color: #d45235ff;
+  color: var(--primary);
   transition-duration: 300ms;
 }
 body {
-  background: var(--wb-orange);
+  background: var(--primary);
   transition: background 0.5s cubic-bezier(0.4, 0.4, 0, 1);
 }
 

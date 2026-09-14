@@ -6,11 +6,32 @@
   /* ブランドカラー */
   --wb-orange: #d45235;      /* メインのオレンジ（背景・アクセント） */
   --wb-orange-dark: #bc4227; /* オレンジの濃色（ホバー等） */
+  --wb-blue: #0B4673;        /* ブルー */
+  --wb-blue-dark: #083456;   /* ブルーの濃色（ホバー等） */
+  --wb-gray: #454B54;        /* 夜用のダークスレートグレー */
+  --wb-gray-dark: #34383F;   /* グレーの濃色（ホバー等） */
   --wb-cream: #fffaef;       /* 背景のクリーム */
   --wb-ink: #222222;         /* 基本の文字色 */
 
+  /* セマンティックカラー（ここを差し替えるとサイト全体のメインカラーが変わる）
+     デフォルト（朝）はオレンジ。午後・夜は下の data-time-of-day で上書きする */
+  --primary: var(--wb-orange);
+  --primary-dark: var(--wb-orange-dark);
+
   /* タイポグラフィ */
   --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
+}
+
+/* 時間帯によるメインカラーの切り替え
+   （Base.astro の head 先頭のインラインスクリプトが、
+   閲覧者の端末時刻から <html data-time-of-day> を設定する） */
+:root[data-time-of-day="afternoon"] {
+  --primary: var(--wb-blue);
+  --primary-dark: var(--wb-blue-dark);
+}
+:root[data-time-of-day="night"] {
+  --primary: var(--wb-gray);
+  --primary-dark: var(--wb-gray-dark);
 }
 
 .StudioCanvas {
