@@ -1835,8 +1835,7 @@
   }
 }
 .wb-box.wb-wonderlab__product-link:hover {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--wb-ink);
   color: var(--wb-cream);
   transition-duration: 300ms;
 }
