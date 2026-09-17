@@ -1759,31 +1759,44 @@
   }
 }
 .wb-box.wb-wonderlab__products {
-  align-content: flex-start;
-  align-items: flex-start;
+  align-content: stretch;
+  align-items: stretch;
   flex: none;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  gap: 80px;
+  gap: 24px;
   justify-content: flex-start;
   padding: 0px;
   width: 100%;
   max-width: 100%;
+  @media screen and (max-width: 1140px) {
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
 }
 .wb-box.wb-wonderlab__product {
   align-content: flex-start;
   align-items: flex-start;
-  flex: none;
-  flex-direction: row;
+  background: transparent;
+  border: 1px solid #22222247;
+  border-radius: 24px;
+  flex: 1 1 0;
+  flex-direction: column;
   flex-wrap: nowrap;
-  gap: 60px;
+  gap: 40px;
   justify-content: flex-start;
-  padding: 0px;
-  width: 100%;
+  padding: 40px;
+  min-width: 0px;
   max-width: 100%;
-  @media screen and (max-width: 840px) {
-    flex-direction: column;
-    gap: 40px;
+  @media screen and (max-width: 1140px) {
+    flex: none;
+    width: 100%;
+  }
+  @media screen and (max-width: 540px) {
+    border-radius: 16px;
+    gap: 32px;
+    padding: 24px;
   }
 }
 .wb-box.wb-wonderlab__product-aside {
@@ -1795,11 +1808,8 @@
   gap: 16px;
   justify-content: flex-start;
   padding: 0px;
-  width: 260px;
+  width: 100%;
   max-width: 100%;
-  @media screen and (max-width: 840px) {
-    width: 100%;
-  }
 }
 .wb-box.wb-wonderlab__product-link {
   align-content: center;
@@ -1841,22 +1851,26 @@
 }
 .wb-box.wb-wonderlab__product-logo {
   flex: none;
-  height: auto;
+  height: 60px;
+  object-fit: contain;
+  object-position: left center;
   width: 260px;
   max-width: 100%;
   @media screen and (max-width: 540px) {
+    height: 56px;
     width: 240px;
   }
 }
 .wb-box.wb-wonderlab__product-body {
   align-content: flex-start;
   align-items: flex-start;
-  flex: 1;
+  flex: 1 1 auto;
   flex-direction: column;
   flex-wrap: nowrap;
   gap: 32px;
   justify-content: flex-start;
   padding: 0px;
+  width: 100%;
   min-width: 0px;
   max-width: 100%;
 }
