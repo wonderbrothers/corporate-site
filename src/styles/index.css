@@ -254,9 +254,11 @@
   }
 }
 .wb-box.wb-tagline__discover {
+  /* 語中で割れるのを防ぐ（サイズ計算は1行前提。万一大きすぎても折り返さない） */
+  white-space: nowrap;
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-display);
+  font-size: var(--wb-text-display-tagline);
   font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
@@ -272,9 +274,11 @@
   justify-content: flex-start;
 }
 .wb-box.wb-tagline__design {
+  /* 語中で割れるのを防ぐ（サイズ計算は1行前提。万一大きすぎても折り返さない） */
+  white-space: nowrap;
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-display);
+  font-size: var(--wb-text-display-tagline);
   font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
@@ -290,9 +294,11 @@
   justify-content: flex-start;
 }
 .wb-box.wb-tagline__development {
+  /* 語中で割れるのを防ぐ（サイズ計算は1行前提。万一大きすぎても折り返さない） */
+  white-space: nowrap;
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-display);
+  font-size: var(--wb-text-display-tagline);
   font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
@@ -829,7 +835,9 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-display);
+  font-size: var(--wb-text-display-we-think);
+  /* SPでコンテンツ幅いっぱいにするため折り返さない（サイズ計算が1行前提） */
+  white-space: nowrap;
   font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
@@ -1585,7 +1593,9 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-display);
+  font-size: var(--wb-text-display-wonder-lab);
+  /* SPでコンテンツ幅いっぱいにするため折り返さない（サイズ計算が1行前提） */
+  white-space: nowrap;
   font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
@@ -1804,6 +1814,13 @@
   color: var(--wb-cream);
   transition-duration: 300ms;
 }
+/* ロゴを包む <a>。SP では内容幅いっぱいに伸ばすため、
+   親（align-items: flex-start）の縮小を打ち消して stretch させる。 */
+.wb-box.wb-wonderlab__product-logo-link {
+  @media screen and (max-width: 540px) {
+    align-self: stretch;
+  }
+}
 .wb-box.wb-wonderlab__product-logo {
   flex: none;
   height: 60px;
@@ -1812,8 +1829,10 @@
   width: 260px;
   max-width: 100%;
   @media screen and (max-width: 540px) {
-    height: 56px;
-    width: 240px;
+    /* SP はカードの内容幅いっぱい。高さは元SVGの比率で決まる
+       （64MONSTERS 869:136、RENSOU GAME 643:182）。 */
+    width: 100%;
+    height: auto;
   }
 }
 .wb-box.wb-wonderlab__product-body {

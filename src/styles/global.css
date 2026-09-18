@@ -48,7 +48,26 @@
      各CSSは font-size: var(--wb-text-*) と書くだけ。画面幅ごとの出し分けは
      下の @media でこのトークンを差し替えることで一箇所に集約している。
      ※ セレクタ側に @media を書き足さないこと（せっかくの一箇所集約が崩れる） */
-  --wb-text-display: clamp(32px, 8vw, 96px); /* Discover. / WE THINK 等の大見出し（幅に応じて連続可変） */
+  /* コンテンツ幅（= 100vw から左右パディングを引いた、本文が使える幅）。
+     大見出しを「画面幅いっぱい」にする計算に使う。パディングを変えたら
+     ここも合わせる。 */
+  --wb-content-width: calc(100vw - 160px); /* 左右 80px */
+
+  --wb-text-display: clamp(32px, 8vw, 96px); /* 大見出しの基本カーブ（幅に応じて連続可変） */
+  /* 大見出しは SP（540px以下）でコンテンツ幅いっぱいにする。必要な文字サイズは
+     文字列ごとに違う（= コンテンツ幅 ÷ 1em あたりの文字幅）ので、役割ごとに
+     トークンを分けてある。下の @media 540px で実際の計算式に切り替わる。
+     ★係数 = 「1em あたりの文字幅」の実測値 + 約2%の余裕。
+       Development. 6.6075 / WE THINK 4.6754 / WONDER LAB 6.2848（Noto Sans 700、
+       letter-spacing はタグライン -0.03em・他 -0.04em を含む）を丸めて
+       6.74 / 4.77 / 6.41 を使用。
+       ★測り直すときは必ず Noto Sans が実際に読み込まれたブラウザで測ること。
+         Web フォントが読めない環境で測ると代替フォントの幅になり（例: Development.
+         が 6.197 と出る）、本番で 6% ほど大きくなって端が折り返す。
+       ★見出しのテキストを変えたら係数も測り直すこと。 */
+  --wb-text-display-tagline: var(--wb-text-display);     /* Discover./Design./Development.（最長の Development. 基準で3行同サイズ） */
+  --wb-text-display-we-think: var(--wb-text-display);    /* WE THINK */
+  --wb-text-display-wonder-lab: var(--wb-text-display);  /* WONDER LAB */
   --wb-text-section: var(--wb-fs-4xl);       /* セクション見出し（OUR MISSION 等）・下層ページのページ見出し */
   --wb-text-title: var(--wb-fs-3xl);         /* お問い合わせ・プライバシーポリシーのタイトル */
   --wb-text-heading-lg: var(--wb-fs-2xl);    /* 大きめの小見出し（プロダクト名・お問い合わせ導線） */
@@ -77,6 +96,7 @@
 ------------------------------------------------------------------ */
 @media screen and (max-width: 1140px) {
   :root {
+    --wb-content-width: calc(100vw - 80px); /* 左右 40px */
     --wb-text-heading-sm: var(--wb-fs-md); /* 18 → 16 */
     --wb-text-lead: var(--wb-fs-md);       /* 20 → 16 */
   }
@@ -92,6 +112,17 @@
 }
 @media screen and (max-width: 540px) {
   :root {
+    --wb-content-width: calc(100vw - 32px);    /* 左右 16px */
+    /* ここから大見出しはコンテンツ幅いっぱい（インパクト優先）。
+       ここは コンテナクエリ単位が使えない古いブラウザ向けのフォールバック。
+       100vw はスクロールバーの幅を含むため 17px 引いて安全側に倒している
+       （その分だけ端に余白が残る）。対応ブラウザでは下の @supports が
+       100cqw（コンテナの内容幅）で正確に埋める。
+       下の 320px ブロックでパディングが変わると --wb-content-width が変わり、
+       この式の結果も自動的に追従するので、320px 側に書き足す必要はない。 */
+    --wb-text-display-tagline: calc((var(--wb-content-width) - 17px) / 6.74);    /* Development. 基準 */
+    --wb-text-display-we-think: calc((var(--wb-content-width) - 17px) / 4.77);   /* WE THINK */
+    --wb-text-display-wonder-lab: calc((var(--wb-content-width) - 17px) / 6.41); /* WONDER LAB */
     --wb-text-section: var(--wb-fs-3xl);       /* 32 → 28 */
     --wb-text-heading-md: var(--wb-fs-lg);     /* 20 → 18 */
     --wb-text-lead: var(--wb-fs-sm);           /* 16 → 14 */
@@ -105,6 +136,7 @@
 }
 @media screen and (max-width: 320px) {
   :root {
+    --wb-content-width: calc(100vw - 24px);    /* 左右 12px */
     --wb-text-section: var(--wb-fs-xl);        /* 28 → 20 */
     --wb-text-heading-lg: var(--wb-fs-lg);     /* 20 → 18 */
     --wb-text-heading-md: var(--wb-fs-md);     /* 18 → 16 */
@@ -114,6 +146,36 @@
     --wb-text-caption: var(--wb-fs-xs);        /* 14 → 12 */
     --wb-text-vertical-label: var(--wb-fs-3xs); /* 10 → 8 */
     --wb-text-icon-lg: var(--wb-fs-2xl);       /* 28 → 24 */
+  }
+}
+
+/* ------------------------------------------------------------------
+   大見出しを SP でコンテンツ幅ぴったりに埋める（コンテナクエリ単位が使える場合）
+   100cqw = 見出しの親（wb-tagline__list / wb-approach__inner /
+   wb-wonderlab__intro、index.css で container-type: inline-size を指定）の内容幅。
+   100vw と違いスクロールバーの幅を含まないので、DevTools のレスポンシブ表示や
+   Windows のような常時スクロールバーの環境でもはみ出さない。
+   係数は Noto Sans 700 の実測値 + 約1.5%の余裕（文言を変えたら測り直す）。
+------------------------------------------------------------------ */
+@supports (width: 1cqw) {
+  /* 100cqw の基準になるコンテナ。計算式と同じファイルに置いておくこと。
+     別ファイル（index.css）に置くと、どちらか一方だけが古い状態になったときに
+     100cqw がコンテナを見つけられずビューポート幅にフォールバックし、
+     左右パディングのぶん見出しが大きくなって折り返す。 */
+  .wb-box.wb-tagline__list,
+  .wb-box.wb-approach__inner,
+  .wb-box.wb-wonderlab__intro {
+    container-type: inline-size;
+  }
+  @media screen and (max-width: 540px) {
+    :root {
+      /* 通常は 100cqw（コンテナの内容幅）が効く。万一コンテナが効かず
+         100cqw がビューポート幅になっても、min() の右側（パディングを引いた幅）
+         が採用されるので、はみ出して折り返すことはない。 */
+      --wb-text-display-tagline: min(calc(100cqw / 6.74), calc(var(--wb-content-width) / 6.74));
+      --wb-text-display-we-think: min(calc(100cqw / 4.77), calc(var(--wb-content-width) / 4.77));
+      --wb-text-display-wonder-lab: min(calc(100cqw / 6.41), calc(var(--wb-content-width) / 6.41));
+    }
   }
 }
 
