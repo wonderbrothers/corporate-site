@@ -1,3 +1,14 @@
+/* ==================================================================
+   contact.css — お問い合わせ（Studio Design 由来）
+   ------------------------------------------------------------------
+   ・配色/フォントのトークンは global.css :root に集約。
+   ・フォントサイズ・ウェイトは直接 px を書かず、必ず
+     var(--wb-text-*) / var(--wb-fw-*) を参照する。画面幅ごとの
+     出し分けは global.css の @media が :root のトークンを差し替えて
+     行うので、フォントサイズのために @media を書き足す必要はない。
+
+   ブレークポイント: 1140px / 840px / 540px / 320px（すべて max-width）
+================================================================== */
 /* 同一スタイルは複数セレクタをまとめて共通化（context ごと） */
 
 .wb-box.cf-page {
@@ -71,8 +82,8 @@
 .wb-box.cf-title {
   color: var(--wb-ink);
   font-family: var(--wb-sans);
-  font-size: 28px;
-  font-weight: 600;
+  font-size: var(--wb-text-title);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   line-height: 1.4;
   margin: 0px 0px 24px 0px;
@@ -87,8 +98,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -147,8 +158,8 @@
   border-radius: 0;
   color: var(--wb-ink);
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-semibold);
   letter-spacing: 0em;
   line-height: 1.4;
   margin: 0px 0px 0px 0px;
@@ -164,8 +175,8 @@
   border-radius: 0;
   color: var(--primary);
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-bold);
   letter-spacing: 0em;
   line-height: 1.4;
   margin: 0px 0px 0px 5px;
@@ -186,8 +197,8 @@
   box-shadow: none;
   color: var(--wb-ink);
   font-family: var(--wb-sans);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--wb-text-form-input);
+  font-weight: var(--wb-fw-medium);
   height: 50px;
   justify-content: center;
   letter-spacing: 0em;
@@ -223,8 +234,8 @@
   box-shadow: none;
   color: var(--wb-ink);
   font-family: var(--wb-sans);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--wb-text-form-input);
+  font-weight: var(--wb-fw-medium);
   height: 160px;
   justify-content: center;
   letter-spacing: 0em;
@@ -260,8 +271,8 @@
   color: var(--wb-ink);
   flex: 1;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   line-height: 1.4;
   width: auto;
   max-width: 100%;
@@ -274,7 +285,7 @@
   flex: none;
   flex-direction: row;
   flex-wrap: nowrap;
-  font-size: 15px;
+  font-size: var(--wb-text-form-input);
   justify-content: center;
   margin: 0px 0px 0px 0px;
   opacity: 1;
@@ -285,8 +296,8 @@
 .wb-box.cf-submit__text {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.9;
@@ -301,7 +312,7 @@
 }
 .wb-box.cf-submit__icon {
   color: var(--wb-cream);
-  font-size: 20px;
+  font-size: var(--wb-text-icon-sm);
 }
 .wb-box.cf-footer {
   align-content: center;
@@ -338,8 +349,8 @@
   color: var(--wb-cream);
   flex: 1;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -356,8 +367,8 @@
   color: var(--wb-cream);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -440,16 +451,16 @@ body {
 }
 .form-thanks .thanks-title {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: var(--wb-text-title);
+  font-weight: var(--wb-fw-bold);
   line-height: 1.4;
   color: #222222;
   margin: 0 0 24px 0;
 }
 .form-thanks .thanks-text {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-medium);
   line-height: 1.8;
   color: #222222;
   margin: 0 0 40px 0;
@@ -461,8 +472,8 @@ body {
   border-radius: 4px;
   color: var(--primary);
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
   letter-spacing: 0.05em;
   text-decoration: none;
   transition:
@@ -481,7 +492,7 @@ body {
   border-radius: 6px;
   color: var(--primary);
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 13px;
+  font-size: var(--wb-text-label);
   line-height: 1.6;
   text-align: center;
 }
@@ -501,10 +512,6 @@ body {
     padding: 80px;
     width: auto;
     max-width: 100%;
-  
-  }
-  .wb-box.cf-note {
-    font-size: 16px;
   
   }
 }
@@ -529,24 +536,9 @@ body {
     padding: 40px;
   
   }
-  .wb-box.cf-title {
-    font-size: 24px;
-  
-  }
   .wb-box.cf-note {
-    font-size: 14px;
     text-align: center;
     justify-content: center;
-  
-  }
-  .wb-box.cf-field__label-text,
-  .wb-box.cf-field__required,
-  .wb-box.cf-field-email__label-text,
-  .wb-box.cf-field-email__required,
-  .wb-box.cf-field-message__label-text,
-  .wb-box.cf-field-message__required,
-  .wb-box.cf-submit__text {
-    font-size: 14px;
   
   }
   .wb-box.cf-footer {
@@ -597,29 +589,17 @@ body {
   
   }
   .wb-box.cf-title {
-    font-size: 24px;
     margin: 0px 0px 24px 0px;
   
   }
   .wb-box.cf-note {
-    font-size: 12px;
     text-align: left;
     justify-content: flex-start;
-  
-  }
-  .wb-box.cf-field__label-text,
-  .wb-box.cf-field-email__label-text,
-  .wb-box.cf-field-message__label-text {
-    font-size: 14px;
   
   }
   .wb-box.cf-consent__text {
     text-align: left;
     justify-content: flex-start;
-  
-  }
-  .wb-box.cf-submit__text {
-    font-size: 12px;
   
   }
   .wb-box.cf-footer {
@@ -643,7 +623,6 @@ body {
   }
   .wb-box.cf-footer__copyright {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: left;
     width: auto;
@@ -652,7 +631,6 @@ body {
   }
   .wb-box.cf-footer__privacy {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: right;
     width: auto;
@@ -686,18 +664,8 @@ body {
   
   }
   .wb-box.cf-title {
-    font-size: 24px;
     text-align: left;
     justify-content: flex-start;
-  
-  }
-  .wb-box.cf-field__label-text,
-  .wb-box.cf-field__required,
-  .wb-box.cf-field-email__label-text,
-  .wb-box.cf-field-email__required,
-  .wb-box.cf-field-message__label-text,
-  .wb-box.cf-field-message__required {
-    font-size: 12px;
   
   }
   .wb-box.cf-consent {

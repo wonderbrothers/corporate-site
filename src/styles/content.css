@@ -4,7 +4,8 @@
    ※ Studio 由来ページの render-canvas リセットは適用されないので
      ここで必要なタイポグラフィを明示する。
 ------------------------------------------------------------------ */
-/* --wb-* トークンは global.css :root に集約（このファイルでは定義しない） */
+/* --wb-* トークンは global.css :root に集約（このファイルでは定義しない）
+   フォントサイズ・ウェイトは var(--wb-text-*) / var(--wb-fw-*) を参照する。 */
 
 .content-page {
   background: var(--primary);
@@ -54,16 +55,16 @@
 /* ページ見出し */
 .page-title {
   font-family: var(--wb-sans);
-  font-size: 32px;
-  font-weight: 700;
+  font-size: var(--wb-text-section);
+  font-weight: var(--wb-fw-bold);
   line-height: 1.4;
   margin: 0 0 8px;
 }
 .page-title__en {
   display: block;
-  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
+  font-family: var(--wb-sans);
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-bold);
   letter-spacing: 0.15em;
   color: var(--primary);
   margin-bottom: 4px;
@@ -95,21 +96,21 @@
   opacity: 0.6;
 }
 .post-list__date {
-  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--wb-sans);
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-semibold);
   letter-spacing: 0.04em;
   color: var(--primary);
   min-width: 6em;
 }
 .post-list__title {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-medium);
   line-height: 1.6;
 }
 .empty {
   margin: 24px 0 0;
-  font-size: 14px;
+  font-size: var(--wb-text-body-sm);
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -146,19 +147,19 @@
 }
 .works-grid__title {
   margin: 12px 0 2px;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-bold);
 }
 .works-grid__client {
-  font-size: 12px;
+  font-size: var(--wb-text-label);
   color: rgba(0, 0, 0, 0.55);
 }
 
 /* 記事本文 */
 .article__meta {
-  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--wb-sans);
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-semibold);
   letter-spacing: 0.04em;
   color: var(--primary);
   margin: 0 0 8px;
@@ -166,16 +167,16 @@
 .article__body {
   margin-top: 32px;
   line-height: 1.9;
-  font-size: 15px;
+  font-size: var(--wb-text-body);
 }
 .article__body h2 {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-lg);
+  font-weight: var(--wb-fw-bold);
   margin: 40px 0 12px;
 }
 .article__body h3 {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-sm);
+  font-weight: var(--wb-fw-bold);
   margin: 32px 0 10px;
 }
 .article__body p {
@@ -206,8 +207,8 @@
   border: 1px solid var(--primary);
   border-radius: 4px;
   color: var(--primary);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
   letter-spacing: 0.05em;
   text-decoration: none;
   transition:
@@ -228,8 +229,8 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 24px 32px;
-  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-  font-size: 12px;
+  font-family: var(--wb-sans);
+  font-size: var(--wb-text-label);
   color: var(--wb-cream);
 }
 .site-footer__link {
@@ -245,9 +246,9 @@
   text-align: center;
 }
 .notfound__code {
-  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-  font-weight: 700;
-  font-size: 64px;
+  font-family: var(--wb-sans);
+  font-weight: var(--wb-fw-bold);
+  font-size: var(--wb-text-code);
   line-height: 1;
   color: var(--primary);
   margin: 0 0 8px;
@@ -255,5 +256,5 @@
 .notfound__lead {
   margin: 12px 0 0;
   line-height: 1.9;
-  font-size: 15px;
+  font-size: var(--wb-text-body);
 }

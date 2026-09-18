@@ -20,6 +20,101 @@
 
   /* タイポグラフィ */
   --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
+
+  /* ---- フォントウェイト ----
+     Base.astro で読み込んでいるのは 300〜800。実際に使うのは下の4つだけ。 */
+  --wb-fw-medium: 500;    /* 英文・補助テキスト */
+  --wb-fw-semibold: 600;  /* 和文本文・ラベル */
+  --wb-fw-bold: 700;      /* 見出し・リンク・ボタン */
+  --wb-fw-extrabold: 800; /* セクション見出し */
+
+  /* ---- フォントサイズ・スケール ----
+     サイトで使うサイズはこの段階だけ。新しい中間値（13px・15px 等）を
+     足さずに、必ずどれかに寄せる。 */
+  --wb-fs-3xs: 8px;
+  --wb-fs-2xs: 10px;
+  --wb-fs-xs: 12px;
+  --wb-fs-sm: 14px;
+  --wb-fs-md: 16px;
+  --wb-fs-lg: 18px;
+  --wb-fs-xl: 20px;
+  --wb-fs-2xl: 24px;
+  --wb-fs-3xl: 28px;
+  --wb-fs-4xl: 32px;
+  --wb-fs-5xl: 36px;
+  --wb-fs-6xl: 64px;
+
+  /* ---- 役割別トークン（PC = 1141px 以上の値）----
+     各CSSは font-size: var(--wb-text-*) と書くだけ。画面幅ごとの出し分けは
+     下の @media でこのトークンを差し替えることで一箇所に集約している。
+     ※ セレクタ側に @media を書き足さないこと（せっかくの一箇所集約が崩れる） */
+  --wb-text-display: clamp(32px, 8vw, 96px); /* Discover. / WE THINK 等の大見出し（幅に応じて連続可変） */
+  --wb-text-section: var(--wb-fs-4xl);       /* セクション見出し（OUR MISSION 等）・下層ページのページ見出し */
+  --wb-text-title: var(--wb-fs-3xl);         /* お問い合わせ・プライバシーポリシーのタイトル */
+  --wb-text-heading-lg: var(--wb-fs-2xl);    /* 大きめの小見出し（プロダクト名・お問い合わせ導線） */
+  --wb-text-heading-md: var(--wb-fs-xl);     /* カード見出し */
+  --wb-text-heading-sm: var(--wb-fs-lg);     /* 条文見出し・記事内 h3 */
+  --wb-text-lead: var(--wb-fs-xl);           /* セクションのリード文 */
+  --wb-text-body-lg: var(--wb-fs-xl);        /* 大きめ和文本文（MISSION/THEME/VALUE/GOVERNANCE） */
+  --wb-text-body: var(--wb-fs-md);           /* 標準の本文 */
+  --wb-text-body-tight: var(--wb-fs-md);     /* 本文と同じ大きさだが、詰まった行（会社情報の値など）は狭い画面で一段早く下げる */
+  --wb-text-body-en: var(--wb-fs-md);        /* 標準の英文本文 */
+  --wb-text-body-sm: var(--wb-fs-sm);        /* 小さめ本文（規約本文・注記） */
+  --wb-text-caption: var(--wb-fs-sm);        /* 補助テキスト・英文キャプション */
+  --wb-text-meta: var(--wb-fs-sm);           /* フッター・ボタン等のメタ情報 */
+  --wb-text-label: var(--wb-fs-xs);          /* 項目ラベル・細かい注記（最小サイズ） */
+  --wb-text-vertical-label: var(--wb-fs-sm); /* HERO の縦書きスクロールラベル */
+  --wb-text-form-input: var(--wb-fs-md);     /* 入力欄。16px 未満にすると iOS で自動ズームするため下げない */
+  --wb-text-icon-lg: var(--wb-fs-5xl);       /* Material Icons（大） */
+  --wb-text-icon-sm: var(--wb-fs-xl);        /* Material Icons（小） */
+  --wb-text-code: var(--wb-fs-6xl);          /* 404 の数字 */
+}
+
+/* ------------------------------------------------------------------
+   画面幅ごとのタイポグラフィ（サイト全体のフォントサイズはここだけで決まる）
+   ブレークポイントは index/contact/privacy と同じ 1140 / 840 / 540 / 320px。
+   狭い方が後に来る順序を保つこと（後に書いた方が勝つため）。
+------------------------------------------------------------------ */
+@media screen and (max-width: 1140px) {
+  :root {
+    --wb-text-heading-sm: var(--wb-fs-md); /* 18 → 16 */
+    --wb-text-lead: var(--wb-fs-md);       /* 20 → 16 */
+  }
+}
+@media screen and (max-width: 840px) {
+  :root {
+    --wb-text-title: var(--wb-fs-2xl);        /* 28 → 24 */
+    --wb-text-heading-lg: var(--wb-fs-xl);    /* 24 → 20 */
+    --wb-text-body-lg: var(--wb-fs-lg);       /* 20 → 18 */
+    --wb-text-vertical-label: var(--wb-fs-xs); /* 14 → 12 */
+    --wb-text-icon-lg: var(--wb-fs-4xl);      /* 36 → 32 */
+  }
+}
+@media screen and (max-width: 540px) {
+  :root {
+    --wb-text-section: var(--wb-fs-3xl);       /* 32 → 28 */
+    --wb-text-heading-md: var(--wb-fs-lg);     /* 20 → 18 */
+    --wb-text-lead: var(--wb-fs-sm);           /* 16 → 14 */
+    --wb-text-body-lg: var(--wb-fs-md);        /* 18 → 16 */
+    --wb-text-body-tight: var(--wb-fs-sm);     /* 16 → 14 */
+    --wb-text-body-en: var(--wb-fs-sm);        /* 16 → 14 */
+    --wb-text-meta: var(--wb-fs-xs);           /* 14 → 12 */
+    --wb-text-vertical-label: var(--wb-fs-2xs); /* 12 → 10 */
+    --wb-text-icon-lg: var(--wb-fs-3xl);       /* 32 → 28 */
+  }
+}
+@media screen and (max-width: 320px) {
+  :root {
+    --wb-text-section: var(--wb-fs-xl);        /* 28 → 20 */
+    --wb-text-heading-lg: var(--wb-fs-lg);     /* 20 → 18 */
+    --wb-text-heading-md: var(--wb-fs-md);     /* 18 → 16 */
+    --wb-text-body-lg: var(--wb-fs-sm);        /* 16 → 14 */
+    --wb-text-body: var(--wb-fs-sm);           /* 16 → 14 */
+    --wb-text-body-en: var(--wb-fs-xs);        /* 14 → 12 */
+    --wb-text-caption: var(--wb-fs-xs);        /* 14 → 12 */
+    --wb-text-vertical-label: var(--wb-fs-3xs); /* 10 → 8 */
+    --wb-text-icon-lg: var(--wb-fs-2xl);       /* 28 → 24 */
+  }
 }
 
 /* 時間帯によるメインカラーの切り替え

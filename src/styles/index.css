@@ -3,6 +3,11 @@
    ------------------------------------------------------------------
    ・配色/フォントのトークンは global.css :root に集約。
      色やフォントを変えるときは global.css を編集する。
+   ・フォントサイズ・ウェイトは直接 px を書かず、必ず
+     var(--wb-text-*) / var(--wb-fw-*) を参照する。画面幅ごとの
+     出し分けは global.css の @media が :root のトークンを差し替えて
+     行うので、フォントサイズのために @media を書き足す必要はない
+     （書き足すと「サイズはトークンだけで決まる」前提が崩れる）。
    ・DOM 順にほぼ並んでいる。1つの要素のスタイルは「基本ルール＋
      その中にネストした @media」の形で1箇所にまとまっている。
      画面幅ごとの上書きを探してファイル内を行き来する必要はない。
@@ -157,8 +162,8 @@
   border-top: 0px solid rgba(0, 0, 0, 0);
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-vertical-label);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.15em;
   line-height: 1.4;
@@ -173,14 +178,9 @@
   justify-content: center;
   @media screen and (max-width: 840px) {
     display: flex;
-    font-size: 12px;
   }
   @media screen and (max-width: 540px) {
     display: flex;
-    font-size: 10px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 8px;
   }
 }
 .wb-box.wb-hero__scroll-line {
@@ -256,8 +256,8 @@
 .wb-box.wb-tagline__discover {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 96px;
-  font-weight: 700;
+  font-size: var(--wb-text-display);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -274,8 +274,8 @@
 .wb-box.wb-tagline__design {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 96px;
-  font-weight: 700;
+  font-size: var(--wb-text-display);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -292,8 +292,8 @@
 .wb-box.wb-tagline__development {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 96px;
-  font-weight: 700;
+  font-size: var(--wb-text-display);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -372,8 +372,8 @@
   color: var(--wb-cream);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 34px;
-  font-weight: 800;
+  font-size: var(--wb-text-section);
+  font-weight: var(--wb-fw-extrabold);
   height: auto;
   line-height: 1.4;
   text-align: left;
@@ -383,12 +383,6 @@
   @media screen and (max-width: 840px) {
     width: 100%;
     max-width: 100%;
-  }
-  @media screen and (max-width: 540px) {
-    font-size: 28px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 20px;
   }
 }
 .wb-box.wb-principles__mission-body {
@@ -416,8 +410,8 @@
 .wb-box.wb-principles__mission-ja {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-lg);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   line-height: 1.3;
   text-align: left;
@@ -431,8 +425,8 @@
 .wb-box.wb-principles__governance-en {
   color: #fffaefb3;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--wb-text-body-en);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   line-height: 1.3;
   text-align: left;
@@ -517,8 +511,8 @@
 .wb-box.wb-principles__governance-ja {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-lg);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   line-height: 1.4;
   text-align: left;
@@ -576,8 +570,8 @@
   color: var(--wb-cream);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-lg);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   line-height: 1.4;
   text-align: left;
@@ -610,8 +604,8 @@
 .wb-box.wb-principles__theme-note-en {
   color: #fffaefb3;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   line-height: 1.3;
   text-align: left;
@@ -835,8 +829,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 96px;
-  font-weight: 700;
+  font-size: var(--wb-text-display);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -852,8 +846,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--wb-text-lead);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
   line-height: 1.3;
@@ -924,8 +918,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-md);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.3;
@@ -944,8 +938,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.4;
@@ -964,8 +958,8 @@
   color: #222222b3;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -983,8 +977,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-md);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.3;
@@ -1107,8 +1101,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.6;
@@ -1129,8 +1123,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-tight);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -1151,8 +1145,8 @@
   color: #222222b3;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -1236,8 +1230,8 @@
 .wb-box.wb-company__contact-title {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-lg);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1;
@@ -1250,15 +1244,10 @@
   max-width: 100%;
   justify-content: flex-start;
   @media screen and (max-width: 840px) {
-    font-size: 20px;
     margin: 0px 0px 12px 0px;
     max-width: 100%;
   }
-  @media screen and (max-width: 540px) {
-    font-size: 20px;
-  }
   @media screen and (max-width: 320px) {
-    font-size: 18px;
     margin: 0px 0px 8px 0px;
     max-width: 100%;
   }
@@ -1266,8 +1255,8 @@
 .wb-box.wb-company__contact-note {
   color: var(--wb-cream);
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.4;
@@ -1282,16 +1271,7 @@
 }
 .wb-box.wb-company__contact-icon {
   color: var(--wb-cream);
-  font-size: 36px;
-  @media screen and (max-width: 840px) {
-    font-size: 32px;
-  }
-  @media screen and (max-width: 540px) {
-    font-size: 28px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 24px;
-  }
+  font-size: var(--wb-text-icon-lg);
 }
 .wb-box.wb-footer__inner {
   align-content: center;
@@ -1331,8 +1311,8 @@
   color: var(--wb-ink);
   flex: 1;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -1346,7 +1326,6 @@
   justify-content: flex-start;
   @media screen and (max-width: 540px) {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: left;
     width: auto;
@@ -1357,8 +1336,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -1372,7 +1351,6 @@
   justify-content: flex-end;
   @media screen and (max-width: 540px) {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: right;
     width: auto;
@@ -1607,8 +1585,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 96px;
-  font-weight: 700;
+  font-size: var(--wb-text-display);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -1619,28 +1597,20 @@
   width: 100%;
   max-width: 100%;
   justify-content: flex-start;
-  @media screen and (max-width: 1140px) {
-    font-size: 8vw;
-  }
   @media screen and (max-width: 840px) {
-    font-size: 8vw;
     margin: 0px 0px 12px 0px;
   }
   @media screen and (max-width: 540px) {
-    font-size: 10vw;
     margin: 0px 0px 8px 0px;
     text-align: left;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 10vw;
   }
 }
 .wb-box.wb-wonderlab__subtitle {
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--wb-text-lead);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: -0.04em;
   line-height: 1.3;
@@ -1652,20 +1622,14 @@
   z-index: 1;
   max-width: 100%;
   justify-content: space-between;
-  @media screen and (max-width: 1140px) {
-    font-size: 16px;
-  }
   @media screen and (max-width: 840px) {
-    font-size: 16px;
     margin: 0px 0px 60px 0px;
   }
   @media screen and (max-width: 540px) {
-    font-size: 14px;
     margin: 0px 0px 40px 0px;
     text-align: left;
   }
   @media screen and (max-width: 320px) {
-    font-size: 14px;
     width: auto;
   }
 }
@@ -1691,8 +1655,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.4;
@@ -1716,9 +1680,6 @@
   & > p:last-child {
     margin-bottom: 0px;
   }
-  @media screen and (max-width: 320px) {
-    font-size: 14px;
-  }
 }
 .wb-box.wb-wonderlab__lead-en {
   align-items: flex-start;
@@ -1726,8 +1687,8 @@
   color: #222222b3;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -1750,12 +1711,6 @@
   }
   & > p:last-child {
     margin-bottom: 0px;
-  }
-  @media screen and (max-width: 540px) {
-    font-size: 13px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 12px;
   }
 }
 .wb-box.wb-wonderlab__products {
@@ -1821,8 +1776,8 @@
   flex: none;
   flex-direction: row;
   font-family: var(--wb-sans);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
   gap: 6px;
   height: auto;
   letter-spacing: normal;
@@ -1890,8 +1845,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--wb-text-heading-lg);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.4;
@@ -1903,19 +1858,13 @@
   z-index: 1;
   max-width: 100%;
   justify-content: flex-start;
-  @media screen and (max-width: 540px) {
-    font-size: 20px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 18px;
-  }
 }
 .wb-box.wb-wonderlab__product-heading-en {
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-tight);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -1927,12 +1876,6 @@
   z-index: 1;
   max-width: 100%;
   justify-content: flex-start;
-  @media screen and (max-width: 540px) {
-    font-size: 14px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 13px;
-  }
 }
 .wb-box.wb-wonderlab__product-text {
   align-content: flex-start;
@@ -1952,8 +1895,8 @@
   color: var(--wb-ink);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: normal;
   line-height: 1.4;
@@ -1977,9 +1920,6 @@
   & > p:last-child {
     margin-bottom: 0px;
   }
-  @media screen and (max-width: 320px) {
-    font-size: 14px;
-  }
 }
 .wb-box.wb-wonderlab__product-en {
   align-items: flex-start;
@@ -1987,8 +1927,8 @@
   color: #222222b3;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-caption);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1.3;
@@ -2011,12 +1951,6 @@
   }
   & > p:last-child {
     margin-bottom: 0px;
-  }
-  @media screen and (max-width: 540px) {
-    font-size: 13px;
-  }
-  @media screen and (max-width: 320px) {
-    font-size: 12px;
   }
 }
 /* ================================================================
@@ -2104,79 +2038,28 @@ body {
 }
 
 /* ===== max-width 1140px ===== */
-@media screen and (max-width: 1140px) {
-  .wb-box.wb-tagline__discover,
-  .wb-box.wb-tagline__design,
-  .wb-box.wb-tagline__development,
-  .wb-box.wb-approach__title {
-    font-size: 8vw;
-  }
-  .wb-box.wb-approach__subtitle,
-  .wb-box.wb-approach__card-discover-ja,
-  .wb-box.wb-approach__card-discover-en,
-  .wb-box.wb-approach__card-design-ja,
-  .wb-box.wb-approach__card-design-en,
-  .wb-box.wb-approach__card-development-ja,
-  .wb-box.wb-approach__card-development-en,
-  .wb-box.wb-company__name-label,
-  .wb-box.wb-company__name-ja,
-  .wb-box.wb-company__name-en,
-  .wb-box.wb-company__address-label,
-  .wb-box.wb-company__address-ja,
-  .wb-box.wb-company__address-en,
-  .wb-box.wb-company__founded-label,
-  .wb-box.wb-company__founded-ja,
-  .wb-box.wb-company__founded-en,
-  .wb-box.wb-company__capital-label,
-  .wb-box.wb-company__capital-ja,
-  .wb-box.wb-company__capital-en,
-  .wb-box.wb-company__director-label,
-  .wb-box.wb-company__director-ja,
-  .wb-box.wb-company__director-en {
-    font-size: 16px;
-  }
-  .wb-box.wb-approach__card-discover-title,
-  .wb-box.wb-approach__card-design-title,
-  .wb-box.wb-approach__card-development-title {
-    font-size: 20px;
-  }
-}
 
 /* ===== max-width 840px ===== */
 @media screen and (max-width: 840px) {
   .wb-box.wb-tagline__discover,
   .wb-box.wb-tagline__design,
   .wb-box.wb-tagline__development {
-    font-size: 8vw;
     text-shadow: none;
-  }
-  .wb-box.wb-principles__mission-ja,
-  .wb-box.wb-principles__theme-intro-ja,
-  .wb-box.wb-principles__theme-item-1-ja,
-  .wb-box.wb-principles__theme-item-2-ja,
-  .wb-box.wb-principles__theme-item-3-ja,
-  .wb-box.wb-principles__theme-note-ja,
-  .wb-box.wb-principles__value-ja,
-  .wb-box.wb-principles__governance-ja {
-    font-size: 18px;
   }
   .wb-box.wb-principles__theme-num-1,
   .wb-box.wb-principles__theme-num-2,
   .wb-box.wb-principles__theme-num-3 {
     flex: none;
-    font-size: 18px;
     width: auto;
   }
   .wb-box.wb-approach__title {
     flex: none;
-    font-size: 8vw;
     margin: 0px 0px 12px 0px;
     width: 100%;
     max-width: 100%;
   }
   .wb-box.wb-approach__subtitle {
     flex: none;
-    font-size: 16px;
     margin: 0px 0px 60px 0px;
     width: 100%;
     max-width: 100%;
@@ -2189,7 +2072,6 @@ body {
   }
   .wb-box.wb-approach__card-discover-title {
     flex: none;
-    font-size: 20px;
     text-align: left;
     width: 100%;
     max-width: 100%;
@@ -2199,19 +2081,16 @@ body {
   .wb-box.wb-approach__card-design-ja,
   .wb-box.wb-approach__card-development-ja {
     flex: none;
-    font-size: 16px;
     width: auto;
   }
   .wb-box.wb-approach__card-discover-en,
   .wb-box.wb-approach__card-design-en,
   .wb-box.wb-approach__card-development-en {
     flex: none;
-    font-size: 14px;
     width: auto;
   }
   .wb-box.wb-approach__card-design-title {
     flex: none;
-    font-size: 20px;
     width: 100%;
     max-width: 100%;
   }
@@ -2222,7 +2101,6 @@ body {
   }
   .wb-box.wb-approach__card-development-title {
     flex: none;
-    font-size: 20px;
     width: calc(100% - (var(--gap-h-e3038d48-3832-4f2d-9e70-62bd9f7e12c0) * 0));
     max-width: calc(100% - (var(--gap-h-e3038d48-3832-4f2d-9e70-62bd9f7e12c0) * 0));
   }
@@ -2237,7 +2115,6 @@ body {
   .wb-box.wb-company__director-label,
   .wb-box.wb-company__director-en {
     flex: none;
-    font-size: 14px;
     width: 100%;
   }
   .wb-box.wb-company__name-ja,
@@ -2246,7 +2123,6 @@ body {
   .wb-box.wb-company__capital-ja,
   .wb-box.wb-company__director-ja {
     flex: none;
-    font-size: 16px;
     width: 100%;
   }
   .wb-box.wb-company__divider-1,
@@ -2257,20 +2133,15 @@ body {
     flex: none;
     width: 100%;
   }
-  .wb-box.wb-company__contact-note {
-    font-size: 14px;
-  }
 }
 
 /* ===== max-width 540px ===== */
 @media screen and (max-width: 540px) {
   .wb-box.wb-tagline__discover {
-    font-size: 10vw;
     text-shadow: none;
   }
   .wb-box.wb-tagline__design,
   .wb-box.wb-tagline__development {
-    font-size: 10vw;
     margin: 0px 0px 0px 0px;
     text-shadow: none;
   }
@@ -2285,22 +2156,10 @@ body {
   .wb-box.wb-principles__theme-note-ja,
   .wb-box.wb-principles__value-ja,
   .wb-box.wb-principles__governance-ja {
-    font-size: 16px;
     line-height: 1.4;
-  }
-  .wb-box.wb-principles__mission-en,
-  .wb-box.wb-principles__theme-intro-en,
-  .wb-box.wb-principles__theme-item-1-en,
-  .wb-box.wb-principles__theme-item-2-en,
-  .wb-box.wb-principles__theme-item-3-en,
-  .wb-box.wb-principles__theme-note-en,
-  .wb-box.wb-principles__value-en,
-  .wb-box.wb-principles__governance-en {
-    font-size: 13px;
   }
   .wb-box.wb-approach__title {
     flex: none;
-    font-size: 10vw;
     margin: 0px 0px 8px 0px;
     text-align: left;
     width: 100%;
@@ -2309,7 +2168,6 @@ body {
   }
   .wb-box.wb-approach__subtitle {
     flex: none;
-    font-size: 14px;
     margin: 0px 0px 40px 0px;
     text-align: left;
     width: 100%;
@@ -2331,14 +2189,12 @@ body {
   .wb-box.wb-approach__card-design-title,
   .wb-box.wb-approach__card-development-title {
     flex: none;
-    font-size: 18px;
     text-align: center;
     width: 100%;
     justify-content: center;
   }
   .wb-box.wb-approach__card-discover-ja {
     flex: none;
-    font-size: 16px;
     line-height: 1.4;
     margin: 0px 0px 8px 0px;
     text-align: left;
@@ -2347,7 +2203,6 @@ body {
   }
   .wb-box.wb-approach__card-discover-en {
     flex: none;
-    font-size: 13px;
     margin: 0px 0px 0px 0px;
     text-align: left;
     width: auto;
@@ -2361,7 +2216,6 @@ body {
   .wb-box.wb-approach__card-design-ja,
   .wb-box.wb-approach__card-development-ja {
     flex: none;
-    font-size: 16px;
     line-height: 1.4;
     margin: 0px 0px 8px 0px;
     width: auto;
@@ -2369,7 +2223,6 @@ body {
   .wb-box.wb-approach__card-design-en,
   .wb-box.wb-approach__card-development-en {
     flex: none;
-    font-size: 13px;
     margin: 0px 0px 0px 0px;
     width: auto;
   }
@@ -2384,7 +2237,6 @@ body {
   .wb-box.wb-company__capital-label,
   .wb-box.wb-company__director-label {
     flex: none;
-    font-size: 12px;
     width: 100%;
   }
   .wb-box.wb-company__name-ja,
@@ -2393,7 +2245,6 @@ body {
   .wb-box.wb-company__capital-ja,
   .wb-box.wb-company__director-ja {
     flex: none;
-    font-size: 14px;
     width: 100%;
   }
   .wb-box.wb-company__name-en,
@@ -2402,7 +2253,6 @@ body {
   .wb-box.wb-company__capital-en,
   .wb-box.wb-company__director-en {
     flex: none;
-    font-size: 13px;
     width: 100%;
   }
   .wb-box.wb-company__divider-1,
@@ -2413,9 +2263,6 @@ body {
     flex: none;
     width: 100%;
   }
-  .wb-box.wb-company__contact-note {
-    font-size: 12px;
-  }
 }
 
 /* ===== max-width 320px ===== */
@@ -2423,44 +2270,10 @@ body {
   .wb-box.wb-tagline__discover,
   .wb-box.wb-tagline__design,
   .wb-box.wb-tagline__development {
-    font-size: 10vw;
     text-shadow: none;
-  }
-  .wb-box.wb-principles__mission-ja,
-  .wb-box.wb-principles__theme-intro-ja,
-  .wb-box.wb-principles__theme-num-1,
-  .wb-box.wb-principles__theme-item-1-ja,
-  .wb-box.wb-principles__theme-num-2,
-  .wb-box.wb-principles__theme-item-2-ja,
-  .wb-box.wb-principles__theme-num-3,
-  .wb-box.wb-principles__theme-item-3-ja,
-  .wb-box.wb-principles__theme-note-ja,
-  .wb-box.wb-principles__value-ja,
-  .wb-box.wb-principles__governance-ja {
-    font-size: 14px;
-  }
-  .wb-box.wb-principles__mission-en,
-  .wb-box.wb-principles__theme-intro-en,
-  .wb-box.wb-principles__theme-item-1-en,
-  .wb-box.wb-principles__theme-item-2-en,
-  .wb-box.wb-principles__theme-item-3-en,
-  .wb-box.wb-principles__theme-note-en,
-  .wb-box.wb-principles__value-en,
-  .wb-box.wb-principles__governance-en,
-  .wb-box.wb-company__name-en,
-  .wb-box.wb-company__address-en,
-  .wb-box.wb-company__founded-en,
-  .wb-box.wb-company__capital-en,
-  .wb-box.wb-company__director-en,
-  .wb-box.wb-company__contact-note {
-    font-size: 12px;
-  }
-  .wb-box.wb-approach__title {
-    font-size: 10vw;
   }
   .wb-box.wb-approach__subtitle {
     flex: none;
-    font-size: 14px;
     width: auto;
     max-width: 100%;
   }
@@ -2479,32 +2292,23 @@ body {
   .wb-box.wb-approach__card-design-title,
   .wb-box.wb-approach__card-development-title {
     flex: none;
-    font-size: 16px;
     width: 100%;
   }
   .wb-box.wb-approach__card-discover-ja,
   .wb-box.wb-approach__card-design-ja,
   .wb-box.wb-approach__card-development-ja {
     flex: none;
-    font-size: 14px;
     width: auto;
   }
   .wb-box.wb-approach__card-discover-en,
   .wb-box.wb-approach__card-design-en,
   .wb-box.wb-approach__card-development-en {
     flex: none;
-    font-size: 12px;
     width: auto;
   }
   .wb-box.wb-approach__card-design {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-  }
-  .wb-box.wb-company__address-ja,
-  .wb-box.wb-company__founded-ja,
-  .wb-box.wb-company__capital-ja,
-  .wb-box.wb-company__director-ja {
-    font-size: 13px;
   }
 }
 

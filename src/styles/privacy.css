@@ -1,3 +1,14 @@
+/* ==================================================================
+   privacy.css — プライバシーポリシー（Studio Design 由来）
+   ------------------------------------------------------------------
+   ・配色/フォントのトークンは global.css :root に集約。
+   ・フォントサイズ・ウェイトは直接 px を書かず、必ず
+     var(--wb-text-*) / var(--wb-fw-*) を参照する。画面幅ごとの
+     出し分けは global.css の @media が :root のトークンを差し替えて
+     行うので、フォントサイズのために @media を書き足す必要はない。
+
+   ブレークポイント: 1140px / 840px / 540px / 320px（すべて max-width）
+================================================================== */
 /* 同一スタイルは複数セレクタをまとめて共通化（context ごと） */
 
 .wb-box.pp-page {
@@ -71,8 +82,8 @@
 .wb-box.pp-title {
   color: #222222ff;
   font-family: var(--wb-sans);
-  font-size: 28px;
-  font-weight: 600;
+  font-size: var(--wb-text-title);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   line-height: 1.4;
   margin: 0px 0px 80px 0px;
@@ -95,8 +106,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -142,8 +153,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--wb-text-heading-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -199,8 +210,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -217,8 +228,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--wb-text-heading-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -238,8 +249,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -321,8 +332,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -425,8 +436,8 @@
   color: var(--primary);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -443,8 +454,8 @@
   color: #222222ff;
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-semibold);
   height: auto;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -482,8 +493,8 @@
   color: var(--primary);
   font-family: var(--wb-sans);
   font-feature-settings: "palt" 1;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   line-height: 1.75;
   text-align: left;
@@ -526,8 +537,8 @@
   color: var(--wb-cream);
   flex: 1;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-medium);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -544,8 +555,8 @@
   color: var(--wb-cream);
   flex: none;
   font-family: var(--wb-sans);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--wb-text-meta);
+  font-weight: var(--wb-fw-bold);
   height: auto;
   letter-spacing: normal;
   line-height: 1;
@@ -585,74 +596,6 @@ body {
     max-width: calc(100% - 160px - (var(--gap-h-dc984b33-a519-4da6-8396-e76717c00a50) * 0));
   
   }
-  .wb-box.pp-lead,
-  .wb-box.pp-article-1__para-1,
-  .wb-box.pp-article-2__para-1,
-  .wb-box.pp-article-3__para-1,
-  .wb-box.pp-article-3__item-1-text,
-  .wb-box.pp-article-3__item-2-text,
-  .wb-box.pp-article-3__item-3-text,
-  .wb-box.pp-article-3__item-4-text,
-  .wb-box.pp-article-3__item-5-text,
-  .wb-box.pp-article-3__item-6-text,
-  .wb-box.pp-article-3__item-7-text,
-  .wb-box.pp-article-3__item-8-text,
-  .wb-box.pp-article-4__item-1-text,
-  .wb-box.pp-article-4__item-2-text,
-  .wb-box.pp-article-5__item-1-num,
-  .wb-box.pp-article-5__item-1-text,
-  .wb-box.pp-article-5__item-2-num,
-  .wb-box.pp-article-5__item-2-text,
-  .wb-box.pp-article-5__item-3-num,
-  .wb-box.pp-article-5__item-3-text,
-  .wb-box.pp-article-5__item-4-num,
-  .wb-box.pp-article-5__item-4-text,
-  .wb-box.pp-article-5__item-5-num,
-  .wb-box.pp-article-5__item-5-text,
-  .wb-box.pp-article-5__item-6-text,
-  .wb-box.pp-article-5__item-7-text,
-  .wb-box.pp-article-5__item-8-text,
-  .wb-box.pp-article-5__item-9-text,
-  .wb-box.pp-article-5__item-10-text,
-  .wb-box.pp-article-5__item-11-text,
-  .wb-box.pp-article-5__item-12-text,
-  .wb-box.pp-article-5__item-13-text,
-  .wb-box.pp-article-5__item-14-text,
-  .wb-box.pp-article-6__item-1-text,
-  .wb-box.pp-article-6__item-2-text,
-  .wb-box.pp-article-6__item-3-text,
-  .wb-box.pp-article-6__item-4-text,
-  .wb-box.pp-article-6__item-5-text,
-  .wb-box.pp-article-7__item-1-text,
-  .wb-box.pp-article-7__item-2-text,
-  .wb-box.pp-article-7__item-3-text,
-  .wb-box.pp-article-8__item-1-text,
-  .wb-box.pp-article-8__item-2-text,
-  .wb-box.pp-article-8__item-3-text,
-  .wb-box.pp-article-8__item-4-text,
-  .wb-box.pp-article-9__item-1-text,
-  .wb-box.pp-article-9__item-2-text,
-  .wb-box.pp-article-10__para-1,
-  .wb-box.pp-article-10__para-2,
-  .wb-box.pp-article-10__para-3,
-  .wb-box.pp-article-10__link,
-  .wb-box.pp-closing {
-    font-size: 14px;
-  
-  }
-  .wb-box.pp-article-1__heading,
-  .wb-box.pp-article-2__heading,
-  .wb-box.pp-article-3__heading,
-  .wb-box.pp-article-4__heading,
-  .wb-box.pp-article-5__heading,
-  .wb-box.pp-article-6__heading,
-  .wb-box.pp-article-7__heading,
-  .wb-box.pp-article-8__heading,
-  .wb-box.pp-article-9__heading,
-  .wb-box.pp-article-10__heading {
-    font-size: 16px;
-  
-  }
   .wb-box.pp-article-3__item-1-num,
   .wb-box.pp-article-3__item-2-num,
   .wb-box.pp-article-3__item-3-num,
@@ -687,7 +630,6 @@ body {
   .wb-box.pp-article-9__item-1-num,
   .wb-box.pp-article-9__item-2-num {
     flex: none;
-    font-size: 14px;
     width: auto;
     max-width: 100%;
   
@@ -709,10 +651,6 @@ body {
     max-width: calc(100% - (var(--gap-h-dc984b33-a519-4da6-8396-e76717c00a50) * 0));
   
   }
-  .wb-box.pp-title {
-    font-size: 18px;
-  
-  }
   .wb-box.pp-lead,
   .wb-box.pp-article-1__para-1,
   .wb-box.pp-article-2__para-1,
@@ -731,7 +669,6 @@ body {
   .wb-box.pp-article-10__para-3,
   .wb-box.pp-article-10__link,
   .wb-box.pp-closing {
-    font-size: 14px;
     text-align: left;
     justify-content: flex-start;
   
@@ -777,14 +714,12 @@ body {
   .wb-box.pp-article-8__item-4-num,
   .wb-box.pp-article-9__item-1-num,
   .wb-box.pp-article-9__item-2-num {
-    font-size: 14px;
     text-align: center;
     justify-content: center;
   
   }
   .wb-box.pp-article-3__para-1 {
     flex: 1;
-    font-size: 14px;
     text-align: left;
     width: auto;
     max-width: 100%;
@@ -827,7 +762,6 @@ body {
   .wb-box.pp-article-8__item-3-text,
   .wb-box.pp-article-8__item-4-text {
     flex: 1;
-    font-size: 14px;
     text-align: left;
     width: auto;
     justify-content: flex-start;
@@ -883,7 +817,6 @@ body {
   
   }
   .wb-box.pp-title {
-    font-size: 24px;
     margin: 0px 0px 60px 0px;
     max-width: 100%;
   
@@ -934,7 +867,6 @@ body {
   .wb-box.pp-article-10__para-2,
   .wb-box.pp-article-10__para-3,
   .wb-box.pp-article-10__link {
-    font-size: 14px;
     text-align: left;
     justify-content: flex-start;
   
@@ -949,7 +881,6 @@ body {
   .wb-box.pp-article-8__heading,
   .wb-box.pp-article-9__heading,
   .wb-box.pp-article-10__heading {
-    font-size: 16px;
     text-align: left;
     justify-content: flex-start;
   
@@ -960,7 +891,6 @@ body {
   .wb-box.pp-article-5__item-4-num,
   .wb-box.pp-article-5__item-5-num {
     flex: none;
-    font-size: 14px;
     text-align: left;
     width: auto;
     max-width: 100%;
@@ -999,7 +929,6 @@ body {
   .wb-box.pp-article-9__item-1-num,
   .wb-box.pp-article-9__item-2-num {
     flex: none;
-    font-size: 14px;
     text-align: left;
     width: auto;
     justify-content: flex-start;
@@ -1008,20 +937,14 @@ body {
   .wb-box.pp-article-9__item-1-text,
   .wb-box.pp-article-9__item-2-text {
     flex: 1;
-    font-size: 14px;
     text-align: left;
     width: auto;
     justify-content: flex-start;
   
   }
   .wb-box.pp-closing {
-    font-size: 14px;
     text-align: right;
     justify-content: flex-end;
-  
-  }
-  .wb-box.pp-back-link__text {
-    font-size: 14px;
   
   }
   .wb-box.pp-footer {
@@ -1045,7 +968,6 @@ body {
   }
   .wb-box.pp-footer__copyright {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: left;
     width: auto;
@@ -1054,7 +976,6 @@ body {
   }
   .wb-box.pp-footer__privacy {
     flex: none;
-    font-size: 12px;
     padding: 0px 0px 0px;
     text-align: right;
     width: auto;
