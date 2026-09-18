@@ -6,3 +6,4 @@ npm-debug.log*
 
 # ローカル専用の更新手順メモ（公開・コミット対象外）
 docs/update-guide.md
+Claude outputs/
