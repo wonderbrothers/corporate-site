@@ -1723,6 +1723,34 @@
     margin-bottom: 0px;
   }
 }
+/* カルーセルの窓。JS が無いときは横スクロールで全カードに到達でき、
+   JS があるときは overflow を切って transform で送る。
+   スクロールコンテナを残すと overflow-x:auto が overflow-y:auto を誘発し、
+   背の高いカードの上で縦スクロールが横取りされるため、JS 時は窓を固定する。 */
+.wb-box.wb-wonderlab__carousel-viewport {
+  align-content: flex-start;
+  align-items: flex-start;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 0px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  @media screen and (max-width: 1140px) {
+    overflow-x: visible;
+  }
+}
+html.js-on .wb-box.wb-wonderlab__carousel-viewport {
+  overflow-x: clip;
+}
+@media screen and (max-width: 1140px) {
+  html.js-on .wb-box.wb-wonderlab__carousel-viewport {
+    overflow-x: visible;
+  }
+}
 .wb-box.wb-wonderlab__products {
   align-content: stretch;
   align-items: stretch;
@@ -1733,20 +1761,35 @@
   justify-content: flex-start;
   padding: 0px;
   width: 100%;
-  max-width: 100%;
+  max-width: none;
+  transition-duration: 500ms;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0.4, 0, 1);
+  will-change: transform;
   @media screen and (max-width: 1140px) {
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start;
+    gap: 24px;
+    transform: none !important;
+    max-width: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0ms;
   }
 }
 .wb-box.wb-wonderlab__product {
+  /* ロゴ帯の寸法。リンクを持たないカードはロゴがチップ分まで縦に伸びる。
+     チップ高は .wb-wonderlab__product-link の実寸（16px × 1.4 + 余白20 + 枠2）。 */
+  --wl-logo-height: 90px;
+  --wl-logo-gap: 16px;
+  --wl-chip-height: calc(16px * 1.4 + 20px + 2px);
   align-content: flex-start;
   align-items: flex-start;
   background: transparent;
   border: 1px solid #22222247;
   border-radius: 24px;
-  flex: 1 1 0;
+  flex: 0 0 500px;
   flex-direction: column;
   flex-wrap: nowrap;
   gap: 40px;
@@ -1759,10 +1802,143 @@
     width: 100%;
   }
   @media screen and (max-width: 540px) {
+    --wl-logo-height: 80px;
+    --wl-chip-height: calc(16px * 1.4 + 18px + 2px);
     border-radius: 16px;
     gap: 32px;
     padding: 24px;
   }
+}
+/* カルーセル：トラックは CSS だけで横スクロールでき、
+   矢印とドットは JS があるときだけ出す（段階的強調） */
+.wb-box.wb-wonderlab__carousel {
+  position: relative;
+  align-content: flex-start;
+  align-items: flex-start;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 32px;
+  justify-content: flex-start;
+  padding: 0px;
+  width: 100%;
+  max-width: 100%;
+}
+.wb-box.wb-wonderlab__carousel-nav {
+  display: none;
+}
+html.js-on .wb-box.wb-wonderlab__carousel-nav {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 0px;
+  width: 100%;
+  max-width: 100%;
+}
+@media screen and (max-width: 1140px) {
+  html.js-on .wb-box.wb-wonderlab__carousel-nav {
+    display: none;
+  }
+}
+/* 矢印はカードの左右端（セクションの余白の中）に浮かせる。
+   カードが画面より背が高いので、position: sticky で画面の縦中央付近に留める。 */
+.wb-box.wb-wonderlab__carousel-arrows {
+  display: none;
+}
+html.js-on .wb-box.wb-wonderlab__carousel-arrows {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: auto;
+  max-width: none;
+}
+@media screen and (max-width: 1140px) {
+  html.js-on .wb-box.wb-wonderlab__carousel-arrows {
+    display: none;
+  }
+}
+html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-arrow {
+  pointer-events: auto;
+  position: sticky;
+  top: calc(50vh - 20px);
+}
+html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-arrow:first-child {
+  margin-left: -56px;
+}
+html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-arrow:last-child {
+  margin-right: -56px;
+}
+.wb-box.wb-wonderlab__carousel-arrow {
+  align-content: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #22222247;
+  border-radius: 999px;
+  color: var(--wb-ink);
+  cursor: pointer;
+  flex: none;
+  flex-direction: row;
+  height: 40px;
+  justify-content: center;
+  padding: 0px;
+  transition-duration: 300ms;
+  width: 40px;
+}
+.wb-box.wb-wonderlab__carousel-arrow:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--wb-cream);
+}
+.wb-box.wb-wonderlab__carousel-arrow:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.wb-box.wb-wonderlab__carousel-dots {
+  align-content: center;
+  align-items: center;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 0px;
+  width: auto;
+}
+.wb-box.wb-wonderlab__carousel-dot {
+  background: #22222247;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  flex: none;
+  height: 8px;
+  padding: 0px;
+  transition-duration: 300ms;
+  width: 8px;
+}
+.wb-box.wb-wonderlab__carousel-dot.is-current {
+  background: var(--primary);
+  width: 24px;
+}
+/* リンクを持たないカードで、チップ分の高さを確保して見出し位置を揃える。
+   .wb-wonderlab__product-link のボックスをそのまま借りて透明にするだけなので、
+   チップの文字サイズや余白を変えても自動で追従する（固定値を持たない）。 */
+.wb-box.wb-wonderlab__product-link-placeholder {
+  pointer-events: none;
+  visibility: hidden;
+}
+/* リンクを持たないカードは、ロゴがチップの分まで縦に伸びて余白を埋める。
+   帯の合計高さは他カード（ロゴ + gap + チップ）と一致するので、見出し位置は揃ったまま。 */
+.wb-wonderlab__product-mori .wb-box.wb-wonderlab__product-logo {
+  height: calc(var(--wl-logo-height) + var(--wl-logo-gap) + var(--wl-chip-height));
 }
 .wb-box.wb-wonderlab__product-aside {
   align-content: flex-start;
@@ -1770,11 +1946,16 @@
   flex: none;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 16px;
+  gap: var(--wl-logo-gap);
   justify-content: flex-start;
   padding: 0px;
   width: 100%;
   max-width: 100%;
+  /* カードが縦積みになったらロゴとリンクボタンを中央寄せ（本文は左寄せのまま） */
+  @media screen and (max-width: 1140px) {
+    align-content: center;
+    align-items: center;
+  }
 }
 .wb-box.wb-wonderlab__product-link {
   align-content: center;
@@ -1814,25 +1995,24 @@
   color: var(--wb-cream);
   transition-duration: 300ms;
 }
-/* ロゴを包む <a>。SP では内容幅いっぱいに伸ばすため、
-   親（align-items: flex-start）の縮小を打ち消して stretch させる。 */
+/* ロゴを包む <a>。縦積み時は親（align-items: center）に従って中央に置く。 */
 .wb-box.wb-wonderlab__product-logo-link {
-  @media screen and (max-width: 540px) {
-    align-self: stretch;
+  @media screen and (max-width: 1140px) {
+    align-self: center;
   }
 }
 .wb-box.wb-wonderlab__product-logo {
   flex: none;
-  height: 60px;
+  height: var(--wl-logo-height);
   object-fit: contain;
   object-position: left center;
   width: 260px;
   max-width: 100%;
+  @media screen and (max-width: 1140px) {
+    object-position: center;
+  }
   @media screen and (max-width: 540px) {
-    /* SP はカードの内容幅いっぱい。高さは元SVGの比率で決まる
-       （64MONSTERS 869:136、RENSOU GAME 643:182）。 */
-    width: 100%;
-    height: auto;
+    width: 240px;
   }
 }
 .wb-box.wb-wonderlab__product-body {
