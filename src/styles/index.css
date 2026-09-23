@@ -1857,10 +1857,18 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   font-weight: var(--wb-fw-bold);
   line-height: 1.4;
 }
+/* 「ほかの事例は…」は枠なし・全列ぶち抜きで中央に置く */
 .wb-case--more {
-  border-style: dashed;
-  justify-content: center;
+  align-items: center;
+  border: none;
   gap: 8px;
+  grid-column: 1 / -1;
+  justify-content: center;
+  padding: 24px 0px 0px;
+  text-align: center;
+  @media screen and (max-width: 540px) {
+    padding: 16px 0px 0px;
+  }
 }
 .wb-case__more-ja {
   font-size: var(--wb-text-heading-md);
