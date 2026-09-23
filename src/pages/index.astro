@@ -48,9 +48,9 @@ const jsonLd = JSON.stringify([
 
 /* ---------- ナビゲーション ---------- */
 const nav = [
+  { href: "#approach", label: "APPROACH" },
   { href: "#work", label: "WORK" },
   { href: "#lab", label: "LAB" },
-  { href: "#approach", label: "APPROACH" },
   { href: "#about", label: "ABOUT" },
   { href: "#contact", label: "CONTACT" },
 ];
@@ -99,13 +99,13 @@ const services = [
   },
   {
     en: "UX / UI Design",
-    ja: "UX・UIデザイン",
+    ja: "UX/UIデザイン",
     textJa: "ユーザーの行動、情報構造、利用シーンを整理し、複雑なサービスを理解しやすく使いやすい体験に変えます。",
     textEn: "We untangle behavior, information, and context to make complex services easy to understand and use.",
   },
   {
     en: "PoC / Prototype",
-    ja: "PoC・プロトタイプ",
+    ja: "PoC/プロトタイプ",
     textJa: "アイデアを早い段階で体験できる形にし、ユーザーや関係者と検証できる状態をつくります。",
     textEn: "We make ideas tangible early, so they can be tested with users and stakeholders before big decisions are made.",
   },
@@ -139,7 +139,7 @@ const cases = [
     steps: {
       discover: {
         ja: "商品、契約、手続きに関する情報構造とユーザー行動を整理し、理解や判断が難しくなるポイントを特定。",
-        en: "We mapped how products, policies, and procedures were structured against how users behaved, to pinpoint where understanding and decisions broke down.",
+        en: "We mapped the information structure of products, policies, and procedures against user behavior to pinpoint where understanding and decisions broke down.",
       },
       make: {
         ja: "UX、情報設計、UI、プロトタイプを通じて、複雑な情報を利用者が理解しやすい体験へ具体化。",
@@ -155,7 +155,7 @@ const cases = [
     published: true,
     industryEn: "FINANCIAL SERVICES",
     industryJa: "金融サービス事業者",
-    questionJa: "新しいデジタルサービスの構想を、どうすれば関係者が同じ像を見ながら判断できる形にできるか。",
+    questionJa: "新しいデジタルサービスの構想を、どうすれば関係者が同じ像を見ながら判断できる形にまとめられるか。",
     questionEn: "How can an early idea for a digital service take a shape everyone can see — and decide on — together?",
     steps: {
       discover: {
@@ -185,11 +185,11 @@ const cases = [
       },
       make: {
         ja: "仮説と指標にもとづいてUXを構築。あわせてデザインシステムを導入し、AIがフロントエンドを実装しやすい構造をデザイン。",
-        en: "We built the UX around those hypotheses and metrics, introduced a design system, and designed it in a structure that makes the front end easier for AI to implement.",
+        en: "We built the UX around those hypotheses and metrics, and introduced a design system structured so that AI can implement the front end more easily.",
       },
       learn: {
         ja: "設定したKPIをもとに仮説を確かめながら、体験を更新し続けられる状態を整備。",
-        en: "With the KPIs in place, the team can test each hypothesis and keep refining the experience.",
+        en: "With the KPIs in place, we set up a way to test each hypothesis and keep refining the experience.",
       },
     },
   },
@@ -218,15 +218,15 @@ const labProjects = [
       "In UX design, every project begins with understanding the user. But real people can't be explained by demographics, personas, or a single type. 64MONSTERS started with a question: could we build a better way to understand the person behind the user?",
     steps: {
       discover: {
-        ja: "ユーザーを属性やひとつのタイプだけで捉えることの限界に着目し、人をより多面的に捉える方法はないか、という問いを立てる。",
+        ja: "ユーザーを属性やひとつのタイプだけで捉えることの限界に着目し、人をより多面的に捉える方法はないか、という問いを設定。",
         en: "We noticed the limits of seeing users through demographics or a single type, and asked how people might be seen from more angles.",
       },
       make: {
-        ja: "複数の軸から、その人のいまの傾向を捉える診断体験をつくる。タイプだけでなく、スコアや揺れ、繰り返し診断したときの変化も見られるようにする。",
+        ja: "複数の軸から、その人のいまの傾向を捉える診断体験を制作。タイプだけでなく、スコアや揺れ、繰り返し診断したときの変化まで見られるように設計。",
         en: "We built an assessment that reads a person's current tendencies across several axes — showing not just a type, but scores, fluctuations, and how results shift over repeated sessions.",
       },
       learn: {
-        ja: "人を固定したタイプとしてではなく「変化する状態」として捉える可能性を、実際の診断体験を通じて探っている。",
+        ja: "人を固定したタイプとしてではなく「変化する状態」として捉える可能性を、実際の診断体験を通じて探究中。",
         en: "Through real use, we are exploring what it means to see a person not as a fixed type, but as a state that changes.",
       },
     },
@@ -247,15 +247,15 @@ const labProjects = [
       "When something happens, its effects rarely stop in one place. They ripple through the economy, companies, daily life, and markets. Yet most of the time, we simply take in the news and move on.",
     steps: {
       discover: {
-        ja: "ニュースを読むことが、必ずしも「その先を考えること」や「仮説を確かめること」につながっていない点に着目する。",
+        ja: "ニュースを読むことが、必ずしも「その先を考えること」や「仮説を確かめること」につながっていない点に着目。",
         en: "We noticed that reading the news doesn't necessarily lead to thinking ahead, or to testing what we think will happen.",
       },
       make: {
-        ja: "ニュースを起点に、何が起きるか、その次に何が起きるか、別のシナリオはあるか、実際にはどうなったかを考える体験を、ゲームとしてつくる。",
-        en: "We built a game that starts from a news story and asks: what happens next, what happens after that, what else could happen — and what actually did?",
+        ja: "ニュースを起点に、何が起きるか、その次に何が起きるか、別のシナリオはあるか、実際にはどうなったかを考える体験を、ゲームとして制作。",
+        en: "We built a game that starts from a news story and asks: what happens next, what happens after that, what else could happen — and what actually happened?",
       },
       learn: {
-        ja: "目的は未来を当てることではなく、自分がどう考えたのかを後から振り返ること。仮説を立て、結果と照らし合わせることで、考えるプロセスそのものを学ぶ。",
+        ja: "目的は未来を当てることではなく、自分がどう考えたのかを後から振り返ること。仮説と結果を照らし合わせ、考えるプロセスそのものから学ぶ仕組み。",
         en: "The goal isn't to predict the future. It's to look back at how we reasoned — forming a hypothesis, checking it against what happened, and learning from the process itself.",
       },
     },
@@ -276,15 +276,15 @@ const labProjects = [
       "This experiment began when we acquired a forest in Hokkaido. There is no running water, no sewer, no electricity — and in the woods, even the property lines are hard to see. Almost nothing a city takes for granted is there. So instead of deciding what to build, we started by asking what the place already had.",
     steps: {
       discover: {
-        ja: "森に入り、環境、植物、土地の特徴を観察して、この場所にどんな可能性があるのかを探る。",
+        ja: "森に入り、環境、植物、土地の特徴を観察して、この場所にどんな可能性があるのかを探索。",
         en: "We walked the forest, observing its environment, plants, and terrain to see what possibilities it might hold.",
       },
       make: {
-        ja: "実際に森に触れて試し、トドマツの枝葉から精油を抽出して、成分分析まで行う。",
-        en: "We got our hands in it — extracting essential oil from Todo fir branches and leaves, and having its composition analyzed.",
+        ja: "実際に森に触れて試し、トドマツの枝葉から精油を抽出。成分分析まで実施。",
+        en: "We got our hands in it — extracting essential oil from Todo fir branches and leaves, and analyzing its composition.",
       },
       learn: {
-        ja: "手を動かすことで、この森が持つ特徴や可能性を知り、「価値を先に決めるのではなく、実験から見つける」という考え方を得る。",
+        ja: "手を動かすことで、この森が持つ特徴や可能性を知り、「価値を先に決めるのではなく、実験から見つける」という考え方を獲得。",
         en: "Working with our hands showed us what makes this forest distinctive, and taught us to find value through experiments rather than define it in advance.",
       },
     },
@@ -302,15 +302,15 @@ const company = [
   { label: "会社名", ja: "株式会社ワンダーブラザース", en: "WONDER BROTHERS INC." },
   {
     label: "所在地",
-    ja: "〒150-0043 東京都渋谷区道玄坂1-10-8 渋谷道玄坂東急ビル2F−C",
+    ja: "〒150-0043 東京都渋谷区道玄坂1-10-8 渋谷道玄坂東急ビル2F-C",
     en: "2F-C, Shibuya Dogenzaka Tokyu Building, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan",
   },
   { label: "設立", ja: "2020年4月7日", en: "Established: April 7, 2020" },
   { label: "代表取締役", ja: "佐藤大志", en: "Representative Director: Taishi Sato" },
   {
     label: "事業内容",
-    list: ["Service Design", "UX / UI Design", "PoC / Prototype", "Product Development", "DX / Service Transformation"],
-    en: "サービスデザイン、UX・UIデザイン、PoC・プロトタイプ、プロダクト開発、DX・サービス変革の支援",
+    list: ["New Service Design", "UX / UI Design", "PoC / Prototype", "Product Development", "DX / Service Transformation"],
+    en: "新規サービス設計、UX/UIデザイン、PoC/プロトタイプ、プロダクト開発、DX・サービス変革の支援",
   },
   { label: "資本金", ja: "10,000,000円", en: "Capital: 10 million yen" },
 ];
@@ -382,7 +382,7 @@ const company = [
                           <p>私たちは、この「見つける、つくる、学ぶ」という循環を、クライアントワークにも自分たちの実験にも、同じように用いています。</p>
                         </div>
                         <div class="reveal wb-sec__text-en" lang="en">
-                          <p>When you set out to build a new service or product, the right answer is rarely clear from the start. So we begin by observing people and situations to find the real question, give that question a form, and let what we learn shape the next decision.</p>
+                          <p>When building a new service or product, the right answer is rarely clear from the start. So we begin by observing people and situations to find the real question, give that question a form, and let what we learn shape the next decision.</p>
                           <p>We use the same cycle — discover, make, learn — in our client work and in our own experiments.</p>
                         </div>
                       </div>
@@ -420,7 +420,7 @@ const company = [
                           <p>新規サービスやデジタルプロダクトを中心に、構想の整理からサービス設計、UX/UI、PoC、プロトタイピング、開発、既存サービスの改善まで、必要な領域を横断して支援します。決まった工程を当てはめるのではなく、いま何を明らかにし、何を形にすべきかをプロジェクトごとに見極めながら進めます。</p>
                         </div>
                         <div class="reveal wb-sec__text-en" lang="en">
-                          <p>We work across whatever a project needs — from shaping an early concept to service design, UX/UI, PoC, prototyping, development, and improving services already in use. Rather than applying a fixed process, we work out with you what needs to be understood, and what needs to be built, next.</p>
+                          <p>We work across whatever a project needs — from shaping an early concept to service design, UX/UI, PoC, prototyping, development, and improving services already in use. Rather than applying a fixed process, we work out with you what needs to be understood next, and what needs to be built.</p>
                         </div>
                       </div>
                       <ul class="wb-services">
@@ -472,7 +472,7 @@ const company = [
                           <li class="reveal wb-case wb-case--more">
                             <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
                             <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
-                            <a class="wb-textlink" href="#contact">プロジェクトについて相談する<span lang="en">Talk to us about a project</span></a>
+                            <a class="wb-textlink" href="contact/index.html">プロジェクトについて相談する<span lang="en">Talk to us about a project</span></a>
                           </li>
                         </ul>
                       </section>
@@ -491,7 +491,7 @@ const company = [
                           <div class="wb-box reveal wb-wonderlab__lead">
                             <p class="wb-sec__heading">自分たち自身の問いも、つくることで確かめる。</p>
                             <div class="wb-box reveal wb-wonderlab__lead-ja">
-                              <p>クライアントワークだけでなく、私たち自身も、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にしています。WONDER LABは、「これをつくったら何がわかるだろう？」という問いから始まる実験の場所です。</p>
+                              <p>私たち自身も、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にしています。WONDER LABは、「これをつくったら何がわかるだろう？」という問いから始まる実験の場所です。</p>
                               <p>クライアントワークでは企業や組織の問いに、WONDER LABでは自分たちの問いに向き合います。対象は違っても、見つけ、つくり、学ぶという進め方は同じです。</p>
                             </div>
                             <div class="wb-box reveal wb-wonderlab__lead-en" lang="en">
@@ -601,7 +601,7 @@ const company = [
                       </div>
                       <div class="reveal wb-lab__closing">
                         <p class="wb-lab__closing-ja">デジタルでも、森でも、私たちがやっていることは同じです。</p>
-                        <p class="wb-lab__closing-en" lang="en">Digital or a forest, what we do is the same.</p>
+                        <p class="wb-lab__closing-en" lang="en">Whether it's a digital product or a forest, what we do is the same.</p>
                         <p class="wb-principle wb-principle--ink">
                           <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
                           <span class="wb-principle__ja">見つける。つくる。学ぶ。</span>
@@ -700,7 +700,7 @@ const company = [
                 <footer class="wb-box reveal wb-footer">
                   <div class="wb-box reveal wb-footer__inner">
                     <p class="text wb-box reveal wb-footer__copyright">
-                      © WONDER BROTHERS INC. all rights reserved.
+                      © WONDER BROTHERS INC. All rights reserved.
                     </p>
                     <a href="privacy/index.html" class="text link wb-box reveal wb-footer__privacy"
                       >Privacy Policy</a

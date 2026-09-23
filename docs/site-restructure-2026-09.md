@@ -32,7 +32,7 @@
 | COMPANY INFORMATION | 書き換える | ABOUT に。事業内容を追加。資本金（10,000,000円）は事業内容の下に掲載 |
 | CONTACT ボタン | 残す（文言を書き換え） | 「まだ企画になっていない段階でも」という相談しやすい導入文を追加 |
 | フッター | 残す | そのまま |
-| （新設）ナビゲーション | — | WORK / LAB / APPROACH / ABOUT / CONTACT。HERO を過ぎると上部に出る |
+| （新設）ナビゲーション | — | APPROACH / WORK / LAB / ABOUT / CONTACT（ページの並び順に合わせた）。HERO を過ぎると上部に出る |
 | （新設）SELECTED WORK | — | 業種 × 問い × 支援内容。企業名・案件名・数値は掲載しない |
 | （新設）OUR BELIEF | — | MISSION・VALUE・WE THINK の思想部分を統合 |
 
