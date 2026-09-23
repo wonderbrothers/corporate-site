@@ -560,3 +560,57 @@ html.js-on .reveal {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   共通ボタン：枠線のみのピル型（色はカラースキームの黒 --wb-ink）
+   使い方：<a class="wb-btn-outline" href="…">和文ラベル<span lang="en">English</span></a>
+   ・右端に → が自動で付く。<span> は補助の英文（細め・薄め）。
+   ・ホバーで塗りつぶし（黒地にクリーム文字）。
+   ・各ページの CSS の「wb-flow 内は親から継承」指定（詳細度 0,1,0）に
+     負けないよう、要素名を含めて詳細度を 0,1,1 にしている。
+------------------------------------------------------------------ */
+a.wb-btn-outline,
+button.wb-btn-outline {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--wb-ink);
+  border-radius: 999px;
+  color: var(--wb-ink);
+  cursor: pointer;
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-family: var(--wb-sans);
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
+  gap: 4px 8px;
+  justify-content: center;
+  line-height: 1.4;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.3s cubic-bezier(0.4, 0.4, 0, 1),
+    color 0.3s cubic-bezier(0.4, 0.4, 0, 1);
+}
+a.wb-btn-outline::after,
+button.wb-btn-outline::after {
+  content: "\2192";
+}
+a.wb-btn-outline > span,
+button.wb-btn-outline > span {
+  color: inherit;
+  font-family: inherit;
+  font-weight: var(--wb-fw-medium);
+  line-height: inherit;
+  opacity: 0.7;
+}
+a.wb-btn-outline:hover,
+button.wb-btn-outline:hover {
+  background: var(--wb-ink);
+  color: var(--wb-cream);
+}
+a.wb-btn-outline:focus-visible,
+button.wb-btn-outline:focus-visible {
+  outline: 2px solid var(--wb-ink);
+  outline-offset: 3px;
+}

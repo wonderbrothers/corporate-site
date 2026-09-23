@@ -876,7 +876,7 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   width: 8px;
 }
 .wb-box.wb-wonderlab__carousel-dot.is-current {
-  background: var(--primary);
+  background: var(--wb-ink);
   width: 24px;
 }
 /* リンクを持たないカードで、チップ分の高さを確保して見出し位置を揃える。
@@ -1957,26 +1957,6 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   line-height: 1.4;
 }
 
-/* テキストリンク（和文＋英文の2段）。メインカラー */
-.wb-textlink {
-  color: var(--primary);
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: var(--wb-text-body);
-  font-weight: var(--wb-fw-bold);
-  & > span {
-    font-size: var(--wb-text-caption);
-    font-weight: var(--wb-fw-medium);
-    opacity: 0.8;
-  }
-  &:hover {
-    opacity: 0.6;
-  }
-}
-.wb-textlink > span::after {
-  content: " \2192";
-}
 
 /* ---------- 04 SELECTED WORK ---------- */
 .wb-cases {
