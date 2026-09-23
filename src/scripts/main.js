@@ -60,6 +60,73 @@
   }, { threshold: 0 }).observe(hero);
 })();
 
+/*
+ * メニュードロワー（840px 以下）
+ * メニューボタンで開き、バツ・背景・Esc・リンク選択で閉じる。
+ * 開いている間は背面のスクロールを止め、Tab のフォーカスをドロワー内に留める。
+ */
+(function () {
+  var drawer = document.querySelector('[data-drawer]');
+  var openBtn = document.querySelector('[data-drawer-open]');
+  if (!drawer || !openBtn) return;
+  var panel = drawer.querySelector('.wb-drawer__panel');
+  var root = document.documentElement;
+
+  function focusables() {
+    return panel.querySelectorAll('a[href], button:not([disabled])');
+  }
+  function open() {
+    drawer.classList.add('is-open');
+    root.classList.add('wb-drawer-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    // visibility が切り替わった後でないとフォーカスできないため、次のフレームで移す
+    var closeBtn = drawer.querySelector('.wb-drawer__close');
+    requestAnimationFrame(function () {
+      if (closeBtn) closeBtn.focus();
+    });
+  }
+  function close(restoreFocus) {
+    if (!drawer.classList.contains('is-open')) return;
+    drawer.classList.remove('is-open');
+    root.classList.remove('wb-drawer-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', open);
+  drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+    el.addEventListener('click', function () { close(true); });
+  });
+  // リンクを押したら閉じる（ページ内リンクのスクロールはそのまま進む）
+  drawer.querySelectorAll('[data-drawer-link]').forEach(function (el) {
+    el.addEventListener('click', function () { close(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!drawer.classList.contains('is-open')) return;
+    if (e.key === 'Escape') {
+      close(true);
+      return;
+    }
+    if (e.key === 'Tab') {
+      var items = focusables();
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  // PC 幅に広げたら閉じる
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 840) close(false);
+  });
+})();
+
 // お問い合わせフォームの送信は contact ページ内のスクリプト
 // （reCAPTCHA v3 → Cloudflare Worker 経由）で処理する。
 

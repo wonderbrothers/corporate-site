@@ -322,7 +322,6 @@ const company = [
   <header class="wb-nav wb-flow" data-nav>
     <a class="wb-nav__home" href="#top" aria-label="ページの先頭へ">
       <img class="wb-nav__logo" src="images/horizontal-logo.svg" alt="" width="886" height="148" />
-      <img class="wb-nav__mark" src="images/logo-mark.svg" alt="" width="32" height="32" />
     </a>
     <nav class="wb-nav__menu" aria-label="メインナビゲーション">
       <ul class="wb-nav__list">
@@ -331,7 +330,39 @@ const company = [
         ))}
       </ul>
     </nav>
+    <!-- 840px 以下：メニューボタン（ドロワーを開く） -->
+    <button type="button" class="wb-nav__toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="wb-drawer" data-drawer-open>
+      <span class="wb-nav__bars" aria-hidden="true"></span>
+    </button>
   </header>
+  <!-- メニュードロワー（840px 以下）。CONTACT はリストに入れず、下部のボタンにする -->
+  <div class="wb-drawer wb-flow" id="wb-drawer" data-drawer>
+    <div class="wb-drawer__backdrop" data-drawer-close></div>
+    <div class="wb-drawer__panel" role="dialog" aria-modal="true" aria-label="メニュー">
+      <div class="wb-drawer__head">
+        <a class="wb-nav__home" href="#top" aria-label="ページの先頭へ" data-drawer-link>
+          <img class="wb-nav__logo" src="images/horizontal-logo.svg" alt="" width="886" height="148" />
+        </a>
+        <button type="button" class="wb-drawer__close" aria-label="メニューを閉じる" data-drawer-close>
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <nav aria-label="メニュー">
+        <ul class="wb-drawer__list">
+          {nav.filter((item) => item.href !== "#contact").map((item) => (
+            <li><a class="wb-drawer__link" href={item.href} data-drawer-link>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <a class="wb-drawer__contact" href="contact/index.html">
+        <span class="wb-drawer__contact-text">
+          <span class="wb-drawer__contact-title">お問い合わせ</span>
+          <span class="wb-drawer__contact-note" lang="en">CONTACT</span>
+        </span>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+  </div>
   <div class="StudioCanvas">
 <div class="wb-box reveal wb-page" id="top">
                 <!-- ============ 01 HERO ============ -->
