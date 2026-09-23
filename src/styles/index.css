@@ -1315,10 +1315,22 @@ html.js-on .wb-nav:not(.is-shown):not(:focus-within) {
     display: none;
   }
 }
-.wb-nav__mark {
+/* PC（841px 以上）は横組みロゴ、それ以下はマーク */
+.wb-nav__logo {
   display: block;
+  height: 28px;
+  width: auto;
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
+}
+.wb-nav__mark {
+  display: none;
   height: 32px;
   width: 32px;
+  @media screen and (max-width: 840px) {
+    display: block;
+  }
   @media screen and (max-width: 540px) {
     height: 28px;
     width: 28px;
