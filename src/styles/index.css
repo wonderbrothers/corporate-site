@@ -1940,6 +1940,23 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   font-size: var(--wb-text-caption);
   font-weight: var(--wb-fw-medium);
 }
+/* WONDER LAB 導入の見出し（和文＋英文）と、導入末尾の DISCOVER. MAKE. LEARN. */
+.wb-lab__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  & .wb-sec__heading {
+    margin: 0px;
+  }
+}
+.wb-lab__heading-en {
+  font-size: var(--wb-text-body-tight);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.3;
+}
+.wb-principle--lead {
+  margin: 0px;
+}
 /* WONDER LAB の締め：デジタルでも、森でも、私たちがやっていることは同じ */
 .wb-lab__closing {
   align-items: center;

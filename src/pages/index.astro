@@ -176,20 +176,20 @@ const cases = [
     published: true,
     industryEn: "ENTERTAINMENT",
     industryJa: "エンターテインメント事業者",
-    questionJa: "ライブでつながるコミュニケーション体験を、どうすれば事業の成果につながる形で設計できるか。",
-    questionEn: "How can a live communication experience be designed so that it also delivers on business goals?",
+    questionJa: "新しいサービスの構想を、事業性とユーザー体験の両面から、どう実装可能な形へ落とし込むか。",
+    questionEn: "How can a new service concept be shaped into something buildable — with both the business and the user experience in mind?",
     steps: {
       discover: {
-        ja: "サービスの目的と利用者の行動から仮説を立案。目指す成果をKGI、そこに至る指標をKPIとして設定。",
-        en: "We formed hypotheses from the service's goals and how people used it, then set KGIs for the outcomes we were aiming for and KPIs for the steps that lead there.",
+        ja: "事業の目的や想定するユーザー行動を整理し、サービスとして成立させるために必要な体験と機能の優先順位を明確化。",
+        en: "We clarified the business goals and expected user behavior, then set priorities for the experiences and features the service needed to work.",
       },
       make: {
-        ja: "仮説と指標にもとづいてUXを構築。あわせてデザインシステムを導入し、AIがフロントエンドを実装しやすい構造をデザイン。",
-        en: "We built the UX around those hypotheses and metrics, and introduced a design system structured so that AI can implement the front end more easily.",
+        ja: "仮説をもとにUX、UI、プロトタイプを設計し、開発へつながりやすい情報構造とデザインルールを整備。",
+        en: "Working from hypotheses, we designed the UX, UI, and prototypes, and set up an information structure and design rules that carry smoothly into development.",
       },
       learn: {
-        ja: "設定したKPIをもとに仮説を確かめながら、体験を更新し続けられる状態を整備。",
-        en: "With the KPIs in place, we set up a way to test each hypothesis and keep refining the experience.",
+        ja: "関係者とのレビューや検証を重ね、事業要件とユーザー体験の両方を満たす形へ調整し、実装可能なプロダクト構造へ更新。",
+        en: "Through repeated reviews and validation with stakeholders, we balanced business requirements with user experience and refined the product structure until it was ready to build.",
       },
     },
   },
@@ -489,15 +489,20 @@ const company = [
                         </p>
                         <div class="wb-box reveal wb-wonderlab__intro-row">
                           <div class="wb-box reveal wb-wonderlab__lead">
-                            <p class="wb-sec__heading">自分たち自身の問いも、つくることで確かめる。</p>
+                            <div class="wb-lab__heading">
+                              <p class="wb-sec__heading">自分たち自身の問いも、つくることで確かめる。</p>
+                              <p class="wb-lab__heading-en" lang="en">We build to explore our own questions, too.</p>
+                            </div>
                             <div class="wb-box reveal wb-wonderlab__lead-ja">
-                              <p>私たち自身も、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にしています。WONDER LABは、「これをつくったら何がわかるだろう？」という問いから始まる実験の場所です。</p>
-                              <p>クライアントワークでは企業や組織の問いに、WONDER LABでは自分たちの問いに向き合います。対象は違っても、見つけ、つくり、学ぶという進め方は同じです。</p>
+                              <p>WONDER LABは、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にする場所です。まだ答えがないテーマに対して、まずつくってみることで見えてくることを確かめ、そこから次の問いへつなげています。</p>
                             </div>
                             <div class="wb-box reveal wb-wonderlab__lead-en" lang="en">
-                              <p>Beyond client work, we take the questions that come up in our own work and lives and turn them into products and experiments. WONDER LAB starts from a simple question: what will we learn if we build this?</p>
-                              <p>In client work, we take on the questions of organizations. In WONDER LAB, we take on our own. The subject changes; the way we work doesn't.</p>
+                              <p>WONDER LAB is a space for turning questions from our work and everyday life into real products and experiments. By making first, we discover what can't be understood through discussion alone, and use what we learn to shape the next question.</p>
                             </div>
+                            <p class="reveal wb-principle wb-principle--ink wb-principle--lead">
+                              <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
+                              <span class="wb-principle__ja">見つける。つくる。学ぶ。</span>
+                            </p>
                           </div>
                           <div class="wb-box reveal wb-wonderlab__visual">
                             <img
