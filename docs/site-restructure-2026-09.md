@@ -29,7 +29,7 @@
 | WONDER LAB 見出し・英サブ・イラスト・カルーセル | 残す | そのまま |
 | WONDER LAB 導入文（1文ずつ改行） | 書き換える | 段落の読み物に。CLIENT WORK との関係（説明と証明）を明示 |
 | 64MONSTERS / RENSOU GAME / mori の紹介文 | 書き換える | 「問い → DISCOVER / MAKE / LEARN」の構造へ。mori は FOREST EXPERIMENT に改称（ロゴは継続） |
-| COMPANY INFORMATION | 書き換える | ABOUT に。事業内容を追加、資本金は掲載項目から外した（指示書 §21 の掲載内容に合わせた。戻すなら index.astro の company 配列に1行） |
+| COMPANY INFORMATION | 書き換える | ABOUT に。事業内容を追加。資本金（10,000,000円）は事業内容の下に掲載 |
 | CONTACT ボタン | 残す（文言を書き換え） | 「まだ企画になっていない段階でも」という相談しやすい導入文を追加 |
 | フッター | 残す | そのまま |
 | （新設）ナビゲーション | — | WORK / LAB / APPROACH / ABOUT / CONTACT。HERO を過ぎると上部に出る |
