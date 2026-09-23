@@ -2382,46 +2382,8 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   margin: 0px 0px 16px;
 }
 
-/* 詳しく見る（SECURITY & GOVERNANCE）。チップの形は WONDER LAB のリンクと同じ */
-.wb-details {
-  margin: 8px 0px 0px;
-}
-.wb-details__summary {
-  align-items: center;
-  border: 1px solid var(--wb-ink);
-  border-radius: 999px;
-  cursor: pointer;
-  display: inline-flex;
-  font-size: var(--wb-text-body-sm);
-  font-weight: var(--wb-fw-bold);
-  gap: 8px;
-  list-style: none;
-  padding: 10px 16px;
-  &::-webkit-details-marker {
-    display: none;
-  }
-  &::after {
-    content: "+";
-    font-weight: var(--wb-fw-bold);
-  }
-  & > span {
-    font-weight: var(--wb-fw-medium);
-    opacity: 0.7;
-  }
-  &:hover {
-    background: var(--wb-ink);
-    color: var(--wb-cream);
-  }
-}
-.wb-details[open] > .wb-details__summary::after {
-  content: "\2212";
-}
-.wb-details__body {
-  padding: 24px 0px 0px;
-}
-
-/* CONTACT */
-.wb-contact__lead {
+/* SECURITY & GOVERNANCE / CONTACT の本文冒頭の一文 */
+.wb-row-sec__lead {
   font-size: var(--wb-text-heading-lg);
   font-weight: var(--wb-fw-bold);
   line-height: 1.4;
