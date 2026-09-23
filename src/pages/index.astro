@@ -1,14 +1,319 @@
 ---
 import Base from '../layouts/Base.astro';
 import '../styles/index.css';
-const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"株式会社ワンダーブラザース\",\"alternateName\":\"WONDER BROTHERS INC.\",\"url\":\"https://wonder-bros.com/\",\"logo\":\"https://wonder-bros.com/images/logo-mark.svg\",\"image\":\"https://wonder-bros.com/images/ogp.png\",\"description\":\"株式会社ワンダーブラザースは、デザインとブランディングの力で地域や企業の未来をつくるデザインスタジオ。デザインとテクノロジーの力で「あったらいいな」を実現する。\",\"foundingDate\":\"2020-04-07\",\"founder\":{\"@type\":\"Person\",\"name\":\"佐藤大志\"},\"address\":{\"@type\":\"PostalAddress\",\"postalCode\":\"150-0043\",\"addressRegion\":\"東京都\",\"addressLocality\":\"渋谷区\",\"streetAddress\":\"道玄坂1-10-8 渋谷道玄坂東急ビル2F-C\",\"addressCountry\":\"JP\"}},{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"株式会社ワンダーブラザース\",\"url\":\"https://wonder-bros.com/\",\"inLanguage\":\"ja\"}]";
+
+/* ==================================================================
+   トップページのコピーはここにまとめてある（文言の修正はこの frontmatter だけで済む）。
+   構成・分類・コピーの方針は docs/site-restructure-2026-09.md を参照。
+
+   表記ルール（docs にも記載）
+   - 「DISCOVER. MAKE. LEARN.」／「見つける。つくる。学ぶ。」で統一。
+     DML・D.M.L.・D/M/L などの省略形や、Discovery Phase などの言い換えは使わない。
+   - 旧4段階（Discover / Design / Build / Learn）は使わない。Design と Build は Make に統合。
+================================================================== */
+
+const DESCRIPTION =
+  "WONDER BROTHERS（株式会社ワンダーブラザース）は、まだ言葉になっていない課題や可能性を見つけ、実際につくり、その結果から学びながら答えを探すデザインスタジオです。新規サービス設計、UX/UI、PoC・プロトタイプ、プロダクト開発、DXを支援しています。";
+
+const jsonLd = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "株式会社ワンダーブラザース",
+    alternateName: "WONDER BROTHERS INC.",
+    url: "https://wonder-bros.com/",
+    logo: "https://wonder-bros.com/images/logo-mark.svg",
+    image: "https://wonder-bros.com/images/ogp.png",
+    slogan: "答えのない問いを、つくることで確かめる。",
+    description: DESCRIPTION,
+    foundingDate: "2020-04-07",
+    founder: { "@type": "Person", name: "佐藤大志" },
+    address: {
+      "@type": "PostalAddress",
+      postalCode: "150-0043",
+      addressRegion: "東京都",
+      addressLocality: "渋谷区",
+      streetAddress: "道玄坂1-10-8 渋谷道玄坂東急ビル2F-C",
+      addressCountry: "JP",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "株式会社ワンダーブラザース",
+    url: "https://wonder-bros.com/",
+    inLanguage: "ja",
+  },
+]);
+
+/* ---------- ナビゲーション ---------- */
+const nav = [
+  { href: "#work", label: "WORK" },
+  { href: "#lab", label: "LAB" },
+  { href: "#approach", label: "APPROACH" },
+  { href: "#about", label: "ABOUT" },
+  { href: "#contact", label: "CONTACT" },
+];
+
+/* ---------- 02 APPROACH：DISCOVER / MAKE / LEARN ---------- */
+const principles = [
+  {
+    num: "01",
+    en: "Discover",
+    ja: "見つける",
+    icon: "images/deco-halftone.webp",
+    textJa:
+      "人、行動、環境、業務、情報を観察し、まだ言葉になっていない課題や可能性を見つけます。依頼された課題をそのまま受け取るのではなく、利用者の話を聞き、業務や情報の流れを整理しながら、本当に向き合うべき問いを定めます。",
+    textEn:
+      "We observe people, behavior, environments, systems, and information to uncover questions that have not yet been clearly defined. Rather than taking a brief at face value, we talk to users and map how work and information actually flow until we know which question is worth answering.",
+  },
+  {
+    num: "02",
+    en: "Make",
+    ja: "つくる",
+    icon: "images/deco-dots.gif",
+    textJa:
+      "問いや仮説を、考えるだけで終わらせず、実際に触れられる形にします。サービス、体験、UI、プロトタイプ、プロダクトと、必要な形は案件ごとに違います。形にして初めて見えることがあるので、私たちはデザインと実装を分けずに進めます。",
+    textEn:
+      "We turn hypotheses into experiences, prototypes, services, and products that can actually be used and tested. The form changes from project to project. Some things only become clear once they exist, so we don't separate designing from building.",
+  },
+  {
+    num: "03",
+    en: "Learn",
+    ja: "学ぶ",
+    icon: "images/deco-spiral.gif",
+    textJa:
+      "つくったものへの反応、使われ方、結果、違和感、予想外の出来事から学びます。見直すのは、つくったものだけではありません。必要であれば、最初に立てた問いや仮説そのものを問い直します。",
+    textEn:
+      "We learn from real behavior, feedback, outcomes, and the unexpected. Then we refine not only the solution, but the original question as well.",
+  },
+];
+
+/* ---------- 03 CLIENT WORK：サービス ---------- */
+const services = [
+  {
+    en: "New Service Design",
+    ja: "新規サービス設計",
+    textJa: "まだ曖昧な構想やアイデアを整理し、ユーザー価値、サービス構造、体験、必要な機能を設計します。",
+    textEn: "We shape early ideas into a clear service: who it is for, what value it creates, how it works, and what it needs.",
+  },
+  {
+    en: "UX / UI Design",
+    ja: "UX・UIデザイン",
+    textJa: "ユーザーの行動、情報構造、利用シーンを整理し、複雑なサービスを理解しやすく使いやすい体験に変えます。",
+    textEn: "We untangle behavior, information, and context to make complex services easy to understand and use.",
+  },
+  {
+    en: "PoC / Prototype",
+    ja: "PoC・プロトタイプ",
+    textJa: "アイデアを早い段階で体験できる形にし、ユーザーや関係者と検証できる状態をつくります。",
+    textEn: "We make ideas tangible early, so they can be tested with users and stakeholders before big decisions are made.",
+  },
+  {
+    en: "Product Development",
+    ja: "プロダクト開発",
+    textJa: "デザインだけで終わらせず、必要に応じてエンジニアと連携し、実際に利用できるプロダクトとして実装します。",
+    textEn: "We don't stop at design. Working with engineers where needed, we build products people can actually use.",
+  },
+  {
+    en: "DX / Service Transformation",
+    ja: "DX・サービス変革",
+    textJa: "既存の業務やサービスの構造を整理し、デジタルを活用した新しい体験や業務プロセスへ再設計します。",
+    textEn: "We map how existing operations and services work, then redesign them into new digital experiences and processes.",
+  },
+];
+
+/* ---------- 04 SELECTED WORK ----------
+   業種 × 問い × 支援内容で見せる。published: true のものだけ表示する。
+   掲載しないもの：クライアント名／固有のサービス名・プロジェクト名／機密性の高い数値／
+   公開許可のない画面／特定企業を推測できる内部情報／実際には行っていない工程／成果数値の創作。
+   業種は「損害保険会社」「金融サービス事業者」程度の粒度にとどめる。
+   下書き（published: false）は、実際の案件に基づいて問い・工程を記入してから公開する。 */
+const cases = [
+  {
+    published: true,
+    industryEn: "INSURANCE",
+    industryJa: "損害保険会社",
+    questionJa: "どうすれば、複雑な保険情報をユーザーが迷わず理解できる体験にできるか。",
+    questionEn: "How can complex insurance information become something people can understand without getting lost?",
+    steps: {
+      discover: {
+        ja: "商品、契約、手続きに関する情報構造とユーザー行動を整理し、どこで理解や判断が難しくなっているのかを明らかにした。",
+        en: "We mapped how products, policies, and procedures were structured against how users behaved, to pinpoint where understanding and decisions broke down.",
+      },
+      make: {
+        ja: "UX、情報設計、UI、プロトタイプを通じて、複雑な情報を利用者が理解しやすい体験へ具体化した。",
+        en: "Through UX, information architecture, UI, and prototypes, we turned complex information into an experience users could follow.",
+      },
+      learn: {
+        ja: "関係者レビューや検証を通じて課題を整理し、実装可能な体験へ更新した。",
+        en: "Stakeholder reviews and validation surfaced the remaining issues, and we refined the experience into something ready to build.",
+      },
+    },
+  },
+  {
+    published: true,
+    industryEn: "FINANCIAL SERVICES",
+    industryJa: "金融サービス事業者",
+    questionJa: "新しいデジタルサービスの構想を、どうすれば関係者が同じ像を見ながら判断できる形にできるか。",
+    questionEn: "How can an early idea for a digital service take a shape everyone can see — and decide on — together?",
+    steps: {
+      discover: {
+        ja: "構想の背景、想定する利用者、既存の業務や制約を整理し、検証すべき論点を明らかにした。",
+        en: "We laid out the idea's background, intended users, and existing operations and constraints to clarify what needed to be tested.",
+      },
+      make: {
+        ja: "サービス像を画面とプロトタイプで可視化し、関係者が体験として確かめられる状態をつくった。",
+        en: "We visualized the service through screens and prototypes so stakeholders could experience it, not just read about it.",
+      },
+      learn: {
+        ja: "検討の中で得た意見や課題を整理し、次の意思決定と開発に向けた要件へ反映した。",
+        en: "We organized the feedback and issues that came up and carried them into requirements for the next decision and for development.",
+      },
+    },
+  },
+  /* ↓ 下書き（非公開）。業種の枠のみ。実案件に基づいて記入してから published: true に。 */
+  { published: false, industryEn: "FINTECH / PAYMENT", industryJa: "決済サービス事業者", questionJa: "", questionEn: "", steps: null },
+  { published: false, industryEn: "ENTERPRISE", industryJa: "事業会社", questionJa: "", questionEn: "", steps: null },
+  { published: false, industryEn: "INSURANCE PLATFORM", industryJa: "保険プラットフォーム", questionJa: "", questionEn: "", steps: null },
+  { published: false, industryEn: "DIGITAL SERVICE", industryJa: "デジタルサービス事業者", questionJa: "", questionEn: "", steps: null },
+].filter((c) => c.published && c.steps);
+
+/* ---------- 05 WONDER LAB ---------- */
+const labProjects = [
+  {
+    key: "64monsters",
+    name: "64MONSTERS",
+    logo: "images/64monsters-logo-animated.svg",
+    url: "https://64monsters.wonder-bros.com/",
+    urlLabel: "64monsters.wonder-bros.com",
+    themeJa: "人をどう理解するか。",
+    themeEn: "Understanding people",
+    questionJa: "人を「ユーザー」という言葉だけで理解できるだろうか。",
+    questionEn: "Can we understand a person simply by calling them a “user”?",
+    contextJa:
+      "UXデザインでは、ユーザーを理解することからプロジェクトが始まります。しかし実際の人間は、属性やペルソナ、ひとつのタイプだけでは説明できません。そこで「もっと人そのものを理解する方法をつくれないか」という問いから、64MONSTERSをつくりました。",
+    contextEn:
+      "In UX design, every project begins with understanding the user. But real people can't be explained by demographics, personas, or a single type. 64MONSTERS started with a question: could we build a better way to understand the person behind the user?",
+    steps: {
+      discover: {
+        ja: "ユーザーを属性やひとつのタイプだけで捉えることの限界に着目し、人をより多面的に捉える方法はないか、という問いを立てる。",
+        en: "We noticed the limits of seeing users through demographics or a single type, and asked how people might be seen from more angles.",
+      },
+      make: {
+        ja: "複数の軸から、その人のいまの傾向を捉える診断体験をつくる。タイプだけでなく、スコアや揺れ、繰り返し診断したときの変化も見られるようにする。",
+        en: "We built an assessment that reads a person's current tendencies across several axes — showing not just a type, but scores, fluctuations, and how results shift over repeated sessions.",
+      },
+      learn: {
+        ja: "人を固定したタイプとしてではなく「変化する状態」として捉える可能性を、実際の診断体験を通じて探っている。",
+        en: "Through real use, we are exploring what it means to see a person not as a fixed type, but as a state that changes.",
+      },
+    },
+  },
+  {
+    key: "rensougame",
+    name: "RENSOU GAME",
+    logo: "images/rensougame-logo-animated.svg",
+    url: "https://rensougame.wonder-bros.com/",
+    urlLabel: "rensougame.wonder-bros.com",
+    themeJa: "どう考え、仮説を確かめるか。",
+    themeEn: "Thinking and testing hypotheses",
+    questionJa: "ニュースを読むだけで、考える力は身につくだろうか。",
+    questionEn: "Does reading the news alone really teach us how to think?",
+    contextJa:
+      "ひとつの出来事が起きたとき、その影響はひとつでは終わりません。経済、企業、暮らし、市場へと連鎖していきます。けれど普段のニュース体験では、結果を受け取るだけになりがちです。",
+    contextEn:
+      "When something happens, its effects rarely stop in one place. They ripple through the economy, companies, daily life, and markets. Yet most of the time, we simply take in the news and move on.",
+    steps: {
+      discover: {
+        ja: "ニュースを読むことが、必ずしも「その先を考えること」や「仮説を確かめること」につながっていない点に着目する。",
+        en: "We noticed that reading the news doesn't necessarily lead to thinking ahead, or to testing what we think will happen.",
+      },
+      make: {
+        ja: "ニュースを起点に、何が起きるか、その次に何が起きるか、別のシナリオはあるか、実際にはどうなったかを考える体験を、ゲームとしてつくる。",
+        en: "We built a game that starts from a news story and asks: what happens next, what happens after that, what else could happen — and what actually did?",
+      },
+      learn: {
+        ja: "目的は未来を当てることではなく、自分がどう考えたのかを後から振り返ること。仮説を立て、結果と照らし合わせることで、考えるプロセスそのものを学ぶ。",
+        en: "The goal isn't to predict the future. It's to look back at how we reasoned — forming a hypothesis, checking it against what happened, and learning from the process itself.",
+      },
+    },
+  },
+  {
+    key: "forest",
+    name: "FOREST EXPERIMENT",
+    logo: "images/mori-logo.svg",
+    url: null,
+    urlLabel: null,
+    themeJa: "価値をどう見つけるか。",
+    themeEn: "Discovering value",
+    questionJa: "価値がまだわからないものから、価値を見つけることはできるだろうか。",
+    questionEn: "Can we discover value before we know what we are looking for?",
+    contextJa:
+      "北海道の森を取得したことから始まった実験です。そこには水道も下水も電気もなく、森林なので土地の境界さえ目でははっきり見えません。都市では当たり前にある前提が、ほとんど存在しない場所です。だから「ここで何をつくるか」を先に決めるのではなく、「この場所には何があるのか」から考えることにしました。",
+    contextEn:
+      "This experiment began when we acquired a forest in Hokkaido. There is no running water, no sewer, no electricity — and in the woods, even the property lines are hard to see. Almost nothing a city takes for granted is there. So instead of deciding what to build, we started by asking what the place already had.",
+    steps: {
+      discover: {
+        ja: "森に入り、環境、植物、土地の特徴を観察して、この場所にどんな可能性があるのかを探る。",
+        en: "We walked the forest, observing its environment, plants, and terrain to see what possibilities it might hold.",
+      },
+      make: {
+        ja: "実際に森に触れて試し、トドマツの枝葉から精油を抽出して、成分分析まで行う。",
+        en: "We got our hands in it — extracting essential oil from Todo fir branches and leaves, and having its composition analyzed.",
+      },
+      learn: {
+        ja: "手を動かすことで、この森が持つ特徴や可能性を知り、「価値を先に決めるのではなく、実験から見つける」という考え方を得る。",
+        en: "Working with our hands showed us what makes this forest distinctive, and taught us to find value through experiments rather than define it in advance.",
+      },
+    },
+  },
+];
+
+const stepLabels = [
+  { key: "discover", label: "DISCOVER" },
+  { key: "make", label: "MAKE" },
+  { key: "learn", label: "LEARN" },
+];
+
+/* ---------- 07 ABOUT ---------- */
+const company = [
+  { label: "会社名", ja: "株式会社ワンダーブラザース", en: "WONDER BROTHERS INC." },
+  {
+    label: "所在地",
+    ja: "〒150-0043 東京都渋谷区道玄坂1-10-8 渋谷道玄坂東急ビル2F−C",
+    en: "2F-C, Shibuya Dogenzaka Tokyu Building, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan",
+  },
+  { label: "設立", ja: "2020年4月7日", en: "Established: April 7, 2020" },
+  { label: "代表取締役", ja: "佐藤大志", en: "Representative Director: Taishi Sato" },
+  {
+    label: "事業内容",
+    list: ["Service Design", "UX / UI Design", "PoC / Prototype", "Product Development", "DX / Service Transformation"],
+    en: "サービスデザイン、UX・UIデザイン、PoC・プロトタイプ、プロダクト開発、DX・サービス変革の支援",
+  },
+];
 ---
-<Base title="株式会社ワンダーブラザース｜デザイン×テクノロジーで「あったらいいな」を実現" description="株式会社ワンダーブラザースは、デザインとブランディングの力で地域や企業の未来をつくるデザインスタジオ。デザインとテクノロジーの力で「あったらいいな」を実現する。" path="/">
+<Base title="株式会社ワンダーブラザース｜答えのない問いを、つくることで確かめる。" description={DESCRIPTION} path="/">
   <script type="application/ld+json" set:html={jsonLd} slot="head" is:inline></script>
-  <div class="container"><div class="render-canvas"><div class="StudioCanvas">
-<div class="wb-box reveal wb-page">
+  <div class="container"><div class="render-canvas">
+  <!-- ナビゲーション：HERO を過ぎると上から現れる（JS 無効時は常に表示） -->
+  <header class="wb-nav wb-flow" data-nav>
+    <a class="wb-nav__home" href="#top" aria-label="ページの先頭へ">
+      <img class="wb-nav__mark" src="images/logo-mark.svg" alt="" width="32" height="32" />
+    </a>
+    <nav class="wb-nav__menu" aria-label="メインナビゲーション">
+      <ul class="wb-nav__list">
+        {nav.map((item) => (
+          <li><a class="wb-nav__link" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </header>
+  <div class="StudioCanvas">
+<div class="wb-box reveal wb-page" id="top">
+                <!-- ============ 01 HERO ============ -->
                 <div class="wb-box reveal wb-intro">
-                  <section class="wb-box reveal wb-hero">
+                  <section class="wb-box reveal wb-hero" data-hero>
                     <img class="wb-box wb-hero__image" alt="" src="images/hero.webp" /><h1 class="wb-hero__heading"><img
                       class="wb-box wb-hero__logo"
                       alt="株式会社ワンダーブラザース"
@@ -19,199 +324,157 @@ const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\"
                       <div class="wb-box reveal wb-hero__scroll-line"></div>
                     </div>
                   </section>
-                  <section class="wb-box reveal wb-tagline">
-                    <div class="wb-box wb-tagline__list">
-                      <p class="text wb-box reveal wb-tagline__discover">Discover.<br /></p>
-                      <p class="text wb-box reveal wb-tagline__design">Design.<br /></p>
-                      <p class="text wb-box reveal wb-tagline__development">Development.<br /></p>
+                  <section class="wb-box reveal wb-statement wb-flow" aria-labelledby="statement-title">
+                    <div class="wb-box wb-statement__list" lang="en">
+                      <p class="text wb-box reveal wb-statement__line wb-statement__line--1">Build to explore</p>
+                      <p class="text wb-box reveal wb-statement__line wb-statement__line--2">the unanswered.</p>
                     </div>
-                  </section>
-                  <section class="wb-box reveal wb-principles">
-                    <div class="wb-box reveal wb-principles__inner">
-                      <div class="wb-box reveal wb-principles__mission">
-                        <h2 class="text wb-box reveal wb-section-label wb-principles__mission-label">OUR MISSION</h2>
-                        <div class="wb-box reveal wb-principles__mission-body">
-                          <p class="text wb-box reveal wb-principles__mission-ja">
-                            デザインとテクノロジーの力で「あったらいいな」を実現する
-                          </p>
-                          <p class="text wb-box reveal wb-principles__mission-en">
-                            Realizing 'wouldn't it be nice if...' with the power of design and technolog
-                          </p>
-                        </div>
-                      </div>
-                      <div class="wb-box reveal wb-principles__theme">
-                        <h2 class="text wb-box reveal wb-section-label wb-principles__theme-label">OUR THEME</h2>
-                        <div class="wb-box reveal wb-principles__theme-body">
-                          <div class="wb-box reveal wb-principles__theme-intro">
-                            <p class="text wb-box reveal wb-principles__theme-intro-ja">
-                              「企業の未来を変える」をテーマに、新サービスの課題を情報技術を使って解決することをミッションに、3つのテーマに取り組んでいます。
-                            </p>
-                            <p class="text wb-box reveal wb-principles__theme-intro-en">
-                              Under the theme of “Transforming the Future of Business,” our mission is to use
-                              information technology to solve challenges faced by new services, focusing on three key
-                              areas.
-                            </p>
-                          </div>
-                          <div class="wb-box reveal wb-principles__theme-items">
-                            <div class="wb-box reveal wb-principles__theme-item-1">
-                              <p class="text wb-box reveal wb-principles__theme-num-1">1.<br /></p>
-                              <div class="wb-box reveal wb-principles__theme-item-1-body">
-                                <p class="text wb-box reveal wb-principles__theme-item-1-ja">
-                                  新規サービス立ち上げ時のデジタルディレクション支援<br />
-                                </p>
-                                <p class="text wb-box reveal wb-principles__theme-item-1-en">
-                                  Digital direction support for launching new services
-                                </p>
-                              </div>
-                            </div>
-                            <div class="wb-box reveal wb-principles__theme-item-2">
-                              <p class="text wb-box reveal wb-principles__theme-num-2">2.<br /></p>
-                              <div class="wb-box reveal wb-principles__theme-item-2-body">
-                                <p class="text wb-box reveal wb-principles__theme-item-2-ja">
-                                  新規サービス立ち上げまでのPoC支援<br />
-                                </p>
-                                <p class="text wb-box reveal wb-principles__theme-item-2-en">
-                                  PoC (Proof of Concept) support prior to launching new services
-                                </p>
-                              </div>
-                            </div>
-                            <div class="wb-box reveal wb-principles__theme-item-3">
-                              <p class="text wb-box reveal wb-principles__theme-num-3">3.<br /></p>
-                              <div class="wb-box reveal wb-principles__theme-item-3-body">
-                                <p class="text wb-box reveal wb-principles__theme-item-3-ja">
-                                  企業におけるDX推進支援<br />
-                                </p>
-                                <p class="text wb-box reveal wb-principles__theme-item-3-en">
-                                  DX (Digital Transformation) promotion support within companies
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wb-box reveal wb-principles__theme-note">
-                            <p class="text wb-box reveal wb-principles__theme-note-ja">
-                              多くの企業様が抱えるデジタル化による効率化を果たすというニーズ、仮説に基づき改革をシュミレーションしあらゆるリスクを取り除きたいニーズなど、企業様のニーズに基づく課題を情報技術を用いて解決しています。
-                            </p>
-                            <p class="text wb-box reveal wb-principles__theme-note-en">
-                              We leverage information technology to address the challenges companies face — such as the
-                              need to improve efficiency through digitalization, or the desire to simulate reforms based
-                              on hypotheses and eliminate potential risks — providing solutions that are fully aligned
-                              with each client’s unique needs.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wb-box reveal wb-principles__value">
-                        <h2 class="text wb-box reveal wb-section-label wb-principles__value-label">OUR VALUE</h2>
-                        <div class="wb-box reveal wb-principles__value-body">
-                          <p class="text wb-box reveal wb-principles__value-ja">
-                            企業様が新サービスを計画する際に「対象となるユーザーにどのような経験を積んでもらいたいのか？」を徹底的に洗い出し、それをPCやスマートフォンなど多くのデバイスでどの様に可視化するのかを重要視しております。<br />デジタル化の重要な要素である経験の可視化が実現できるUI/UXデザインにより、企業様のDX推進の足がかりとなる支援をおこないます。
-                          </p>
-                          <p class="text wb-box reveal wb-principles__value-en">
-                            When planning a new service, we rigorously identify the experiences you want target users to
-                            have, and we place strong emphasis on how to visualize those experiences across multiple
-                            devices—such as PCs and smartphones.<br />Through UI/UX design that makes user experiences
-                            visible—an essential element of digitalization—we provide support that helps lay the
-                            groundwork for your company’s digital transformation.
-                          </p>
-                        </div>
-                      </div>
-                      <div class="wb-box reveal wb-principles__governance">
-                        <h2 class="text wb-box reveal wb-section-label wb-principles__governance-label">OUR GOVERNANCE</h2>
-                        <div class="wb-box reveal wb-principles__governance-body">
-                          <p class="text wb-box reveal wb-principles__governance-ja">
-                            中長期的な企業価値の向上の実現のために、コーポレート・ガバナンスの強化とセキュリティの強化が重要課題と認識しています。意思決定の公平性・透明性を向上のため、取締役の業務執行に対する監督機能を充実させ、適正な情報開示体制を構築するための社内体制の構築を目指していきます。<br />今後も、全てのステークホルダーの利益に資する経営の実現を促すと共に、企業価値の向上を目指したコーポレートガバナンスに努めて参ります。
-                          </p>
-                          <p class="text wb-box reveal wb-principles__governance-en">
-                            We recognize that strengthening corporate governance and enhancing security are critical
-                            issues for realizing sustainable, long-term growth in corporate value.<br />To ensure
-                            fairness and transparency in decision-making, we are working to reinforce the board’s
-                            supervisory functions over business execution and to establish internal systems that enable
-                            appropriate information disclosure.<br />Going forward, we will continue striving to promote
-                            management that benefits all stakeholders and to strengthen our corporate governance with
-                            the goal of further enhancing corporate value.
-                          </p>
-                        </div>
-                      </div>
+                    <div class="wb-statement__body">
+                      <h2 id="statement-title" class="reveal wb-statement__title">答えのない問いを、<br />つくることで確かめる。</h2>
+                      <p class="reveal wb-statement__ja">
+                        WONDER BROTHERSは、人や社会の中にある、まだ言葉になっていない課題や可能性を見つけ、実際につくり、その結果から学びながら答えを探すデザインスタジオです。
+                      </p>
+                      <p class="reveal wb-statement__en" lang="en">
+                        WONDER BROTHERS is a design studio that explores unanswered questions by finding what matters, making things real, and learning from what happens next.
+                      </p>
+                      <p class="reveal wb-principle">
+                        <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
+                        <span class="wb-principle__ja">見つける。つくる。学ぶ。</span>
+                      </p>
                     </div>
                   </section>
                 </div>
+
                 <div class="wb-box reveal wb-lower">
-                  <section class="wb-box reveal wb-approach">
-                    <div class="wb-box reveal wb-approach__inner">
-                      <h2 class="text wb-box reveal wb-approach__title">WE THINK</h2>
-                      <p class="text wb-box reveal wb-approach__subtitle">
-                        Design is... work of removing unnecessary things<br />
-                      </p>
-                      <div class="wb-box reveal wb-approach__cards">
-                        <div class="wb-box reveal wb-approach__card-discover">
-                          <img
-                            class="wb-box wb-approach__card-discover-icon"
-                            alt=""
-                            src="images/deco-halftone.webp"
-                          />
-                          <h3 class="text wb-box reveal wb-approach__card-discover-title">Discover<br /></h3>
-                          <p class="text wb-box reveal wb-approach__card-discover-ja">
-                            利用者やユーザーを理解するためにコンテキストの整理や実際の利用者へのインタビューなどユーザーリサーチ手法を用いながら、何が問題なのか何が課題なのかを探ります。
-                          </p>
-                          <p class="text wb-box reveal wb-approach__card-discover-en">
-                            To understand users and their experiences, we employ user research methods such as
-                            contextual analysis and interviews with actual users to identify what the real problems and
-                            challenges are.
-                          </p>
+                  <!-- ============ 02 APPROACH ============ -->
+                  <section id="approach" class="wb-sec wb-flow" aria-labelledby="approach-title">
+                    <div class="wb-sec__inner">
+                      <div class="wb-sec__head">
+                        <h2 id="approach-title" class="reveal wb-display wb-display--approach" lang="en">APPROACH</h2>
+                        <p class="reveal wb-sec__sub" lang="en">We think by making.</p>
+                      </div>
+                      <div class="wb-sec__lead">
+                        <p class="reveal wb-sec__heading">考えるだけで終わらせない。</p>
+                        <div class="reveal wb-sec__text">
+                          <p>新しいサービスやプロダクトをつくるとき、最初から正しい答えが見えていることはほとんどありません。だからWONDER BROTHERSでは、まず人や状況を観察して問いを見つけ、その問いを実際に形にし、そこから得たことを次の判断につなげます。</p>
+                          <p>私たちは、この「見つける、つくる、学ぶ」という循環を、クライアントワークにも自分たちの実験にも、同じように用いています。</p>
                         </div>
-                        <div class="wb-box reveal wb-approach__card-design">
-                          <img class="wb-box wb-approach__card-design-icon" alt="" src="images/deco-dots.gif" />
-                          <h3 class="text wb-box reveal wb-approach__card-design-title">Design<br /></h3>
-                          <p class="text wb-box reveal wb-approach__card-design-ja">
-                            課題化後、プロダクトの目的に沿った画面の構造、コンテンツ、グラフィックス、ユーザーとプロダクト間のコミニュケーションを設計します。
-                          </p>
-                          <p class="text wb-box reveal wb-approach__card-design-en">
-                            After identifying the challenges, we design the product’s structure, content, graphics, and
-                            the communication between the user and the product in alignment with its purpose.
-                          </p>
+                        <div class="reveal wb-sec__text-en" lang="en">
+                          <p>When you set out to build a new service or product, the right answer is rarely clear from the start. So we begin by observing people and situations to find the real question, give that question a form, and let what we learn shape the next decision.</p>
+                          <p>We use the same cycle — discover, make, learn — in our client work and in our own experiments.</p>
                         </div>
-                        <div class="wb-box reveal wb-approach__card-development">
-                          <img class="wb-box wb-approach__card-development-icon" alt="" src="images/deco-spiral.gif" />
-                          <h3 class="text wb-box reveal wb-approach__card-development-title">Development</h3>
-                          <p class="text wb-box reveal wb-approach__card-development-ja">
-                            仮説や、コンセプト化における必要な要素を迅速に描くことで、関与するステークホルダーの認識の齟齬をなくし適切な改善や方向性の転換を行えるようにします。試作をユーザーでテストし改善を重ねます。
-                          </p>
-                          <p class="text wb-box reveal wb-approach__card-development-en">
-                            By quickly visualizing key elements during the hypothesis and concept development stages, we
-                            help eliminate any misalignment among stakeholders, enabling appropriate improvements or
-                            changes in direction.<br />Prototypes are then tested with users, and iterative refinements
-                            are made based on feedback.
-                          </p>
-                        </div>
+                      </div>
+                      <ol class="wb-dml">
+                        {principles.map((p) => (
+                          <li class="reveal wb-dml__item">
+                            <img class="wb-dml__icon" src={p.icon} alt="" width="232" height="232" />
+                            <p class="wb-dml__num" lang="en">{p.num}</p>
+                            <h3 class="wb-dml__title"><span lang="en">{p.en}</span><span class="wb-dml__title-ja">{p.ja}</span></h3>
+                            <p class="wb-dml__ja">{p.textJa}</p>
+                            <p class="wb-dml__en" lang="en">{p.textEn}</p>
+                          </li>
+                        ))}
+                      </ol>
+                      <div class="reveal wb-cycle">
+                        <p class="wb-cycle__flow" lang="en" aria-label="Discover, Make, Learn, and back to Discover">
+                          <span class="wb-cycle__step">Discover</span><span class="wb-cycle__arrow" aria-hidden="true">→</span><span class="wb-cycle__step">Make</span><span class="wb-cycle__arrow" aria-hidden="true">→</span><span class="wb-cycle__step">Learn</span><span class="wb-cycle__arrow" aria-hidden="true">→</span><span class="wb-cycle__step wb-cycle__step--return">Discover</span>
+                        </p>
+                        <p class="wb-cycle__ja">学んだことが、次の問いになる。</p>
+                        <p class="wb-cycle__en" lang="en">What we learn becomes the next question.</p>
                       </div>
                     </div>
                   </section>
-                  <section class="wb-box reveal wb-wonderlab">
+
+                  <!-- ============ 03 CLIENT WORK ============ -->
+                  <section id="work" class="wb-sec wb-flow" aria-labelledby="work-title">
+                    <div class="wb-sec__inner">
+                      <div class="wb-sec__head">
+                        <h2 id="work-title" class="reveal wb-display wb-display--work" lang="en">CLIENT WORK</h2>
+                        <p class="reveal wb-sec__sub" lang="en">We help organizations turn early ideas into real products and services.</p>
+                      </div>
+                      <div class="wb-sec__lead">
+                        <p class="reveal wb-sec__heading">企業の「まだ形になっていない」を、一緒につくる。</p>
+                        <div class="reveal wb-sec__text">
+                          <p>新規サービスやデジタルプロダクトを中心に、構想の整理からサービス設計、UX/UI、PoC、プロトタイピング、開発、既存サービスの改善まで、必要な領域を横断して支援します。決まった工程を当てはめるのではなく、いま何を明らかにし、何を形にすべきかをプロジェクトごとに見極めながら進めます。</p>
+                        </div>
+                        <div class="reveal wb-sec__text-en" lang="en">
+                          <p>We work across whatever a project needs — from shaping an early concept to service design, UX/UI, PoC, prototyping, development, and improving services already in use. Rather than applying a fixed process, we work out with you what needs to be understood, and what needs to be built, next.</p>
+                        </div>
+                      </div>
+                      <ul class="wb-services">
+                        {services.map((s) => (
+                          <li class="reveal wb-services__item">
+                            <div class="wb-services__name">
+                              <h3 class="wb-services__en" lang="en">{s.en}</h3>
+                              <p class="wb-services__ja">{s.ja}</p>
+                            </div>
+                            <div class="wb-services__body">
+                              <p class="wb-services__text">{s.textJa}</p>
+                              <p class="wb-services__text-en" lang="en">{s.textEn}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <!-- ============ 04 SELECTED WORK ============ -->
+                      <section class="wb-cases" aria-labelledby="cases-title">
+                        <div class="wb-cases__head">
+                          <h2 id="cases-title" class="reveal wb-cases__title" lang="en">SELECTED WORK</h2>
+                          <div class="reveal wb-cases__intro">
+                            <p class="wb-cases__intro-ja">守秘義務のため、企業名やプロジェクト名は掲載していません。業種と、向き合った問い、そして私たちが何をしたのかでご紹介します。</p>
+                            <p class="wb-cases__intro-en" lang="en">Much of our work is confidential, so we don't name clients or projects. Instead, we describe each by industry, the question we worked on, and what we did.</p>
+                          </div>
+                        </div>
+                        <ul class="wb-cases__list">
+                          {cases.map((c) => (
+                            <li class="reveal wb-case">
+                              <p class="wb-case__industry"><span class="wb-case__industry-en" lang="en">{c.industryEn}</span><span class="wb-case__industry-ja">{c.industryJa}</span></p>
+                              <div class="wb-case__question">
+                                <p class="wb-case__label" lang="en">QUESTION</p>
+                                <h3 class="wb-case__q">{c.questionJa}</h3>
+                                <p class="wb-case__q-en" lang="en">{c.questionEn}</p>
+                              </div>
+                              <dl class="wb-steps">
+                                {stepLabels.map((s) => (
+                                  <div class="wb-steps__row">
+                                    <dt class="wb-steps__label" lang="en">{s.label}</dt>
+                                    <dd class="wb-steps__body">
+                                      <p class="wb-steps__ja">{c.steps[s.key].ja}</p>
+                                      <p class="wb-steps__en" lang="en">{c.steps[s.key].en}</p>
+                                    </dd>
+                                  </div>
+                                ))}
+                              </dl>
+                            </li>
+                          ))}
+                          <li class="reveal wb-case wb-case--more">
+                            <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
+                            <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
+                            <a class="wb-textlink" href="#contact">プロジェクトについて相談する<span lang="en">Talk to us about a project</span></a>
+                          </li>
+                        </ul>
+                      </section>
+                    </div>
+                  </section>
+
+                  <!-- ============ 05 WONDER LAB ============ -->
+                  <section id="lab" class="wb-box reveal wb-wonderlab wb-flow" aria-labelledby="lab-title">
                     <div class="wb-box reveal wb-wonderlab__inner">
                       <div class="wb-box reveal wb-wonderlab__intro">
-                        <h2 class="text wb-box reveal wb-wonderlab__title">WONDER LAB</h2>
-                        <p class="text wb-box reveal wb-wonderlab__subtitle">
+                        <h2 id="lab-title" class="text wb-box reveal wb-wonderlab__title" lang="en">WONDER LAB</h2>
+                        <p class="text wb-box reveal wb-wonderlab__subtitle" lang="en">
                           Ideas should be built, not just discussed.
                         </p>
                         <div class="wb-box reveal wb-wonderlab__intro-row">
                           <div class="wb-box reveal wb-wonderlab__lead">
+                            <p class="wb-sec__heading">自分たち自身の問いも、つくることで確かめる。</p>
                             <div class="wb-box reveal wb-wonderlab__lead-ja">
-                              <p>WONDER LABは、日々の仕事の中で生まれた問いや仮説を、実際にプロダクトとして形にし、試してみるための場所です。</p>
-                              <p>人をどう理解するか。</p>
-                              <p>情報をどう捉えるか。</p>
-                              <p>そこから、どのように考え、判断するか。</p>
-                              <p>私たちは、議論するだけでは見えてこないことを、つくることで確かめていきます。</p>
-                              <p>小さくてもまず形にし、使い、考え、また更新する。</p>
-                              <p>ここでは、WONDER BROTHERSが自ら問いを立て、設計し、実装しながら探究しているプロダクトを紹介します。</p>
-                          </div>
-                            <div class="wb-box reveal wb-wonderlab__lead-en">
-                              <p>WONDER LAB is a space for turning questions and hypotheses that emerge from our everyday work into real products that can be built, tested, and explored.</p>
-                              <p>How do we understand people?</p>
-                              <p>How do we interpret information?</p>
-                              <p>And how do we think and make decisions from there?</p>
-                              <p>Some things only become visible once they are built.</p>
-                              <p>So we make them, use them, reflect on them, and continue to refine them.</p>
-                              <p>Here, we introduce experimental products created by WONDER BROTHERS through our own process of questioning, designing, building, and learning.</p>
+                              <p>クライアントワークだけでなく、私たち自身も、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にしています。WONDER LABは、「これをつくったら何がわかるだろう？」という問いから始まる実験の場所です。</p>
+                              <p>クライアントワークでは企業や組織の問いに、WONDER LABでは自分たちの問いに向き合います。対象は違っても、見つけ、つくり、学ぶという進め方は同じです。</p>
+                            </div>
+                            <div class="wb-box reveal wb-wonderlab__lead-en" lang="en">
+                              <p>Beyond client work, we take the questions that come up in our own work and lives and turn them into products and experiments. WONDER LAB starts from a simple question: what will we learn if we build this?</p>
+                              <p>In client work, we take on the questions of organizations. In WONDER LAB, we take on our own. The subject changes; the way we work doesn't.</p>
                             </div>
                           </div>
                           <div class="wb-box reveal wb-wonderlab__visual">
@@ -230,139 +493,48 @@ const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\"
                       <div class="wb-box reveal wb-wonderlab__carousel">
                         <div class="wb-box wb-wonderlab__carousel-viewport" data-carousel-viewport>
                           <div class="wb-box wb-wonderlab__products" data-carousel-track>
-                            <div class="wb-box wb-wonderlab__product wb-wonderlab__product-64monsters">
-                              <div class="wb-box reveal wb-wonderlab__product-aside">
-                                <a
-                                  class="wb-box wb-wonderlab__product-logo-link"
-                                  href="https://64monsters.wonder-bros.com/"
-                                  target="_blank"
-                                  rel="noopener"
-                                >
-                                  <img
-                                    class="wb-box wb-wonderlab__product-logo"
-                                    alt="64MONSTERS"
-                                    src="images/64monsters-logo-animated.svg"
-                                  />
-                                </a>
-                                <a
-                                  class="text link wb-box reveal wb-wonderlab__product-link"
-                                  href="https://64monsters.wonder-bros.com/"
-                                  target="_blank"
-                                  rel="noopener"
-                                  >64monsters.wonder-bros.com</a
-                                >
-                              </div>
-                              <div class="wb-box reveal wb-wonderlab__product-body">
-                                <div class="wb-box reveal wb-wonderlab__product-heading">
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-ja">
-                                    ユーザーを知ることから、人を知ることへ。
-                                  </p>
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-en">
-                                    From knowing the user to knowing the person.
-                                  </p>
+                            {labProjects.map((p) => (
+                              <article class={`wb-box wb-wonderlab__product wb-wonderlab__product-${p.key}`} aria-labelledby={`lab-${p.key}`}>
+                                <div class="wb-box reveal wb-wonderlab__product-aside">
+                                  {p.url ? (
+                                    <a class="wb-box wb-wonderlab__product-logo-link" href={p.url} target="_blank" rel="noopener">
+                                      <img class="wb-box wb-wonderlab__product-logo" alt={p.name} src={p.logo} />
+                                    </a>
+                                  ) : (
+                                    <img class="wb-box wb-wonderlab__product-logo" alt={p.name} src={p.logo} />
+                                  )}
+                                  {p.url && (
+                                    <a class="text link wb-box reveal wb-wonderlab__product-link" href={p.url} target="_blank" rel="noopener">{p.urlLabel}</a>
+                                  )}
                                 </div>
-                                <div class="wb-box reveal wb-wonderlab__product-text">
-                                  <div class="wb-box reveal wb-wonderlab__product-ja">
-                                    <p>64MONSTERSは、これまでUXデザインに関わる中で生まれたひとつの問いから始まりました。</p>
-                                    <p>サービスやプロダクトを設計する際、私たちはユーザーの行動や課題、利用文脈を理解しながら体験を設計します。その仕事を続ける中で、サービスを利用している瞬間だけでなく、その人がどのように物事を捉え、判断し、他者と関わるのかまで含めて理解できないだろうか、という関心を持つようになりました。</p>
-                                    <p>既存のタイプ診断の考え方を参考にしながら、診断体験そのものをUXの視点から再設計した実験的なプロダクトです。90問という設問数による負担をどう軽くするか。結果をひとつのタイプコードだけで終わらせず、各傾向のスコアや揺れまでどう見せるか。さらに、繰り返し診断することで、自分自身の変化をどう捉えられるようにするか。</p>
-                                    <p>オリジナルキャラクターやフレンド登録、相性診断なども含め、性格診断を「結果を見るためのもの」から、「自分や他者を理解するための体験」へ広げることを目指しています。</p>
-                                    <p>「人を理解する力」を、診断という体験を通して探究しています。</p>
-                                  </div>
-                                  <div class="wb-box reveal wb-wonderlab__product-en">
-                                    <p>64MONSTERS began with a question that emerged from our experience in UX design.</p>
-                                    <p>When designing services and products, we try to understand users’ behaviors, needs, and contexts in order to create better experiences. Over time, this led us to a broader question: could we understand not only the user at the moment of interaction, but also how that person thinks, makes decisions, and relates to others?</p>
-                                    <p>Drawing on existing personality-type frameworks, 64MONSTERS is an experimental product that rethinks the assessment experience itself from a UX perspective. How can we reduce the burden of answering 90 questions? How can we present results beyond a single type code by showing scores and fluctuations? And how can repeated assessments help people notice changes in themselves over time?</p>
-                                    <p>Original characters, friend connections, and compatibility features are all designed to extend personality assessment from simply “seeing a result” into an experience for better understanding oneself and others.</p>
-                                    <p>Through the experience of assessment, 64MONSTERS explores how we can strengthen our ability to understand people.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="wb-box wb-wonderlab__product wb-wonderlab__product-rensougame">
-                              <div class="wb-box reveal wb-wonderlab__product-aside">
-                                <a
-                                  class="wb-box wb-wonderlab__product-logo-link"
-                                  href="https://rensougame.wonder-bros.com/"
-                                  target="_blank"
-                                  rel="noopener"
-                                >
-                                  <img
-                                    class="wb-box wb-wonderlab__product-logo"
-                                    alt="RENSOU GAME"
-                                    src="images/rensougame-logo-animated.svg"
-                                  />
-                                </a>
-                                <a
-                                  class="text link wb-box reveal wb-wonderlab__product-link"
-                                  href="https://rensougame.wonder-bros.com/"
-                                  target="_blank"
-                                  rel="noopener"
-                                  >rensougame.wonder-bros.com</a
-                                >
-                              </div>
-                              <div class="wb-box reveal wb-wonderlab__product-body">
-                                <div class="wb-box reveal wb-wonderlab__product-heading">
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-ja">
-                                    情報を読むことから、仮説を立てることへ。
+                                <div class="wb-box reveal wb-wonderlab__product-body">
+                                  <p class="wb-lab__theme">
+                                    <span class="wb-lab__name" id={`lab-${p.key}`} lang="en">{p.name}</span>
+                                    <span class="wb-lab__theme-ja">{p.themeJa}</span>
+                                    <span class="wb-lab__theme-en" lang="en">{p.themeEn}</span>
                                   </p>
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-en">
-                                    From reading information to forming hypotheses.
-                                  </p>
-                                </div>
-                                <div class="wb-box reveal wb-wonderlab__product-text">
-                                  <div class="wb-box reveal wb-wonderlab__product-ja">
-                                    <p>連想ゲームは、デザインの仕事に向き合う中で感じてきた、「仮説をどう組み立て、どう確かめるか」という問いから生まれました。</p>
-                                    <p>デザインは、見た目や使いやすさだけを考える仕事ではありません。サービスやプロダクトがどのような価値を生み、どれだけの効果や売上につながるのか。私たちは事象や情報を読み取り、仮説を立て、その結果を検証しながら意思決定していく必要があります。</p>
-                                    <p>その思考プロセスを、ニュースという身近な題材を使って構造化した実験的なプロダクトです。ひとつのニュースから本質を捉え、一次影響、相対優位、二次影響へと連想を広げる。そして、自分の仮説が崩れる条件を考え、最後に何を観測すれば確かめられるのかまでを、6つのステップで辿ります。</p>
-                                    <p>目的は未来を当てることではなく、「なぜそう考えたのか」「どこまでは筋が良く、どこで判断を誤ったのか」を振り返り、自分自身の思考を検証できるようにすることです。</p>
-                                    <p>「考える力」を、ゲームという体験を通して探究しています。</p>
+                                  <div class="wb-box reveal wb-wonderlab__product-heading">
+                                    <h3 class="text wb-box reveal wb-wonderlab__product-heading-ja">{p.questionJa}</h3>
+                                    <p class="text wb-box reveal wb-wonderlab__product-heading-en" lang="en">{p.questionEn}</p>
                                   </div>
-                                  <div class="wb-box reveal wb-wonderlab__product-en">
-                                    <p>RENSOU GAME began with a question that repeatedly arises in design work: how do we build a hypothesis, and how do we test whether it is sound?</p>
-                                    <p>Design is not only about appearance or usability. We also need to consider what kind of value a service or product creates, how effective it is, and how it contributes to business results. This requires us to interpret events and information, form hypotheses, and test them as part of the decision-making process.</p>
-                                    <p>RENSOU GAME is an experimental product that structures this thinking process using everyday news as its material. Starting from a single news event, players identify its underlying significance, consider direct impacts, relative advantages, and secondary effects, then examine the conditions that could invalidate the hypothesis and determine what should be observed to test it.</p>
-                                    <p>The goal is not to predict the future correctly. It is to look back at the reasoning itself: why a hypothesis was formed, which parts were sound, and where the thinking may have gone wrong.</p>
-                                    <p>Through the experience of a game, RENSOU GAME explores how we can strengthen our ability to think, hypothesize, challenge, and verify.</p>
+                                  <div class="wb-box reveal wb-wonderlab__product-text">
+                                    <div class="wb-box reveal wb-wonderlab__product-ja"><p>{p.contextJa}</p></div>
+                                    <div class="wb-box reveal wb-wonderlab__product-en" lang="en"><p>{p.contextEn}</p></div>
                                   </div>
+                                  <dl class="wb-steps">
+                                    {stepLabels.map((s) => (
+                                      <div class="wb-steps__row">
+                                        <dt class="wb-steps__label" lang="en">{s.label}</dt>
+                                        <dd class="wb-steps__body">
+                                          <p class="wb-steps__ja">{p.steps[s.key].ja}</p>
+                                          <p class="wb-steps__en" lang="en">{p.steps[s.key].en}</p>
+                                        </dd>
+                                      </div>
+                                    ))}
+                                  </dl>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="wb-box wb-wonderlab__product wb-wonderlab__product-mori">
-                              <div class="wb-box reveal wb-wonderlab__product-aside">
-                                <img
-                                  class="wb-box wb-wonderlab__product-logo"
-                                  alt="mori"
-                                  src="images/mori-logo.svg"
-                                />
-                              </div>
-                              <div class="wb-box reveal wb-wonderlab__product-body">
-                                <div class="wb-box reveal wb-wonderlab__product-heading">
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-ja">
-                                    森を使うことから、森の価値を探ることへ。
-                                  </p>
-                                  <p class="text wb-box reveal wb-wonderlab__product-heading-en">
-                                    From using a forest to discovering its value.
-                                  </p>
-                                </div>
-                                <div class="wb-box reveal wb-wonderlab__product-text">
-                                  <div class="wb-box reveal wb-wonderlab__product-ja">
-                                    <p>このプロジェクトは、北海道道北エリアに広大なトドマツの森を取得したことから始まりました。当初は、この土地を起点に新しい事業の可能性を探ることを考えていました。</p>
-                                    <p>しかし、この土地には水道も下水も電気もなく、まず地下水の確保や電気の引き込みなど、環境そのものを整える必要があります。森林なので土地の境界が目に見えるわけでもなく、都会では当たり前に用意されているものがほとんどない。そんな原始的な環境に身を置くことで、便利さの中で忘れていた感覚や、自分たちで考え、判断し、なんとかしていくことの面白さに気づきました。</p>
-                                    <p>そこで、何かを始める前に、この森そのものにどんな価値があるのかを探ってみることにしました。森に生育するトドマツの枝葉から精油を抽出し、成分を分析。実際にアロマとして使い、香りや使用感、空間に与える印象を自分たちや友人と確かめています。</p>
-                                    <p>この森を何にするのかは、まだ決めていません。先に答えを決めるのではなく、実際の環境に身を置き、触れ、試し、そこから次の可能性を見つけていく。</p>
-                                    <p>「価値を見つける力」を、森という実際の環境を通して探究しています。</p>
-                                  </div>
-                                  <div class="wb-box reveal wb-wonderlab__product-en">
-                                    <p>This project began with the acquisition of a vast Todo fir forest in northern Hokkaido. At first, we saw the land as a starting point for exploring new business possibilities.</p>
-                                    <p>But there is no running water, sewerage, or electricity on the property. Before anything else, we need to secure groundwater, bring in electricity, and build the basic infrastructure ourselves. Even the boundaries of the land are not always physically visible in the forest. Very little of what we take for granted in the city is already there. Being in such a primitive environment reminded us of something we had almost forgotten in the convenience of everyday life: the excitement of thinking for ourselves, making decisions, and finding a way forward on our own.</p>
-                                    <p>Before starting anything, we decided to first explore what kind of value might already exist within the forest itself. We extracted essential oil from the branches and leaves of the Todo fir trees, analyzed its composition, and actually used it as an aroma, experiencing its scent, feel, and effect on the surrounding space together with friends.</p>
-                                    <p>We still have not decided what this forest will become. Rather than defining the answer in advance, we place ourselves in the real environment, touch, test, and experience it, then look for what possibilities might emerge next.</p>
-                                    <p>Through the forest as a real-world environment, we are exploring our ability to discover value.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                              </article>
+                            ))}
                           </div>
                         </div>
                         <div class="wb-box wb-wonderlab__carousel-arrows" data-carousel-arrows>
@@ -370,7 +542,7 @@ const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\"
                             type="button"
                             class="wb-box wb-wonderlab__carousel-arrow"
                             data-carousel-prev
-                            aria-label="前のプロダクトを見る"
+                            aria-label="前のプロジェクトを見る"
                           >
                             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
                               ><polyline
@@ -387,7 +559,7 @@ const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\"
                             type="button"
                             class="wb-box wb-wonderlab__carousel-arrow"
                             data-carousel-next
-                            aria-label="次のプロダクトを見る"
+                            aria-label="次のプロジェクトを見る"
                           >
                             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
                               ><polyline
@@ -405,52 +577,97 @@ const jsonLd = "[{\"@context\":\"https://schema.org\",\"@type\":\"Organization\"
                           <div class="wb-box wb-wonderlab__carousel-dots" data-carousel-dots></div>
                         </div>
                       </div>
+                      <div class="reveal wb-lab__closing">
+                        <p class="wb-lab__closing-ja">デジタルでも、森でも、私たちがやっていることは同じです。</p>
+                        <p class="wb-lab__closing-en" lang="en">Digital or a forest, what we do is the same.</p>
+                        <p class="wb-principle wb-principle--ink">
+                          <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
+                          <span class="wb-principle__ja">見つける。つくる。学ぶ。</span>
+                        </p>
+                      </div>
                     </div>
                   </section>
-                  <section class="wb-box reveal wb-company">
-                    <div class="wb-box reveal wb-company__inner">
-                      <h2 class="text wb-box reveal wb-section-label wb-company__title">COMPANY INFORMATION</h2>
-                      <div class="wb-box reveal wb-company__body">
-                        <div class="wb-box reveal wb-company__table">
-                          <p class="text wb-box reveal wb-company__name-label">会社名</p>
-                          <p class="text wb-box reveal wb-company__name-ja">
-                            株式会社ワンダーブラザース
-                          </p>
-                          <p class="text wb-box reveal wb-company__name-en">WONDER BROTHERS INC.</p>
-                          <div class="wb-box reveal wb-company__divider-1"></div>
-                          <p class="text wb-box reveal wb-company__address-label">所在地</p>
-                          <p class="text wb-box reveal wb-company__address-ja">
-                            〒150-0043 東京都渋谷区道玄坂1-10-8 渋谷道玄坂東急ビル2F−C<br />
-                          </p>
-                          <p class="text wb-box reveal wb-company__address-en">
-                            2F-C, Shibuya Dogenzaka Tokyu Building, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan
-                          </p>
-                          <div class="wb-box reveal wb-company__divider-2"></div>
-                          <p class="text wb-box reveal wb-company__founded-label">設立</p>
-                          <p class="text wb-box reveal wb-company__founded-ja">2020年4月7日</p>
-                          <p class="text wb-box reveal wb-company__founded-en">
-                            Date of Establishment: April 7, 2020
-                          </p>
-                          <div class="wb-box reveal wb-company__divider-3"></div>
-                          <p class="text wb-box reveal wb-company__capital-label">資本金</p>
-                          <p class="text wb-box reveal wb-company__capital-ja">10,000,000円</p>
-                          <p class="text wb-box reveal wb-company__capital-en">Capital: 10 million yen</p>
-                          <div class="wb-box reveal wb-company__divider-4"></div>
-                          <p class="text wb-box reveal wb-company__director-label">代表取締役</p>
-                          <p class="text wb-box reveal wb-company__director-ja">佐藤大志</p>
-                          <p class="text wb-box reveal wb-company__director-en">
-                            Representative Director: Taishi Sato
-                          </p>
-                          <div class="wb-box reveal wb-company__divider-5"></div>
-                        </div>
-                        <a href="contact/index.html" class="link wb-box reveal wb-company__contact"
-                          ><div class="wb-box reveal wb-company__contact-text">
-                            <p class="text wb-box reveal wb-company__contact-title">CONTACT</p>
-                            <p class="text wb-box reveal wb-company__contact-note">
-                              お問い合わせはこちらから
+                </div>
+
+                <!-- ============ 06 OUR BELIEF ============ -->
+                <section class="wb-belief wb-flow" aria-labelledby="belief-title">
+                  <div class="wb-belief__inner">
+                    <h2 id="belief-title" class="reveal wb-row-title wb-belief__label" lang="en">OUR BELIEF</h2>
+                    <div class="wb-belief__body">
+                      <div class="wb-belief__list" lang="en">
+                        <p class="reveal wb-belief__line wb-belief__line--1">Design is not</p>
+                        <p class="reveal wb-belief__line wb-belief__line--2">decoration.</p>
+                      </div>
+                      <p class="reveal wb-belief__ja">デザインは、見た目を整えることだけではありません。複雑なものを整理し、まだ見えていない問題を見つけ、人が理解し、判断し、行動できる状態をつくること。そして実際につくり、そこから学ぶこと。私たちは、それもデザインだと考えています。</p>
+                      <p class="reveal wb-belief__en" lang="en">Design isn't only about how things look. It's about bringing order to complexity, finding problems no one has named yet, and helping people understand, decide, and act. It's also about building things and learning from them. That, too, is design.</p>
+                      <p class="reveal wb-belief__closing">
+                        <span class="wb-belief__closing-en" lang="en">Design is how we discover, make and learn.</span>
+                        <span class="wb-belief__closing-ja">デザインは、見つけ、つくり、学ぶための方法です。</span>
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="wb-box reveal wb-lower wb-lower--company">
+                  <!-- ============ 07 ABOUT ============ -->
+                  <section id="about" class="wb-row-sec wb-flow" aria-labelledby="about-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="about-title" class="reveal wb-row-title" lang="en">ABOUT</h2>
+                      <dl class="reveal wb-company-list">
+                        {company.map((row) => (
+                          <div class="wb-company-list__row">
+                            <dt class="wb-company-list__label">{row.label}</dt>
+                            <dd class="wb-company-list__value">
+                              {row.list ? (
+                                <ul class="wb-company-list__services" lang="en">
+                                  {row.list.map((item) => <li>{item}</li>)}
+                                </ul>
+                              ) : (
+                                <p class="wb-company-list__ja">{row.ja}</p>
+                              )}
+                              <p class="wb-company-list__en" lang={row.list ? "ja" : "en"}>{row.en}</p>
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  </section>
+
+                  <!-- ============ 08 SECURITY & GOVERNANCE ============ -->
+                  <section class="wb-row-sec wb-flow" aria-labelledby="governance-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="governance-title" class="reveal wb-row-title" lang="en">SECURITY &amp; GOVERNANCE</h2>
+                      <div class="reveal wb-row-sec__body">
+                        <p class="wb-row-sec__ja">企業とのプロジェクトを安全に進めるため、情報管理、セキュリティ、ガバナンス体制の整備に取り組んでいます。</p>
+                        <p class="wb-row-sec__en" lang="en">To keep projects with our clients secure, we continue to strengthen how we manage information, security, and governance.</p>
+                        <details class="wb-details">
+                          <summary class="wb-details__summary">詳しく見る<span lang="en">Details</span></summary>
+                          <div class="wb-details__body">
+                            <p class="wb-row-sec__ja">中長期的な企業価値の向上に向けて、コーポレート・ガバナンスとセキュリティの強化を重要な課題と捉えています。意思決定の公平性と透明性を高めるため、業務執行に対する監督機能の充実と、適正な情報開示のための社内体制づくりを進めています。</p>
+                            <p class="wb-row-sec__en" lang="en">We see stronger corporate governance and security as essential to long-term value. To keep decision-making fair and transparent, we are reinforcing oversight of business execution and building the internal systems needed for appropriate disclosure.</p>
+                            <p class="wb-row-sec__ja">個人情報の取り扱いについては、<a class="wb-inline-link" href="privacy/index.html">プライバシーポリシー</a>をご覧ください。</p>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ============ 09 CONTACT ============ -->
+                  <section id="contact" class="wb-row-sec wb-flow" aria-labelledby="contact-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="contact-title" class="reveal wb-row-title" lang="en">CONTACT</h2>
+                      <div class="reveal wb-row-sec__body">
+                        <p class="wb-contact__lead">まだ具体的な企画になっていない段階でも構いません。</p>
+                        <p class="wb-row-sec__ja">新しいサービス、UX/UI、PoC、DXについて、一緒に問いを整理するところからご相談ください。</p>
+                        <p class="wb-row-sec__en" lang="en">You don't need to have everything figured out before you contact us. If you're exploring a new service, product, UX challenge, prototype, or digital transformation, we can start by defining the question together.</p>
+                        <a href="contact/index.html" class="link wb-box wb-company__contact"
+                          ><div class="wb-box wb-company__contact-text">
+                            <p class="text wb-box wb-company__contact-title">お問い合わせ</p>
+                            <p class="text wb-box wb-company__contact-note" lang="en">
+                              Start a conversation
                             </p>
                           </div>
-                          <i class="icon material-icons wb-box reveal wb-company__contact-icon"
+                          <i class="icon material-icons wb-box wb-company__contact-icon" aria-hidden="true"
                             >keyboard_arrow_right</i
                           ></a
                         >

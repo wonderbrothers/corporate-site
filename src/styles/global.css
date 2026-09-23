@@ -57,24 +57,31 @@
   /* 大見出しは SP（540px以下）でコンテンツ幅いっぱいにする。必要な文字サイズは
      文字列ごとに違う（= コンテンツ幅 ÷ 1em あたりの文字幅）ので、役割ごとに
      トークンを分けてある。下の @media 540px で実際の計算式に切り替わる。
-     ★係数 = 「1em あたりの文字幅」の実測値 + 約2%の余裕。
-       Development. 6.6075 / WE THINK 4.6754 / WONDER LAB 6.2848（Noto Sans 700、
-       letter-spacing はタグライン -0.03em・他 -0.04em を含む）を丸めて
-       6.74 / 4.77 / 6.41 を使用。
-       ★測り直すときは必ず Noto Sans が実際に読み込まれたブラウザで測ること。
-         Web フォントが読めない環境で測ると代替フォントの幅になり（例: Development.
-         が 6.197 と出る）、本番で 6% ほど大きくなって端が折り返す。
+     ★係数 = 「1em あたりの文字幅」の実測値 + 約2%の余裕（Noto Sans 700）。
+       the unanswered. 7.9320（-0.03em）→ 8.09
+       APPROACH 5.1201（-0.04em）→ 5.22
+       CLIENT WORK 6.4280（-0.04em）→ 6.56
+       WONDER LAB 6.2848（-0.04em）→ 6.41
+       Design is not 6.0520（-0.03em）→ 6.17
+       2行の見出しは長い方の行を基準にして、2行とも同じサイズにする。
+       測定方法と旧係数での検算結果は docs/site-restructure-2026-09.md を参照。
+       ★測り直すときは必ず Noto Sans が実際に読み込まれた状態で測ること。
+         Web フォントが読めない環境で測ると代替フォントの幅になり
+         （例: Development. が 6.197 と出る）、本番で 6% ほど大きくなって端が折り返す。
        ★見出しのテキストを変えたら係数も測り直すこと。 */
-  --wb-text-display-tagline: var(--wb-text-display);     /* Discover./Design./Development.（最長の Development. 基準で3行同サイズ） */
-  --wb-text-display-we-think: var(--wb-text-display);    /* WE THINK */
+  --wb-text-display-statement: var(--wb-text-display);   /* HERO：Build to explore / the unanswered. */
+  --wb-text-display-approach: var(--wb-text-display);    /* APPROACH */
+  --wb-text-display-work: var(--wb-text-display);        /* CLIENT WORK */
   --wb-text-display-wonder-lab: var(--wb-text-display);  /* WONDER LAB */
-  --wb-text-section: var(--wb-fs-4xl);       /* セクション見出し（OUR MISSION 等）・下層ページのページ見出し */
+  --wb-text-display-belief: var(--wb-text-display);      /* OUR BELIEF：Design is not / decoration. */
+  --wb-text-statement: var(--wb-fs-5xl);     /* HERO の和文コピー（答えのない問いを、つくることで確かめる。） */
+  --wb-text-section: var(--wb-fs-4xl);       /* セクション見出し（SELECTED WORK / ABOUT 等）・下層ページのページ見出し */
   --wb-text-title: var(--wb-fs-3xl);         /* お問い合わせ・プライバシーポリシーのタイトル */
   --wb-text-heading-lg: var(--wb-fs-2xl);    /* 大きめの小見出し（プロダクト名・お問い合わせ導線） */
   --wb-text-heading-md: var(--wb-fs-xl);     /* カード見出し */
   --wb-text-heading-sm: var(--wb-fs-lg);     /* 条文見出し・記事内 h3 */
   --wb-text-lead: var(--wb-fs-xl);           /* セクションのリード文 */
-  --wb-text-body-lg: var(--wb-fs-xl);        /* 大きめ和文本文（MISSION/THEME/VALUE/GOVERNANCE） */
+  --wb-text-body-lg: var(--wb-fs-xl);        /* 大きめ和文本文（HERO ステートメント・OUR BELIEF） */
   --wb-text-body: var(--wb-fs-md);           /* 標準の本文 */
   --wb-text-body-tight: var(--wb-fs-md);     /* 本文と同じ大きさだが、詰まった行（会社情報の値など）は狭い画面で一段早く下げる */
   --wb-text-body-en: var(--wb-fs-md);        /* 標準の英文本文 */
@@ -82,6 +89,7 @@
   --wb-text-caption: var(--wb-fs-sm);        /* 補助テキスト・英文キャプション */
   --wb-text-meta: var(--wb-fs-sm);           /* フッター・ボタン等のメタ情報 */
   --wb-text-label: var(--wb-fs-xs);          /* 項目ラベル・細かい注記（最小サイズ） */
+  --wb-text-nav: var(--wb-fs-xs);            /* 固定ナビのリンク */
   --wb-text-vertical-label: var(--wb-fs-sm); /* HERO の縦書きスクロールラベル */
   --wb-text-form-input: var(--wb-fs-md);     /* 入力欄。16px 未満にすると iOS で自動ズームするため下げない */
   --wb-text-icon-lg: var(--wb-fs-5xl);       /* Material Icons（大） */
@@ -104,6 +112,7 @@
 @media screen and (max-width: 840px) {
   :root {
     --wb-text-title: var(--wb-fs-2xl);        /* 28 → 24 */
+    --wb-text-statement: var(--wb-fs-3xl);    /* 36 → 28 */
     --wb-text-heading-lg: var(--wb-fs-xl);    /* 24 → 20 */
     --wb-text-body-lg: var(--wb-fs-lg);       /* 20 → 18 */
     --wb-text-vertical-label: var(--wb-fs-xs); /* 14 → 12 */
@@ -120,9 +129,12 @@
        100cqw（コンテナの内容幅）で正確に埋める。
        下の 320px ブロックでパディングが変わると --wb-content-width が変わり、
        この式の結果も自動的に追従するので、320px 側に書き足す必要はない。 */
-    --wb-text-display-tagline: calc((var(--wb-content-width) - 17px) / 6.74);    /* Development. 基準 */
-    --wb-text-display-we-think: calc((var(--wb-content-width) - 17px) / 4.77);   /* WE THINK */
+    --wb-text-display-statement: calc((var(--wb-content-width) - 17px) / 8.09);  /* the unanswered. 基準 */
+    --wb-text-display-approach: calc((var(--wb-content-width) - 17px) / 5.22);   /* APPROACH */
+    --wb-text-display-work: calc((var(--wb-content-width) - 17px) / 6.56);       /* CLIENT WORK */
     --wb-text-display-wonder-lab: calc((var(--wb-content-width) - 17px) / 6.41); /* WONDER LAB */
+    --wb-text-display-belief: calc((var(--wb-content-width) - 17px) / 6.17);     /* Design is not 基準 */
+    --wb-text-statement: var(--wb-fs-2xl);     /* 28 → 24 */
     --wb-text-section: var(--wb-fs-3xl);       /* 32 → 28 */
     --wb-text-heading-md: var(--wb-fs-lg);     /* 20 → 18 */
     --wb-text-lead: var(--wb-fs-sm);           /* 16 → 14 */
@@ -145,14 +157,16 @@
     --wb-text-body-en: var(--wb-fs-xs);        /* 14 → 12 */
     --wb-text-caption: var(--wb-fs-xs);        /* 14 → 12 */
     --wb-text-vertical-label: var(--wb-fs-3xs); /* 10 → 8 */
+    --wb-text-statement: var(--wb-fs-xl);      /* 24 → 20 */
+    --wb-text-nav: var(--wb-fs-2xs);           /* 12 → 10 */
     --wb-text-icon-lg: var(--wb-fs-2xl);       /* 28 → 24 */
   }
 }
 
 /* ------------------------------------------------------------------
    大見出しを SP でコンテンツ幅ぴったりに埋める（コンテナクエリ単位が使える場合）
-   100cqw = 見出しの親（wb-tagline__list / wb-approach__inner /
-   wb-wonderlab__intro、index.css で container-type: inline-size を指定）の内容幅。
+   100cqw = 見出しの親（wb-statement__list / wb-sec__head /
+   wb-wonderlab__intro / wb-belief__list。container-type はこのファイルの下で指定）の内容幅。
    100vw と違いスクロールバーの幅を含まないので、DevTools のレスポンシブ表示や
    Windows のような常時スクロールバーの環境でもはみ出さない。
    係数は Noto Sans 700 の実測値 + 約1.5%の余裕（文言を変えたら測り直す）。
@@ -162,9 +176,10 @@
      別ファイル（index.css）に置くと、どちらか一方だけが古い状態になったときに
      100cqw がコンテナを見つけられずビューポート幅にフォールバックし、
      左右パディングのぶん見出しが大きくなって折り返す。 */
-  .wb-box.wb-tagline__list,
-  .wb-box.wb-approach__inner,
-  .wb-box.wb-wonderlab__intro {
+  .wb-box.wb-statement__list,
+  .wb-sec__head,
+  .wb-box.wb-wonderlab__intro,
+  .wb-belief__list {
     container-type: inline-size;
   }
   @media screen and (max-width: 540px) {
@@ -172,9 +187,11 @@
       /* 通常は 100cqw（コンテナの内容幅）が効く。万一コンテナが効かず
          100cqw がビューポート幅になっても、min() の右側（パディングを引いた幅）
          が採用されるので、はみ出して折り返すことはない。 */
-      --wb-text-display-tagline: min(calc(100cqw / 6.74), calc(var(--wb-content-width) / 6.74));
-      --wb-text-display-we-think: min(calc(100cqw / 4.77), calc(var(--wb-content-width) / 4.77));
+      --wb-text-display-statement: min(calc(100cqw / 8.09), calc(var(--wb-content-width) / 8.09));
+      --wb-text-display-approach: min(calc(100cqw / 5.22), calc(var(--wb-content-width) / 5.22));
+      --wb-text-display-work: min(calc(100cqw / 6.56), calc(var(--wb-content-width) / 6.56));
       --wb-text-display-wonder-lab: min(calc(100cqw / 6.41), calc(var(--wb-content-width) / 6.41));
+      --wb-text-display-belief: min(calc(100cqw / 6.17), calc(var(--wb-content-width) / 6.17));
     }
   }
 }

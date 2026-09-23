@@ -40,6 +40,26 @@
   targets.forEach(function (el) { io.observe(el); });
 })();
 
+/*
+ * 固定ナビゲーション（トップページ）
+ * HERO（イラスト）が画面に見えている間は隠し、過ぎたら上から出す。
+ * JS 無効時・IntersectionObserver 非対応時は常に表示（CSS 側の既定）。
+ */
+(function () {
+  var nav = document.querySelector('[data-nav]');
+  if (!nav) return;
+  var hero = document.querySelector('[data-hero]');
+  if (!hero || !('IntersectionObserver' in window)) {
+    nav.classList.add('is-shown');
+    return;
+  }
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      nav.classList.toggle('is-shown', !entry.isIntersecting);
+    });
+  }, { threshold: 0 }).observe(hero);
+})();
+
 // お問い合わせフォームの送信は contact ページ内のスクリプト
 // （reCAPTCHA v3 → Cloudflare Worker 経由）で処理する。
 
