@@ -890,6 +890,9 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
    帯の合計高さは他カード（ロゴ + gap + チップ）と一致するので、見出し位置は揃ったまま。 */
 .wb-wonderlab__product-forest .wb-box.wb-wonderlab__product-logo {
   height: calc(var(--wl-logo-height) + var(--wl-logo-gap) + var(--wl-chip-height));
+  @media screen and (max-width: 540px) {
+    height: auto;
+  }
 }
 .wb-box.wb-wonderlab__product-aside {
   align-content: flex-start;
@@ -951,6 +954,10 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   @media screen and (max-width: 1140px) {
     align-self: center;
   }
+  /* SP はロゴをカードの内容幅いっぱいに（包む <a> も横幅いっぱいに広げる） */
+  @media screen and (max-width: 540px) {
+    align-self: stretch;
+  }
 }
 .wb-box.wb-wonderlab__product-logo {
   flex: none;
@@ -962,8 +969,10 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   @media screen and (max-width: 1140px) {
     object-position: center;
   }
+  /* SP はカードの内容幅いっぱい。高さは各ロゴの縦横比で決まる */
   @media screen and (max-width: 540px) {
-    width: 240px;
+    height: auto;
+    width: 100%;
   }
 }
 .wb-box.wb-wonderlab__product-body {
