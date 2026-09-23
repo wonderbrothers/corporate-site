@@ -1846,12 +1846,6 @@ html.wb-drawer-open body {
     margin: 0px 6px;
   }
 }
-/* 動きを控える設定のときだけ、戻り先の Discover をメインカラーで固定表示 */
-@media (prefers-reduced-motion: reduce) {
-  .wb-cycle__step--return {
-    color: var(--primary);
-  }
-}
 .wb-cycle__ja {
   font-size: var(--wb-text-body);
   font-weight: var(--wb-fw-semibold);
@@ -1874,7 +1868,6 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(3) { transition-del
 html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(4) { transition-delay: 0.75s; }
 html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(5) { transition-delay: 1s; }
 html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(6) { transition-delay: 1.25s; }
-html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-delay: 1.6s; }
 @media (prefers-reduced-motion: reduce) {
   html.js-on .wb-cycle :is(.wb-cycle__step, .wb-cycle__arrow) {
     opacity: 1;
@@ -1882,20 +1875,20 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   }
 }
 
-/* 循環のループ：メインカラーの光が Discover → Make → Learn → Discover を流れ続ける。
-   7要素（語4つ＋矢印3つ）を 0.6s ずつずらして同じアニメーションを流す。
-   1周 4.2s ＝ 7 × 0.6s なので、最後の Discover が灯った 0.6s 後に先頭の Discover が
-   灯り、切れ目なくつながって見える。JS があるときは表示されてから動き出す。 */
+/* 循環のループ：メインカラーの光が Discover → Make → Learn → を流れ続ける。
+   6要素（語3つ＋矢印3つ）を 0.6s ずつずらして同じアニメーションを流す。
+   1周 3.6s ＝ 6 × 0.6s なので、末尾の矢印が灯った 0.6s 後に先頭の Discover が
+   灯り、Learn から Discover へ戻る流れが切れ目なく続く。JS があるときは表示されてから動き出す。 */
 @keyframes wbCycleStep {
-  0%, 32%, 100% { color: var(--wb-ink); }
-  10%, 20% { color: var(--primary); }
+  0%, 36%, 100% { color: var(--wb-ink); }
+  12%, 22% { color: var(--primary); }
 }
 @keyframes wbCycleArrow {
-  0%, 32%, 100% { color: #22222247; }
-  10%, 20% { color: var(--primary); }
+  0%, 36%, 100% { color: #22222247; }
+  12%, 22% { color: var(--primary); }
 }
 .wb-cycle__flow > * {
-  animation-duration: 4.2s;
+  animation-duration: 3.6s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
@@ -1910,7 +1903,6 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
 .wb-cycle__flow > :nth-child(4) { animation-delay: 1.8s; }
 .wb-cycle__flow > :nth-child(5) { animation-delay: 2.4s; }
 .wb-cycle__flow > :nth-child(6) { animation-delay: 3s; }
-.wb-cycle__flow > :nth-child(7) { animation-delay: 3.6s; }
 html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   animation-play-state: paused;
 }
