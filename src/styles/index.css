@@ -2247,12 +2247,15 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   font-size: var(--wb-text-body-en);
   font-weight: var(--wb-fw-medium);
   line-height: 1.4;
-  margin: 12px 0px 0px;
+  margin: 8px 0px 0px;
   max-width: 880px;
 }
-/* 2段落目（AIの時代の人の判断） */
+/* 日本語2段落 → 英語2段落の順にまとめて並べる（WONDER LAB の導入と同じ組み方） */
 .wb-belief__ja--next {
-  margin: 32px 0px 0px;
+  margin: 16px 0px 0px;
+}
+.wb-belief__en--first {
+  margin: 24px 0px 0px;
 }
 .wb-belief__closing {
   color: var(--wb-cream);
