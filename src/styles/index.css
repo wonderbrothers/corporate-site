@@ -1846,8 +1846,11 @@ html.wb-drawer-open body {
     margin: 0px 6px;
   }
 }
-.wb-cycle__step--return {
-  color: var(--primary);
+/* 動きを控える設定のときだけ、戻り先の Discover をメインカラーで固定表示 */
+@media (prefers-reduced-motion: reduce) {
+  .wb-cycle__step--return {
+    color: var(--primary);
+  }
 }
 .wb-cycle__ja {
   font-size: var(--wb-text-body);
@@ -1876,6 +1879,44 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   html.js-on .wb-cycle :is(.wb-cycle__step, .wb-cycle__arrow) {
     opacity: 1;
     transition: none;
+  }
+}
+
+/* 循環のループ：メインカラーの光が Discover → Make → Learn → Discover を流れ続ける。
+   7要素（語4つ＋矢印3つ）を 0.6s ずつずらして同じアニメーションを流す。
+   1周 4.2s ＝ 7 × 0.6s なので、最後の Discover が灯った 0.6s 後に先頭の Discover が
+   灯り、切れ目なくつながって見える。JS があるときは表示されてから動き出す。 */
+@keyframes wbCycleStep {
+  0%, 32%, 100% { color: var(--wb-ink); }
+  10%, 20% { color: var(--primary); }
+}
+@keyframes wbCycleArrow {
+  0%, 32%, 100% { color: #22222247; }
+  10%, 20% { color: var(--primary); }
+}
+.wb-cycle__flow > * {
+  animation-duration: 4.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+.wb-cycle__flow > .wb-cycle__step {
+  animation-name: wbCycleStep;
+}
+.wb-cycle__flow > .wb-cycle__arrow {
+  animation-name: wbCycleArrow;
+}
+.wb-cycle__flow > :nth-child(2) { animation-delay: 0.6s; }
+.wb-cycle__flow > :nth-child(3) { animation-delay: 1.2s; }
+.wb-cycle__flow > :nth-child(4) { animation-delay: 1.8s; }
+.wb-cycle__flow > :nth-child(5) { animation-delay: 2.4s; }
+.wb-cycle__flow > :nth-child(6) { animation-delay: 3s; }
+.wb-cycle__flow > :nth-child(7) { animation-delay: 3.6s; }
+html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wb-cycle__flow > * {
+    animation: none;
   }
 }
 
