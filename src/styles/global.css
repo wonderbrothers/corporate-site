@@ -573,32 +573,45 @@ a.wb-btn-outline,
 button.wb-btn-outline {
   align-items: center;
   background: transparent;
-  border: 1px solid var(--wb-ink);
+  border: 2px solid var(--wb-ink);
   border-radius: 999px;
   color: var(--wb-ink);
   cursor: pointer;
   display: inline-flex;
   flex-wrap: wrap;
   font-family: var(--wb-sans);
-  font-size: var(--wb-text-body-sm);
+  font-size: var(--wb-text-heading-sm);
   font-weight: var(--wb-fw-bold);
-  gap: 4px 8px;
+  gap: 4px 12px;
   justify-content: center;
   line-height: 1.4;
-  padding: 10px 20px;
+  min-height: 64px;
+  padding: 16px 40px;
+  /* SP は横幅いっぱい。和文と英文を2段に分けて、どの幅でも同じ組みにする */
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 16px;
+    width: 100%;
+  }
   text-align: center;
   text-decoration: none;
   transition:
     background 0.3s cubic-bezier(0.4, 0.4, 0, 1),
     color 0.3s cubic-bezier(0.4, 0.4, 0, 1);
 }
-a.wb-btn-outline::after,
-button.wb-btn-outline::after {
+/* 矢印は英文があれば英文の後ろ、なければラベルの後ろに付ける（改行しても英文と離れない） */
+a.wb-btn-outline:not(:has(> span))::after,
+button.wb-btn-outline:not(:has(> span))::after,
+a.wb-btn-outline > span::after,
+button.wb-btn-outline > span::after {
   content: "\2192";
+  margin-left: 8px;
 }
 a.wb-btn-outline > span,
 button.wb-btn-outline > span {
   color: inherit;
+  font-size: 0.875em;
   font-family: inherit;
   font-weight: var(--wb-fw-medium);
   line-height: inherit;
