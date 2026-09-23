@@ -1879,24 +1879,19 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(6) { transition-del
    6要素（語3つ＋矢印3つ）を 0.6s ずつずらして同じアニメーションを流す。
    1周 3.6s ＝ 6 × 0.6s なので、末尾の矢印が灯った 0.6s 後に先頭の Discover が
    灯り、Learn から Discover へ戻る流れが切れ目なく続く。JS があるときは表示されてから動き出す。 */
-@keyframes wbCycleStep {
-  0%, 36%, 100% { color: var(--wb-ink); }
-  12%, 22% { color: var(--primary); }
-}
-@keyframes wbCycleArrow {
+/* 通常は薄いグレー、光が来ているもの（current）だけ #222222 */
+@keyframes wbCycle {
   0%, 36%, 100% { color: #22222247; }
-  12%, 22% { color: var(--primary); }
+  12%, 22% { color: var(--wb-ink); }
 }
 .wb-cycle__flow > * {
+  color: #22222247;
   animation-duration: 3.6s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
-.wb-cycle__flow > .wb-cycle__step {
-  animation-name: wbCycleStep;
-}
-.wb-cycle__flow > .wb-cycle__arrow {
-  animation-name: wbCycleArrow;
+.wb-cycle__flow > * {
+  animation-name: wbCycle;
 }
 .wb-cycle__flow > :nth-child(2) { animation-delay: 0.6s; }
 .wb-cycle__flow > :nth-child(3) { animation-delay: 1.2s; }
@@ -1906,9 +1901,13 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(6) { transition-del
 html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   animation-play-state: paused;
 }
+/* 動きを控える設定では、語を #222222・矢印を薄いグレーで静止表示 */
 @media (prefers-reduced-motion: reduce) {
   .wb-cycle__flow > * {
     animation: none;
+  }
+  .wb-cycle__flow > .wb-cycle__step {
+    color: var(--wb-ink);
   }
 }
 
