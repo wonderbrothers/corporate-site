@@ -7,3 +7,7 @@ npm-debug.log*
 # ローカル専用の更新手順メモ（公開・コミット対象外）
 docs/update-guide.md
 Claude outputs/
+
+# 公開サイトのビルドに不要なもの（ローカルでのみ管理。README「このリポジトリで管理するもの」参照）
+docs/
+worker/
