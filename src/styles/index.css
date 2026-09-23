@@ -2250,6 +2250,10 @@ html.js-on .wb-cycle.is-visible .wb-cycle__flow > :nth-child(7) { transition-del
   margin: 12px 0px 0px;
   max-width: 880px;
 }
+/* 2段落目（AIの時代の人の判断） */
+.wb-belief__ja--next {
+  margin: 32px 0px 0px;
+}
 .wb-belief__closing {
   color: var(--wb-cream);
   display: flex;
