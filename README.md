@@ -94,12 +94,17 @@ push 後、GitHub の **Actions** タブでワークフロー（Deploy to GitHub
 
 - `astro.config.mjs` の `site: https://wonder-bros.com` を基準に、canonical / OGP / `sitemap.xml` を自動生成。
 - `Base.astro` で title / description / OGP / Twitter / JSON-LD(Organization, WebSite) を一元管理。
+- title は「ページ名 | 株式会社ワンダーブラザース」（トップだけ社名｜ステートメント）。description はページごとに固有の文にする。
+- `sitemap.xml` は `@astrojs/sitemap` の `sitemap-0.xml` をビルドの最後に同じ名前で複製している（`astro.config.mjs` の `sitemapAlias`）。
+  robots.txt と Search Console はこの `sitemap.xml` を見る。404 は sitemap に入らない。
+- 内部リンクは正規のURL（`/`・`/contact/`・`/privacy/`）で書く。`index.html` 付きで書かない（別URLとして扱われるため）。
+- HERO 画像は `hero-1024.webp` / `hero-1600.webp` / `hero.webp`（2048px）の3サイズを srcset で出し分けている。差し替えるときは3つとも作り直す。
 
 ## アクセス解析
 
 `Base.astro` の `GTM_ID` に Google タグマネージャーのコンテナ ID を設定しています。
 GA4 などのタグは GTM の管理画面側で設定し、コードには書きません。
-お問い合わせの送信完了は `contact_submit` イベントとして `dataLayer` に送っています。
+お問い合わせの送信完了は `contact_submit`、フォームへの最初の入力は `contact_start` イベントとして `dataLayer` に送っています（入力内容は送らない）。GA4 に届けるには GTM 側にそれぞれのトリガーとタグが要ります。
 
 ### Cookie 同意（Google Consent Mode v2）
 

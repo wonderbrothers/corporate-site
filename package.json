@@ -9,8 +9,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.1.5"
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.4"
   },
   "devDependencies": {
     "lightningcss": "^1.33.0"

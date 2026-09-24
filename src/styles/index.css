@@ -70,6 +70,9 @@
   padding: 0px;
 }
 .wb-box.wb-hero__image {
+  /* 縦横比は原寸（2048×1282）に固定する。srcset で縮小版（1600px 幅など）が選ばれたときに
+     縮小版の端数で高さが 1px ずれないようにするため */
+  aspect-ratio: 1024 / 641;
   flex: none;
   height: auto;
   width: 100%;

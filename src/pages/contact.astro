@@ -9,18 +9,18 @@ const RECAPTCHA_SITE_KEY = "6LcRDGstAAAAAKI0ivmFnZ4lTX45awYPYFYP9VWU";
 const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
 // ▲▲ 要設定 ▲▲
 ---
-<Base title="株式会社ワンダーブラザース | CONTACT" description="WONDER BROTHERS（株式会社ワンダーブラザース）は、まだ言葉になっていない課題や可能性を見つけ、実際につくり、その結果から学びながら答えを探すデザインスタジオです。新規サービス設計、UX/UI、PoC・プロトタイプ、プロダクト開発、DXを支援しています。" path="/contact/">
+<Base title="お問い合わせ | 株式会社ワンダーブラザース" description="株式会社ワンダーブラザース（WONDER BROTHERS）へのお問い合わせフォームです。新規サービスの設計、UX/UI、プロトタイプ、プロダクト開発、DX支援のご相談を受け付けています。3営業日を目安にご返信します。" path="/contact/">
   <script slot="head" is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}></script>
   <div class="container"><div class="render-canvas"><div class="StudioCanvas">
 <div class="wb-box reveal cf-page">
                 <div class="wb-box reveal cf-inner">
-                  <a href="../index.html" class="link wb-box reveal cf-home-link"
+                  <a href="/" class="link wb-box reveal cf-home-link"
                     ><img class="wb-box cf-logo" alt="" src="../images/logo.svg"
                   /></a>
                   <div class="wb-box reveal cf-body">
-                    <h4 class="text wb-box reveal cf-title">
+                    <h1 class="text wb-box reveal cf-title">
                       弊社へのお問い合わせは<br />こちらのフォームより承っております。<br />
-                    </h4>
+                    </h1>
                     <p class="text wb-box reveal cf-note">
                       ご返信に3営業日ほどお時間をいただいております。<br />3営業日を過ぎても返信がない場合は、お手数ですが再度お問い合わせをお願いいたします。
                     </p>
@@ -95,7 +95,7 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                       ><button class="button wb-box reveal cf-submit">
                         <p class="text wb-box reveal cf-submit__text">この内容で送信する</p>
                         <i class="icon material-icons wb-box reveal cf-submit__icon"
-                          >keyboard_arrow_right</i
+                          ><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></i
                         >
                       </button>
                     </form>
@@ -105,7 +105,7 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                     <div class="form-thanks" hidden>
                       <p class="thanks-title">お問い合わせありがとうございます</p>
                       <p class="thanks-text">ご記入いただいた情報は無事に送信されました。</p>
-                      <a class="thanks-back" href="../index.html">トップページへ戻る</a>
+                      <a class="thanks-back" href="/">トップページへ戻る</a>
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                       © WONDER BROTHERS INC. All rights reserved.
                     </p>
                     <div class="wb-footer-links">
-                      <a href="../privacy/index.html" class="text link wb-box reveal cf-footer__privacy"
+                      <a href="/privacy/" class="text link wb-box reveal cf-footer__privacy"
                         >Privacy Policy</a
                       >
                       <button type="button" class="text link wb-box reveal cf-footer__privacy wb-cookie-btn" data-wb-consent-open
@@ -135,6 +135,14 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
       const thanks = document.querySelector(".form-thanks");
       const errorBox = document.querySelector(".form-error");
       const btn = form.querySelector("button");
+
+      // フォームへの最初の入力を1回だけ計測（contact_start）。入力内容は送らない。
+      // dataLayer に積むだけで、GA へ届くのはアクセス解析を許可した人だけ（wb-consent.js）
+      const onStart = () => {
+        form.removeEventListener("input", onStart);
+        (window.dataLayer = window.dataLayer || []).push({ event: "contact_start", form_name: "contact" });
+      };
+      form.addEventListener("input", onStart);
 
       const showError = () => {
         if (errorBox) errorBox.hidden = false;

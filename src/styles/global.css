@@ -22,7 +22,7 @@
   --wb-sans: "Noto Sans", "Noto Sans JP", sans-serif;
 
   /* ---- フォントウェイト ----
-     Base.astro で読み込んでいるのは 300〜800。実際に使うのは下の4つだけ。 */
+     Base.astro で読み込んでいるのは 400〜800（400 は指定の無い要素の既定値）。実際に指定するのは下の4つだけ。 */
   --wb-fw-medium: 500;    /* 英文・補助テキスト */
   --wb-fw-semibold: 600;  /* 和文本文・ラベル */
   --wb-fw-bold: 700;      /* 見出し・リンク・ボタン */
@@ -383,6 +383,7 @@ html {
   word-break: break-word;
 }
 :where(.render-canvas) .material-icons {
+  /* 中身はインライン SVG（Keyboard Arrow Right）。サイズは font-size（1em）で決まる */
   align-items: center;
   display: inline-flex;
   font-family: Material Icons;
@@ -644,6 +645,7 @@ button.wb-cookie-btn {
   background: none;
   border: 0;
   cursor: pointer;
+  font: inherit; /* 404 のフッターのように文字指定を持たない場所でも、周りと同じ書体にする */
   margin: 0;
   padding: 0;
 }

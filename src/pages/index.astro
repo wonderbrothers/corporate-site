@@ -19,10 +19,12 @@ const jsonLd = JSON.stringify([
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://wonder-bros.com/#organization",
     name: "株式会社ワンダーブラザース",
     alternateName: "WONDER BROTHERS INC.",
     url: "https://wonder-bros.com/",
-    logo: "https://wonder-bros.com/images/logo-mark.svg",
+    // Google 検索のロゴは 112px 以上のラスター画像が確実なので PNG（ロゴマークと同じ図柄）
+    logo: "https://wonder-bros.com/images/android-chrome-512x512.png",
     image: "https://wonder-bros.com/images/ogp.png",
     slogan: "答えのない問いを、つくることで確かめる。",
     description: DESCRIPTION,
@@ -36,6 +38,12 @@ const jsonLd = JSON.stringify([
       streetAddress: "道玄坂1-10-8 渋谷道玄坂東急ビル2F-C",
       addressCountry: "JP",
     },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      url: "https://wonder-bros.com/contact/",
+      availableLanguage: "ja",
+    },
   },
   {
     "@context": "https://schema.org",
@@ -43,6 +51,7 @@ const jsonLd = JSON.stringify([
     name: "株式会社ワンダーブラザース",
     url: "https://wonder-bros.com/",
     inLanguage: "ja",
+    publisher: { "@id": "https://wonder-bros.com/#organization" },
   },
 ]);
 
@@ -354,7 +363,7 @@ const company = [
           ))}
         </ul>
       </nav>
-      <a class="wb-drawer__contact" href="contact/index.html">
+      <a class="wb-drawer__contact" href="/contact/">
         <span class="wb-drawer__contact-text">
           <span class="wb-drawer__contact-title">お問い合わせ</span>
           <span class="wb-drawer__contact-note" lang="en">CONTACT</span>
@@ -368,7 +377,16 @@ const company = [
                 <!-- ============ 01 HERO ============ -->
                 <div class="wb-box reveal wb-intro">
                   <section class="wb-box reveal wb-hero" data-hero>
-                    <img class="wb-box wb-hero__image" alt="" src="images/hero.webp" /><h1 class="wb-hero__heading"><img
+                    <img
+                      class="wb-box wb-hero__image"
+                      alt=""
+                      src="images/hero.webp"
+                      srcset="images/hero-1024.webp 1024w, images/hero-1600.webp 1600w, images/hero.webp 2048w"
+                      sizes="(max-width: 540px) 170vw, 100vw"
+                      width="2048"
+                      height="1282"
+                      fetchpriority="high"
+                    /><h1 class="wb-hero__heading"><img
                       class="wb-box wb-hero__logo"
                       alt="株式会社ワンダーブラザース"
                       src="images/logo.svg"
@@ -421,7 +439,7 @@ const company = [
                       <ol class="wb-dml">
                         {principles.map((p) => (
                           <li class="reveal wb-dml__item">
-                            <img class="wb-dml__icon" src={p.icon} alt="" width="232" height="232" />
+                            <img class="wb-dml__icon" src={p.icon} alt="" width="232" height="232" loading="lazy" decoding="async" />
                             <p class="wb-dml__num" lang="en">{p.num}</p>
                             <h3 class="wb-dml__title"><span lang="en">{p.en}</span><span class="wb-dml__title-ja">{p.ja}</span></h3>
                             <p class="wb-dml__ja">{p.textJa}</p>
@@ -504,7 +522,7 @@ const company = [
                           <li class="reveal wb-case wb-case--more">
                             <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
                             <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
-                            <a class="wb-btn-outline" href="contact/index.html">プロジェクトについて相談する<span lang="en">Contact us</span></a>
+                            <a class="wb-btn-outline" href="/contact/">プロジェクトについて相談する<span lang="en">Contact us</span></a>
                           </li>
                         </ul>
                       </section>
@@ -700,7 +718,7 @@ const company = [
                       <h2 id="governance-title" class="reveal wb-row-title" lang="en">SECURITY &amp; GOVERNANCE</h2>
                       <div class="reveal wb-row-sec__body">
                         <p class="wb-row-sec__lead">安心してプロジェクトをお任せいただくために。</p>
-                        <p class="wb-row-sec__ja">企業とのプロジェクトを安全に進めるため、情報管理、セキュリティ、ガバナンス体制の整備に継続して取り組んでいます。意思決定の公平性と透明性を高めるため、業務執行に対する監督機能の充実と、適正な情報開示のための社内体制づくりを進めています。個人情報の取り扱いについては、<a class="wb-inline-link" href="privacy/index.html">プライバシーポリシー</a>をご覧ください。</p>
+                        <p class="wb-row-sec__ja">企業とのプロジェクトを安全に進めるため、情報管理、セキュリティ、ガバナンス体制の整備に継続して取り組んでいます。意思決定の公平性と透明性を高めるため、業務執行に対する監督機能の充実と、適正な情報開示のための社内体制づくりを進めています。個人情報の取り扱いについては、<a class="wb-inline-link" href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
                         <p class="wb-row-sec__en" lang="en">To keep client projects secure, we continue to strengthen our information management, security, and governance. To keep decision-making fair and transparent, we are reinforcing oversight of business execution and building the internal systems needed for appropriate disclosure. For how we handle personal information, please see our Privacy Policy.</p>
                       </div>
                     </div>
@@ -714,7 +732,7 @@ const company = [
                         <p class="wb-row-sec__lead">まだ具体的な企画になっていない段階でも構いません。</p>
                         <p class="wb-row-sec__ja">新しいサービス、UX/UI、PoC、DXについて、一緒に問いを整理するところからご相談ください。</p>
                         <p class="wb-row-sec__en" lang="en">You don't need to have everything figured out before you contact us. If you're exploring a new service, product, UX challenge, prototype, or digital transformation, we can start by defining the question together.</p>
-                        <a href="contact/index.html" class="link wb-box wb-company__contact"
+                        <a href="/contact/" class="link wb-box wb-company__contact"
                           ><div class="wb-box wb-company__contact-text">
                             <p class="text wb-box wb-company__contact-title">お問い合わせ</p>
                             <p class="text wb-box wb-company__contact-note" lang="en">
@@ -722,7 +740,7 @@ const company = [
                             </p>
                           </div>
                           <i class="icon material-icons wb-box wb-company__contact-icon" aria-hidden="true"
-                            >keyboard_arrow_right</i
+                            ><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></i
                           ></a
                         >
                       </div>
@@ -735,7 +753,7 @@ const company = [
                       © WONDER BROTHERS INC. All rights reserved.
                     </p>
                     <div class="wb-footer-links">
-                      <a href="privacy/index.html" class="text link wb-box reveal wb-footer__privacy"
+                      <a href="/privacy/" class="text link wb-box reveal wb-footer__privacy"
                         >Privacy Policy</a
                       >
                       <button type="button" class="text link wb-box reveal wb-footer__privacy wb-cookie-btn" data-wb-consent-open
