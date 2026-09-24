@@ -67,12 +67,14 @@ import '../styles/privacy.css';
                         <p class="pp-p">Google Analyticsは、Google Tag Managerを通じて導入される場合があります。</p>
                         <p class="pp-p">Google Analyticsでは、Cookie等を利用して、閲覧ページ、利用日時、ブラウザ・端末情報、おおよその地域情報などの利用情報が収集され、Googleへ送信される場合があります。</p>
                         <p class="pp-p">これらの情報は、Googleが定めるプライバシーポリシーその他の規定に基づいて取り扱われます。</p>
-                        <p class="pp-p">Google Analyticsによる情報収集を希望しない場合は、ブラウザのCookie設定を変更するほか、Googleが提供するGoogle Analyticsオプトアウトアドオン等を利用することができます。</p>
+                        <p class="pp-p">Google Analyticsによるアクセス解析は、各サイトに表示される確認で「許可する」が選択された場合にのみ行います。許可されるまで（「拒否する」が選択された場合も含みます）、Google AnalyticsおよびGoogle Tag Managerは読み込まれず、Googleへの送信も行われません。選択は各サイトの「Cookie設定」（本サイトではページ下部）からいつでも変更でき、拒否に変更した場合は、Google Analyticsが保存したCookieを削除します。</p>
+                        <p class="pp-p">このほか、ブラウザのCookie設定を変更するほか、Googleが提供するGoogle Analyticsオプトアウトアドオン等を利用することでも、Google Analyticsによる情報収集を停止できます。</p>
                       </section>
                       <section class="pp-sec">
                         <h2 class="pp-h2">5. Cookie等について</h2>
                         <p class="pp-p">本サイト等では、アクセス解析やサービスの提供に必要な範囲で、Cookieその他これに類する技術を利用する場合があります。</p>
                         <p class="pp-p">Cookieは、ウェブサイトを利用した際にブラウザに保存される小さな情報で、利用状況の把握や継続的な利用の識別等に使用されます。</p>
+                        <p class="pp-p">アクセス解析の許可・拒否の選択を記録するため、Cookie「wb_consent_v1」を使用します。値は「許可」または「拒否」のみで、個人を識別する情報は含みません。有効期間は最後にご利用いただいた日から180日間で、wonder-bros.com およびそのサブドメインで運営するサイト（本サイト等）で共通に使用します。広告を目的としたCookieは使用していません。</p>
                         <p class="pp-p">ブラウザの設定によりCookieを無効にすることができます。ただし、一部のサービスでは機能の一部が正常に動作しなくなる場合があります。</p>
                       </section>
                       <section class="pp-sec">
@@ -141,9 +143,14 @@ import '../styles/privacy.css';
                     <p class="text wb-box reveal pp-footer__copyright">
                       © WONDER BROTHERS INC. All rights reserved.
                     </p>
-                    <a href="../privacy/index.html" class="text link wb-box reveal pp-footer__privacy"
-                      >Privacy Policy</a
-                    >
+                    <div class="wb-footer-links">
+                      <a href="../privacy/index.html" class="text link wb-box reveal pp-footer__privacy"
+                        >Privacy Policy</a
+                      >
+                      <button type="button" class="text link wb-box reveal pp-footer__privacy wb-cookie-btn" data-wb-consent-open
+                        >Cookie設定</button
+                      >
+                    </div>
                   </div>
                 </footer>
               </div>

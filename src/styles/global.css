@@ -627,3 +627,51 @@ button.wb-btn-outline:focus-visible {
   outline: 2px solid var(--wb-ink);
   outline-offset: 3px;
 }
+
+/* ------------------------------------------------------------------
+   フッターの「Privacy Policy」「Cookie設定」（index / contact / privacy / 404 共通）
+   2つを1つの箱にまとめて右端に並べる。文字の見た目は各ページの *__privacy クラスが持つ。
+------------------------------------------------------------------ */
+.wb-footer-links {
+  align-items: center;
+  display: flex;
+  flex: none;
+  gap: 24px;
+}
+button.wb-cookie-btn {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------------------------------------------------------------
+   Cookie 同意バナー／Cookie設定（src/scripts/wb-consent.js）
+   仕組みは3サイト共通。ここでは見た目のトークンだけをこのサイトに合わせる。
+   ボタンは共通ボタン wb-btn-outline と同じ「黒の枠線ピル」。許可＝塗り／拒否＝枠線で、
+   大きさは同じにして、どちらかだけが目立たないようにしている。
+------------------------------------------------------------------ */
+.wbc {
+  --wbc-bg: var(--wb-cream);
+  --wbc-fg: var(--wb-ink);
+  --wbc-muted: #555555;
+  --wbc-line: rgba(34, 34, 34, 0.14);
+  --wbc-accent: var(--wb-ink);
+  --wbc-accent-fg: var(--wb-cream);
+  --wbc-border: 2px solid var(--wb-ink);
+  --wbc-radius: 16px;
+  --wbc-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --wbc-font: var(--wb-sans);
+  --wbc-fs: var(--wb-text-meta);
+  --wbc-btn-border-width: 2px;
+  font-weight: var(--wb-fw-medium);
+}
+.wbc .wbc-h,
+.wbc .wbc-title,
+.wbc .wbc-btn,
+.wbc .wbc-link {
+  font-weight: var(--wb-fw-bold);
+}

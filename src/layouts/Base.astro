@@ -1,10 +1,13 @@
 ---
 import "../styles/global.css";
+// Cookie 同意（3サイト共通の正本）。?url でビルド時に内容ハッシュ付きのファイルとして配信される。
+import consentSrc from "../scripts/wb-consent.js?url";
 
 // ▼▼ 要設定（公開値。GTM コンテナ発行後に差し替え）▼▼
 // Google タグマネージャーのコンテナID（https://tagmanager.google.com で発行）
-// 例: "GTM-XXXXXXX" ― 空文字の間は計測タグを一切出力しない。
+// 例: "GTM-XXXXXXX" ― 空文字の間は計測タグを一切出力しない（同意バナーも出ない）。
 // GA4（G-XXXXXXXXXX）はコードには書かず、GTM の管理画面側で設定する。
+// GTM は wb-consent.js が「アクセス解析を許可した人」にだけ読み込む（Basic Consent Mode）。
 const GTM_ID = "GTM-TXJXFJFH";
 // ▲▲ 要設定 ▲▲
 
@@ -39,6 +42,11 @@ const ogImage = base + "/images/ogp.png";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Cookie 同意 + Google Consent Mode v2（Basic）
+         同意の確認 → 許可済みのときだけ GTM を読み込む。dataLayer を触る他のどのスクリプトより前に置くこと。
+         GTM のスニペットをここに直接書かないこと（同意前に読み込まれてしまう）。 -->
+    <script is:inline src={consentSrc} data-gtm={GTM_ID} data-privacy="/privacy/"></script>
+
     <!-- 時間帯によるメインカラー切り替え（描画前に同期実行してチラつきを防ぐ） -->
     <script is:inline>
       (function () {
@@ -47,17 +55,6 @@ const ogImage = base + "/images/ogp.png";
         document.documentElement.setAttribute("data-time-of-day", t);
       })();
     </script>
-
-    <!-- Google Tag Manager -->
-    {
-      GTM_ID && (
-        <script
-          is:inline
-          set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
-        />
-      )
-    }
-    <!-- End Google Tag Manager -->
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -101,15 +98,7 @@ const ogImage = base + "/images/ogp.png";
     <slot name="head" />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    {
-      GTM_ID && (
-        <noscript
-          set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
-        />
-      )
-    }
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- GTM の noscript 版（iframe）は置かない。JavaScript が無いと同意を確認できないため。 -->
 
     <slot />
     <script>

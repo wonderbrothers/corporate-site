@@ -101,6 +101,21 @@ push 後、GitHub の **Actions** タブでワークフロー（Deploy to GitHub
 GA4 などのタグは GTM の管理画面側で設定し、コードには書きません。
 お問い合わせの送信完了は `contact_submit` イベントとして `dataLayer` に送っています。
 
+### Cookie 同意（Google Consent Mode v2）
+
+GTM は `Base.astro` に直接書かず、`src/scripts/wb-consent.js` が「アクセス解析を許可した人」にだけ読み込みます。
+フッターの「Cookie設定」から、いつでも許可・拒否を変えられます。
+仕組みは wonder-bros.com・64モンスターズ・連想ゲームの3サイト共通で、`wb-consent.js` 1本にまとまっています。
+
+- **正本は `corporate-site/src/scripts/wb-consent.js`**。64モンスターズ（`docs/assets/wb-consent.js`）と連想ゲーム（`wb-consent.js`）はコピーで、各サイトのビルド（`npm run stamp` / `npm run build`）が正本と違っていれば自動で写し直す。コピーを手で直さないこと。各サイトが自分のドメインから配信するので、どれか1サイトが落ちても他は影響を受けない。
+- **Basic Consent Mode**。未選択・拒否のあいだは GTM も GA も読み込まない（Google への通信は発生しない）。「許可する」を選んだときだけ、`analytics_storage` を `granted`（広告系3項目は常に `denied`）にしてから GTM を読み込む。
+- 同意は Cookie **`wb_consent_v1`**（値は `granted` か `denied` だけ／`Domain=.wonder-bros.com`／`Path=/`／`Secure`／`SameSite=Lax`／`Max-Age=15552000`＝180日）。3サイトで共有する。ページを開くたびに期限を延ばしている（Safari は JavaScript で書いた Cookie の期限を7日に切り詰めるため、延ばさないと iPhone では毎週たずねることになる）。
+- 「Cookie設定」を開く入口は、要素に `data-wb-consent-open` を付けるだけ。
+- 許可→拒否に変えると、その場で GA の送信を止め（`ga-disable`）、`_ga` / `_ga_*` などの GA Cookie を消す。未選択・拒否の人がページを開いたときも、残っている GA Cookie を消す。
+- localStorage / sessionStorage には触らない（診断データ・ゲームの記録は同意の対象外）。
+- 同意の中身を大きく変えたら、`wb-consent.js` の `COOKIE_NAME` を `wb_consent_v2` に上げ、古い名前を `OLD_COOKIES` に足す → 全員にもう一度たずねる。
+- **GTM のスニペットや noscript の iframe を HTML に直接書かないこと**（同意前に GA が動いてしまう）。
+
 ## お問い合わせ
 
 `contact.astro` のフォームは reCAPTCHA v3 のトークンを付けて Cloudflare Worker（`wb-contact`）へ送信し、
