@@ -20,7 +20,9 @@
      wb-hero           … 01 HERO（イラスト・ロゴ・SCROLL）
      wb-statement      … 01 HERO のステートメント（Build to explore / the unanswered.）
      wb-sec#approach   … 02 APPROACH（wb-dml = Discover / Make / Learn、wb-cycle = 循環）
-     wb-sec#work       … 03 CLIENT WORK（wb-services）＋ 04 SELECTED WORK（wb-cases）
+     wb-sec#work       … 03 CLIENT WORK（wb-services）
+     wb-sec#poc        … PoC Design & Validation（wb-poc。見出しは wb-cases__head を共用）
+     wb-sec            … 04 SELECTED WORK（wb-cases）
      wb-wonderlab#lab  … 05 WONDER LAB
      wb-belief         … 06 OUR BELIEF（メインカラーの帯）
      wb-row-sec        … 07 ABOUT / 08 SECURITY & GOVERNANCE / 09 CONTACT
@@ -1971,23 +1973,13 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 
-/* ---------- 03 CLIENT WORK：PoC Design & Validation ----------
+/* ---------- PoC Design & Validation（独立セクション） ----------
    見出しは SELECTED WORK と同じ wb-cases__head / wb-cases__title を使う（左に見出し、右に本文）。
    3つの観点は区切り線の3列 */
-.wb-poc {
-  margin: 120px 0px 0px;
-  @media screen and (max-width: 840px) {
-    margin: 100px 0px 0px;
-  }
-  @media screen and (max-width: 540px) {
-    margin: 80px 0px 0px;
-  }
-}
 .wb-poc__body {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 800px;
   padding: 10px 0px 0px;
   @media screen and (max-width: 840px) {
     padding: 0px;
@@ -2041,15 +2033,7 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 /* ---------- 04 SELECTED WORK ---------- */
-.wb-cases {
-  margin: 120px 0px 0px;
-  @media screen and (max-width: 840px) {
-    margin: 100px 0px 0px;
-  }
-  @media screen and (max-width: 540px) {
-    margin: 80px 0px 0px;
-  }
-}
+/* SELECTED WORK は独立セクション（wb-sec）になったので、上の余白は wb-sec の padding に任せる */
 .wb-cases__head {
   display: grid;
   gap: 60px;
@@ -2065,7 +2049,6 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   line-height: 1.4;
 }
 .wb-cases__intro {
-  max-width: 800px;
   padding: 10px 0px 0px;
   @media screen and (max-width: 840px) {
     padding: 0px;
