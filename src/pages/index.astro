@@ -13,7 +13,7 @@ import '../styles/index.css';
 ================================================================== */
 
 const DESCRIPTION =
-  "WONDER BROTHERS（株式会社ワンダーブラザース）は、まだ言葉になっていない課題や可能性を見つけ、実際につくり、その結果から学びながら答えを探すデザインスタジオです。新規サービス設計、UX/UI、PoC・プロトタイプ、プロダクト開発、DXを支援しています。";
+  "WONDER BROTHERS（株式会社ワンダーブラザース）は、まだ答えのない課題やアイデアを形にして試し、そこで得た事実を次の判断につなげるデザインスタジオです。新規サービス設計、UX/UI、PoC・プロトタイプ、プロダクト開発、DXを支援しています。";
 
 const jsonLd = JSON.stringify([
   {
@@ -72,9 +72,9 @@ const principles = [
     ja: "見つける",
     icon: "images/deco-halftone.svg",
     textJa:
-      "人、行動、環境、業務、情報を観察し、まだ言葉になっていない課題や可能性を見つけます。依頼された課題をそのまま受け取るのではなく、利用者の話を聞き、業務や情報の流れを整理しながら、本当に向き合うべき問いを定めます。",
+      "人の行動や業務、環境、情報の流れを観察し、まだ言葉になっていない課題を整理します。依頼内容をそのまま前提にせず、何が本当の問題で、最初に何を確かめるべきかを見極めるところから始めます。",
     textEn:
-      "We observe people, behavior, environments, systems, and information to uncover questions that have not yet been clearly defined. Rather than taking a brief at face value, we talk to users and map how work and information actually flow until we know which question is worth answering.",
+      "We examine people, behavior, operations, environments, and information flows to understand what is really happening. Rather than taking the initial brief at face value, we clarify the underlying problem and identify which uncertainty should be addressed first.",
   },
   {
     num: "02",
@@ -82,9 +82,9 @@ const principles = [
     ja: "つくる",
     icon: "images/deco-dots.svg",
     textJa:
-      "問いや仮説を、考えるだけで終わらせず、実際に触れられる形にします。サービス、体験、UI、プロトタイプ、プロダクトと、必要な形は案件ごとに違います。形にして初めて見えることがあるので、私たちはデザインと実装を分けずに進めます。",
+      "問いや仮説を、実際に確かめられる形にします。完成したプロダクトである必要はありません。画面やプロトタイプ、サービス体験、検証用の簡単な仕組みなど、知りたいことを確かめるのに必要な最小限のものをつくります。",
     textEn:
-      "We turn hypotheses into experiences, prototypes, services, and products that can actually be used and tested. The form changes from project to project. Some things only become clear once they exist, so we don't separate designing from building.",
+      "We turn questions and hypotheses into something that can be tested. That doesn't always mean a complete product. It may be an interface, a prototype, a service experience, or a simple validation mechanism — whatever it takes to test the most important assumption.",
   },
   {
     num: "03",
@@ -92,9 +92,9 @@ const principles = [
     ja: "学ぶ",
     icon: "images/deco-spiral.svg",
     textJa:
-      "つくったものへの反応、使われ方、結果、違和感、予想外の出来事から学びます。見直すのは、つくったものだけではありません。必要であれば、最初に立てた問いや仮説そのものを問い直します。",
+      "使われ方や反応、結果、違和感、想定外の出来事を通じて、仮説と実際の反応にどんな違いがあったのかを確認します。そこで得たことを整理し、本番へ進むのか、方向を変えるのか、もう一度試すのか、あるいは止めるのかを判断する材料にします。",
     textEn:
-      "We learn from real behavior, feedback, outcomes, and the unexpected. Then we refine not only the solution, but the original question as well.",
+      "We learn from real behavior, feedback, outcomes, friction, and the unexpected, and look at where the results differed from the hypothesis. The evidence helps decide whether to move into production, change direction, run another test, or stop.",
   },
 ];
 
@@ -103,33 +103,41 @@ const services = [
   {
     en: "New Service Design",
     ja: "新規サービス設計",
-    textJa: "まだ曖昧な構想やアイデアを整理し、ユーザー価値、サービス構造、体験、必要な機能を設計します。",
-    textEn: "We shape early ideas into a clear service: who it is for, what value it creates, how it works, and what it needs.",
+    textJa: "まだ曖昧な構想やアイデアを整理し、誰のどんな課題を解決するのか、どんな価値を生むのか、何を最初に確かめるべきかを設計します。",
+    textEn: "We turn early ideas into a clearer service concept by defining whose problem is being addressed, what value the service should create, and what needs to be tested first.",
   },
   {
     en: "UX / UI Design",
     ja: "UX/UIデザイン",
-    textJa: "ユーザーの行動、情報構造、利用シーンを整理し、複雑なサービスを理解しやすく使いやすい体験に変えます。",
-    textEn: "We untangle behavior, information, and context to make complex services easy to understand and use.",
+    textJa: "ユーザーの行動や利用状況、情報構造を整理し、複雑なサービスを理解しやすく、判断しやすく、使いやすい体験に設計します。",
+    textEn: "We design interfaces and experiences based on user behavior, context, and information structure, making complex services easier to understand, navigate, and use.",
   },
   {
     en: "PoC / Prototype",
     ja: "PoC/プロトタイプ",
-    textJa: "アイデアを早い段階で体験できる形にし、ユーザーや関係者と検証できる状態をつくります。",
-    textEn: "We make ideas tangible early, so they can be tested with users and stakeholders before big decisions are made.",
+    textJa: "本番へ進むかを判断するために、最も不確実な仮説を見極め、確かめるのに必要な範囲だけを形にします。",
+    textEn: "We identify the riskiest assumption and build only what is needed to test it, so you can decide whether to move forward.",
   },
   {
     en: "Product Development",
     ja: "プロダクト開発",
-    textJa: "デザインだけで終わらせず、必要に応じてエンジニアと連携し、実際に利用できるプロダクトとして実装します。",
-    textEn: "We don't stop at design. Working with engineers where needed, we build products people can actually use.",
+    textJa: "検証を経て方向性が見えてきたものを、実際に使われるプロダクトへつなげます。UX/UIの設計だけで終わらせず、必要に応じてエンジニアと連携しながら、実装から改善まで一貫して関わります。",
+    textEn: "Once the direction has been validated, we help turn it into a product people can actually use. Our work extends beyond UX/UI into implementation and continuous improvement, working closely with engineers where needed.",
   },
   {
     en: "DX / Service Transformation",
     ja: "DX・サービス変革",
-    textJa: "既存の業務やサービスの構造を整理し、デジタルを活用した新しい体験や業務プロセスへ再設計します。",
-    textEn: "We map how existing operations and services work, then redesign them into new digital experiences and processes.",
+    textJa: "既存の業務やサービスを単にデジタル化するのではなく、利用者、業務、情報、システムの関係を整理し、何を変えるべきかから考え直します。必要に応じて小さく検証しながら、実際に機能する業務やサービスへつなげます。",
+    textEn: "We don't treat DX as simple digitization. We examine how users, operations, information, and systems relate to each other, then redesign what actually needs to change — validating in small steps before full implementation where it helps.",
   },
+];
+
+/* ---------- 03 CLIENT WORK：PoC / Prototype の3つの観点 ----------
+   フレームワークの解説にしない。名前と問いだけを置き、どれから確かめるかを見極める、という考え方を添える */
+const pocChecks = [
+  { en: "Desirability", ja: "求められているか", q: "Do people want or need it?" },
+  { en: "Feasibility", ja: "つくれるか、運用できるか", q: "Can it be built and operated?" },
+  { en: "Viability", ja: "事業として成り立つか", q: "Can it work as a business?" },
 ];
 
 /* ---------- 04 SELECTED WORK ----------
@@ -306,6 +314,26 @@ const stepLabels = [
   { key: "learn", label: "LEARN" },
 ];
 
+/* ---------- 09 CONTACT：相談できる段階の例 ---------- */
+const consultCases = [
+  {
+    ja: "新しいサービスを考えているが、進めるべきか判断できない",
+    en: "We have an idea for a new service but aren't sure whether to move forward.",
+  },
+  {
+    ja: "PoCをしたいが、何を検証すべきか整理できていない",
+    en: "We want to run a PoC but haven't defined what needs to be tested.",
+  },
+  {
+    ja: "AIを活用したいが、どこから始めればよいか分からない",
+    en: "We want to use AI but aren't sure where it can make a real difference.",
+  },
+  {
+    ja: "既存サービスに課題を感じているが、何を変えるべきか分からない",
+    en: "We know an existing service has problems but aren't sure what should change.",
+  },
+];
+
 /* ---------- 07 ABOUT ---------- */
 const company = [
   { label: "会社名", ja: "株式会社ワンダーブラザース", en: "WONDER BROTHERS INC." },
@@ -403,12 +431,10 @@ const company = [
                     </div>
                     <div class="wb-statement__body">
                       <h2 id="statement-title" class="reveal wb-statement__title">答えのない問いを、<br />つくることで確かめる。</h2>
-                      <p class="reveal wb-statement__ja">
-                        WONDER BROTHERSは、人や社会の中にある、まだ言葉になっていない課題や可能性を見つけ、実際につくり、その結果から学びながら答えを探すデザインスタジオです。
-                      </p>
-                      <p class="reveal wb-statement__en" lang="en">
-                        WONDER BROTHERS is a design studio that explores unanswered questions by finding what matters, making things real, and learning from what happens next.
-                      </p>
+                      <p class="reveal wb-statement__ja">WONDER BROTHERSは、まだ答えのない課題やアイデアを形にして試し、そこで得た事実を次の判断につなげるデザインスタジオです。</p>
+                      <p class="reveal wb-statement__ja">構想を議論だけで終わらせず、サービスや体験、プロトタイプとして実際に確かめます。目的は完成させることではなく、本番へ進むか、方向を変えるか、止めるかを判断できるところまで確かめることです。</p>
+                      <p class="reveal wb-statement__en" lang="en">WONDER BROTHERS is a design studio that turns unanswered questions and early ideas into something that can be tested in the real world.</p>
+                      <p class="reveal wb-statement__en" lang="en">We shape ideas into services, experiences, and prototypes, then learn from how people respond. The goal is not simply to build, but to gather enough evidence to decide what should happen next.</p>
                       <p class="reveal wb-principle">
                         <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
                         <span class="wb-principle__ja">見つける。つくる。学ぶ。</span>
@@ -428,12 +454,12 @@ const company = [
                       <div class="wb-sec__lead">
                         <p class="reveal wb-sec__heading">考えるだけで終わらせない。</p>
                         <div class="reveal wb-sec__text">
-                          <p>新しいサービスやプロダクトをつくるとき、最初から正しい答えが見えていることはほとんどありません。だからWONDER BROTHERSでは、まず人や状況を観察して問いを見つけ、その問いを実際に形にし、そこから得たことを次の判断につなげます。</p>
-                          <p>私たちは、この「見つける、つくる、学ぶ」という循環を、クライアントワークにも自分たちの実験にも、同じように用いています。</p>
+                          <p>新しいサービスやプロダクトに、最初から正解があることはほとんどありません。まず人や状況を観察して何がまだ分かっていないのかを整理し、そこから立てた仮説を必要な範囲だけ形にして、実際の反応や結果で確かめます。</p>
+                          <p>最初から完成度の高いものを目指すことはしません。何が分かれば次の判断ができるのかを先に決め、そのために必要なものだけをつくります。</p>
                         </div>
                         <div class="reveal wb-sec__text-en" lang="en">
-                          <p>When building a new service or product, the right answer is rarely clear from the start. So we begin by observing people and situations to find the real question, give that question a form, and let what we learn shape the next decision.</p>
-                          <p>We use the same cycle — discover, make, learn — in our client work and in our own experiments.</p>
+                          <p>New services and products rarely begin with a clear answer. We start by observing people, systems, and situations to understand what is still uncertain. From there, we form a hypothesis, build only what is needed to test it, and learn from real behavior and outcomes.</p>
+                          <p>We don't aim for a polished solution too early. We first agree on what needs to be known to make the next decision, then make only what it takes to find out.</p>
                         </div>
                       </div>
                       <ol class="wb-dml">
@@ -451,8 +477,8 @@ const company = [
                         <p class="wb-cycle__flow" lang="en" aria-label="Discover, Make, Learn, and back to Discover again">
                           <span class="wb-cycle__step">Discover</span><span class="wb-cycle__arrow" aria-hidden="true">→</span><span class="wb-cycle__step">Make</span><span class="wb-cycle__arrow" aria-hidden="true">→</span><span class="wb-cycle__step">Learn</span><span class="wb-cycle__arrow" aria-hidden="true">→</span>
                         </p>
-                        <p class="wb-cycle__ja">学んだことが、次の問いになる。</p>
-                        <p class="wb-cycle__en" lang="en">What we learn becomes the next question.</p>
+                        <p class="wb-cycle__ja">学んだことを、次の判断につなげる。</p>
+                        <p class="wb-cycle__en" lang="en">What we learn leads to the next decision.</p>
                       </div>
                     </div>
                   </section>
@@ -462,15 +488,17 @@ const company = [
                     <div class="wb-sec__inner">
                       <div class="wb-sec__head">
                         <h2 id="work-title" class="reveal wb-display wb-display--work" lang="en">CLIENT WORK</h2>
-                        <p class="reveal wb-sec__sub" lang="en">We help organizations turn early ideas into real products and services.</p>
+                        <p class="reveal wb-sec__sub" lang="en">We help organizations turn uncertainty into decisions.</p>
                       </div>
                       <div class="wb-sec__lead">
-                        <p class="reveal wb-sec__heading">企業の「まだ形になっていない」を、一緒につくる。</p>
+                        <p class="reveal wb-sec__heading">まだ形になっていない構想を、判断できるところまでつくる。</p>
                         <div class="reveal wb-sec__text">
-                          <p>新規サービスやデジタルプロダクトを中心に、構想の整理からサービス設計、UX/UI、PoC、プロトタイピング、開発、既存サービスの改善まで、必要な領域を横断して支援します。決まった工程を当てはめるのではなく、いま何を明らかにし、何を形にすべきかをプロジェクトごとに見極めながら進めます。</p>
+                          <p>新規サービスやデジタルプロダクトを中心に、構想整理、サービス設計、UX/UI、PoC、プロトタイピング、開発、既存サービスの改善まで横断して支援しています。</p>
+                          <p>工程をあらかじめ決めて進めるのではなく、プロジェクトごとに、何がまだ分かっていないのか、何を確かめれば先へ進めるのかを一緒に整理するところから始めます。検証の結果は、本番開発や事業の意思決定につなげます。</p>
                         </div>
                         <div class="reveal wb-sec__text-en" lang="en">
-                          <p>We work across whatever a project needs — from shaping an early concept to service design, UX/UI, PoC, prototyping, development, and improving services already in use. Rather than applying a fixed process, we work out with you what needs to be understood next, and what needs to be built.</p>
+                          <p>We support new services and digital products from early concept development through service design, UX/UI, PoC, prototyping, development, and ongoing improvement.</p>
+                          <p>Rather than following a fixed process, we start by working out what is still uncertain and what needs to be tested before the project can move forward. The results feed directly into product development and business decisions.</p>
                         </div>
                       </div>
                       <ul class="wb-services">
@@ -487,6 +515,43 @@ const company = [
                           </li>
                         ))}
                       </ul>
+
+                      <!-- ============ PoC / Prototype（CLIENT WORK の中で、PoC の考え方だけを取り出して示す） ============ -->
+                      <section class="wb-poc" aria-labelledby="poc-title">
+                        <div class="wb-poc__head">
+                          <div class="reveal wb-poc__name">
+                            <h3 id="poc-title" class="wb-poc__title" lang="en">PoC / Prototype</h3>
+                            <p class="wb-poc__title-ja">PoC / プロトタイプ</p>
+                          </div>
+                          <div class="wb-poc__body">
+                            <div class="reveal wb-lab__heading">
+                              <p class="wb-sec__heading">本番へ進むか判断できるPoCを設計する。</p>
+                              <p class="wb-lab__heading-en" lang="en">A PoC should help you decide whether to move forward.</p>
+                            </div>
+                            <div class="reveal wb-sec__text">
+                              <p>PoCの目的は、試作品をつくることではありません。ユーザーに必要とされるのか、技術的に実現できるのか、事業として成り立つのか。プロジェクトの中で最も不確実な仮説を特定し、それを確かめるために必要な範囲だけを形にします。</p>
+                              <p>検証の結果は整理したうえで、本番へ進む、見直す、追加で検証する、止める、といった次の判断につなげます。</p>
+                            </div>
+                            <div class="reveal wb-sec__text-en" lang="en">
+                              <p>The purpose of a PoC is not simply to build a prototype. We identify the biggest uncertainty in the project — whether users need it, whether it can be built, or whether the business model can work — and build only what is necessary to test it.</p>
+                              <p>The results should give you enough evidence to move forward, revise the concept, run another test, or stop.</p>
+                            </div>
+                            <ul class="reveal wb-poc__checks">
+                              {pocChecks.map((c) => (
+                                <li class="wb-poc__check">
+                                  <h4 class="wb-poc__check-en" lang="en">{c.en}</h4>
+                                  <p class="wb-poc__check-ja">{c.ja}</p>
+                                  <p class="wb-poc__check-q" lang="en">{c.q}</p>
+                                </li>
+                              ))}
+                            </ul>
+                            <div class="reveal wb-poc__note">
+                              <p class="wb-poc__note-ja">3つを一度に確かめる必要はありません。どれが一番分かっていないかを見極め、そこから検証します。</p>
+                              <p class="wb-poc__note-en" lang="en">You rarely need to test all three at once. We start with the area of greatest uncertainty.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
 
                       <!-- ============ 04 SELECTED WORK ============ -->
                       <section class="wb-cases" aria-labelledby="cases-title">
@@ -522,7 +587,7 @@ const company = [
                           <li class="reveal wb-case wb-case--more">
                             <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
                             <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
-                            <a class="wb-btn-outline" href="/contact/">プロジェクトについて相談する<span lang="en">Contact us</span></a>
+                            <a class="wb-btn-outline" href="/contact/">プロジェクトについて相談する<span lang="en">Discuss a project</span></a>
                           </li>
                         </ul>
                       </section>
@@ -535,19 +600,19 @@ const company = [
                       <div class="wb-box reveal wb-wonderlab__intro">
                         <h2 id="lab-title" class="text wb-box reveal wb-wonderlab__title" lang="en">WONDER LAB</h2>
                         <p class="text wb-box reveal wb-wonderlab__subtitle" lang="en">
-                          Ideas should be built, not just discussed.
+                          Ideas should be tested, not just discussed.
                         </p>
                         <div class="wb-box reveal wb-wonderlab__intro-row">
                           <div class="wb-box reveal wb-wonderlab__lead">
                             <div class="wb-lab__heading">
-                              <p class="wb-sec__heading">自分たち自身の問いも、つくることで確かめる。</p>
-                              <p class="wb-lab__heading-en" lang="en">We build to explore our own questions, too.</p>
+                              <p class="wb-sec__heading">自分たちの問いも、つくって確かめる。</p>
+                              <p class="wb-lab__heading-en" lang="en">We test our own questions the same way.</p>
                             </div>
                             <div class="wb-box reveal wb-wonderlab__lead-ja">
-                              <p>WONDER LABは、日々の仕事や暮らしの中で生まれた問いを、実際にプロダクトや実験として形にする場所です。まだ答えがないテーマに対して、まずつくってみることで見えてくることを確かめ、そこから次の問いへつなげています。</p>
+                              <p>WONDER LABは、私たち自身が感じた疑問や可能性を、実際のサービスやプロダクトとして確かめる場所です。事業になると分かっているものだけをつくるわけではなく、仮説を立てて小さくつくり、世の中に出して、使われ方や反応を見ながら次を決めています。クライアントワークで使っている進め方を、そのまま自分たちの事業にも当てはめています。</p>
                             </div>
                             <div class="wb-box reveal wb-wonderlab__lead-en" lang="en">
-                              <p>WONDER LAB is a space for turning questions from our work and everyday life into real products and experiments. By making first, we discover what can't be understood through discussion alone, and use what we learn to shape the next question.</p>
+                              <p>WONDER LAB is where we test our own questions and ideas through real services and products. Not every idea starts with a proven business case. We form a hypothesis, build something small, release it, watch how people use it, and decide what to do next — the same way we work with clients.</p>
                             </div>
                             <p class="reveal wb-principle wb-principle--ink wb-principle--lead">
                               <span class="wb-principle__en" lang="en">DISCOVER. MAKE. LEARN.</span>
@@ -675,10 +740,10 @@ const company = [
                         <p class="reveal wb-belief__line wb-belief__line--1">Design is not</p>
                         <p class="reveal wb-belief__line wb-belief__line--2">decoration.</p>
                       </div>
-                      <p class="reveal wb-belief__ja">デザインは、見た目を整えることだけではありません。複雑なものを整理し、まだ見えていない問題を見つけ、人が理解し、判断し、行動できる状態をつくること。そして実際につくり、そこから学ぶこと。私たちは、それもデザインだと考えています。</p>
-                      <p class="reveal wb-belief__ja wb-belief__ja--next">AIが多くのものをつくれるようになるほど、何を問い、何を任せ、何を人が判断するのかを決めることが大切になります。その判断を設計することも、これからのデザインの役割だと考えています。</p>
-                      <p class="reveal wb-belief__en wb-belief__en--first" lang="en">Design isn't only about how things look. It's about bringing order to complexity, finding problems no one has named yet, and helping people understand, decide, and act. It's also about building things and learning from them. That, too, is design.</p>
-                      <p class="reveal wb-belief__en" lang="en">As AI takes on more of the making, deciding what to ask, what to delegate, and what people must judge for themselves matters more. Designing those decisions is part of design's work, too.</p>
+                      <p class="reveal wb-belief__ja">デザインは、見た目を整えることだけではありません。複雑な状況を整理し、本当の問題を見つけ、仮説を立て、それを確かめるための形をつくる。そこまでを含めてデザインだと考えています。</p>
+                      <p class="reveal wb-belief__ja wb-belief__ja--next">AIによってつくること自体のコストが下がるほど、何をつくり、何を確かめ、何をAIに任せ、どこを人が判断するのかが問われるようになります。プロダクトだけでなく、その意思決定の進め方まで設計しているのはそのためです。</p>
+                      <p class="reveal wb-belief__en wb-belief__en--first" lang="en">Design isn't only about appearance. It's also about making complex situations understandable, identifying the real problem, forming hypotheses, and creating ways to test them.</p>
+                      <p class="reveal wb-belief__en" lang="en">As AI lowers the cost of making things, the harder questions become what to make, what to test, what to hand to AI, and where human judgment still matters. That's why we design not only products, but the decisions that shape them.</p>
                       <p class="reveal wb-belief__closing">
                         <span class="wb-belief__closing-en" lang="en">Design is how we discover, make and learn.</span>
                         <span class="wb-belief__closing-ja">デザインは、見つけ、つくり、学ぶための方法です。</span>
@@ -730,13 +795,22 @@ const company = [
                       <h2 id="contact-title" class="reveal wb-row-title" lang="en">CONTACT</h2>
                       <div class="reveal wb-row-sec__body">
                         <p class="wb-row-sec__lead">まだ具体的な企画になっていない段階でも構いません。</p>
-                        <p class="wb-row-sec__ja">新しいサービス、UX/UI、PoC、DXについて、一緒に問いを整理するところからご相談ください。</p>
-                        <p class="wb-row-sec__en" lang="en">You don't need to have everything figured out before you contact us. If you're exploring a new service, product, UX challenge, prototype, or digital transformation, we can start by defining the question together.</p>
+                        <p class="wb-row-sec__ja">たとえば、次のような段階からご相談いただけます。</p>
+                        <ul class="wb-consult">
+                          {consultCases.map((c) => (
+                            <li class="wb-consult__item">
+                              <p class="wb-consult__ja">{c.ja}</p>
+                              <p class="wb-consult__en" lang="en">{c.en}</p>
+                            </li>
+                          ))}
+                        </ul>
+                        <p class="wb-row-sec__ja">問いと仮説を整理し、必要であれば小さくつくって試しながら、次の判断ができるところまで一緒に進めます。</p>
+                        <p class="wb-row-sec__en" lang="en">You don't need a fully defined project to get in touch. We help clarify the question, define the hypothesis, test what matters, and build enough evidence to make the next decision.</p>
                         <a href="/contact/" class="link wb-box wb-company__contact"
                           ><div class="wb-box wb-company__contact-text">
-                            <p class="text wb-box wb-company__contact-title">お問い合わせ</p>
+                            <p class="text wb-box wb-company__contact-title">プロジェクトについて相談する</p>
                             <p class="text wb-box wb-company__contact-note" lang="en">
-                              Start a conversation
+                              Discuss a project
                             </p>
                           </div>
                           <i class="icon material-icons wb-box wb-company__contact-icon" aria-hidden="true"
