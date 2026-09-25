@@ -116,6 +116,7 @@ const services = [
   {
     en: "PoC Design & Validation",
     ja: "PoC設計・検証",
+    href: "#poc",
     textJa: "本番へ進むかを見極めるための検証を、設計から実施まで行います。",
     textEn: "We design and run the tests that show whether an idea is ready to move forward.",
   },
@@ -244,7 +245,7 @@ const labProjects = [
         en: "We built an assessment that reads a person's current tendencies across several axes — showing not just a type, but scores, fluctuations, and how results shift over repeated sessions.",
       },
       learn: {
-        ja: "公開後の利用を通じて、人を固定したタイプではなく「変化する状態」として捉えることが、理解の手がかりになると分かった。",
+        ja: "公開後の利用を通じて見えてきた、人を固定したタイプではなく「変化する状態」として捉えることが理解の手がかりになる、という手応え。",
         en: "Real use showed that seeing a person as a changing state, rather than a fixed type, offers a better way into understanding them.",
       },
     },
@@ -504,7 +505,7 @@ const company = [
                         {services.map((s) => (
                           <li class="reveal wb-services__item">
                             <div class="wb-services__name">
-                              <h3 class="wb-services__en" lang="en">{s.en}</h3>
+                              <h3 class="wb-services__en" lang="en">{s.href ? <a class="wb-services__link" href={s.href}>{s.en}</a> : s.en}</h3>
                               <p class="wb-services__ja">{s.ja}</p>
                             </div>
                             <div class="wb-services__body">
@@ -526,7 +527,7 @@ const company = [
                           <h2 id="poc-title" class="reveal wb-cases__title" lang="en">PoC Design &amp; Validation</h2>
                           <div class="wb-poc__body">
                             <div class="reveal wb-lab__heading">
-                              <p class="wb-sec__heading">本番へ進むか判断できるPoCを設計する。</p>
+                              <p class="wb-sec__heading">本番へ進むか判断できる<span class="wb-nobr">PoCを設計する。</span></p>
                               <p class="wb-lab__heading-en" lang="en">A PoC should help you decide whether to move forward.</p>
                             </div>
                             <div class="reveal wb-sec__text">
@@ -809,7 +810,7 @@ const company = [
                             </li>
                           ))}
                         </ul>
-                        <p class="wb-row-sec__ja">問いと仮説を整理し、必要であれば小さくつくって試しながら、次の判断ができるところまで一緒に進めます。</p>
+                        <p class="wb-row-sec__ja">問いと仮説を整理し、必要であれば小さくつくって試しながら、次の判断ができるところまで<span class="wb-nobr">一緒に進めます。</span></p>
                         <p class="wb-row-sec__en" lang="en">You don't need a fully defined project to get in touch. We help clarify the question, define the hypothesis, test what matters, and build enough evidence to make the next decision.</p>
                         <a href="/contact/" class="link wb-box wb-company__contact"
                           ><div class="wb-box wb-company__contact-text">

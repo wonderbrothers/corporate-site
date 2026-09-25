@@ -1990,7 +1990,8 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   gap: 24px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 16px 0px 0px;
-  @media screen and (max-width: 840px) {
+  /* 右カラムが狭くなる 1140px 以下では3列だと語の途中で折り返すので1列に */
+  @media screen and (max-width: 1140px) {
     gap: 0px;
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1998,7 +1999,7 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 .wb-poc__check {
   border-top: 1px solid #22222247;
   padding: 16px 0px 0px;
-  @media screen and (max-width: 840px) {
+  @media screen and (max-width: 1140px) {
     padding: 16px 0px;
   }
 }
@@ -2030,6 +2031,28 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   font-size: var(--wb-text-caption);
   font-weight: var(--wb-fw-medium);
   line-height: 1.4;
+}
+
+/* サービス一覧の「PoC Design & Validation」→ 下の PoC セクションへ */
+.wb-services__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+/* 行末に1〜2文字だけ残る折り返しを避ける（対応ブラウザのみ。非対応でも従来どおり折り返すだけ） */
+/* text-wrap（一括指定）は折り返しの有無まで上書きし、大見出しの white-space: nowrap を打ち消してしまうので、
+   折り返し方だけを指定する text-wrap-style を使う */
+.wb-flow :is(p, h2, h3, h4, li, dd) {
+  text-wrap-style: pretty;
+}
+/* 語句の途中で改行させない（強調コピーの「設計する。」など） */
+.wb-nobr {
+  white-space: nowrap;
 }
 
 /* ---------- 04 SELECTED WORK ---------- */
