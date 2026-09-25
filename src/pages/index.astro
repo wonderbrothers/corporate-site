@@ -132,7 +132,7 @@ const services = [
   },
 ];
 
-/* ---------- 03 CLIENT WORK：PoC / Prototype の3つの観点 ----------
+/* ---------- 03 CLIENT WORK：PoC Design & Validation の3つの観点 ----------
    フレームワークの解説にしない。名前と問いだけを置き、どれから確かめるかを見極める、という考え方を添える */
 const pocChecks = [
   { en: "Desirability", ja: "求められているか", q: "Do people want or need it?" },
@@ -516,13 +516,10 @@ const company = [
                         ))}
                       </ul>
 
-                      <!-- ============ PoC / Prototype（CLIENT WORK の中で、PoC の考え方だけを取り出して示す） ============ -->
+                      <!-- ============ PoC Design & Validation（CLIENT WORK の中で、PoC の考え方だけを取り出して示す。見出しは SELECTED WORK と同じ wb-cases__head） ============ -->
                       <section class="wb-poc" aria-labelledby="poc-title">
-                        <div class="wb-poc__head">
-                          <div class="reveal wb-poc__name">
-                            <h3 id="poc-title" class="wb-poc__title" lang="en">PoC / Prototype</h3>
-                            <p class="wb-poc__title-ja">PoC / プロトタイプ</p>
-                          </div>
+                        <div class="wb-cases__head">
+                          <h2 id="poc-title" class="reveal wb-cases__title" lang="en">PoC Design &amp; Validation</h2>
                           <div class="wb-poc__body">
                             <div class="reveal wb-lab__heading">
                               <p class="wb-sec__heading">本番へ進むか判断できるPoCを設計する。</p>
@@ -539,7 +536,7 @@ const company = [
                             <ul class="reveal wb-poc__checks">
                               {pocChecks.map((c) => (
                                 <li class="wb-poc__check">
-                                  <h4 class="wb-poc__check-en" lang="en">{c.en}</h4>
+                                  <h3 class="wb-poc__check-en" lang="en">{c.en}</h3>
                                   <p class="wb-poc__check-ja">{c.ja}</p>
                                   <p class="wb-poc__check-q" lang="en">{c.q}</p>
                                 </li>

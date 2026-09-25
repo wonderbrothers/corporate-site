@@ -1971,8 +1971,9 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 
-/* ---------- 03 CLIENT WORK：PoC / Prototype ----------
-   組み方は SELECTED WORK と同じ（左に見出し、右に本文）。3つの観点は区切り線の3列 */
+/* ---------- 03 CLIENT WORK：PoC Design & Validation ----------
+   見出しは SELECTED WORK と同じ wb-cases__head / wb-cases__title を使う（左に見出し、右に本文）。
+   3つの観点は区切り線の3列 */
 .wb-poc {
   margin: 120px 0px 0px;
   @media screen and (max-width: 840px) {
@@ -1981,27 +1982,6 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   @media screen and (max-width: 540px) {
     margin: 80px 0px 0px;
   }
-}
-.wb-poc__head {
-  display: grid;
-  gap: 60px;
-  grid-template-columns: 260px minmax(0, 1fr);
-  @media screen and (max-width: 840px) {
-    gap: 16px;
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-.wb-poc__title {
-  font-size: var(--wb-text-section);
-  font-weight: var(--wb-fw-extrabold);
-  line-height: 1.4;
-}
-.wb-poc__title-ja {
-  color: #222222b3;
-  font-size: var(--wb-text-label);
-  font-weight: var(--wb-fw-semibold);
-  letter-spacing: 0.1em;
-  margin: 6px 0px 0px;
 }
 .wb-poc__body {
   display: flex;
