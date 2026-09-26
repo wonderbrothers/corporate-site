@@ -59,7 +59,6 @@ const jsonLd = JSON.stringify([
 const nav = [
   { href: "#approach", label: "APPROACH" },
   { href: "#work", label: "WORK" },
-  { href: "#poc", label: "PoC" },
   { href: "#lab", label: "LAB" },
   { href: "#about", label: "ABOUT" },
   { href: "#contact", label: "CONTACT" },
@@ -116,9 +115,7 @@ const services = [
   {
     en: "PoC Design & Validation",
     ja: "PoC設計・検証",
-    href: "#poc",
-    textJa: "本番へ進むかを見極めるための検証を、設計から実施まで行います。",
-    textEn: "We design and run the tests that show whether an idea is ready to move forward.",
+    poc: true, // 本文はテンプレート側（強調コピー・本文・3つの観点・注記）
   },
   {
     en: "Product Development",
@@ -134,7 +131,7 @@ const services = [
   },
 ];
 
-/* ---------- 03 CLIENT WORK：PoC Design & Validation の3つの観点 ----------
+/* ---------- 03 CLIENT WORK：サービス一覧の PoC Design & Validation に載せる3つの観点 ----------
    フレームワークの解説にしない。名前と問いだけを置き、どれから確かめるかを見極める、という考え方を添える */
 const pocChecks = [
   { en: "Desirability", ja: "求められているか", q: "Do people want or need it?" },
@@ -274,8 +271,8 @@ const labProjects = [
         en: "We built a game that starts from a news story and asks: what happens next, what happens after that, what else could happen — and what actually happened?",
       },
       learn: {
-        ja: "目的は未来を当てることではなく、自分がどう考えたのかを後から振り返ること。仮説と結果を照らし合わせ、考えるプロセスそのものから学ぶ仕組み。",
-        en: "The goal isn't to predict the future. It's to look back at how we reasoned — forming a hypothesis, checking it against what happened, and learning from the process itself.",
+        ja: "目的は未来を当てることではなく、自分がどう考えたのかを後から振り返ること。公開後に「難しい」という声が届いたことから、ニュースに挑み続けてもらう仕組みと、「できる」と「ちょっと難しい」の間にある難しさのバランスを、利用者の声を聞きながら設計していくことに。",
+        en: "The goal isn't to predict the future, but to look back at how we reasoned. After players told us it felt difficult, we decided to keep shaping two things with their feedback: what keeps people coming back to the news, and the balance between “I can do this” and “this is a bit hard.”",
       },
     },
   },
@@ -303,8 +300,8 @@ const labProjects = [
         en: "We got our hands in it — extracting essential oil from Todo fir branches and leaves, and analyzing its composition.",
       },
       learn: {
-        ja: "手を動かすことで見えてきた、この森の特徴と可能性。そして「価値を先に決めるのではなく、実験から見つける」という視点。",
-        en: "Working with our hands showed us what makes this forest distinctive, and taught us to find value through experiments rather than define it in advance.",
+        ja: "手を動かすことで見えてきた、この森の特徴と可能性。価値は短い期間で結論を出せるものではないと考え、先に決めるのではなく、時間をかけて森と向き合いながら見つけていくと決めた。",
+        en: "Working with our hands showed us what makes this forest distinctive. Value isn't something to settle quickly, so rather than define it in advance, we decided to take our time with the forest and find it through experiments.",
       },
     },
   },
@@ -505,55 +502,41 @@ const company = [
                         {services.map((s) => (
                           <li class="reveal wb-services__item">
                             <div class="wb-services__name">
-                              <h3 class="wb-services__en" lang="en">{s.href ? <a class="wb-services__link" href={s.href}>{s.en}</a> : s.en}</h3>
+                              <h3 class="wb-services__en" lang="en">{s.en}</h3>
                               <p class="wb-services__ja">{s.ja}</p>
                             </div>
-                            <div class="wb-services__body">
-                              <p class="wb-services__text">{s.textJa}</p>
-                              <p class="wb-services__text-en" lang="en">{s.textEn}</p>
-                            </div>
+                            {s.poc ? (
+                              <div class="wb-services__body wb-services__body--poc">
+                                <p class="wb-services__lead">本番へ進むか判断できる<span class="wb-nobr">PoCを設計する。</span></p>
+                                <p class="wb-services__lead-en" lang="en">A PoC should help you decide whether to move forward.</p>
+                                <p class="wb-services__text">PoCの目的は、試作品をつくることではありません。ユーザーに必要とされるのか、技術的に実現できるのか、事業として成り立つのか。プロジェクトの中で最も不確実な仮説を特定し、それを確かめるために必要な範囲だけを形にします。</p>
+                                <p class="wb-services__text">検証の結果は整理したうえで、本番へ進む、見直す、追加で検証する、止める、といった次の判断につなげます。</p>
+                                <p class="wb-services__text-en" lang="en">The purpose of a PoC is not simply to build a prototype. We identify the biggest uncertainty in the project — whether users need it, whether it can be built, or whether the business model can work — and build only what is necessary to test it.</p>
+                                <p class="wb-services__text-en" lang="en">The results should give you enough evidence to move forward, revise the concept, run another test, or stop.</p>
+                                <ul class="wb-poc__checks">
+                                  {pocChecks.map((c) => (
+                                    <li class="wb-poc__check">
+                                      <h4 class="wb-poc__check-en" lang="en">{c.en}</h4>
+                                      <p class="wb-poc__check-ja">{c.ja}</p>
+                                      <p class="wb-poc__check-q" lang="en">{c.q}</p>
+                                    </li>
+                                  ))}
+                                </ul>
+                                <div class="wb-poc__note">
+                                  <p class="wb-poc__note-ja">3つを一度に確かめる必要はありません。どれが一番分かっていないかを見極め、そこから検証します。</p>
+                                  <p class="wb-poc__note-en" lang="en">You rarely need to test all three at once. We start with the area of greatest uncertainty.</p>
+                                </div>
+                              </div>
+                            ) : (
+                              <div class="wb-services__body">
+                                <p class="wb-services__text">{s.textJa}</p>
+                                <p class="wb-services__text-en" lang="en">{s.textEn}</p>
+                              </div>
+                            )}
                           </li>
                         ))}
                       </ul>
 
-                    </div>
-                  </section>
-
-                  <!-- ============ PoC Design & Validation（独立セクション。見出しは SELECTED WORK と同じ wb-cases__head） ============ -->
-                  <section id="poc" class="wb-sec wb-flow" aria-labelledby="poc-title">
-                    <div class="wb-sec__inner">
-                      <div class="wb-poc">
-                        <div class="wb-cases__head">
-                          <h2 id="poc-title" class="reveal wb-cases__title" lang="en">PoC Design &amp; Validation</h2>
-                          <div class="wb-poc__body">
-                            <div class="reveal wb-lab__heading">
-                              <p class="wb-sec__heading">本番へ進むか判断できる<span class="wb-nobr">PoCを設計する。</span></p>
-                              <p class="wb-lab__heading-en" lang="en">A PoC should help you decide whether to move forward.</p>
-                            </div>
-                            <div class="reveal wb-sec__text">
-                              <p>PoCの目的は、試作品をつくることではありません。ユーザーに必要とされるのか、技術的に実現できるのか、事業として成り立つのか。プロジェクトの中で最も不確実な仮説を特定し、それを確かめるために必要な範囲だけを形にします。</p>
-                              <p>検証の結果は整理したうえで、本番へ進む、見直す、追加で検証する、止める、といった次の判断につなげます。</p>
-                            </div>
-                            <div class="reveal wb-sec__text-en" lang="en">
-                              <p>The purpose of a PoC is not simply to build a prototype. We identify the biggest uncertainty in the project — whether users need it, whether it can be built, or whether the business model can work — and build only what is necessary to test it.</p>
-                              <p>The results should give you enough evidence to move forward, revise the concept, run another test, or stop.</p>
-                            </div>
-                            <ul class="reveal wb-poc__checks">
-                              {pocChecks.map((c) => (
-                                <li class="wb-poc__check">
-                                  <h3 class="wb-poc__check-en" lang="en">{c.en}</h3>
-                                  <p class="wb-poc__check-ja">{c.ja}</p>
-                                  <p class="wb-poc__check-q" lang="en">{c.q}</p>
-                                </li>
-                              ))}
-                            </ul>
-                            <div class="reveal wb-poc__note">
-                              <p class="wb-poc__note-ja">3つを一度に確かめる必要はありません。どれが一番分かっていないかを見極め、そこから検証します。</p>
-                              <p class="wb-poc__note-en" lang="en">You rarely need to test all three at once. We start with the area of greatest uncertainty.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </section>
 
@@ -568,7 +551,7 @@ const company = [
                             <p class="wb-cases__intro-en" lang="en">Much of our work is confidential, so we don't name clients or projects. Instead, we describe each by industry, the question we worked on, and what we did.</p>
                           </div>
                         </div>
-                        <ul class="wb-cases__list">
+                        <ul class="wb-cases__list" tabindex="0" aria-label="事例（狭い画面では横にスクロールできます）">
                           {cases.map((c) => (
                             <li class="reveal wb-case">
                               <p class="wb-case__industry"><span class="wb-case__industry-en" lang="en">{c.industryEn}</span><span class="wb-case__industry-ja">{c.industryJa}</span></p>
@@ -590,12 +573,12 @@ const company = [
                               </dl>
                             </li>
                           ))}
-                          <li class="reveal wb-case wb-case--more">
-                            <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
-                            <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
-                            <a class="wb-btn-outline" href="/contact/">プロジェクトについて相談する<span lang="en">Discuss a project</span></a>
-                          </li>
                         </ul>
+                        <div class="reveal wb-case wb-case--more">
+                          <p class="wb-case__more-ja">ほかの事例は、ご相談の際に個別にご紹介しています。</p>
+                          <p class="wb-case__more-en" lang="en">More case studies are available on request.</p>
+                          <a class="wb-btn-outline" href="/contact/">プロジェクトについて相談する<span lang="en">Discuss a project</span></a>
+                        </div>
                       </div>
                     </div>
                   </section>

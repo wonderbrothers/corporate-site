@@ -20,8 +20,7 @@
      wb-hero           … 01 HERO（イラスト・ロゴ・SCROLL）
      wb-statement      … 01 HERO のステートメント（Build to explore / the unanswered.）
      wb-sec#approach   … 02 APPROACH（wb-dml = Discover / Make / Learn、wb-cycle = 循環）
-     wb-sec#work       … 03 CLIENT WORK（wb-services）
-     wb-sec#poc        … PoC Design & Validation（wb-poc。見出しは wb-cases__head を共用）
+     wb-sec#work       … 03 CLIENT WORK（wb-services。PoC Design & Validation の項目だけ wb-poc__checks 等を内包）
      wb-sec            … 04 SELECTED WORK（wb-cases）
      wb-wonderlab#lab  … 05 WONDER LAB
      wb-belief         … 06 OUR BELIEF（メインカラーの帯）
@@ -1973,23 +1972,30 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 
-/* ---------- PoC Design & Validation（独立セクション） ----------
-   見出しは SELECTED WORK と同じ wb-cases__head / wb-cases__title を使う（左に見出し、右に本文）。
-   3つの観点は区切り線の3列 */
-.wb-poc__body {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 10px 0px 0px;
-  @media screen and (max-width: 840px) {
-    padding: 0px;
-  }
+/* サービス一覧の PoC Design & Validation だけ、強調コピー・本文・3つの観点・注記を載せる */
+.wb-services__lead {
+  font-size: var(--wb-text-heading-md);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.4;
+  margin: 0px 0px 4px;
+}
+.wb-services__lead-en {
+  font-size: var(--wb-text-body-tight);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.3;
+  margin: 0px 0px 16px;
+}
+.wb-services__text-en + .wb-services__text-en {
+  margin: 6px 0px 0px;
+}
+.wb-services__body--poc .wb-poc__note {
+  margin: 20px 0px 0px;
 }
 .wb-poc__checks {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 16px 0px 0px;
+  margin: 24px 0px 0px;
   /* 右カラムが狭くなる 1140px 以下では3列だと語の途中で折り返すので1列に */
   @media screen and (max-width: 1140px) {
     gap: 0px;
@@ -2031,17 +2037,6 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   font-size: var(--wb-text-caption);
   font-weight: var(--wb-fw-medium);
   line-height: 1.4;
-}
-
-/* サービス一覧の「PoC Design & Validation」→ 下の PoC セクションへ */
-.wb-services__link {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  &:hover {
-    opacity: 0.6;
-  }
 }
 
 /* 行末に1〜2文字だけ残る折り返しを避ける（対応ブラウザのみ。非対応でも従来どおり折り返すだけ） */
@@ -2097,9 +2092,33 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   @media screen and (max-width: 1140px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  /* 840px 以下：縦に積むとページが長くなりすぎるので横スクロール（次のカードを少し覗かせる） */
   @media screen and (max-width: 840px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 16px;
     margin: 32px 0px 0px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0px 0px 8px;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > .wb-case {
+      flex: 0 0 70%;
+      scroll-snap-align: start;
+    }
+  }
+  @media screen and (max-width: 540px) {
+    & > .wb-case {
+      flex-basis: 86%;
+    }
+  }
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
   }
 }
 /* カードの枠は WONDER LAB のプロダクトカードと同じ */
@@ -2156,8 +2175,8 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   align-items: center;
   border: none;
   gap: 8px;
-  grid-column: 1 / -1;
   justify-content: center;
+  margin: 24px 0px 0px;
   padding: 24px 0px 0px;
   text-align: center;
   @media screen and (max-width: 540px) {
@@ -2520,5 +2539,40 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   @media screen and (max-width: 540px) {
     flex-wrap: wrap;
     gap: 12px 24px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   WONDER LAB のカード：840px 以下は横スクロール（SELECTED WORK と同じ扱い）
+   841〜1140px の縦積み・1140px 超の JS カルーセルより後ろに置いて上書きする。
+   縦方向は hidden にして、縦スワイプをページのスクロールに渡す。
+------------------------------------------------------------------ */
+@media screen and (max-width: 840px) {
+  .wb-box.wb-wonderlab__carousel-viewport,
+  html.js-on .wb-box.wb-wonderlab__carousel-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .wb-box.wb-wonderlab__products {
+    align-items: stretch;
+    flex-direction: row;
+    gap: 16px;
+    padding: 0px 0px 8px;
+  }
+  .wb-box.wb-wonderlab__product {
+    flex: 0 0 70%;
+    scroll-snap-align: start;
+    width: auto;
+  }
+}
+@media screen and (max-width: 540px) {
+  .wb-box.wb-wonderlab__product {
+    flex-basis: 86%;
   }
 }
