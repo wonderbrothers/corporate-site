@@ -2549,3 +2549,13 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
     width: auto;
   }
 }
+
+/* 事例の業種名・CONTACT の相談例は、文節の区切り（HTML の <wbr>）でだけ改行する。
+   text-wrap: pretty だけでは1文字だけの行は消えるが「事 / 業者」「判断でき / ない」と語の途中で割れたため。
+   keep-all で文字間の改行を止め、<wbr> と読点の後でだけ折り返す。極端に狭い幅では anywhere で文字単位に逃がす */
+.wb-case__industry-ja,
+.wb-consult__ja {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  word-break: keep-all;
+}

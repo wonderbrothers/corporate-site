@@ -149,7 +149,7 @@ const cases = [
   {
     published: true,
     industryEn: "INSURANCE",
-    industryJa: "損害保険会社",
+    industryJa: "損害保険|会社",
     questionJa: "複雑な保険情報を、利用者が迷わず理解できる体験にするには。",
     questionEn: "How can complex insurance information become an experience people understand without getting lost?",
     steps: {
@@ -170,7 +170,7 @@ const cases = [
   {
     published: true,
     industryEn: "FINANCIAL SERVICES",
-    industryJa: "金融サービス事業者",
+    industryJa: "金融サービス|事業者",
     questionJa: "新しいサービスの構想を、関係者が具体的に共有し、検討できる形にするには。",
     questionEn: "How can a new service concept take a form that stakeholders can share concretely and discuss?",
     steps: {
@@ -191,7 +191,7 @@ const cases = [
   {
     published: true,
     industryEn: "ENTERTAINMENT",
-    industryJa: "エンターテインメント事業者",
+    industryJa: "エンターテインメント|事業者",
     questionJa: "事業の要件と使いやすさを両立し、新しいサービスを実装につなげるには。",
     questionEn: "How can a new service balance business requirements with ease of use and move into implementation?",
     steps: {
@@ -313,22 +313,23 @@ const stepLabels = [
   { key: "learn", label: "LEARN" },
 ];
 
-/* ---------- 09 CONTACT：相談できる段階の例 ---------- */
+/* ---------- 09 CONTACT：相談できる段階の例 ----------
+   ja の「|」は改行してよい文節の区切り（<wbr> になる。表示はされない）。事例の industryJa も同じ */
 const consultCases = [
   {
-    ja: "新しいサービスを考えているが、進めるべきか判断できない",
+    ja: "新しいサービスを|考えているが、|進めるべきか|判断できない",
     en: "We have an idea for a new service but aren't sure whether to move forward.",
   },
   {
-    ja: "PoCをしたいが、何を検証すべきか整理できていない",
+    ja: "PoCをしたいが、|何を検証すべきか|整理できていない",
     en: "We want to run a PoC but haven't defined what needs to be tested.",
   },
   {
-    ja: "AIを活用したいが、どこから始めればよいか分からない",
+    ja: "AIを活用したいが、|どこから始めればよいか|分からない",
     en: "We want to use AI but aren't sure where it can make a real difference.",
   },
   {
-    ja: "既存サービスに課題を感じているが、何を変えるべきか分からない",
+    ja: "既存サービスに|課題を感じているが、|何を変えるべきか|分からない",
     en: "We know an existing service has problems but aren't sure what should change.",
   },
 ];
@@ -557,7 +558,7 @@ const company = [
                             <ul class="wb-box wb-wonderlab__products wb-cases__list" data-carousel-track aria-label="事例">
                               {cases.map((c) => (
                                 <li class="reveal wb-case">
-                                  <p class="wb-case__industry"><span class="wb-case__industry-en" lang="en">{c.industryEn}</span><span class="wb-case__industry-ja">{c.industryJa}</span></p>
+                                  <p class="wb-case__industry"><span class="wb-case__industry-en" lang="en">{c.industryEn}</span><span class="wb-case__industry-ja">{c.industryJa.split("|").map((t, i) => <>{i > 0 && <wbr />}{t}</>)}</span></p>
                                   <div class="wb-case__question">
                                     <p class="wb-case__label" lang="en">QUESTION</p>
                                     <h3 class="wb-case__q">{c.questionJa}</h3>
@@ -788,8 +789,8 @@ const company = [
                       <h2 id="governance-title" class="reveal wb-row-title" lang="en">SECURITY &amp; GOVERNANCE</h2>
                       <div class="reveal wb-row-sec__body">
                         <p class="wb-row-sec__lead">安心してプロジェクトをお任せいただくために。</p>
-                        <p class="wb-row-sec__ja">安心してプロジェクトをお任せいただけるよう、情報管理、セキュリティ、ガバナンス体制の整備に継続して取り組んでいます。業務執行の監督や適切な情報開示のための社内体制づくりを進め、公平で透明性のある意思決定を目指しています。個人情報の取り扱いについては、<a class="wb-inline-link" href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
-                        <p class="wb-row-sec__en" lang="en">So that clients can entrust projects to us with confidence, we continue working to strengthen our information management, security, and governance. We are building internal systems for overseeing business execution and appropriate disclosure, aiming for fair and transparent decision-making. For how we handle personal information, please see our Privacy Policy.</p>
+                        <p class="wb-row-sec__ja">情報管理、セキュリティ、ガバナンス体制の整備に継続して取り組んでいます。業務執行の監督や適切な情報開示のための社内体制づくりを進め、公平で透明性のある意思決定を目指しています。個人情報の取り扱いについては、<a class="wb-inline-link" href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
+                        <p class="wb-row-sec__en" lang="en">We continue working to strengthen our information management, security, and governance. We are building internal systems for overseeing business execution and appropriate disclosure, aiming for fair and transparent decision-making. For how we handle personal information, please see our Privacy Policy.</p>
                       </div>
                     </div>
                   </section>
@@ -804,7 +805,7 @@ const company = [
                         <ul class="wb-consult">
                           {consultCases.map((c) => (
                             <li class="wb-consult__item">
-                              <p class="wb-consult__ja">{c.ja}</p>
+                              <p class="wb-consult__ja">{c.ja.split("|").map((t, i) => <>{i > 0 && <wbr />}{t}</>)}</p>
                               <p class="wb-consult__en" lang="en">{c.en}</p>
                             </li>
                           ))}
