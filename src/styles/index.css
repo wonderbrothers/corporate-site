@@ -937,10 +937,18 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   justify-content: center;
   &::after {
     content: "\2197";
+    flex: none;
   }
   @media screen and (max-width: 540px) {
     padding: 9px 14px;
   }
+}
+/* カード幅が狭くて URL が入りきらないときは、左右の余白を保ったまま「…」で省略する（全文は title で見られる） */
+.wb-wonderlab__product-link-text {
+  min-width: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .wb-box.wb-wonderlab__product-link:hover {
   background: var(--wb-ink);

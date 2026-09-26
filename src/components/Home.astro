@@ -351,7 +351,7 @@ const arrowNext = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="
                                     <img class="wb-box wb-wonderlab__product-logo" alt={p.name} src={p.logo} />
                                   )}
                                   {p.url && (
-                                    <a class="text link wb-box reveal wb-wonderlab__product-link" href={p.url} target="_blank" rel="noopener">{p.urlLabel}</a>
+                                    <a class="text link wb-box reveal wb-wonderlab__product-link" href={p.url} target="_blank" rel="noopener" title={p.urlLabel}><span class="wb-wonderlab__product-link-text">{p.urlLabel}</span></a>
                                   )}
                                 </div>
                                 <div class="wb-box reveal wb-wonderlab__product-body">
