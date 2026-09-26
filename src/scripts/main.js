@@ -147,13 +147,14 @@
  *   1140px 以下は CSS 側でネイティブの横スクロール（scroll-snap）にしており、
  *   この JS は何もしない（stacked() が true を返す）。
  */
-(function () {
-  var viewport = document.querySelector('[data-carousel-viewport]');
-  var track = document.querySelector('[data-carousel-track]');
-  var nav = document.querySelector('[data-carousel-nav]');
-  var dotsBox = document.querySelector('[data-carousel-dots]');
-  var prev = document.querySelector('[data-carousel-prev]');
-  var next = document.querySelector('[data-carousel-next]');
+// WONDER LAB と SELECTED WORK の2か所で使う（[data-carousel] ごとに独立して動く）
+Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), function (root) {
+  var viewport = root.querySelector('[data-carousel-viewport]');
+  var track = root.querySelector('[data-carousel-track]');
+  var nav = root.querySelector('[data-carousel-nav]');
+  var dotsBox = root.querySelector('[data-carousel-dots]');
+  var prev = root.querySelector('[data-carousel-prev]');
+  var next = root.querySelector('[data-carousel-next]');
   if (!viewport || !track || !nav || !dotsBox || !prev || !next) return;
   if (track.children.length < 2) return;
 
@@ -239,7 +240,7 @@
   // キーボードで隠れたカードに入ったら、その位置まで送る
   track.addEventListener('focusin', function (e) {
     if (stacked()) return;
-    var card = e.target.closest('.wb-wonderlab__product');
+    var card = e.target.closest('[data-carousel-track] > *');
     if (!card) return;
     var left = card.getBoundingClientRect().left - track.getBoundingClientRect().left;
     var right = left + card.getBoundingClientRect().width;
@@ -265,4 +266,4 @@
   });
 
   apply();
-})();
+});
