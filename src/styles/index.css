@@ -2040,7 +2040,7 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 
 /* 本文全体への text-wrap-style: pretty は撤去（2026-09-26）。
    Safari は段落全体の行長をそろえるため、余裕があっても早めに改行し、行末が大きく空いて見えた。
-   行末の1〜2文字残りは、必要な箇所だけ wb-nobr ／ 文節の <wbr> で個別に対処する */
+   行末の1〜2文字残りは、必要な箇所だけ wb-nobr（文章ファイルの {{ }}）で個別に対処する */
 /* 語句の途中で改行させない（強調コピーの「設計する。」など） */
 .wb-nobr {
   white-space: nowrap;
@@ -2582,15 +2582,6 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   }
 }
 
-/* 事例の業種名・CONTACT の相談例は、文節の区切り（HTML の <wbr>）でだけ改行する。
-   text-wrap: pretty だけでは1文字だけの行は消えるが「事 / 業者」「判断でき / ない」と語の途中で割れたため。
-   keep-all で文字間の改行を止め、<wbr> と読点の後でだけ折り返す。極端に狭い幅では anywhere で文字単位に逃がす */
-.wb-case__industry-ja,
-.wb-consult__ja {
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
-  word-break: keep-all;
-}
 
 /* ------------------------------------------------------------------
    言語切り替え（日本語 / ⇄ 英語 /en/）

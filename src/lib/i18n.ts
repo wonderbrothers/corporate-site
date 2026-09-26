@@ -27,7 +27,6 @@ function escapeHtml(s: string): string {
 /**
  * 文章ファイルに書ける簡単な記法を HTML にする（set:html で使う）。
  *   \n              … 改行（<br>）。見出しの意図的な改行に使う
- *   |               … ここで改行してよい、という文節の区切り（<wbr>。表示はされない）
  *   {{ … }}         … この中では改行しない（例: {{PoCを設計する。}}）
  *   [文字](/path/)  … リンク
  * それ以外の HTML は書けない（< > はそのまま文字として表示される）。
@@ -37,7 +36,6 @@ export function rich(text?: string | null): string {
   let h = escapeHtml(String(text));
   h = h.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a class="wb-inline-link" href="$2">$1</a>');
   h = h.replace(/\{\{(.+?)\}\}/g, '<span class="wb-nobr">$1</span>');
-  h = h.replace(/\|/g, "<wbr />");
   h = h.replace(/\n/g, "<br />");
   return h;
 }
