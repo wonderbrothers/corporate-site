@@ -21,7 +21,7 @@
      wb-statement      … 01 HERO のステートメント（Build to explore / the unanswered.）
      wb-sec#approach   … 02 APPROACH（wb-dml = Discover / Make / Learn、wb-cycle = 循環）
      wb-sec#work       … 03 CLIENT WORK（wb-services。PoC Design & Validation の項目だけ wb-poc__checks 等を内包）
-     wb-sec            … 04 SELECTED WORK（wb-cases）
+     （#work の中）     … 04 SELECTED WORK（wb-cases）
      wb-wonderlab#lab  … 05 WONDER LAB
      wb-belief         … 06 OUR BELIEF（メインカラーの帯）
      wb-row-sec        … 07 ABOUT / 08 SECURITY & GOVERNANCE / 09 CONTACT
@@ -2049,7 +2049,16 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 /* ---------- 04 SELECTED WORK ---------- */
-/* SELECTED WORK は独立セクション（wb-sec）になったので、上の余白は wb-sec の padding に任せる */
+/* SELECTED WORK は CLIENT WORK の中。サービス一覧との間隔 */
+.wb-cases {
+  margin: 64px 0px 0px;
+  @media screen and (max-width: 840px) {
+    margin: 56px 0px 0px;
+  }
+  @media screen and (max-width: 540px) {
+    margin: 48px 0px 0px;
+  }
+}
 .wb-cases__head {
   display: grid;
   gap: 60px;
