@@ -2550,6 +2550,23 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   }
 }
 
+/* ------------------------------------------------------------------
+   カルーセルを出す最大幅：1440px 以上（内容幅が上限の 1280px に達する幅）では
+   WONDER LAB・SELECTED WORK とも3枚を横に並べ、矢印とドットを出さない。
+   カードが窓に収まるので JS の送り幅は 0 になり、transform も動かない。
+   1141〜1439px は矢印で送るカルーセル、1140px 以下はネイティブ横スクロール。
+------------------------------------------------------------------ */
+@media screen and (min-width: 1440px) {
+  .wb-box.wb-wonderlab__product,
+  .wb-cases__list > .wb-case {
+    flex: 1 1 0px;
+  }
+  html.js-on .wb-box.wb-wonderlab__carousel-arrows,
+  html.js-on .wb-box.wb-wonderlab__carousel-nav {
+    display: none;
+  }
+}
+
 /* 事例の業種名・CONTACT の相談例は、文節の区切り（HTML の <wbr>）でだけ改行する。
    text-wrap: pretty だけでは1文字だけの行は消えるが「事 / 業者」「判断でき / ない」と語の途中で割れたため。
    keep-all で文字間の改行を止め、<wbr> と読点の後でだけ折り返す。極端に狭い幅では anywhere で文字単位に逃がす */
