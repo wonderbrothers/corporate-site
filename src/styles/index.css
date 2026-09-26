@@ -897,8 +897,9 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   height: calc(var(--wl-logo-height) + var(--wl-logo-gap) + var(--wl-chip-height));
 }
 .wb-box.wb-wonderlab__product-aside {
-  align-content: flex-start;
-  align-items: flex-start;
+  /* ロゴとリンクボタンはどの幅でも中央寄せ（本文は左寄せのまま） */
+  align-content: center;
+  align-items: center;
   flex: none;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -907,11 +908,6 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   padding: 0px;
   width: 100%;
   max-width: 100%;
-  /* カードが縦積みになったらロゴとリンクボタンを中央寄せ（本文は左寄せのまま） */
-  @media screen and (max-width: 1140px) {
-    align-content: center;
-    align-items: center;
-  }
 }
 .wb-box.wb-wonderlab__product-link {
   align-content: center;
@@ -953,9 +949,7 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
 }
 /* ロゴを包む <a>。縦積み時は親（align-items: center）に従って中央に置く。 */
 .wb-box.wb-wonderlab__product-logo-link {
-  @media screen and (max-width: 1140px) {
-    align-self: center;
-  }
+  align-self: center;
   /* SP はロゴをカードの内容幅いっぱいに（包む <a> も横幅いっぱいに広げる） */
   @media screen and (max-width: 540px) {
     align-self: stretch;
@@ -965,12 +959,9 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   flex: none;
   height: var(--wl-logo-height);
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
   width: 260px;
   max-width: 100%;
-  @media screen and (max-width: 1140px) {
-    object-position: center;
-  }
   /* SP は横幅いっぱいまで使うが、高さはロゴ帯（--wl-logo-height）で固定する。
      縦横比で高さを決めると、横スクロールで並ぶカード同士でタイトルの位置がずれるため */
   @media screen and (max-width: 540px) {
