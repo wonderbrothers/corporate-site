@@ -1,0 +1,194 @@
+---
+/* お問い合わせページの型（日本語 /contact/ と 英語 /en/contact/ で共通）
+   文章は src/content/copy/ja.yaml / en.yaml の contactPage に書く。
+   フォームの項目名（entry.*）と、同意チェックの value は Google フォーム側の設定と一致させる必要があるので、
+   言語にかかわらず変えない。 */
+import Base from '../layouts/Base.astro';
+import '../styles/contact.css';
+import { getCopy, rich, PATHS, type Lang } from '../lib/i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = await getCopy(lang);
+const c = t.contactPage;
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+
+// ▼▼ 要設定（どちらも公開値。発行後に差し替え）▼▼
+// reCAPTCHA v3 サイトキー（https://www.google.com/recaptcha/admin で発行）
+const RECAPTCHA_SITE_KEY = "6LcRDGstAAAAAKI0ivmFnZ4lTX45awYPYFYP9VWU";
+// Cloudflare Worker のURL（デプロイ後の xxx.workers.dev）
+const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
+// ▲▲ 要設定 ▲▲
+---
+<Base title={c.title} description={c.description} path={PATHS.contact[lang]} lang={lang} alternates={PATHS.contact}>
+  <script slot="head" is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}></script>
+  <div class="container"><div class="render-canvas"><div class="StudioCanvas">
+<div class="wb-box reveal cf-page">
+                <div class="wb-box reveal cf-inner">
+                  <a href={PATHS.home[lang]} class="link wb-box reveal cf-home-link" aria-label={c.homeLabel}
+                    ><img class="wb-box cf-logo" alt="" src="/images/logo.svg"
+                  /></a>
+                  <div class="wb-box reveal cf-body">
+                    <h1 class="text wb-box reveal cf-title" set:html={rich(c.heading)}></h1>
+                    <p class="text wb-box reveal cf-note" set:html={rich(c.note)}></p>
+                    <form
+                      id="contact-form"
+                      name="contact form"
+                      class="wb-box reveal cf-form"
+                    >
+                      <div class="wb-box reveal cf-field">
+                        <div class="wb-box reveal cf-field__label">
+                          <p class="text wb-box reveal cf-field__label-text">{c.fields.company.label}</p>
+                          <p class="text wb-box reveal cf-field__required">*<br /></p>
+                        </div>
+                        <input
+                          name="entry.1361955119"
+                          placeholder={c.fields.company.placeholder}
+                          required=""
+                          type="text"
+                          autocomplete="off"
+                          class="wb-box reveal cf-field__input"
+                        />
+                      </div>
+                      <div class="wb-box reveal cf-field">
+                        <div class="wb-box reveal cf-field__label">
+                          <p class="text wb-box reveal cf-field__label-text">{c.fields.name.label}</p>
+                          <p class="text wb-box reveal cf-field__required">*<br /></p>
+                        </div>
+                        <input
+                          name="entry.1729267472"
+                          placeholder={c.fields.name.placeholder}
+                          required=""
+                          type="text"
+                          autocomplete="off"
+                          class="wb-box reveal cf-field__input"
+                        />
+                      </div>
+                      <div class="wb-box reveal cf-field-email">
+                        <div class="wb-box reveal cf-field-email__label">
+                          <p class="text wb-box reveal cf-field-email__label-text">{c.fields.email.label}</p>
+                          <p class="text wb-box reveal cf-field-email__required">*<br /></p>
+                        </div>
+                        <input
+                          name="entry.252485387"
+                          placeholder={c.fields.email.placeholder}
+                          required=""
+                          type="email"
+                          autocomplete="off"
+                          class="wb-box reveal cf-field-email__input"
+                        />
+                      </div>
+                      <div class="wb-box reveal cf-field-message">
+                        <div class="wb-box reveal cf-field-message__label">
+                          <p class="text wb-box reveal cf-field-message__label-text">{c.fields.message.label}</p>
+                          <p class="text wb-box reveal cf-field-message__required">*<br /></p>
+                        </div>
+                        <textarea
+                          name="entry.1277514805"
+                          placeholder={c.fields.message.placeholder}
+                          required=""
+                          class="wb-box reveal cf-field-message__input"
+                        ></textarea>
+                      </div>
+                      <label class="wb-box reveal cf-consent"
+                        ><input
+                          name="entry.321540926"
+                          value="プライバシーポリシーに同意する"
+                          required=""
+                          type="checkbox"
+                          class="wb-box cf-consent__checkbox" /><span
+                          class="text wb-box reveal cf-consent__text"
+                          >{c.consent}</span></label
+                      ><button class="button wb-box reveal cf-submit">
+                        <p class="text wb-box reveal cf-submit__text">{c.submit}</p>
+                        <i class="icon material-icons wb-box reveal cf-submit__icon"
+                          ><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></i
+                        >
+                      </button>
+                    </form>
+                    <p class="form-error" role="alert" hidden>{c.error}</p>
+                    <div class="form-thanks" hidden>
+                      <p class="thanks-title">{c.thanksTitle}</p>
+                      <p class="thanks-text">{c.thanksText}</p>
+                      <a class="thanks-back" href={PATHS.home[lang]}>{c.thanksBack}</a>
+                    </div>
+                  </div>
+                </div>
+                <footer class="wb-box reveal cf-footer">
+                  <div class="wb-box reveal cf-footer__inner">
+                    <p class="text wb-box reveal cf-footer__copyright">{t.footer.copyright}</p>
+                    <div class="wb-footer-links">
+                      <a href={PATHS.contact[other]} hreflang={other} lang={other} class="text link wb-box reveal cf-footer__privacy">{t.nav.switchName}</a>
+                      <a href="/privacy/" class="text link wb-box reveal cf-footer__privacy">{t.footer.privacy}</a>
+                      <button type="button" class="text link wb-box reveal cf-footer__privacy wb-cookie-btn" data-wb-consent-open>{t.footer.cookie}</button>
+                    </div>
+                  </div>
+                </footer>
+              </div>
+  </div></div></div>
+
+  <script define:vars={{ siteKey: RECAPTCHA_SITE_KEY, endpoint: CONTACT_ENDPOINT }}>
+    // reCAPTCHA v3 → Cloudflare Worker 経由で Google フォームへ送信
+    const form = document.getElementById("contact-form");
+    if (form) {
+      const card = form.parentElement;
+      const thanks = document.querySelector(".form-thanks");
+      const errorBox = document.querySelector(".form-error");
+      const btn = form.querySelector("button");
+
+      // フォームへの最初の入力を1回だけ計測（contact_start）。入力内容は送らない。
+      // dataLayer に積むだけで、GA へ届くのはアクセス解析を許可した人だけ（wb-consent.js）
+      const onStart = () => {
+        form.removeEventListener("input", onStart);
+        (window.dataLayer = window.dataLayer || []).push({ event: "contact_start", form_name: "contact" });
+      };
+      form.addEventListener("input", onStart);
+
+      const showError = () => {
+        if (errorBox) errorBox.hidden = false;
+        if (btn) btn.disabled = false;
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        if (errorBox) errorBox.hidden = true;
+        if (btn) btn.disabled = true;
+        try {
+          await new Promise((res) => grecaptcha.ready(res));
+          const token = await grecaptcha.execute(siteKey, { action: "contact" });
+          const fields = {};
+          new FormData(form).forEach((v, k) => {
+            if (k.indexOf("entry.") === 0) fields[k] = v;
+          });
+          const r = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token, fields }),
+          });
+          const data = await r.json().catch(() => ({}));
+          if (r.ok && data.ok) {
+            // GTM へ送信完了を通知（GA4 のコンバージョン計測用）
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "contact_submit",
+              form_name: "contact",
+            });
+            // カード内の見出し・フォームを隠してお礼を表示
+            Array.prototype.forEach.call(card.children, (c) => {
+              if (c !== thanks) c.style.display = "none";
+            });
+            if (thanks) {
+              thanks.hidden = false;
+              thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          } else {
+            showError();
+          }
+        } catch (err) {
+          showError();
+        }
+      });
+    }
+  </script>
+</Base>

@@ -17,6 +17,9 @@ interface Props {
   path?: string; // 例: "/", "/contact/", "/privacy/"
   ogType?: string;
   noindex?: boolean; // 404 など検索対象外にしたいページ用
+  lang?: "ja" | "en"; // ページの言語（既定は日本語）
+  // 日本語版・英語版がある場合の各言語のURL（例: { ja: "/", en: "/en/" }）。hreflang を出す
+  alternates?: { ja: string; en: string };
 }
 
 const DEFAULT_DESC =
@@ -28,7 +31,10 @@ const {
   path = "/",
   ogType = "website",
   noindex = false,
+  lang = "ja",
+  alternates,
 } = Astro.props;
+const siteName = lang === "en" ? "WONDER BROTHERS INC." : "株式会社ワンダーブラザース";
 
 // Astro.site（=https://wonder-bros.com）を基準に絶対URLを生成
 const base = (Astro.site?.href ?? "https://wonder-bros.com/").replace(/\/$/, "");
@@ -37,7 +43,7 @@ const ogImage = base + "/images/ogp.png";
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -62,15 +68,23 @@ const ogImage = base + "/images/ogp.png";
     <meta name="robots" content={noindex ? "noindex, follow" : "all"} />
     <meta name="theme-color" content="#d45235" />
     <meta name="generator" content={Astro.generator} />
+    {alternates && !noindex && (
+      <>
+        <link rel="alternate" hreflang="ja" href={base + alternates.ja} />
+        <link rel="alternate" hreflang="en" href={base + alternates.en} />
+        <link rel="alternate" hreflang="x-default" href={base + alternates.ja} />
+      </>
+    )}
 
     <!-- OGP / Twitter -->
-    <meta property="og:site_name" content="株式会社ワンダーブラザース" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "ja_JP"} />
+    {alternates && <meta property="og:locale:alternate" content={lang === "en" ? "ja_JP" : "en_US"} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -82,7 +96,7 @@ const ogImage = base + "/images/ogp.png";
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="apple-mobile-web-app-title" content="株式会社ワンダーブラザース" />
+    <meta name="apple-mobile-web-app-title" content={siteName} />
     <meta name="format-detection" content="telephone=no,email=no,address=no" />
 
     <!-- Fonts (Google Fonts CDN)

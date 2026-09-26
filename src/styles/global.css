@@ -636,8 +636,11 @@ button.wb-btn-outline:focus-visible {
 .wb-footer-links {
   align-items: center;
   display: flex;
-  flex: none;
-  gap: 24px;
+  /* 言語切り替え・Privacy Policy・Cookie設定の3つ。狭い画面では縮めて折り返す */
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  min-width: 0px;
 }
 button.wb-cookie-btn {
   -webkit-appearance: none;

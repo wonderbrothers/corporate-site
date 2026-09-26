@@ -1,0 +1,498 @@
+---
+/* ==================================================================
+   トップページの型（日本語 / と 英語 /en/ で共通）
+   ・文章はここに書かない。src/content/copy/ja.yaml / en.yaml に書く。
+   ・この型は「どの場所にどの項目を入れるか」と、ロゴ・画像・URL・並び順だけを持つ。
+   ・文章ファイルで空欄（""）にした項目は、その言語のページでは表示しない。
+   構成・分類・コピーの方針は docs/site-restructure-2026-09.md を参照。
+================================================================== */
+import Base from '../layouts/Base.astro';
+import '../styles/index.css';
+import { getCopy, rich, PATHS, type Lang } from '../lib/i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = await getCopy(lang);
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+const home = PATHS.home[lang];
+const contactHref = PATHS.contact[lang];
+
+const siteUrl = "https://wonder-bros.com";
+const jsonLd = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: "株式会社ワンダーブラザース",
+    alternateName: "WONDER BROTHERS INC.",
+    url: `${siteUrl}/`,
+    // Google 検索のロゴは 112px 以上のラスター画像が確実なので PNG（ロゴマークと同じ図柄）
+    logo: `${siteUrl}/images/android-chrome-512x512.png`,
+    image: `${siteUrl}/images/ogp.png`,
+    slogan: t.meta.slogan,
+    description: t.meta.description,
+    foundingDate: "2020-04-07",
+    founder: { "@type": "Person", name: lang === 'ja' ? "佐藤大志" : "Taishi Sato" },
+    address: {
+      "@type": "PostalAddress",
+      postalCode: "150-0043",
+      addressRegion: "東京都",
+      addressLocality: "渋谷区",
+      streetAddress: "道玄坂1-10-8 渋谷道玄坂東急ビル2F-C",
+      addressCountry: "JP",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      url: `${siteUrl}${contactHref}`,
+      availableLanguage: ["ja", "en"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: t.meta.siteName,
+    url: `${siteUrl}${home}`,
+    inLanguage: lang,
+    publisher: { "@id": `${siteUrl}/#organization` },
+  },
+]);
+
+/* ---------- 構成（文章以外） ---------- */
+const nav = [
+  { href: "#approach", label: "APPROACH" },
+  { href: "#work", label: "WORK" },
+  { href: "#lab", label: "LAB" },
+  { href: "#about", label: "ABOUT" },
+  { href: "#contact", label: "CONTACT" },
+];
+
+const steps = [
+  { key: "discover", num: "01", icon: "/images/deco-halftone.svg" },
+  { key: "make", num: "02", icon: "/images/deco-dots.svg" },
+  { key: "learn", num: "03", icon: "/images/deco-spiral.svg" },
+];
+const stepKeys = ["discover", "make", "learn"];
+
+const labProjects = [
+  { key: "64monsters", name: "64MONSTERS", logo: "/images/64monsters-logo-animated.svg", url: "https://64monsters.wonder-bros.com/", urlLabel: "64monsters.wonder-bros.com" },
+  { key: "rensougame", name: "RENSOU GAME", logo: "/images/rensougame-logo-animated.svg", url: "https://rensougame.wonder-bros.com/", urlLabel: "rensougame.wonder-bros.com" },
+  { key: "forest", name: "FOREST EXPERIMENT", logo: "/images/mori-logo.svg", url: null, urlLabel: null },
+].map((p) => ({ ...p, ...t.lab.projects[p.key] }));
+
+const arrowPrev = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><polyline points="15 18 9 12 15 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>';
+const arrowNext = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><polyline points="9 18 15 12 9 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>';
+---
+<Base title={t.meta.title} description={t.meta.description} path={home} lang={lang} alternates={PATHS.home}>
+  <script type="application/ld+json" set:html={jsonLd} slot="head" is:inline></script>
+  <div class="container"><div class="render-canvas">
+  <!-- ナビゲーション：HERO を過ぎると上から現れる（JS 無効時は常に表示） -->
+  <header class="wb-nav wb-flow" data-nav>
+    <a class="wb-nav__home" href="#top" aria-label={t.nav.home}>
+      <img class="wb-nav__logo" src="/images/horizontal-logo.svg" alt="" width="886" height="148" />
+    </a>
+    <nav class="wb-nav__menu" aria-label={t.nav.main}>
+      <ul class="wb-nav__list">
+        {nav.map((item) => (
+          <li><a class="wb-nav__link" href={item.href}>{item.label}</a></li>
+        ))}
+        <li><a class="wb-nav__link wb-nav__lang" href={PATHS.home[other]} hreflang={other} lang={other} aria-label={t.nav.switchName}>{t.nav.switchLabel}</a></li>
+      </ul>
+    </nav>
+    <!-- 840px 以下：メニューボタン（ドロワーを開く） -->
+    <button type="button" class="wb-nav__toggle" aria-label={t.nav.openMenu} aria-expanded="false" aria-controls="wb-drawer" data-drawer-open>
+      <span class="wb-nav__bars" aria-hidden="true"></span>
+    </button>
+  </header>
+  <!-- メニュードロワー（840px 以下）。CONTACT はリストに入れず、下部のボタンにする -->
+  <div class="wb-drawer wb-flow" id="wb-drawer" data-drawer>
+    <div class="wb-drawer__backdrop" data-drawer-close></div>
+    <div class="wb-drawer__panel" role="dialog" aria-modal="true" aria-label={t.nav.menu}>
+      <div class="wb-drawer__head">
+        <a class="wb-nav__home" href="#top" aria-label={t.nav.home} data-drawer-link>
+          <img class="wb-nav__logo" src="/images/horizontal-logo.svg" alt="" width="886" height="148" />
+        </a>
+        <button type="button" class="wb-drawer__close" aria-label={t.nav.closeMenu} data-drawer-close>
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <nav aria-label={t.nav.menu}>
+        <ul class="wb-drawer__list">
+          {nav.filter((item) => item.href !== "#contact").map((item) => (
+            <li><a class="wb-drawer__link" href={item.href} data-drawer-link>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <a class="wb-drawer__lang" href={PATHS.home[other]} hreflang={other} lang={other}>{t.nav.switchName}</a>
+      <a class="wb-drawer__contact" href={contactHref}>
+        <span class="wb-drawer__contact-text">
+          <span class="wb-drawer__contact-title">{t.nav.contactTitle}</span>
+          {t.nav.contactNote && <span class="wb-drawer__contact-note" lang="en">{t.nav.contactNote}</span>}
+        </span>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+  </div>
+  <div class="StudioCanvas">
+<div class="wb-box reveal wb-page" id="top">
+                <!-- ============ 01 HERO ============ -->
+                <div class="wb-box reveal wb-intro">
+                  <section class="wb-box reveal wb-hero" data-hero>
+                    <img
+                      class="wb-box wb-hero__image"
+                      alt=""
+                      src="/images/hero.webp"
+                      srcset="/images/hero-1024.webp 1024w, /images/hero-1600.webp 1600w, /images/hero.webp 2048w"
+                      sizes="(max-width: 540px) 170vw, 100vw"
+                      width="2048"
+                      height="1282"
+                      fetchpriority="high"
+                    /><h1 class="wb-hero__heading"><img
+                      class="wb-box wb-hero__logo"
+                      alt={t.hero.logoAlt}
+                      src="/images/logo.svg"
+                    /></h1><img class="wb-box wb-hero__mark" alt="" src="/images/logo-mark.svg" />
+                    <div class="wb-box wb-hero__scroll">
+                      <p class="text wb-box reveal wb-hero__scroll-label">SCROLL</p>
+                      <div class="wb-box reveal wb-hero__scroll-line"></div>
+                    </div>
+                  </section>
+                  <section class="wb-box reveal wb-statement wb-flow" aria-labelledby="statement-title">
+                    <div class="wb-box wb-statement__list" lang="en" id={t.hero.title ? undefined : "statement-title"}>
+                      <p class="text wb-box reveal wb-statement__line wb-statement__line--1">{t.hero.lines[0]}</p>
+                      <p class="text wb-box reveal wb-statement__line wb-statement__line--2">{t.hero.lines[1]}</p>
+                    </div>
+                    <div class="wb-statement__body">
+                      {t.hero.title && <h2 id="statement-title" class="reveal wb-statement__title" set:html={rich(t.hero.title)} />}
+                      {t.hero.body.map((p: string) => <p class="reveal wb-statement__ja" set:html={rich(p)} />)}
+                      <p class="reveal wb-principle">
+                        <span class="wb-principle__en" lang="en">{t.principle.en}</span>
+                        {t.principle.local && <span class="wb-principle__ja">{t.principle.local}</span>}
+                      </p>
+                    </div>
+                  </section>
+                </div>
+
+                <div class="wb-box reveal wb-lower">
+                  <!-- ============ 02 APPROACH ============ -->
+                  <section id="approach" class="wb-sec wb-flow" aria-labelledby="approach-title">
+                    <div class="wb-sec__inner">
+                      <div class="wb-sec__head">
+                        <h2 id="approach-title" class="reveal wb-display wb-display--approach" lang="en">{t.approach.display}</h2>
+                        {t.approach.tagline && <p class="reveal wb-sec__sub" lang="en">{t.approach.tagline}</p>}
+                      </div>
+                      <div class="wb-sec__lead">
+                        {t.approach.heading && <p class="reveal wb-sec__heading" set:html={rich(t.approach.heading)} />}
+                        <div class="reveal wb-sec__text">
+                          {t.approach.body.map((p: string) => <p set:html={rich(p)} />)}
+                        </div>
+                      </div>
+                      <ol class="wb-dml">
+                        {steps.map((s) => {
+                          const c = t.approach.steps[s.key];
+                          return (
+                            <li class="reveal wb-dml__item">
+                              <img class="wb-dml__icon" src={s.icon} alt="" width="232" height="232" loading="lazy" decoding="async" />
+                              <p class="wb-dml__num" lang="en">{s.num}</p>
+                              <h3 class="wb-dml__title"><span lang="en">{c.title}</span>{c.subtitle && <span class="wb-dml__title-ja">{c.subtitle}</span>}</h3>
+                              <p class="wb-dml__ja" set:html={rich(c.text)} />
+                            </li>
+                          );
+                        })}
+                      </ol>
+                      <div class="reveal wb-cycle">
+                        <p class="wb-cycle__flow" lang="en" aria-label={t.approach.cycle.label}>
+                          {t.approach.cycle.steps.map((w: string) => <><span class="wb-cycle__step">{w}</span><span class="wb-cycle__arrow" aria-hidden="true">→</span></>)}
+                        </p>
+                        <p class="wb-cycle__ja" set:html={rich(t.approach.cycle.text)} />
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ============ 03 CLIENT WORK ============ -->
+                  <section id="work" class="wb-sec wb-flow" aria-labelledby="work-title">
+                    <div class="wb-sec__inner">
+                      <div class="wb-sec__head">
+                        <h2 id="work-title" class="reveal wb-display wb-display--work" lang="en">{t.work.display}</h2>
+                        {t.work.tagline && <p class="reveal wb-sec__sub" lang="en">{t.work.tagline}</p>}
+                      </div>
+                      <div class="wb-sec__lead">
+                        {t.work.heading && <p class="reveal wb-sec__heading" set:html={rich(t.work.heading)} />}
+                        <div class="reveal wb-sec__text">
+                          {t.work.body.map((p: string) => <p set:html={rich(p)} />)}
+                        </div>
+                      </div>
+                      <ul class="wb-services">
+                        {t.work.services.map((s: any) => (
+                          <li class="reveal wb-services__item">
+                            <div class="wb-services__name">
+                              <h3 class="wb-services__en" lang="en">{s.name}</h3>
+                              {s.label && <p class="wb-services__ja">{s.label}</p>}
+                            </div>
+                            {s.poc ? (
+                              <div class="wb-services__body wb-services__body--poc">
+                                <p class="wb-services__lead" set:html={rich(s.poc.lead)} />
+                                {s.poc.body.map((p: string) => <p class="wb-services__text" set:html={rich(p)} />)}
+                                <ul class="wb-poc__checks">
+                                  {s.poc.checks.map((c: any) => (
+                                    <li class="wb-poc__check">
+                                      <h4 class="wb-poc__check-en" lang="en">{c.name}</h4>
+                                      <p class="wb-poc__check-ja" set:html={rich(c.label)} />
+                                    </li>
+                                  ))}
+                                </ul>
+                                <div class="wb-poc__note">
+                                  <p class="wb-poc__note-ja" set:html={rich(s.poc.note)} />
+                                </div>
+                              </div>
+                            ) : (
+                              <div class="wb-services__body">
+                                <p class="wb-services__text" set:html={rich(s.text)} />
+                              </div>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <!-- ============ 04 SELECTED WORK（CLIENT WORK の中） ============ -->
+                      <div class="wb-cases">
+                        <div class="wb-cases__head">
+                          <h2 id="cases-title" class="reveal wb-cases__title" lang="en">{t.cases.title}</h2>
+                          <div class="reveal wb-cases__intro">
+                            <p class="wb-cases__intro-ja" set:html={rich(t.cases.intro)} />
+                          </div>
+                        </div>
+                        <!-- WONDER LAB と同じカルーセル（1440px 以上は3枚並び／1141〜1439px は矢印で送る／以下はネイティブ横スクロール） -->
+                        <div class="wb-box reveal wb-wonderlab__carousel wb-cases__carousel" data-carousel>
+                          <div class="wb-box wb-wonderlab__carousel-viewport" data-carousel-viewport>
+                            <ul class="wb-box wb-wonderlab__products wb-cases__list" data-carousel-track aria-label={t.cases.listLabel}>
+                              {t.cases.items.map((c: any) => (
+                                <li class="reveal wb-case">
+                                  <p class="wb-case__industry"><span class="wb-case__industry-en" lang="en">{c.industryLabel}</span>{c.industry && <span class="wb-case__industry-ja" set:html={rich(c.industry)} />}</p>
+                                  <div class="wb-case__question">
+                                    <p class="wb-case__label" lang="en">{t.cases.questionLabel}</p>
+                                    <h3 class="wb-case__q" set:html={rich(c.question)} />
+                                  </div>
+                                  <dl class="wb-steps">
+                                    {stepKeys.map((k) => (
+                                      <div class="wb-steps__row">
+                                        <dt class="wb-steps__label" lang="en">{t.cases.stepLabels[k]}</dt>
+                                        <dd class="wb-steps__body">
+                                          <p class="wb-steps__ja" set:html={rich(c[k])} />
+                                        </dd>
+                                      </div>
+                                    ))}
+                                  </dl>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div class="wb-box wb-wonderlab__carousel-arrows" data-carousel-arrows>
+                            <button type="button" class="wb-box wb-wonderlab__carousel-arrow" data-carousel-prev aria-label={t.cases.prev} set:html={arrowPrev} />
+                            <button type="button" class="wb-box wb-wonderlab__carousel-arrow" data-carousel-next aria-label={t.cases.next} set:html={arrowNext} />
+                          </div>
+                          <div class="wb-box wb-wonderlab__carousel-nav" data-carousel-nav>
+                            <div class="wb-box wb-wonderlab__carousel-dots" data-carousel-dots></div>
+                          </div>
+                        </div>
+                        <div class="reveal wb-case wb-case--more">
+                          <p class="wb-case__more-ja" set:html={rich(t.cases.more)} />
+                          <a class="wb-btn-outline" href={contactHref}>{t.cases.button}{t.cases.buttonNote && <span lang="en">{t.cases.buttonNote}</span>}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ============ 05 WONDER LAB ============ -->
+                  <section id="lab" class="wb-box reveal wb-wonderlab wb-flow" aria-labelledby="lab-title">
+                    <div class="wb-box reveal wb-wonderlab__inner">
+                      <div class="wb-box reveal wb-wonderlab__intro">
+                        <h2 id="lab-title" class="text wb-box reveal wb-wonderlab__title" lang="en">{t.lab.display}</h2>
+                        {t.lab.tagline && <p class="text wb-box reveal wb-wonderlab__subtitle" lang="en">{t.lab.tagline}</p>}
+                        <div class="wb-box reveal wb-wonderlab__intro-row">
+                          <div class="wb-box reveal wb-wonderlab__lead">
+                            {t.lab.heading && (
+                              <div class="wb-lab__heading">
+                                <p class="wb-sec__heading" set:html={rich(t.lab.heading)} />
+                              </div>
+                            )}
+                            <div class="wb-box reveal wb-wonderlab__lead-ja">
+                              <p set:html={rich(t.lab.body)} />
+                            </div>
+                            <p class="reveal wb-principle wb-principle--ink wb-principle--lead">
+                              <span class="wb-principle__en" lang="en">{t.principle.en}</span>
+                              {t.principle.local && <span class="wb-principle__ja">{t.principle.local}</span>}
+                            </p>
+                          </div>
+                          <div class="wb-box reveal wb-wonderlab__visual">
+                            <img
+                              class="wb-box wb-wonderlab__visual-image"
+                              alt=""
+                              src="/images/wl-image.webp"
+                              width="1003"
+                              height="822"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="wb-box reveal wb-wonderlab__carousel" data-carousel>
+                        <div class="wb-box wb-wonderlab__carousel-viewport" data-carousel-viewport>
+                          <div class="wb-box wb-wonderlab__products" data-carousel-track>
+                            {labProjects.map((p: any) => (
+                              <article class={`wb-box wb-wonderlab__product wb-wonderlab__product-${p.key}`} aria-labelledby={`lab-${p.key}`}>
+                                <div class="wb-box reveal wb-wonderlab__product-aside">
+                                  {p.url ? (
+                                    <a class="wb-box wb-wonderlab__product-logo-link" href={p.url} target="_blank" rel="noopener">
+                                      <img class="wb-box wb-wonderlab__product-logo" alt={p.name} src={p.logo} />
+                                    </a>
+                                  ) : (
+                                    <img class="wb-box wb-wonderlab__product-logo" alt={p.name} src={p.logo} />
+                                  )}
+                                  {p.url && (
+                                    <a class="text link wb-box reveal wb-wonderlab__product-link" href={p.url} target="_blank" rel="noopener">{p.urlLabel}</a>
+                                  )}
+                                </div>
+                                <div class="wb-box reveal wb-wonderlab__product-body">
+                                  <p class="wb-lab__theme">
+                                    <span class="wb-lab__name" id={`lab-${p.key}`} lang="en">{p.name}</span>
+                                    <span class="wb-lab__theme-ja" set:html={rich(p.theme)} />
+                                  </p>
+                                  <div class="wb-box reveal wb-wonderlab__product-heading">
+                                    <h3 class="text wb-box reveal wb-wonderlab__product-heading-ja" set:html={rich(p.question)} />
+                                  </div>
+                                  <div class="wb-box reveal wb-wonderlab__product-text">
+                                    <div class="wb-box reveal wb-wonderlab__product-ja"><p set:html={rich(p.context)} /></div>
+                                  </div>
+                                  <dl class="wb-steps">
+                                    {stepKeys.map((k) => (
+                                      <div class="wb-steps__row">
+                                        <dt class="wb-steps__label" lang="en">{t.cases.stepLabels[k]}</dt>
+                                        <dd class="wb-steps__body">
+                                          <p class="wb-steps__ja" set:html={rich(p[k])} />
+                                        </dd>
+                                      </div>
+                                    ))}
+                                  </dl>
+                                </div>
+                              </article>
+                            ))}
+                          </div>
+                        </div>
+                        <div class="wb-box wb-wonderlab__carousel-arrows" data-carousel-arrows>
+                          <button type="button" class="wb-box wb-wonderlab__carousel-arrow" data-carousel-prev aria-label={t.lab.prev} set:html={arrowPrev} />
+                          <button type="button" class="wb-box wb-wonderlab__carousel-arrow" data-carousel-next aria-label={t.lab.next} set:html={arrowNext} />
+                        </div>
+                        <div class="wb-box wb-wonderlab__carousel-nav" data-carousel-nav>
+                          <div class="wb-box wb-wonderlab__carousel-dots" data-carousel-dots></div>
+                        </div>
+                      </div>
+                      <div class="reveal wb-lab__closing">
+                        <p class="wb-lab__closing-ja" set:html={rich(t.lab.closing)} />
+                        <p class="wb-principle wb-principle--ink">
+                          <span class="wb-principle__en" lang="en">{t.principle.en}</span>
+                          {t.principle.local && <span class="wb-principle__ja">{t.principle.local}</span>}
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                <!-- ============ 06 OUR BELIEF ============ -->
+                <section class="wb-belief wb-flow" aria-labelledby="belief-title">
+                  <div class="wb-belief__inner">
+                    <h2 id="belief-title" class="reveal wb-row-title wb-belief__label" lang="en">{t.belief.label}</h2>
+                    <div class="wb-belief__body">
+                      <div class="wb-belief__list" lang="en">
+                        <p class="reveal wb-belief__line wb-belief__line--1">{t.belief.lines[0]}</p>
+                        <p class="reveal wb-belief__line wb-belief__line--2">{t.belief.lines[1]}</p>
+                      </div>
+                      {t.belief.body.map((p: string, i: number) => (
+                        <p class={`reveal wb-belief__ja${i > 0 ? " wb-belief__ja--next" : ""}`} set:html={rich(p)} />
+                      ))}
+                      <p class="reveal wb-belief__closing">
+                        {t.belief.closingTagline && <span class="wb-belief__closing-en" lang="en">{t.belief.closingTagline}</span>}
+                        {t.belief.closing && <span class="wb-belief__closing-ja">{t.belief.closing}</span>}
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="wb-box reveal wb-lower wb-lower--company">
+                  <!-- ============ 07 ABOUT ============ -->
+                  <section id="about" class="wb-row-sec wb-flow" aria-labelledby="about-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="about-title" class="reveal wb-row-title" lang="en">{t.about.title}</h2>
+                      <dl class="reveal wb-company-list">
+                        {t.about.rows.map((row: any) => (
+                          <div class="wb-company-list__row">
+                            <dt class="wb-company-list__label">{row.label}</dt>
+                            <dd class="wb-company-list__value">
+                              {row.list && (
+                                <ul class="wb-company-list__services" lang="en">
+                                  {row.list.map((item: string) => <li>{item}</li>)}
+                                </ul>
+                              )}
+                              {row.value && (row.list
+                                ? <p class="wb-company-list__en">{row.value}</p>
+                                : <p class="wb-company-list__ja">{row.value}</p>)}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  </section>
+
+                  <!-- ============ 08 SECURITY & GOVERNANCE ============ -->
+                  <section class="wb-row-sec wb-flow" aria-labelledby="governance-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="governance-title" class="reveal wb-row-title" lang="en">{t.governance.title}</h2>
+                      <div class="reveal wb-row-sec__body">
+                        {t.governance.lead && <p class="wb-row-sec__lead" set:html={rich(t.governance.lead)} />}
+                        <p class="wb-row-sec__ja" set:html={rich(t.governance.body)} />
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ============ 09 CONTACT ============ -->
+                  <section id="contact" class="wb-row-sec wb-flow" aria-labelledby="contact-title">
+                    <div class="wb-row-sec__inner">
+                      <h2 id="contact-title" class="reveal wb-row-title" lang="en">{t.contact.title}</h2>
+                      <div class="reveal wb-row-sec__body">
+                        {t.contact.lead && <p class="wb-row-sec__lead" set:html={rich(t.contact.lead)} />}
+                        <p class="wb-row-sec__ja" set:html={rich(t.contact.intro)} />
+                        <ul class="wb-consult">
+                          {t.contact.cases.map((c: string) => (
+                            <li class="wb-consult__item">
+                              <p class="wb-consult__ja" set:html={rich(c)} />
+                            </li>
+                          ))}
+                        </ul>
+                        <p class="wb-row-sec__ja" set:html={rich(t.contact.outro)} />
+                        <a href={contactHref} class="link wb-box wb-company__contact"
+                          ><div class="wb-box wb-company__contact-text">
+                            <p class="text wb-box wb-company__contact-title">{t.contact.button}</p>
+                            {t.contact.buttonNote && <p class="text wb-box wb-company__contact-note" lang="en">{t.contact.buttonNote}</p>}
+                          </div>
+                          <i class="icon material-icons wb-box wb-company__contact-icon" aria-hidden="true"
+                            ><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></i
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <footer class="wb-box reveal wb-footer">
+                  <div class="wb-box reveal wb-footer__inner">
+                    <p class="text wb-box reveal wb-footer__copyright">{t.footer.copyright}</p>
+                    <div class="wb-footer-links">
+                      <a href={PATHS.home[other]} hreflang={other} lang={other} class="text link wb-box reveal wb-footer__privacy">{t.nav.switchName}</a>
+                      <a href="/privacy/" class="text link wb-box reveal wb-footer__privacy">{t.footer.privacy}</a>
+                      <button type="button" class="text link wb-box reveal wb-footer__privacy wb-cookie-btn" data-wb-consent-open>{t.footer.cookie}</button>
+                    </div>
+                  </div>
+                </footer>
+              </div>
+  </div></div></div>
+</Base>

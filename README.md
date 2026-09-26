@@ -34,30 +34,43 @@ npm run preview    # 本番同等（ルート配信）でローカル確認
 
 ```
 src/
-├── layouts/Base.astro        # <head>/SEO/OGP/JSON-LD/フォント/GTM/共通スクリプト
-├── components/               # SiteHeader / SiteFooter（404 など固定ページ共通）
+├── content/copy/
+│   ├── ja.yaml               # 日本語版の文章（トップ / とお問い合わせ /contact/）
+│   └── en.yaml               # 英語版の文章（/en/ と /en/contact/）
+├── content.config.ts         # 上の YAML を読み込む設定
+├── lib/i18n.ts               # 文章ファイルの読み込み・記法（改行など）の変換・各言語のURL
+├── layouts/Base.astro        # <head>/SEO/OGP/hreflang/フォント/GTM/共通スクリプト
+├── components/
+│   ├── Home.astro            # トップページの型（日英共通。文章は持たない）
+│   ├── ContactPage.astro     # お問い合わせページの型（日英共通）
+│   └── SiteHeader / SiteFooter（404 など固定ページ共通）
 ├── pages/
-│   ├── index.astro           # トップ（文言は先頭の frontmatter にデータとしてまとめてある）
-│   ├── contact.astro         # お問い合わせ（reCAPTCHA v3 → Cloudflare Worker → Google フォーム）
-│   ├── privacy.astro         # プライバシーポリシー
+│   ├── index.astro           # / … Home に ja を流し込むだけ
+│   ├── contact.astro         # /contact/ … ContactPage に ja
+│   ├── en/index.astro        # /en/ … Home に en
+│   ├── en/contact.astro      # /en/contact/ … ContactPage に en
+│   ├── privacy.astro         # プライバシーポリシー（日本語のみ）
 │   └── 404.astro             # 404 ページ
-├── scripts/main.js           # スクロールリビール / 追従ナビ / SP メニュードロワー / WONDER LAB カルーセル
+├── scripts/main.js           # スクロールリビール / 追従ナビ / SP メニュードロワー / カルーセル
 └── styles/                   # global（デザイントークン）/ index / contact / privacy / content(404用)
 public/                       # images, favicon, CNAME, robots.txt（そのまま配信）
 ```
 
-公開ページは **index / contact / privacy**（＋404）の3ページ構成です。
+公開ページは **/ ・ /contact/ ・ /en/ ・ /en/contact/ ・ /privacy/**（＋404）です。
 
-## トップページの文言を直す
+## 文言を直す（日本語・英語）
 
-`src/pages/index.astro` 先頭の frontmatter（`---` で囲まれた部分）に、
-サービス・事例（SELECTED WORK）・WONDER LAB・会社情報などの日英コピーがまとまっています。
-HTML を触らずに文言だけ変更できます。
+文章は **`src/content/copy/ja.yaml`（日本語）と `en.yaml`（英語）だけ** に書きます。
+ページの型（`src/components/Home.astro` など）には文章を書きません。
 
-- SELECTED WORK は `cases` 配列の `published: true` のものだけ表示されます。
+- 直すときは `:` の右側だけを書き換える。項目名や字下げは変えない。
+- 日英で項目名をそろえる。空欄（`""`）にした項目は、その言語のページでは表示されない。
+- 書ける記法：`\n` 改行 ／ `|` ここで改行してよい文節の区切り ／ `{{ … }}` この中は改行しない ／ `[文字](/path/)` リンク。
+- SELECTED WORK の事例を足すときは、`ja.yaml` と `en.yaml` の `cases.items` に同じ順番で足す。
   クライアント名・案件名・機密性の高い数値は掲載しません。
 - 大見出し（APPROACH / CLIENT WORK など）の文字を変えた場合は、
   `src/styles/global.css` のスマホ用係数を測り直す必要があります（コメント参照）。
+- ロゴ・画像・リンク先・並び順（Discover → Make → Learn、WONDER LAB の3プロジェクト）は型の側にあります。
 
 ## ページを増やす場合
 

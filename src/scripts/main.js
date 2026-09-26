@@ -203,7 +203,7 @@ Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), funct
         var dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'wb-box wb-wonderlab__carousel-dot';
-        dot.setAttribute('aria-label', index + 1 + 'ページ目へ');
+        dot.setAttribute('aria-label', /^en/.test(document.documentElement.lang) ? 'Go to page ' + (index + 1) : index + 1 + 'ページ目へ');
         dot.addEventListener('click', function () {
           var ratio = dots.length > 1 ? index / (dots.length - 1) : 0;
           offset = ratio * maxOffset();

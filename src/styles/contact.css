@@ -689,3 +689,11 @@ body {
   
   }
 }
+
+/* フッター：言語切り替えを足してリンクが3つになったので、狭い画面では折り返す（トップページと同じ） */
+.wb-box.cf-footer__inner {
+  @media screen and (max-width: 540px) {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}

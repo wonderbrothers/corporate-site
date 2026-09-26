@@ -1,0 +1,241 @@
+# ==================================================================
+# English copy (https://wonder-bros.com/en/ and /en/contact/)
+#
+# ・日本語版は ja.yaml。項目名（: の左側）は両方で同じにそろえる。
+# ・空欄（""）にした項目は、そのページでは表示されない
+#   （例：英語版では、英語の見出しの下に添えている日本語の小見出しを出さない）。
+# ・書ける記法は ja.yaml の冒頭を参照（\n 改行 / | 改行してよい位置 / {{ }} 改行しない / [text](/path/) リンク）。
+# ==================================================================
+
+lang: en
+
+meta:
+  title: "WONDER BROTHERS | Build to explore the unanswered."
+  description: "WONDER BROTHERS is a Tokyo-based design studio that turns open questions and early ideas into things we can test, using what we learn to inform the next decision. We support new service design, UX/UI, PoC design and validation, product development, and DX."
+  siteName: "WONDER BROTHERS INC."
+  slogan: "Build to explore the unanswered."
+
+# ---------- Shared ----------
+principle:
+  en: "DISCOVER. MAKE. LEARN."
+  local: ""
+
+nav:
+  home: "Back to top"
+  main: "Main navigation"
+  openMenu: "Open menu"
+  closeMenu: "Close menu"
+  menu: "Menu"
+  contactTitle: "Contact"
+  contactNote: ""
+  switchLabel: "JA"
+  switchName: "日本語"
+
+footer:
+  copyright: "© WONDER BROTHERS INC. All rights reserved."
+  privacy: "Privacy Policy"
+  cookie: "Cookie settings"
+
+# ---------- 01 HERO ----------
+hero:
+  logoAlt: "WONDER BROTHERS INC."
+  lines: ["Build to explore", "the unanswered."]
+  # The large English lines above serve as the heading on the English page.
+  title: ""
+  body:
+    - "WONDER BROTHERS is a design studio that turns open questions and early ideas into things we can test, using what we learn to inform the next decision."
+    - "We develop services, experiences, and prototypes, then refine the concept through real use and feedback."
+
+# ---------- 02 APPROACH ----------
+approach:
+  display: "APPROACH"
+  tagline: "We think by making."
+  heading: ""
+  body:
+    - "New services and products often begin with open questions. We develop ideas by observing people and situations, trying things out, and revising our thinking in response to what we learn."
+  steps:
+    discover:
+      title: "Discover"
+      subtitle: ""
+      text: "We observe people, workflows, environments, and information flows to uncover needs and problems that have not yet been clearly articulated. Together, we explore the context behind the brief and identify the problem to address and what to test first."
+    make:
+      title: "Make"
+      subtitle: ""
+      text: "We turn questions and hypotheses into something people can try. What we make, and how much we build, depends on what we need to test — from an interface or prototype to a service experience."
+    learn:
+      title: "Learn"
+      subtitle: ""
+      text: "We examine real use and feedback to understand where our assumptions differ from what happens and what new issues emerge. What we learn helps us decide whether to move into development, revise and test again, or stop."
+  cycle:
+    steps: ["Discover", "Make", "Learn"]
+    label: "Discover, Make, Learn, and back to Discover again"
+    text: "What we learn leads to the next decision."
+
+# ---------- 03 CLIENT WORK ----------
+work:
+  display: "CLIENT WORK"
+  tagline: "From early ideas to development and improvement."
+  heading: ""
+  body:
+    - "We support new services and digital products through concept development, service design, UX/UI, PoC, development, and improvements to existing services."
+    - "Together, we define the scope and approach around the project’s goals and current challenges."
+  services:
+    - name: "New Service Design"
+      label: ""
+      text: "We organize early concepts and ideas to define whose problem the service solves. We clarify the value it offers and what to test first."
+    - name: "UX / UI Design"
+      label: ""
+      text: "We design information structure and user flows based on how people behave and the situations they use a service in. Even for complex services, we aim for experiences where people can find what they need and use it without getting lost."
+    - name: "PoC Design & Validation"
+      label: ""
+      poc:
+        lead: "A PoC should help you decide whether to move forward."
+        body:
+          - "We identify what needs to be tested first: whether people need the service, whether it can be built and operated, or whether it can work as a business. We then define how to test it and what needs to be prototyped."
+          - "We review the results to clarify the conditions for moving into development and the questions that still need to be answered."
+        checks:
+          - name: "Desirability"
+            label: "Do people want or need it?"
+          - name: "Feasibility"
+            label: "Can it be built and operated?"
+          - name: "Viability"
+            label: "Can it work as a business?"
+        note: "You rarely need to test all three at once. We start with the area of greatest uncertainty."
+    - name: "Product Development"
+      label: ""
+      text: "We shape the direction that emerges from validation into a product people actually use. Working with engineers where needed, we are involved from UX/UI design through implementation and post-release improvement."
+    - name: "DX / Service Transformation"
+      label: ""
+      text: "We map how users, operations, information, and systems relate to one another to identify what needs to change in existing operations and services. We test changes on a small scale to help develop processes and services that work in practice."
+
+# ---------- 04 SELECTED WORK ----------
+# Keep the same order and number of cases as ja.yaml.
+cases:
+  title: "SELECTED WORK"
+  intro: "Client and project names are omitted for confidentiality. These examples describe the challenges we addressed and the work we contributed."
+  questionLabel: "QUESTION"
+  stepLabels: { discover: "DISCOVER", make: "MAKE", learn: "LEARN" }
+  listLabel: "Case studies"
+  prev: "Previous case"
+  next: "Next case"
+  items:
+    - industryLabel: "INSURANCE"
+      industry: ""
+      question: "How can we make complex insurance information easier for people to understand?"
+      discover: "We mapped the information structure of products, policies, and procedures against user behavior to pinpoint where understanding and decisions broke down."
+      make: "Through UX, information architecture, UI, and prototypes, we turned complex information into an experience users could follow."
+      learn: "We organized the issues raised in stakeholder reviews and validation and reflected them in the design. The experience then went through implementation to release."
+    - industryLabel: "FINANCIAL SERVICES"
+      industry: ""
+      question: "How can we make a new service concept tangible so stakeholders can understand and discuss it together?"
+      discover: "We laid out the idea's background, intended users, and existing operations and constraints to clarify what needed to be tested."
+      make: "We visualized the service through screens and prototypes so stakeholders could experience it, not just read about it."
+      learn: "We reflected the feedback and issues from our discussions in the development requirements. The service was then developed and launched."
+    - industryLabel: "ENTERTAINMENT"
+      industry: ""
+      question: "How can a new service balance business requirements with ease of use and move into implementation?"
+      discover: "We clarified the business goals and expected user behavior, then set priorities for the experiences and features the service needed to work."
+      make: "Working from hypotheses, we designed the UX, UI, and prototypes, and set up an information structure and design rules that carry smoothly into development."
+      learn: "Through repeated reviews and validation with stakeholders, we balanced business requirements with user experience, and stayed involved from implementation through release."
+  more: "More case studies are available on request."
+  button: "Discuss a project"
+  buttonNote: ""
+
+# ---------- 05 WONDER LAB ----------
+lab:
+  display: "WONDER LAB"
+  tagline: "Ideas should be tested, not just discussed."
+  heading: "We test our own questions the same way."
+  body: "WONDER LAB is where we test our own questions and ideas through services and products. Not every idea starts with a proven business case. We release small experiments, learn from real use and feedback, and explore where they might lead — the same approach we bring to client work."
+  prev: "Previous project"
+  next: "Next project"
+  projects:
+    64monsters:
+      theme: "Understanding people"
+      question: "Can we understand a person simply by calling them a “user”?"
+      context: "When we try to understand users, demographics and personas leave some things out. 64MONSTERS grew out of a question: could we create an experience that looks at people from several perspectives and helps them reflect on their own tendencies?"
+      discover: "We noticed the limits of seeing users through demographics or a single type, and asked how people might be seen from more angles."
+      make: "We built an assessment for reflecting on current tendencies across several axes. Alongside a type, it shows scores and how results change over repeated sessions."
+      learn: "Early use suggests that current tendencies and changes over time, alongside a type, may offer useful prompts for self-reflection. We continue to explore this through how people use the service."
+    rensougame:
+      theme: "Thinking and testing hypotheses"
+      question: "Does reading the news alone really teach us how to think?"
+      context: "When something happens, its effects rarely stop in one place. They ripple through the economy, companies, daily life, and markets. Yet most of the time, we simply take in the news and move on."
+      discover: "We noticed that reading the news doesn't necessarily lead to thinking ahead, or to testing what we think will happen."
+      make: "We built a game that starts from a news story: players think through what might follow and alternative scenarios, then compare their thinking with what actually happened."
+      learn: "Feedback that the game felt difficult highlighted the need to balance challenge with approachability. Our next step is to refine the difficulty and explore ways to encourage continued play, helping people reflect on their reasoning and try another news story."
+    forest:
+      theme: "Discovering value"
+      question: "Can we discover value before we know what we are looking for?"
+      context: "This experiment began when we acquired a forest in Hokkaido. With no running water or electricity, and land boundaries that were not clearly defined, we started by getting to know its environment and resources. Without deciding in advance what to build, we go into the forest and explore what is possible there."
+      discover: "We walked the forest, observing its environment, plants, and terrain to see what possibilities it might hold."
+      make: "We extracted essential oil from Todo fir branches and leaves and analyzed its composition."
+      learn: "Extracting and analyzing the essential oil gave us a starting point for exploring the forest’s resources. We will continue observing and experimenting to understand what is possible here, without rushing to settle on a use or a business model."
+  closing: "Whether it's a digital product or a forest,\nwhat we do is the same."
+
+# ---------- 06 OUR BELIEF ----------
+belief:
+  label: "OUR BELIEF"
+  lines: ["Design is not", "decoration."]
+  body:
+    - "We see design as more than shaping how things look. It also helps make complex situations understandable, identify the problems worth addressing, and work out how to test possible answers."
+    - "As AI lowers the cost of making things, the harder questions become what to make, what to test, what to entrust to AI, and where human judgment matters. We design both products and the processes behind those decisions."
+  closingTagline: "Design is how we discover, make, and learn."
+  closing: ""
+
+# ---------- 07 ABOUT ----------
+about:
+  title: "ABOUT"
+  rows:
+    - label: "Company"
+      value: "WONDER BROTHERS INC."
+    - label: "Address"
+      value: "2F-C, Shibuya Dogenzaka Tokyu Building, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan"
+    - label: "Established"
+      value: "April 7, 2020"
+    - label: "Representative Director"
+      value: "Taishi Sato"
+    - label: "Services"
+      list: ["New Service Design", "UX / UI Design", "PoC Design & Validation", "Product Development", "DX / Service Transformation"]
+      value: ""
+    - label: "Capital"
+      value: "10 million yen"
+
+# ---------- 08 SECURITY & GOVERNANCE ----------
+governance:
+  title: "SECURITY & GOVERNANCE"
+  lead: "So you can work with us with confidence."
+  body: "We continue working to strengthen our information management, security, and governance. We are building internal systems for overseeing business execution and appropriate disclosure, aiming for fair and transparent decision-making. For how we handle personal information, please see our [Privacy Policy](/privacy/) (in Japanese)."
+
+# ---------- 09 CONTACT ----------
+contact:
+  title: "CONTACT"
+  lead: "You don't need a fully defined project to get in touch."
+  intro: "We often start from questions like these:"
+  cases:
+    - "We have an idea for a new service but aren't sure whether to move forward."
+    - "We want to run a PoC but haven't defined what needs to be tested."
+    - "We want to use AI but aren't sure where it can make a real difference."
+    - "We know an existing service has problems but aren't sure what should change."
+  outro: "Tell us what you have in mind or where you are getting stuck. Together, we will clarify the challenge and work out the support and approach you need."
+  button: "Discuss a project"
+  buttonNote: ""
+
+# ---------- Contact page (/en/contact/) ----------
+contactPage:
+  title: "Contact | WONDER BROTHERS"
+  description: "Contact WONDER BROTHERS about new service design, UX/UI, PoC design and validation, product development, or DX — even before your project is fully defined. We usually reply within three business days."
+  homeLabel: "Back to the home page"
+  heading: "Tell us about your project\nusing the form below."
+  note: "We usually reply within three business days.\nIf you haven't heard from us after three business days, please contact us again."
+  fields:
+    company: { label: "Company", placeholder: "Your Company" }
+    name: { label: "Name", placeholder: "Your Name" }
+    email: { label: "Email", placeholder: "Email Address" }
+    message: { label: "Message", placeholder: "Put message here" }
+  consent: "I agree to the Privacy Policy (in Japanese) and want to send this message"
+  submit: "Send"
+  error: "Your message could not be sent. Please wait a moment and try again."
+  thanksTitle: "Thank you for contacting us"
+  thanksText: "Your message has been sent."
+  thanksBack: "Back to the home page"

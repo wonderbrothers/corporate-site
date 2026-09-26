@@ -2582,3 +2582,31 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   text-wrap: pretty;
   word-break: keep-all;
 }
+
+/* ------------------------------------------------------------------
+   言語切り替え（日本語 / ⇄ 英語 /en/）
+   ナビ：セクションへのリンクと区別できるよう、細い枠の小さなボタンにする
+   ドロワー：リストの下、CONTACT ボタンの上に置く
+------------------------------------------------------------------ */
+.wb-nav__lang {
+  border: 1px solid rgba(255, 250, 239, 0.6);
+  border-radius: 999px;
+  padding: 6px 10px;
+  @media screen and (max-width: 540px) {
+    padding: 6px 8px;
+  }
+}
+.wb-drawer__lang {
+  align-self: flex-start;
+  border: 1px solid rgba(255, 250, 239, 0.6);
+  border-radius: 999px;
+  color: var(--wb-cream);
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1;
+  margin: 0px 0px 32px;
+  padding: 10px 18px;
+  &:hover {
+    opacity: 0.6;
+  }
+}
