@@ -849,8 +849,8 @@ html.js-on .wb-box.wb-wonderlab__carousel-arrows .wb-box.wb-wonderlab__carousel-
   width: 40px;
 }
 .wb-box.wb-wonderlab__carousel-arrow:hover:not(:disabled) {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--wb-ink);
+  border-color: var(--wb-ink);
   color: var(--wb-cream);
 }
 .wb-box.wb-wonderlab__carousel-arrow:disabled {
