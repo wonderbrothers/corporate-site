@@ -752,3 +752,29 @@ button.wb-cookie-btn {
     background: #2222220d;
   }
 }
+
+/* ------------------------------------------------------------------
+   フッター：SP（540px 以下）は著作権表記とリンクを中央寄せ（トップ / お問い合わせ / プライバシー / 404）
+   各ページの CSS の指定より優先させるため html を前に付けている
+------------------------------------------------------------------ */
+@media screen and (max-width: 540px) {
+  html .wb-box.wb-footer__inner,
+  html .wb-box.cf-footer__inner,
+  html .wb-box.pp-footer__inner,
+  html .site-footer {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  html .wb-box.wb-footer__copyright,
+  html .wb-box.cf-footer__copyright,
+  html .wb-box.pp-footer__copyright {
+    text-align: center;
+  }
+  html .wb-footer-links {
+    justify-content: center;
+  }
+}
