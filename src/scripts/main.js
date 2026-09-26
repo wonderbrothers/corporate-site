@@ -42,22 +42,26 @@
 
 /*
  * 固定ナビゲーション（トップページ）
- * HERO（イラスト）が画面に見えている間は隠し、過ぎたら上から出す。
- * JS 無効時・IntersectionObserver 非対応時は常に表示（CSS 側の既定）。
+ * ページを開いた直後（HERO だけが見えている状態）は隠し、少しでもスクロールしたら上から出す。
+ * 以前は HERO を通り過ぎるまで出さなかったが、それだと言語切り替えやメニューに気づけないため。
+ * JS 無効時は常に表示（CSS 側の既定）。
  */
 (function () {
   var nav = document.querySelector('[data-nav]');
   if (!nav) return;
-  var hero = document.querySelector('[data-hero]');
-  if (!hero || !('IntersectionObserver' in window)) {
-    nav.classList.add('is-shown');
-    return;
+  var SHOW_AFTER = 100; // px。この量だけスクロールしたら出す
+  var ticking = false;
+  function update() {
+    ticking = false;
+    nav.classList.toggle('is-shown', window.scrollY > SHOW_AFTER);
   }
-  new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      nav.classList.toggle('is-shown', !entry.isIntersecting);
-    });
-  }, { threshold: 0 }).observe(hero);
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
 })();
 
 /*

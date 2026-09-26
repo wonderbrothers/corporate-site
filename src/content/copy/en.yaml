@@ -31,6 +31,13 @@ nav:
   switchLabel: "JA"
   switchName: "日本語"
 
+# Shown on the Japanese page to visitors whose browser is not set to Japanese
+langSuggest:
+  label: "Language"
+  text: "This page is also available in English."
+  link: "View in English"
+  close: "Close"
+
 footer:
   copyright: "© WONDER BROTHERS INC. All rights reserved."
   privacy: "Privacy Policy"

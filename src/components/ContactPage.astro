@@ -6,6 +6,7 @@
 import Base from '../layouts/Base.astro';
 import '../styles/contact.css';
 import { getCopy, rich, PATHS, type Lang } from '../lib/i18n';
+import LangSuggest from './LangSuggest.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -126,6 +127,7 @@ const CONTACT_ENDPOINT = "https://wb-contact.sato-b0d.workers.dev";
                 </footer>
               </div>
   </div></div></div>
+  <LangSuggest lang={lang} page="contact" />
 
   <script define:vars={{ siteKey: RECAPTCHA_SITE_KEY, endpoint: CONTACT_ENDPOINT }}>
     // reCAPTCHA v3 → Cloudflare Worker 経由で Google フォームへ送信

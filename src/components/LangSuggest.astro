@@ -1,0 +1,53 @@
+---
+/* もう一方の言語版への案内（画面の下に出る小さなカード）
+   ・日本語版は「ブラウザの第1言語が日本語以外」の人にだけ、英語版を案内する
+   ・英語版は「ブラウザの第1言語が日本語」の人にだけ、日本語版を案内する
+   ・サイト内のリンク（言語切り替えなど）から来たとき、一度閉じたあとは出さない。自動で移動はしない
+   ・文言は「案内先の言語」の文章ファイル（ja.yaml / en.yaml）の langSuggest に書く
+   ・Cookie の同意バナーが出ている間は、その上に重ならないよう位置をずらす */
+import { getCopy, PATHS, type Lang } from '../lib/i18n';
+
+interface Props { lang: Lang; page: keyof typeof PATHS }
+const { lang, page } = Astro.props;
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+const s = (await getCopy(other)).langSuggest;
+---
+<div class="wb-lang-suggest" lang={other} data-lang-suggest={other} role="region" aria-label={s.label} hidden>
+  <p class="wb-lang-suggest__text">{s.text}</p>
+  <a class="wb-lang-suggest__link" href={PATHS[page][other]} hreflang={other}>{s.link}</a>
+  <button type="button" class="wb-lang-suggest__close" aria-label={s.close} data-lang-suggest-close>
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+  </button>
+</div>
+<script is:inline>
+  (function () {
+    var box = document.querySelector("[data-lang-suggest]");
+    if (!box) return;
+    var KEY = "wb_lang_suggest_closed";
+    var target = box.getAttribute("data-lang-suggest"); // 案内する言語（ja / en）
+    try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+    // サイト内から来た（言語切り替えを押した等）なら出さない
+    try { if (document.referrer && new URL(document.referrer).origin === location.origin) return; } catch (e) {}
+    var first = ((navigator.languages && navigator.languages[0]) || navigator.language || "").toLowerCase();
+    if (!first) return;
+    var prefersJa = first.indexOf("ja") === 0;
+    if (target === "en" ? prefersJa : !prefersJa) return;
+
+    // Cookie の同意バナーが出ている間は、その上に置く
+    function place() {
+      var banner = document.querySelector(".wbc-banner");
+      var open = document.documentElement.classList.contains("wbc-banner-open");
+      var h = open && banner ? banner.getBoundingClientRect().height : 0;
+      box.style.bottom = "calc(" + Math.round(h) + "px + 16px + env(safe-area-inset-bottom, 0px))";
+    }
+    box.hidden = false;
+    place();
+    new MutationObserver(place).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    window.addEventListener("resize", place);
+
+    box.querySelector("[data-lang-suggest-close]").addEventListener("click", function () {
+      box.hidden = true;
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  })();
+</script>

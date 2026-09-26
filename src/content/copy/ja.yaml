@@ -37,6 +37,13 @@ nav:
   switchLabel: "EN"
   switchName: "English"
 
+# 英語版を日本語設定のブラウザで開いたときに出す、日本語版への案内
+langSuggest:
+  label: "言語の案内"
+  text: "このページは日本語でもご覧いただけます。"
+  link: "日本語で見る"
+  close: "閉じる"
+
 footer:
   copyright: "© WONDER BROTHERS INC. All rights reserved."
   privacy: "Privacy Policy"
