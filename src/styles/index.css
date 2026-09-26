@@ -2492,13 +2492,24 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   margin: 16px 0px 0px;
 }
 /* CONTACT：相談できる段階の例（区切り線はサービス一覧と同じ） */
+/* 相談例は PoC の3つの観点（wb-poc__check）と同じ、薄いグレーの面で並べる。
+   4項目なので 2×2（3列だと1つだけ次の行に残る）。540px 以下は1列 */
 .wb-consult {
-  border-top: 1px solid #22222247;
-  margin: 8px 0px 24px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0px 24px;
+  @media screen and (max-width: 540px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 .wb-consult__item {
-  border-bottom: 1px solid #22222247;
-  padding: 12px 8px;
+  background: #2222220d;
+  border-radius: 12px;
+  padding: 20px;
+  @media screen and (max-width: 540px) {
+    padding: 16px;
+  }
 }
 .wb-consult__ja {
   font-size: var(--wb-text-body);
