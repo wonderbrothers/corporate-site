@@ -2089,14 +2089,10 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   gap: 24px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 48px 0px 0px;
+  /* 1140px 以下（2列・1列になる幅）は横スクロール（次のカードを少し覗かせる） */
   @media screen and (max-width: 1140px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  /* 840px 以下：縦に積むとページが長くなりすぎるので横スクロール（次のカードを少し覗かせる） */
-  @media screen and (max-width: 840px) {
     display: flex;
     gap: 16px;
-    margin: 32px 0px 0px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     padding: 0px 0px 8px;
@@ -2106,15 +2102,14 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
     &::-webkit-scrollbar {
       display: none;
     }
+    /* カード幅は幅が狭くなるほど単調に小さくなる（広い幅では2枚＋のぞき、狭い幅では1枚＋のぞき） */
     & > .wb-case {
-      flex: 0 0 70%;
+      flex: 0 0 max(44%, min(86%, 320px));
       scroll-snap-align: start;
     }
   }
-  @media screen and (max-width: 540px) {
-    & > .wb-case {
-      flex-basis: 86%;
-    }
+  @media screen and (max-width: 840px) {
+    margin: 32px 0px 0px;
   }
   &:focus-visible {
     outline: 2px solid var(--primary);
@@ -2543,11 +2538,11 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
 }
 
 /* ------------------------------------------------------------------
-   WONDER LAB のカード：840px 以下は横スクロール（SELECTED WORK と同じ扱い）
-   841〜1140px の縦積み・1140px 超の JS カルーセルより後ろに置いて上書きする。
+   WONDER LAB のカード：1140px 以下は横スクロール（SELECTED WORK と同じ扱い）
+   元の縦積み指定（1140px 以下）より後ろに置いて上書きする。1140px 超は JS カルーセル。
    縦方向は hidden にして、縦スワイプをページのスクロールに渡す。
 ------------------------------------------------------------------ */
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1140px) {
   .wb-box.wb-wonderlab__carousel-viewport,
   html.js-on .wb-box.wb-wonderlab__carousel-viewport {
     overflow-x: auto;
@@ -2565,14 +2560,10 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
     gap: 16px;
     padding: 0px 0px 8px;
   }
+  /* カード幅は SELECTED WORK と同じ式 */
   .wb-box.wb-wonderlab__product {
-    flex: 0 0 70%;
+    flex: 0 0 max(44%, min(86%, 320px));
     scroll-snap-align: start;
     width: auto;
-  }
-}
-@media screen and (max-width: 540px) {
-  .wb-box.wb-wonderlab__product {
-    flex-basis: 86%;
   }
 }

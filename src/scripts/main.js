@@ -144,7 +144,7 @@
  *   transform ならスクロールコンテナが存在しないので、縦の操作を一切横取りしない。
  *   カルーセルは 1140px 超（マウス/トラックパッド環境）でしか出ないため、
  *   ネイティブのスワイプ慣性を失う不利益もない。
- *   840px 以下（タッチ端末）は CSS 側でネイティブの横スクロール（scroll-snap）にしており、
+ *   1140px 以下は CSS 側でネイティブの横スクロール（scroll-snap）にしており、
  *   この JS は何もしない（stacked() が true を返す）。
  */
 (function () {
@@ -160,7 +160,7 @@
   var offset = 0;
   var dots = [];
 
-  // transform で送らない状態：縦積み（841〜1140px）か、ネイティブ横スクロール（840px 以下）
+  // transform で送らない状態：縦積みか、ネイティブ横スクロール（1140px 以下）
   function stacked() {
     return getComputedStyle(track).flexDirection === 'column' ||
       getComputedStyle(viewport).overflowX === 'auto';
