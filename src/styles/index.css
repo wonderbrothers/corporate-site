@@ -608,7 +608,8 @@
   justify-content: flex-start;
   padding: 0px;
   min-width: 0px;
-  max-width: 100%;
+  /* 本文の幅は APPROACH / CLIENT WORK の導入（wb-sec__lead）と同じ 800px まで */
+  max-width: min(800px, 100%);
   @media screen and (max-width: 1400px) {
     flex: none;
     width: 100%;
