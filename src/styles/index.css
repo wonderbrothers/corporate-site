@@ -2040,12 +2040,9 @@ html.js-on .wb-cycle:not(.is-visible) .wb-cycle__flow > * {
   line-height: 1.4;
 }
 
-/* 行末に1〜2文字だけ残る折り返しを避ける（対応ブラウザのみ。非対応でも従来どおり折り返すだけ） */
-/* text-wrap（一括指定）は折り返しの有無まで上書きし、大見出しの white-space: nowrap を打ち消してしまうので、
-   折り返し方だけを指定する text-wrap-style を使う */
-.wb-flow :is(p, h2, h3, h4, li, dd) {
-  text-wrap-style: pretty;
-}
+/* 本文全体への text-wrap-style: pretty は撤去（2026-09-26）。
+   Safari は段落全体の行長をそろえるため、余裕があっても早めに改行し、行末が大きく空いて見えた。
+   行末の1〜2文字残りは、必要な箇所だけ wb-nobr ／ 文節の <wbr> で個別に対処する */
 /* 語句の途中で改行させない（強調コピーの「設計する。」など） */
 .wb-nobr {
   white-space: nowrap;
