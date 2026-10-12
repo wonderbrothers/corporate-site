@@ -24,13 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Build with Astro
-        uses: withastro/action@v3
+        uses: withastro/action@v6
         with:
-          # Astro 7 は Node >=22.12 が必須（action 既定より新しい版を明示）
+          # Astro 7 は Node >=22.12 が必須（v6 の既定は 24。これまでどおり 22 に固定）
           node-version: 22
-        # 既定で npm ci && astro build を実行し、dist/ を Pages 用にアップロードする
+        # 既定で npm install → npm run build を実行し、dist/ を Pages 用にアップロードする
 
   deploy:
     needs: build
@@ -41,4 +41,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
