@@ -1,0 +1,48 @@
+---
+/* INSIGHTS（一覧・記事）の外枠：固定ナビ・クリーム地のページ・フッター・言語の案内。
+   ナビとフッターはトップページと同じ部品・同じ見た目（index.css）を使う。 */
+import Base from '../layouts/Base.astro';
+import SiteNav from './SiteNav.astro';
+import LangSuggest from './LangSuggest.astro';
+import '../styles/index.css';
+import '../styles/insights.css';
+import { getCopy, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string;
+  otherHref: string; // もう一方の言語の同じページ（無ければその言語の一覧）
+  alternates?: { ja: string; en: string }; // 両方の言語に同じページがあるときだけ
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+const { lang, title, description, path, otherHref, alternates, ogImage, ogType, noindex } = Astro.props;
+const t = await getCopy(lang);
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+---
+<Base title={title} description={description} path={path} lang={lang} alternates={alternates} ogImage={ogImage} ogType={ogType} noindex={noindex}>
+  <slot name="head" slot="head" />
+  <div class="container"><div class="render-canvas">
+  <SiteNav lang={lang} otherHref={otherHref} current="insights" />
+  <div class="StudioCanvas">
+<div class="wb-box wb-page wb-ins-page">
+                <main class="wb-ins wb-flow">
+                  <slot />
+                </main>
+                <footer class="wb-box reveal wb-footer">
+                  <div class="wb-box reveal wb-footer__inner">
+                    <p class="text wb-box reveal wb-footer__copyright">{t.footer.copyright}</p>
+                    <div class="wb-footer-links">
+                      <a href={otherHref} hreflang={other} lang={other} class="text link wb-box reveal wb-footer__privacy">{t.nav.switchName}</a>
+                      <a href="/privacy/" class="text link wb-box reveal wb-footer__privacy">{t.footer.privacy}</a>
+                      <button type="button" class="text link wb-box reveal wb-footer__privacy wb-cookie-btn" data-wb-consent-open>{t.footer.cookie}</button>
+                    </div>
+                  </div>
+                </footer>
+              </div>
+  </div></div></div>
+  {alternates && <LangSuggest lang={lang} href={alternates[other]} />}
+</Base>

@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # INSIGHTS の予約公開：毎日 日本時間 0:05 にビルドし直し、公開日を迎えた記事を出す
+  # （GitHub の定期実行は混雑時に数十分遅れることがある）
+  schedule:
+    - cron: "5 15 * * *"
   workflow_dispatch:
 
 permissions:

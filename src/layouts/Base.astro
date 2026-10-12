@@ -20,6 +20,7 @@ interface Props {
   lang?: "ja" | "en"; // ページの言語（既定は日本語）
   // 日本語版・英語版がある場合の各言語のURL（例: { ja: "/", en: "/en/" }）。hreflang を出す
   alternates?: { ja: string; en: string };
+  ogImage?: string; // OGP 画像（サイト内のパス。省略時は /images/ogp.png）。INSIGHTS の記事ページで使う
 }
 
 const DEFAULT_DESC =
@@ -33,13 +34,14 @@ const {
   noindex = false,
   lang = "ja",
   alternates,
+  ogImage: ogImagePath = "/images/ogp.png",
 } = Astro.props;
 const siteName = lang === "en" ? "WONDER BROTHERS INC." : "株式会社ワンダーブラザース";
 
 // Astro.site（=https://wonder-bros.com）を基準に絶対URLを生成
 const base = (Astro.site?.href ?? "https://wonder-bros.com/").replace(/\/$/, "");
 const canonical = base + path;
-const ogImage = base + "/images/ogp.png";
+const ogImage = base + ogImagePath;
 ---
 
 <!doctype html>

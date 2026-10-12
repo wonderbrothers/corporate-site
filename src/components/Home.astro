@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
 import '../styles/index.css';
 import { getCopy, rich, PATHS, type Lang } from '../lib/i18n';
 import LangSuggest from './LangSuggest.astro';
+import SiteNav from './SiteNav.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -60,14 +61,6 @@ const jsonLd = JSON.stringify([
 ]);
 
 /* ---------- 構成（文章以外） ---------- */
-const nav = [
-  { href: "#approach", label: "APPROACH" },
-  { href: "#work", label: "WORK" },
-  { href: "#lab", label: "LAB" },
-  { href: "#about", label: "ABOUT" },
-  { href: "#contact", label: "CONTACT" },
-];
-
 const steps = [
   { key: "discover", num: "01", icon: "/images/deco-halftone.svg" },
   { key: "make", num: "02", icon: "/images/deco-dots.svg" },
@@ -87,53 +80,7 @@ const arrowNext = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="
 <Base title={t.meta.title} description={t.meta.description} path={home} lang={lang} alternates={PATHS.home}>
   <script type="application/ld+json" set:html={jsonLd} slot="head" is:inline></script>
   <div class="container"><div class="render-canvas">
-  <!-- ナビゲーション：HERO を過ぎると上から現れる（JS 無効時は常に表示） -->
-  <header class="wb-nav wb-flow" data-nav>
-    <a class="wb-nav__home" href="#top" aria-label={t.nav.home}>
-      <img class="wb-nav__logo" src="/images/horizontal-logo.svg" alt="" width="886" height="148" />
-    </a>
-    <nav class="wb-nav__menu" aria-label={t.nav.main}>
-      <ul class="wb-nav__list">
-        {nav.map((item) => (
-          <li><a class="wb-nav__link" href={item.href}>{item.label}</a></li>
-        ))}
-        <li><a class="wb-nav__link wb-nav__lang" href={PATHS.home[other]} hreflang={other} lang={other} aria-label={t.nav.switchName}>{t.nav.switchLabel}</a></li>
-      </ul>
-    </nav>
-    <!-- 840px 以下：メニューボタン（ドロワーを開く） -->
-    <button type="button" class="wb-nav__toggle" aria-label={t.nav.openMenu} aria-expanded="false" aria-controls="wb-drawer" data-drawer-open>
-      <span class="wb-nav__bars" aria-hidden="true"></span>
-    </button>
-  </header>
-  <!-- メニュードロワー（840px 以下）。CONTACT はリストに入れず、下部のボタンにする -->
-  <div class="wb-drawer wb-flow" id="wb-drawer" data-drawer>
-    <div class="wb-drawer__backdrop" data-drawer-close></div>
-    <div class="wb-drawer__panel" role="dialog" aria-modal="true" aria-label={t.nav.menu}>
-      <div class="wb-drawer__head">
-        <a class="wb-nav__home" href="#top" aria-label={t.nav.home} data-drawer-link>
-          <img class="wb-nav__logo" src="/images/horizontal-logo.svg" alt="" width="886" height="148" />
-        </a>
-        <button type="button" class="wb-drawer__close" aria-label={t.nav.closeMenu} data-drawer-close>
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-        </button>
-      </div>
-      <nav aria-label={t.nav.menu}>
-        <ul class="wb-drawer__list">
-          {nav.filter((item) => item.href !== "#contact").map((item) => (
-            <li><a class="wb-drawer__link" href={item.href} data-drawer-link>{item.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-      <a class="wb-drawer__lang" href={PATHS.home[other]} hreflang={other} lang={other}>{t.nav.switchName}</a>
-      <a class="wb-drawer__contact" href={contactHref}>
-        <span class="wb-drawer__contact-text">
-          <span class="wb-drawer__contact-title">{t.nav.contactTitle}</span>
-          {t.nav.contactNote && <span class="wb-drawer__contact-note" lang="en">{t.nav.contactNote}</span>}
-        </span>
-        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      </a>
-    </div>
-  </div>
+  <SiteNav lang={lang} onHome otherHref={PATHS.home[other]} />
   <div class="StudioCanvas">
 <div class="wb-box reveal wb-page" id="top">
                 <!-- ============ 01 HERO ============ -->

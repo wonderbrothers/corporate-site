@@ -7,6 +7,7 @@ export type Lang = "ja" | "en";
 export const PATHS = {
   home: { ja: "/", en: "/en/" },
   contact: { ja: "/contact/", en: "/en/contact/" },
+  insights: { ja: "/insights/", en: "/en/insights/" },
 } as const;
 
 /** 文章ファイルを丸ごと返す（項目名は ja.yaml / en.yaml と同じ） */

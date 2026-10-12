@@ -1,0 +1,453 @@
+/* ==================================================================
+   insights.css — INSIGHTS（一覧 /insights/・記事 /insights/xxx/）
+   ------------------------------------------------------------------
+   ・ナビ・フッター・セクション見出し（wb-sec / wb-display）・CONTACT ボタンは
+     index.css のものをそのまま使い、ここには INSIGHTS 固有の部分だけを書く。
+   ・フォントサイズ・ウェイトは var(--wb-text-*) / var(--wb-fw-*) だけを参照する
+     （px を直書きしない・font-size のための @media を書かない。docs/typography.md）。
+   ・ブレークポイント: 1140px / 840px / 540px / 320px（すべて max-width）
+================================================================== */
+
+/* Studio 由来のリセット（global.css の :where(.render-canvas) …）は h1 や time などにも
+   直接当たるので、wb-flow（index.css）が拾わない要素もここで親から継承させる */
+.wb-ins :where(h1, figure, figcaption, time, blockquote, pre, code, table, thead, tbody, tr, th, td, b, i, hr, img) {
+  color: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+/* 固定ナビの高さぶん、本文を下げる */
+.wb-ins-page {
+  justify-content: flex-start;
+  width: 100%;
+}
+.wb-ins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0px 80px;
+  width: 100%;
+  @media screen and (max-width: 540px) {
+    padding: 48px 0px 60px;
+  }
+}
+
+/* ---------- 一覧 ---------- */
+.wb-display--insights {
+  font-size: var(--wb-text-display-insights);
+}
+.wb-ins-index__empty {
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-semibold);
+  line-height: 1.6;
+  margin: 60px 0px 0px;
+}
+.wb-ins-list {
+  display: grid;
+  gap: 40px 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 80px 0px 0px;
+  @media screen and (max-width: 1140px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 60px 0px 0px;
+  }
+  @media screen and (max-width: 540px) {
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 40px 0px 0px;
+  }
+}
+.wb-ins-card {
+  display: flex;
+  min-width: 0px;
+}
+.wb-ins-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  &:hover .wb-ins-card__img {
+    transform: scale(1.03);
+  }
+  &:hover .wb-ins-card__title {
+    color: var(--primary);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--wb-ink);
+    outline-offset: 4px;
+    border-radius: 16px;
+  }
+}
+/* サムネイルは 3:2 で切り抜く（ChatGPT の横長画像 1536×1024 がそのまま収まる比率） */
+.wb-ins-card__media {
+  aspect-ratio: 3 / 2;
+  background: #2222220d;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  @media screen and (max-width: 540px) {
+    border-radius: 12px;
+  }
+}
+.wb-ins-card__img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  width: 100%;
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+.wb-ins-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wb-ins-card__title {
+  font-size: var(--wb-text-heading-md);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.5;
+  transition: color 0.3s cubic-bezier(0.4, 0.4, 0, 1);
+}
+/* 概要は3行まで（超えた分は「…」）。記事ごとに長さが違ってもカードの高さをそろえる。
+   文字数ではなく行数で切るので、日英・画面幅が変わっても同じ見え方になる */
+.wb-ins-card__desc {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  line-clamp: 3;
+  overflow: hidden;
+  color: #222222b3;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-medium);
+  line-height: 1.7;
+}
+
+/* 公開日・タグ（一覧と記事で共通） */
+.wb-ins-meta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-bold);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+.wb-ins-meta__label {
+  color: #222222b3;
+}
+/* npm run dev でだけ出る「予約」「下書き」 */
+.wb-ins-meta__status {
+  background: var(--wb-ink);
+  border-radius: 999px;
+  color: var(--wb-cream);
+  letter-spacing: 0.05em;
+  padding: 2px 10px;
+}
+.wb-ins-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.wb-ins-tags__item {
+  border: 1px solid #22222247;
+  border-radius: 999px;
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-bold);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  padding: 3px 10px;
+}
+
+/* ---------- 記事 ---------- */
+/* 読みやすい行長（本文 720px）。FV 画像だけ少し広く取る */
+.wb-ins-article,
+.wb-ins-pager,
+.wb-ins-after {
+  max-width: 100%;
+  padding: 0px 80px;
+  width: calc(720px + 160px);
+  @media screen and (max-width: 1140px) {
+    padding: 0px 40px;
+    width: calc(720px + 80px);
+  }
+  @media screen and (max-width: 540px) {
+    padding: 0px 16px;
+    width: 100%;
+  }
+  @media screen and (max-width: 320px) {
+    padding: 0px 12px;
+  }
+}
+.wb-ins-article__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 80px 0px 40px;
+  @media screen and (max-width: 840px) {
+    padding: 60px 0px 32px;
+  }
+  @media screen and (max-width: 540px) {
+    gap: 12px;
+    padding: 40px 0px 24px;
+  }
+}
+.wb-ins-article__label {
+  color: var(--primary);
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-extrabold);
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  & a:hover {
+    opacity: 0.6;
+  }
+}
+.wb-ins-article__title {
+  font-size: var(--wb-text-section);
+  font-weight: var(--wb-fw-extrabold);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+.wb-ins-article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.wb-ins-article__lead {
+  font-size: var(--wb-text-lead);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.7;
+  margin: 8px 0px 0px;
+}
+/* FV：PC は 2:1、840px 以下は元画像に近い 3:2 で切り抜く（被写体は中央に置いてもらう） */
+.wb-ins-article__hero {
+  aspect-ratio: 2 / 1;
+  background: #2222220d;
+  border-radius: 24px;
+  margin: 0px -80px;
+  overflow: hidden;
+  @media screen and (max-width: 1140px) {
+    margin: 0px -40px;
+  }
+  @media screen and (max-width: 840px) {
+    aspect-ratio: 3 / 2;
+    border-radius: 16px;
+    margin: 0px;
+  }
+  @media screen and (max-width: 540px) {
+    border-radius: 12px;
+  }
+}
+.wb-ins-article__hero-img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* 本文（Markdown から生成される HTML） */
+.wb-ins-body {
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-medium);
+  line-height: 1.9;
+  padding: 56px 0px 0px;
+  overflow-wrap: anywhere;
+  @media screen and (max-width: 540px) {
+    padding: 40px 0px 0px;
+  }
+  & > :first-child {
+    margin-top: 0px;
+  }
+  & h2 {
+    border-top: 1px solid #22222247;
+    font-size: var(--wb-text-heading-lg);
+    font-weight: var(--wb-fw-bold);
+    line-height: 1.5;
+    margin: 64px 0px 24px;
+    padding: 32px 0px 0px;
+    @media screen and (max-width: 540px) {
+      margin: 48px 0px 16px;
+      padding: 24px 0px 0px;
+    }
+  }
+  & h3 {
+    font-size: var(--wb-text-heading-sm);
+    font-weight: var(--wb-fw-bold);
+    line-height: 1.5;
+    margin: 40px 0px 16px;
+  }
+  & h4 {
+    font-size: var(--wb-text-body);
+    font-weight: var(--wb-fw-bold);
+    line-height: 1.6;
+    margin: 32px 0px 12px;
+  }
+  & p {
+    margin: 0px 0px 24px;
+  }
+  & ul,
+  & ol {
+    margin: 0px 0px 24px;
+    padding: 0px 0px 0px 1.5em;
+  }
+  & ul > li {
+    list-style: disc;
+  }
+  & ol > li {
+    list-style: decimal;
+  }
+  & li {
+    margin: 0px 0px 8px;
+    & > ul,
+    & > ol {
+      margin: 8px 0px 0px;
+    }
+  }
+  & li::marker {
+    color: var(--primary);
+  }
+  & strong {
+    font-weight: var(--wb-fw-bold);
+  }
+  & a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  & blockquote {
+    border-left: 3px solid var(--primary);
+    color: #222222b3;
+    margin: 0px 0px 24px;
+    padding: 4px 0px 4px 20px;
+    & p:last-child {
+      margin: 0px;
+    }
+  }
+  & hr {
+    border-top: 1px solid #22222247;
+    margin: 48px 0px;
+  }
+  & code {
+    background: #2222220d;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--wb-text-body-sm);
+    padding: 2px 6px;
+  }
+  & pre {
+    background: #2222220d;
+    border-radius: 12px;
+    margin: 0px 0px 24px;
+    overflow-x: auto;
+    padding: 16px 20px;
+    & code {
+      background: none;
+      padding: 0px;
+    }
+  }
+  & img {
+    border-radius: 12px;
+    display: block;
+    height: auto;
+    margin: 0px auto;
+    max-width: 100%;
+  }
+  & table {
+    border-collapse: collapse;
+    display: block;
+    font-size: var(--wb-text-body-sm);
+    margin: 0px 0px 24px;
+    overflow-x: auto;
+    width: 100%;
+  }
+  & th,
+  & td {
+    border-bottom: 1px solid #22222247;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  & th {
+    font-weight: var(--wb-fw-bold);
+  }
+}
+
+/* 前後の記事 */
+.wb-ins-pager {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 64px 0px 0px;
+  @media screen and (max-width: 540px) {
+    grid-template-columns: minmax(0, 1fr);
+    margin: 48px 0px 0px;
+  }
+}
+.wb-ins-pager__link {
+  border: 1px solid #22222247;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px;
+  transition: border-color 0.3s cubic-bezier(0.4, 0.4, 0, 1);
+  &:hover {
+    border-color: var(--wb-ink);
+  }
+  @media screen and (max-width: 540px) {
+    border-radius: 12px;
+    padding: 16px;
+  }
+}
+/* 新しい記事は右の列に置き、片方しかないときも左右の位置を保つ */
+.wb-ins-pager__link--newer {
+  grid-column: 2;
+  text-align: right;
+  @media screen and (max-width: 540px) {
+    grid-column: auto;
+    text-align: left;
+  }
+}
+.wb-ins-pager__dir {
+  color: #222222b3;
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-bold);
+  letter-spacing: 0.1em;
+}
+.wb-ins-pager__title {
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.6;
+}
+
+/* お問い合わせ導線と一覧へ戻るボタン */
+.wb-ins-after {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 80px 0px 0px;
+  @media screen and (max-width: 540px) {
+    gap: 32px;
+    margin: 60px 0px 0px;
+  }
+}
+.wb-ins-cta {
+  border-top: 1px solid #22222247;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 0px 0px;
+  width: 100%;
+}
+.wb-ins-cta__lead {
+  font-size: var(--wb-text-body);
+  font-weight: var(--wb-fw-semibold);
+  line-height: 1.6;
+}

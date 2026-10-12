@@ -1,0 +1,131 @@
+---
+/* INSIGHTS 記事ページの型（日本語 /insights/xxx/ と 英語 /en/insights/xxx/ で共通）
+   ・本文は src/content/insights/YYYY-MM-DD-xxx/ja.md（en.md）。枠まわりの文章は ja.yaml / en.yaml の insights。
+   ・FV は同じフォルダの hero 画像。SNS 用の OGP 画像も hero から 1200×630 で切り出す。 */
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import InsightsFrame from './InsightsFrame.astro';
+import { getCopy, PATHS, type Lang } from '../lib/i18n';
+import { getInsights, insightPath, insightsIndexPath, type Insight } from '../lib/insights';
+
+interface Props { lang: Lang; insight: Insight }
+const { lang, insight } = Astro.props;
+const t = await getCopy(lang);
+const c = t.insights;
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+const data = insight.entry.data;
+const { Content } = await render(insight.entry);
+
+const path = insightPath(lang, insight.slug);
+// もう一方の言語に同じ記事があればそこへ、無ければその言語の一覧（記事が無ければトップ）へ
+const otherList = await getInsights(other);
+const counterpart = otherList.find((it) => it.folder === insight.folder);
+const otherHref = counterpart
+  ? insightPath(other, counterpart.slug)
+  : otherList.length > 0 ? PATHS.insights[other] : PATHS.home[other];
+const alternates = counterpart ? { [lang]: path, [other]: otherHref } as { ja: string; en: string } : undefined;
+
+// 前後の記事（一覧は新しい順）
+const list = await getInsights(lang);
+const idx = list.findIndex((it) => it.folder === insight.folder);
+const newer = idx > 0 ? list[idx - 1] : undefined;
+const older = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : undefined;
+
+const og = await getImage({ src: insight.hero, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 85 });
+
+const siteUrl = 'https://wonder-bros.com';
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: data.title,
+  description: data.description,
+  datePublished: `${insight.dateISO}T00:00:00+09:00`,
+  inLanguage: lang,
+  image: `${siteUrl}${og.src}`,
+  url: `${siteUrl}${path}`,
+  mainEntityOfPage: `${siteUrl}${path}`,
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  ...(data.tags.length > 0 ? { keywords: data.tags.join(', ') } : {}),
+});
+---
+<InsightsFrame
+  lang={lang}
+  title={`${data.title} | ${c.siteSuffix}`}
+  description={data.description}
+  path={path}
+  otherHref={otherHref}
+  alternates={alternates}
+  ogImage={og.src}
+  ogType="article"
+  noindex={!insight.isPublished}
+>
+  <script type="application/ld+json" set:html={jsonLd} slot="head" is:inline></script>
+  <article class="wb-ins-article">
+    <header class="wb-ins-article__head">
+      <p class="reveal wb-ins-article__label" lang="en"><a href={insightsIndexPath(lang)}>INSIGHTS</a></p>
+      <h1 class="reveal wb-ins-article__title">{data.title}</h1>
+      <div class="reveal wb-ins-article__meta">
+        <p class="wb-ins-meta">
+          <span class="wb-ins-meta__label">{c.published}</span>
+          <time datetime={insight.dateISO}>{insight.dateLabel}</time>
+          {!insight.isPublished && <span class="wb-ins-meta__status">{data.draft ? c.draft : c.scheduled}</span>}
+        </p>
+        {data.tags.length > 0 && (
+          <ul class="wb-ins-tags">
+            {data.tags.map((tag) => <li class="wb-ins-tags__item">{tag}</li>)}
+          </ul>
+        )}
+      </div>
+      <p class="reveal wb-ins-article__lead">{data.description}</p>
+    </header>
+    <figure class="reveal wb-ins-article__hero">
+      <Image
+        class="wb-ins-article__hero-img"
+        src={insight.hero}
+        alt={data.heroAlt}
+        widths={[800, 1280, 1920]}
+        sizes="(max-width: 1140px) calc(100vw - 80px), 1040px"
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+    <div class="wb-ins-body">
+      <Content />
+    </div>
+  </article>
+
+  {(newer || older) && (
+    <nav class="wb-ins-pager" aria-label={c.pager}>
+      {older && (
+        <a class="wb-ins-pager__link wb-ins-pager__link--older" href={insightPath(lang, older.slug)} rel="prev">
+          <span class="wb-ins-pager__dir">← {c.older}</span>
+          <span class="wb-ins-pager__title">{older.entry.data.title}</span>
+        </a>
+      )}
+      {newer && (
+        <a class="wb-ins-pager__link wb-ins-pager__link--newer" href={insightPath(lang, newer.slug)} rel="next">
+          <span class="wb-ins-pager__dir">{c.newer} →</span>
+          <span class="wb-ins-pager__title">{newer.entry.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )}
+
+  <div class="wb-ins-after">
+    <div class="wb-ins-cta">
+      <p class="wb-ins-cta__lead">{c.ctaLead}</p>
+      <a href={PATHS.contact[lang]} class="link wb-box wb-company__contact"
+        ><div class="wb-box wb-company__contact-text">
+          <p class="text wb-box wb-company__contact-title">{t.contact.button}</p>
+          {t.contact.buttonNote && <p class="text wb-box wb-company__contact-note" lang="en">{t.contact.buttonNote}</p>}
+        </div>
+        <i class="icon material-icons wb-box wb-company__contact-icon" aria-hidden="true"
+          ><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></i
+        ></a
+      >
+    </div>
+    <a class="wb-btn-outline wb-ins-back" href={insightsIndexPath(lang)}>{c.backToList}</a>
+  </div>
+</InsightsFrame>

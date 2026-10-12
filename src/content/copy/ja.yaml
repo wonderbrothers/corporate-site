@@ -1,5 +1,5 @@
 # ==================================================================
-# 日本語版の文章（https://wonder-bros.com/ と /contact/）
+# 日本語版の文章（https://wonder-bros.com/ と /contact/ と /insights/ の枠まわり）
 #
 # ・英語版は en.yaml。項目名（: の左側）は両方で同じにそろえる。
 # ・文章を直すときは : の右側だけを書き換える。項目名や字下げは変えない。
@@ -27,6 +27,7 @@ principle:
 
 nav:
   home: "ページの先頭へ"
+  homePage: "トップページへ"
   main: "メインナビゲーション"
   openMenu: "メニューを開く"
   closeMenu: "メニューを閉じる"
@@ -257,3 +258,24 @@ contactPage:
   thanksTitle: "お問い合わせありがとうございます"
   thanksText: "ご記入いただいた情報は無事に送信されました。"
   thanksBack: "トップページへ戻る"
+
+# ---------- INSIGHTS（/insights/ と各記事ページの枠まわり） ----------
+# 記事の本文はここではなく src/content/insights/ の各フォルダに置く（書き方は docs/insights.md・ローカルのみ）。
+insights:
+  title: "INSIGHTS | 株式会社ワンダーブラザース"
+  description: "デザインやAIの活用について、WONDER BROTHERSがプロジェクトや自社の実験で考えたこと・確かめたことを、毎週月曜にまとめています。"
+  display: "INSIGHTS"
+  tagline: "Weekly notes on design and AI."
+  heading: "つくって確かめる中で得た知見を、毎週まとめています。"
+  lead: "デザインやAIの活用について、プロジェクトや自社の実験で考えたこと・確かめたことを、毎週月曜に公開しています。"
+  empty: "最初の記事を準備しています。"
+  listLabel: "記事一覧"
+  siteSuffix: "株式会社ワンダーブラザース"
+  published: "公開日"
+  scheduled: "予約（公開前）"
+  draft: "下書き"
+  backToList: "INSIGHTS 一覧へ"
+  newer: "新しい記事"
+  older: "以前の記事"
+  pager: "前後の記事"
+  ctaLead: "記事に近い課題や、まだ整理できていない段階のご相談も受け付けています。"

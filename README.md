@@ -34,29 +34,43 @@ npm run preview    # 本番同等（ルート配信）でローカル確認
 
 ```
 src/
-├── content/copy/
-│   ├── ja.yaml               # 日本語版の文章（トップ / とお問い合わせ /contact/）
-│   └── en.yaml               # 英語版の文章（/en/ と /en/contact/）
+├── content/
+│   ├── copy/ja.yaml          # 日本語版の文章（トップ / とお問い合わせ /contact/、INSIGHTS の枠まわり）
+│   ├── copy/en.yaml          # 英語版の文章（/en/ と /en/contact/、INSIGHTS の枠まわり）
+│   └── insights/             # INSIGHTS の記事（1記事1フォルダ：YYYY-MM-DD-slug/ja.md・en.md・hero・thumbnail）
 ├── content.config.ts         # 上の YAML を読み込む設定
 ├── lib/i18n.ts               # 文章ファイルの読み込み・記法（改行など）の変換・各言語のURL
+├── lib/insights.ts           # INSIGHTS の記事の読み込み・公開日の判定
 ├── layouts/Base.astro        # <head>/SEO/OGP/hreflang/フォント/GTM/共通スクリプト
 ├── components/
 │   ├── Home.astro            # トップページの型（日英共通。文章は持たない）
 │   ├── ContactPage.astro     # お問い合わせページの型（日英共通）
+│   ├── SiteNav.astro         # 固定ナビ＋メニュードロワー（トップと INSIGHTS で共通）
+│   ├── InsightsList.astro / InsightArticle.astro / InsightsFrame.astro  # INSIGHTS の一覧・記事・外枠
 │   └── SiteHeader / SiteFooter（404 など固定ページ共通）
 ├── pages/
 │   ├── index.astro           # / … Home に ja を流し込むだけ
 │   ├── contact.astro         # /contact/ … ContactPage に ja
 │   ├── en/index.astro        # /en/ … Home に en
 │   ├── en/contact.astro      # /en/contact/ … ContactPage に en
+│   ├── insights/             # /insights/（一覧）・/insights/xxx/（記事）。en/insights/ も同様
 │   ├── privacy.astro         # プライバシーポリシー（日本語のみ）
 │   └── 404.astro             # 404 ページ
 ├── scripts/main.js           # スクロールリビール / 追従ナビ / SP メニュードロワー / カルーセル
-└── styles/                   # global（デザイントークン）/ index / contact / privacy / content(404用)
+└── styles/                   # global（デザイントークン）/ index / contact / privacy / insights / content(404用)
 public/                       # images, favicon, CNAME, robots.txt（そのまま配信）
 ```
 
-公開ページは **/ ・ /contact/ ・ /en/ ・ /en/contact/ ・ /privacy/**（＋404）です。
+公開ページは **/ ・ /contact/ ・ /en/ ・ /en/contact/ ・ /privacy/**（＋404）と、INSIGHTS（**/insights/ ・ /en/insights/** と各記事）です。
+
+## INSIGHTS（週次の記事）を追加する
+
+`src/content/insights/YYYY-MM-DD-slug/` に `ja.md`（と `en.md`）、`hero.png`（FV）、`thumbnail.png`（一覧用・省略可）を置きます。
+
+- フォルダ名の日付が公開日、後ろの部分が URL（`/insights/slug/`）。日付が未来の記事は、push しても公開日まで出ません。毎日 日本時間 0:05 の定期ビルド（`deploy.yml` の schedule）で公開されます。
+- `ja.md` / `en.md` の先頭に `title` / `description` / `heroAlt`（FV 画像の代替テキスト）/ `tags`（任意）/ `draft`（任意）を書きます。
+- `npm run dev` では公開日前・下書きの記事も「予約」「下書き」の印付きで確認できます（本番には出ません）。
+- 公開済みの記事が1本も無い間は、ナビに INSIGHTS を出しません。
 
 ## 文言を直す（日本語・英語）
 

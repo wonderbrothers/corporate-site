@@ -1,5 +1,5 @@
 # ==================================================================
-# English copy (https://wonder-bros.com/en/ and /en/contact/)
+# English copy (https://wonder-bros.com/en/, /en/contact/ and the frame of /en/insights/)
 #
 # ・日本語版は ja.yaml。項目名（: の左側）は両方で同じにそろえる。
 # ・空欄（""）にした項目は、そのページでは表示されない
@@ -22,6 +22,7 @@ principle:
 
 nav:
   home: "Back to top"
+  homePage: "Go to the home page"
   main: "Main navigation"
   openMenu: "Open menu"
   closeMenu: "Close menu"
@@ -246,3 +247,24 @@ contactPage:
   thanksTitle: "Thank you for contacting us"
   thanksText: "Your message has been sent."
   thanksBack: "Back to the home page"
+
+# ---------- INSIGHTS (/en/insights/ and article pages) ----------
+# Article bodies live in src/content/insights/ (how-to: docs/insights.md, local only), not here.
+insights:
+  title: "INSIGHTS | WONDER BROTHERS INC."
+  description: "Every Monday, WONDER BROTHERS shares what we have been thinking about and testing on design and the use of AI, in client projects and our own experiments."
+  display: "INSIGHTS"
+  tagline: "Weekly notes on design and AI."
+  heading: "What we learn by building, shared every week."
+  lead: "Every Monday, we share what we have been thinking about and testing on design and the use of AI, in client projects and our own experiments."
+  empty: "Our first article is on its way."
+  listLabel: "Articles"
+  siteSuffix: "WONDER BROTHERS INC."
+  published: "Published"
+  scheduled: "Scheduled"
+  draft: "Draft"
+  backToList: "All insights"
+  newer: "Newer"
+  older: "Older"
+  pager: "More articles"
+  ctaLead: "We are happy to talk about challenges like the ones in this article, even at an early stage."

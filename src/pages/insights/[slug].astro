@@ -1,0 +1,11 @@
+---
+// 日本語版 INSIGHTS 記事（/insights/xxx/）。記事は src/content/insights/YYYY-MM-DD-xxx/ja.md、型は src/components/InsightArticle.astro
+import InsightArticle from '../../components/InsightArticle.astro';
+import { getInsights } from '../../lib/insights';
+
+export async function getStaticPaths() {
+  return (await getInsights('ja')).map((insight) => ({ params: { slug: insight.slug }, props: { insight } }));
+}
+const { insight } = Astro.props;
+---
+<InsightArticle lang="ja" insight={insight} />

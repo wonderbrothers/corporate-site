@@ -7,14 +7,15 @@
    ・Cookie の同意バナーが出ている間は、その上に重ならないよう位置をずらす */
 import { getCopy, PATHS, type Lang } from '../lib/i18n';
 
-interface Props { lang: Lang; page: keyof typeof PATHS }
-const { lang, page } = Astro.props;
+// href … 案内先の URL を直接指定するとき（INSIGHTS の記事ページなど、PATHS に無いページ）
+interface Props { lang: Lang; page?: keyof typeof PATHS; href?: string }
+const { lang, page = "home", href } = Astro.props;
 const other: Lang = lang === 'ja' ? 'en' : 'ja';
 const s = (await getCopy(other)).langSuggest;
 ---
 <div class="wb-lang-suggest" lang={other} data-lang-suggest={other} role="region" aria-label={s.label} hidden>
   <p class="wb-lang-suggest__text">{s.text}</p>
-  <a class="wb-lang-suggest__link" href={PATHS[page][other]} hreflang={other}>{s.link}</a>
+  <a class="wb-lang-suggest__link" href={href ?? PATHS[page][other]} hreflang={other}>{s.link}</a>
   <button type="button" class="wb-lang-suggest__close" aria-label={s.close} data-lang-suggest-close>
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
   </button>

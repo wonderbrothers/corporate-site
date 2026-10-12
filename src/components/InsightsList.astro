@@ -1,0 +1,81 @@
+---
+/* INSIGHTS 一覧ページの型（日本語 /insights/ と 英語 /en/insights/ で共通）
+   ・枠まわりの文章は ja.yaml / en.yaml の insights。記事は src/content/insights/。
+   ・新しい順に並べる。公開日前・下書きの記事は本番には出ない（npm run dev では確認用に出る）。 */
+import { Image } from 'astro:assets';
+import InsightsFrame from './InsightsFrame.astro';
+import { getCopy, rich, PATHS, type Lang } from '../lib/i18n';
+import { getInsights, insightPath } from '../lib/insights';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = await getCopy(lang);
+const c = t.insights;
+const other: Lang = lang === 'ja' ? 'en' : 'ja';
+const items = await getInsights(lang);
+const otherItems = await getInsights(other);
+// 両方の言語に記事があるときだけ、言語版どうしを hreflang で結ぶ
+const bothLangs = items.length > 0 && otherItems.length > 0;
+const otherHref = otherItems.length > 0 ? PATHS.insights[other] : PATHS.home[other];
+---
+<InsightsFrame
+  lang={lang}
+  title={c.title}
+  description={c.description}
+  path={PATHS.insights[lang]}
+  otherHref={otherHref}
+  alternates={bothLangs ? PATHS.insights : undefined}
+  noindex={items.length === 0}
+>
+  <section class="wb-sec wb-ins-index" aria-labelledby="insights-title">
+    <div class="wb-sec__inner">
+      <div class="wb-sec__head">
+        <h1 id="insights-title" class="reveal wb-display wb-display--insights" lang="en">{c.display}</h1>
+        {c.tagline && <p class="reveal wb-sec__sub" lang="en">{c.tagline}</p>}
+      </div>
+      <div class="wb-sec__lead">
+        {c.heading && <p class="reveal wb-sec__heading" set:html={rich(c.heading)} />}
+        <div class="reveal wb-sec__text">
+          <p set:html={rich(c.lead)} />
+        </div>
+      </div>
+
+      {items.length === 0 ? (
+        <p class="reveal wb-ins-index__empty">{c.empty}</p>
+      ) : (
+        <ul class="wb-ins-list" aria-label={c.listLabel}>
+          {items.map((it, i) => (
+            <li class="reveal wb-ins-card">
+              <a class="wb-ins-card__link" href={insightPath(lang, it.slug)}>
+                <div class="wb-ins-card__media">
+                  <Image
+                    class="wb-ins-card__img"
+                    src={it.thumbnail}
+                    alt=""
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 540px) calc(100vw - 32px), (max-width: 1140px) calc(50vw - 52px), 400px"
+                    format="webp"
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                  />
+                </div>
+                <div class="wb-ins-card__body">
+                  <p class="wb-ins-meta">
+                    <time datetime={it.dateISO}>{it.dateLabel}</time>
+                    {!it.isPublished && <span class="wb-ins-meta__status">{it.entry.data.draft ? c.draft : c.scheduled}</span>}
+                  </p>
+                  <h2 class="wb-ins-card__title">{it.entry.data.title}</h2>
+                  <p class="wb-ins-card__desc">{it.entry.data.description}</p>
+                  {it.entry.data.tags.length > 0 && (
+                    <ul class="wb-ins-tags">
+                      {it.entry.data.tags.map((tag) => <li class="wb-ins-tags__item">{tag}</li>)}
+                    </ul>
+                  )}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</InsightsFrame>

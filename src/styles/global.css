@@ -63,6 +63,7 @@
        CLIENT WORK 6.4280（-0.04em）→ 6.56
        WONDER LAB 6.2848（-0.04em）→ 6.41
        Design is not 6.0520（-0.03em）→ 6.17
+       INSIGHTS 4.4394（-0.04em）→ 4.53
        2行の見出しは長い方の行を基準にして、2行とも同じサイズにする。
        測定方法と旧係数での検算結果は docs/site-restructure-2026-09.md を参照。
        ★測り直すときは必ず Noto Sans が実際に読み込まれた状態で測ること。
@@ -74,6 +75,7 @@
   --wb-text-display-work: var(--wb-text-display);        /* CLIENT WORK */
   --wb-text-display-wonder-lab: var(--wb-text-display);  /* WONDER LAB */
   --wb-text-display-belief: var(--wb-text-display);      /* OUR BELIEF：Design is not / decoration. */
+  --wb-text-display-insights: var(--wb-text-display);    /* INSIGHTS（一覧ページ） */
   --wb-text-statement: var(--wb-fs-5xl);     /* HERO の和文コピー（答えのない問いを、つくることで確かめる。） */
   --wb-text-section: var(--wb-fs-4xl);       /* セクション見出し（SELECTED WORK / ABOUT 等）・下層ページのページ見出し */
   --wb-text-title: var(--wb-fs-3xl);         /* お問い合わせ・プライバシーポリシーのタイトル */
@@ -134,6 +136,7 @@
     --wb-text-display-work: calc((var(--wb-content-width) - 17px) / 6.56);       /* CLIENT WORK */
     --wb-text-display-wonder-lab: calc((var(--wb-content-width) - 17px) / 6.41); /* WONDER LAB */
     --wb-text-display-belief: calc((var(--wb-content-width) - 17px) / 6.17);     /* Design is not 基準 */
+    --wb-text-display-insights: calc((var(--wb-content-width) - 17px) / 4.53);   /* INSIGHTS */
     --wb-text-statement: var(--wb-fs-2xl);     /* 28 → 24 */
     --wb-text-section: var(--wb-fs-3xl);       /* 32 → 28 */
     --wb-text-heading-md: var(--wb-fs-lg);     /* 20 → 18 */
@@ -192,6 +195,7 @@
       --wb-text-display-work: min(calc(100cqw / 6.56), calc(var(--wb-content-width) / 6.56));
       --wb-text-display-wonder-lab: min(calc(100cqw / 6.41), calc(var(--wb-content-width) / 6.41));
       --wb-text-display-belief: min(calc(100cqw / 6.17), calc(var(--wb-content-width) / 6.17));
+      --wb-text-display-insights: min(calc(100cqw / 4.53), calc(var(--wb-content-width) / 4.53));
     }
   }
 }
@@ -608,6 +612,13 @@ a.wb-btn-outline > span::after,
 button.wb-btn-outline > span::after {
   content: "\2192";
   margin-left: 8px;
+}
+/* 英文の無いボタンは SP でも矢印をラベルと同じ行に置く（2段組みのままだと矢印だけが次の行に落ちる） */
+@media screen and (max-width: 540px) {
+  a.wb-btn-outline:not(:has(> span)),
+  button.wb-btn-outline:not(:has(> span)) {
+    flex-direction: row;
+  }
 }
 a.wb-btn-outline > span,
 button.wb-btn-outline > span {
