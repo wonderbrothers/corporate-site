@@ -18,7 +18,9 @@ const copy = defineCollection({
 // 書き方・ChatGPT への指示は docs/insights.md（ローカルのみ）。
 const insights = defineCollection({
   loader: glob({
-    pattern: "[!_]*/{ja,en}.md",
+    // 「_」で始まるフォルダは除外。除外は否定パターンで書く（[!_] の書き方は開発サーバーの変更検知で一致せず、
+    // 記事を足しても直しても npm run dev に反映されなかった）
+    pattern: ["*/{ja,en}.md", "!_*/**"],
     base: "./src/content/insights",
     generateId: ({ entry }) => entry.replace(/\.md$/, ""),
   }),
