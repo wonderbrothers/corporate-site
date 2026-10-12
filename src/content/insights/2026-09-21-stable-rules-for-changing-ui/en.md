@@ -3,7 +3,7 @@ title: "When business interfaces keep changing, how do you keep the rules for ju
 description: "As business interfaces adapt to conversations and goals, how do you keep permissions and decision criteria intact? Drawing on generative UI, task-specific models, codes of conduct, and incident reporting, we sort out which parts of the display can change, which rules should stay fixed, and how to test them in practice."
 heroAlt: "An illustration of a hand rearranging building-shaped panels on a stage against a blue background."
 tags: ["Generative UI", "Workflow design", "AI governance"]
-draft: true
+draft: false
 ---
 
 Period covered: September 14–20, 2026

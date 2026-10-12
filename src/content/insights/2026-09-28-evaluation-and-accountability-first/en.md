@@ -3,7 +3,7 @@ title: "Building fast with AI: design evaluation and accountability first"
 description: "AI can produce prototypes quickly, but deciding whether to move into production is a separate step. Drawing on evaluation criteria for PoCs, expert scoring standards, and the roles and incident response for agents, we consider how to turn production speed into operations with quality and clear responsibility."
 heroAlt: "An illustration of a hand holding a caliper to measure a yellow prototype against a mint background."
 tags: ["Product validation", "AI evaluation", "Accountability design"]
-draft: true
+draft: false
 ---
 
 Period covered: September 21–27, 2026

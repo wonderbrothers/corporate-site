@@ -3,7 +3,7 @@ title: "Handing work to AI: designing delegation, verification, and stopping"
 description: "Entrusting AI with ongoing work requires designing not only goals and permissions, but also how progress is understood, verified, and stopped. Drawing on a unified front door for public services, execution environments, talent development, and specialized AI, we consider how much can be delegated."
 heroAlt: "An illustration on a cream background of a branching railway track, a blue train, and a hand gripping a switch lever."
 tags: ["Agent UX", "Service design", "AI adoption"]
-draft: true
+draft: false
 ---
 
 Period covered: September 28 – October 4, 2026
