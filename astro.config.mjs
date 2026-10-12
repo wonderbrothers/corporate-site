@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { copyFile } from 'node:fs/promises';
+import { satteri } from '@astrojs/markdown-satteri';
+import insightSources from './src/lib/satteri-insight-sources.mjs';
 
 // robots.txt と Search Console は https://wonder-bros.com/sitemap.xml を見る。
 // @astrojs/sitemap は sitemap-index.xml / sitemap-0.xml を出すので、ビルドの最後に
@@ -23,6 +25,8 @@ export default defineConfig({
   site: 'https://wonder-bros.com',
   trailingSlash: 'always',
   integrations: [sitemap(), sitemapAlias],
+  // INSIGHTS の記事：出典の段落に印を付けて小さく表示する（src/lib/satteri-insight-sources.mjs）
+  markdown: { processor: satteri({ hastPlugins: [insightSources] }) },
   // CSS はネスト記法で書く（各要素の定義を1箇所にまとめるため）。
   // lightningcss が出力時にネストを展開するので、古いブラウザでも従来どおり動く。
   vite: {

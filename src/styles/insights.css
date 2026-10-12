@@ -392,6 +392,67 @@
   }
 }
 
+/* 冒頭の目次（本文の ## 見出しへのリンク）。本文用の ul / a / p の指定より優先させるため .wb-ins-body を前に付ける */
+.wb-ins-body .wb-ins-toc {
+  border: 1px solid #22222247;
+  border-radius: 16px;
+  margin: 0px 0px 40px;
+  padding: 20px 24px;
+  @media screen and (max-width: 540px) {
+    border-radius: 12px;
+    padding: 16px;
+  }
+}
+.wb-ins-body .wb-ins-toc__title {
+  color: #222222b3;
+  font-size: var(--wb-text-label);
+  font-weight: var(--wb-fw-extrabold);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin: 0px 0px 12px;
+}
+.wb-ins-body .wb-ins-toc__list {
+  margin: 0px;
+  padding: 0px;
+  & > li {
+    list-style: none;
+    margin: 0px;
+  }
+}
+.wb-ins-body .wb-ins-toc__link {
+  color: var(--wb-ink);
+  display: block;
+  font-size: var(--wb-text-body-sm);
+  font-weight: var(--wb-fw-bold);
+  line-height: 1.6;
+  padding: 6px 0px;
+  text-decoration: none;
+  &:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
+}
+/* 目次から飛んだとき、固定ナビに見出しが隠れないようにする */
+.wb-ins-body h2 {
+  scroll-margin-top: 80px;
+}
+
+/* 各話題の最後の出典（src/lib/satteri-insight-sources.mjs が class を付ける）。本文より小さく・薄くして読む流れを妨げない */
+.wb-ins-body .wb-ins-source {
+  color: #222222b3;
+  font-size: var(--wb-text-caption);
+  line-height: 1.7;
+  margin: -8px 0px 8px;
+  & + .wb-ins-source {
+    margin-top: 0px;
+  }
+  & a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 /* 前後の記事 */
 .wb-ins-pager {
   display: grid;

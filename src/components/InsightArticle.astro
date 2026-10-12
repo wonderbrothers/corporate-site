@@ -14,7 +14,9 @@ const t = await getCopy(lang);
 const c = t.insights;
 const other: Lang = lang === 'ja' ? 'en' : 'ja';
 const data = insight.entry.data;
-const { Content } = await render(insight.entry);
+const { Content, headings } = await render(insight.entry);
+// 冒頭の目次（本文の ## 見出し）
+const toc = headings.filter((h) => h.depth === 2);
 
 const path = insightPath(lang, insight.slug);
 // もう一方の言語に同じ記事があればそこへ、無ければその言語の一覧（記事が無ければトップ）へ
@@ -96,6 +98,14 @@ const jsonLd = JSON.stringify({
       />
     </figure>
     <div class="wb-ins-body">
+      {toc.length > 1 && (
+        <nav class="wb-ins-toc" aria-labelledby="ins-toc-title">
+          <p class="wb-ins-toc__title" id="ins-toc-title">{c.toc}</p>
+          <ul class="wb-ins-toc__list">
+            {toc.map((h) => <li><a class="wb-ins-toc__link" href={`#${h.slug}`}>{h.text}</a></li>)}
+          </ul>
+        </nav>
+      )}
       <Content />
     </div>
   </article>

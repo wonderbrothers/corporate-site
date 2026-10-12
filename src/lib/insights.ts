@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { ImageMetadata } from "astro";
 import type { Lang } from "./i18n";
+import { statSync } from "node:fs";
 
 export type InsightEntry = CollectionEntry<"insights">;
 
@@ -33,10 +34,24 @@ const images = import.meta.glob<ImageMetadata>(
 );
 function findImage(folder: string, name: "hero" | "thumbnail"): ImageMetadata | undefined {
   for (const ext of ["png", "jpg", "jpeg", "webp"]) {
-    const img = images[`/src/content/insights/${folder}/${name}.${ext}`];
-    if (img) return img;
+    const key = `/src/content/insights/${folder}/${name}.${ext}`;
+    const img = images[key];
+    if (img) return import.meta.env.DEV ? withDevVersion(img, key) : img;
   }
   return undefined;
+}
+
+// npm run dev だけ：画像の URL にファイルの更新日時を付ける。
+// 開発サーバーの画像 URL はファイル名と縦横サイズだけで決まり、しかも「1年間キャッシュしてよい」で返されるため、
+// 同じ名前・同じサイズで差し替えるとブラウザが古い画像を出し続けた。更新日時が変われば URL も変わるので、普通のリロードで反映される。
+// 本番ビルドは画像の中身から URL が決まる（差し替えれば URL が変わる）ので、この処理は不要。
+function withDevVersion(img: ImageMetadata, key: string): ImageMetadata {
+  try {
+    const v = Math.round(statSync(`${process.cwd()}${key}`).mtimeMs);
+    return { ...img, src: `${img.src}${img.src.includes("?") ? "&" : "?"}v=${v}` };
+  } catch {
+    return img;
+  }
 }
 
 const FOLDER_RE = /^(\d{4})-(\d{2})-(\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)$/;

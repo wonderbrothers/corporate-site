@@ -266,5 +266,6 @@ insights:
   backToList: "All insights"
   newer: "Newer"
   older: "Older"
+  toc: "In this article"
   pager: "More articles"
   ctaLead: "We are happy to talk about challenges like the ones in this article, even at an early stage."
