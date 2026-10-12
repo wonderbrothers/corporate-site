@@ -63,7 +63,11 @@ const jsonLd = JSON.stringify({
   <script type="application/ld+json" set:html={jsonLd} slot="head" is:inline></script>
   <article class="wb-ins-article">
     <header class="wb-ins-article__head">
-      <p class="reveal wb-ins-article__label" lang="en"><a href={insightsIndexPath(lang)}>INSIGHTS</a></p>
+      <p class="reveal wb-ins-article__label">
+        <a class="wb-ins-article__back" href={insightsIndexPath(lang)} aria-label={c.backToList}
+          ><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><polyline points="15 18 9 12 15 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span lang="en">INSIGHTS</span></a
+        >
+      </p>
       <h1 class="reveal wb-ins-article__title">{data.title}</h1>
       <div class="reveal wb-ins-article__meta">
         <p class="wb-ins-meta">

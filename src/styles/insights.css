@@ -194,14 +194,33 @@
     padding: 40px 0px 24px;
   }
 }
+/* タイトル上の「< INSIGHTS」：一覧へ戻るピル型のリンク（薄いグレーの面は相談例・PoC の3観点と同じ） */
 .wb-ins-article__label {
-  color: var(--primary);
+  display: flex;
+}
+.wb-ins-article__back {
+  align-items: center;
+  background: #2222220d;
+  border-radius: 999px;
+  color: var(--wb-ink);
+  display: inline-flex;
   font-size: var(--wb-text-label);
   font-weight: var(--wb-fw-extrabold);
+  gap: 4px;
   letter-spacing: 0.15em;
   line-height: 1.4;
-  & a:hover {
-    opacity: 0.6;
+  padding: 6px 14px 6px 10px;
+  transition: background 0.3s cubic-bezier(0.4, 0.4, 0, 1);
+  & svg {
+    display: block;
+    flex: none;
+  }
+  &:hover {
+    background: #2222221a;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--wb-ink);
+    outline-offset: 2px;
   }
 }
 .wb-ins-article__title {
