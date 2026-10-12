@@ -162,7 +162,7 @@
 }
 
 /* ---------- 記事 ---------- */
-/* 読みやすい行長（本文 720px）。FV 画像だけ少し広く取る */
+/* 読みやすい行長（本文 720px）。FV 画像も同じ幅にそろえる */
 .wb-ins-article,
 .wb-ins-pager,
 .wb-ins-after {
@@ -227,15 +227,10 @@
   aspect-ratio: 2 / 1;
   background: #2222220d;
   border-radius: 24px;
-  margin: 0px -80px;
   overflow: hidden;
-  @media screen and (max-width: 1140px) {
-    margin: 0px -40px;
-  }
   @media screen and (max-width: 840px) {
     aspect-ratio: 3 / 2;
     border-radius: 16px;
-    margin: 0px;
   }
   @media screen and (max-width: 540px) {
     border-radius: 12px;
