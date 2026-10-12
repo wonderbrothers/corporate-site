@@ -263,11 +263,11 @@ contactPage:
 # 記事の本文はここではなく src/content/insights/ の各フォルダに置く（書き方は docs/insights.md・ローカルのみ）。
 insights:
   title: "INSIGHTS | 株式会社ワンダーブラザース"
-  description: "デザインやAIの活用について、WONDER BROTHERSがプロジェクトや自社の実験で考えたこと・確かめたことを、毎週月曜にまとめています。"
+  description: "デザインやAIをめぐる動向を取り上げ、確認できる事実、そこから読み取れること、現場で試せる行動を、WONDER BROTHERSが毎週月曜にまとめています。"
   display: "INSIGHTS"
   tagline: "Weekly notes on design and AI."
-  heading: "つくって確かめる中で得た知見を、毎週まとめています。"
-  lead: "デザインやAIの活用について、プロジェクトや自社の実験で考えたこと・確かめたことを、毎週月曜に公開しています。"
+  heading: "デザインとテクノロジーの動きから、次の判断のヒントを。"
+  lead: "デザインやAIをめぐる動向を取り上げ、確認できる事実、そこから読み取れること、現場で試せる行動を、毎週月曜にまとめています。"
   empty: "最初の記事を準備しています。"
   listLabel: "記事一覧"
   siteSuffix: "株式会社ワンダーブラザース"

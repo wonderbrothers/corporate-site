@@ -252,11 +252,11 @@ contactPage:
 # Article bodies live in src/content/insights/ (how-to: docs/insights.md, local only), not here.
 insights:
   title: "INSIGHTS | WONDER BROTHERS INC."
-  description: "Every Monday, WONDER BROTHERS shares what we have been thinking about and testing on design and the use of AI, in client projects and our own experiments."
+  description: "Every Monday, WONDER BROTHERS looks at developments in design and AI, summarizing the facts we can confirm, what we read from them, and actions you can try in your own work."
   display: "INSIGHTS"
   tagline: "Weekly notes on design and AI."
-  heading: "What we learn by building, shared every week."
-  lead: "Every Monday, we share what we have been thinking about and testing on design and the use of AI, in client projects and our own experiments."
+  heading: "Ideas for your next decision, drawn from shifts in design and technology."
+  lead: "Every Monday, we look at developments in design and AI and summarize the facts we can confirm, what we read from them, and actions you can try in your own work."
   empty: "Our first article is on its way."
   listLabel: "Articles"
   siteSuffix: "WONDER BROTHERS INC."

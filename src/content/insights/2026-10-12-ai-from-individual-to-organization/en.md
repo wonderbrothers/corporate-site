@@ -1,7 +1,7 @@
 ---
 title: "From individual time savings to organizational results: rethinking the impact of AI"
 description: "Faster individual work does not automatically lead to better organizational results. Drawing on five developments from this week, from workflow redesign to quality control in development and design system upkeep, we outline how to check whether AI is really paying off, and what to try next."
-heroAlt: "An abstract composition in which separate circles and rectangles come together into a single connected structure."
+heroAlt: "An illustration of two hands fitting a red block into the gap in the middle of a bridge to connect both sides."
 tags: ["AI adoption", "Workflow design", "Design systems"]
 draft: false
 ---
