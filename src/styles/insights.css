@@ -450,7 +450,23 @@
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
+    /* 別タブで開く印（読み上げでは読まない。読み上げには .wb-ins-source__newtab の文言を使う） */
+    &::after {
+      content: "\2197" / "";
+      margin-left: 2px;
+      text-decoration: none;
+      display: inline-block;
+    }
   }
+}
+/* 「新しいタブで開きます」は画面には出さず、読み上げにだけ伝える */
+.wb-ins-source__newtab {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /* 前後の記事 */
